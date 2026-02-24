@@ -1,0 +1,237 @@
+@startuml GoSnackUseCaseDiagram
+
+title GoSnack - Diagrama de Casos de Uso 
+
+
+' Atores
+actor "Administrador" as Admin
+actor "Gerente \n de Lanchonete" as Manager
+actor "Funcionário \n da Lanchonete" as Employee
+
+actor "Cliente" as Client
+actor "Alunos e Professores" as StudentsAndTeachers
+actor "Visitantes" as Visitors
+
+note right of StudentsAndTeachers
+    Aluno, professor, coordenadores
+    e outros membros da 
+    comunidade escolar
+end note
+
+note right of Visitors
+    Pais/responsáveis por alunos,
+    visitantes convidados, etc
+end note
+
+' Herança
+' Visitantes podem realizar as mesmas ações dos alunos e professores, mesmo sem fazer login
+Client <|-- StudentsAndTeachers
+Client <|-- Visitors
+
+' No GoSnack Client, todos os usuários podem realizar as mesmas ações dos clientes
+Client <|-- Employee
+note right of Employee
+    Funcionários, gerentes e administradores 
+    podem usar o app do cliente para realizar 
+    as mesmas ações dos clientes.
+end note
+
+' Privilégios de acesso no GoSnack Admin
+Employee <|-- Manager
+Manager <|-- Admin
+
+' GoSnack Client
+rectangle "Client App (GoSnack Client)" {
+    ' Autenticação
+    rectangle "Autenticação" as ClientAuth {
+        usecase "Criar Conta" as UC_SignUpClient
+        StudentsAndTeachers --> UC_SignUpClient
+
+        usecase "Realizar Login" as UC_LoginClient
+        StudentsAndTeachers --> UC_LoginClient
+
+        usecase "Recuperar Senha" as UC_PasswordRecoveryClient
+        StudentsAndTeachers --> UC_PasswordRecoveryClient
+
+        usecase "Verificar E-mail" as UC_VerifyEmailClient
+        UC_SignUpClient ..> UC_VerifyEmailClient : <<include>>
+
+        usecase "Identificar Visitante" as UC_IdentifyVisitor
+        Visitors --> UC_IdentifyVisitor
+
+        usecase "Realizar Logout" as UC_LogoutClient
+        Client --> UC_LogoutClient  
+    }
+
+    ' Selecionar Lanchonete
+    rectangle "Selecionar Lanchonete" as SelectCafeteria {
+        usecase "Selecionar Lanchonete" as UC_SelectCafeteria
+        Client --> UC_SelectCafeteria
+    }
+
+    ' Cardápio
+    rectangle "Cardápio" as Menu {
+        usecase "Explorar Cardápio" as UC_ExploreMenu
+        Client --> UC_ExploreMenu
+
+        usecase "Visualizar Detalhes do Produto" as UC_ViewProductDetails
+        UC_ExploreMenu ..> UC_ViewProductDetails : <<extend>>
+
+        usecase "Filtrar Produtos" as UC_FilterProducts
+        UC_ExploreMenu ..> UC_FilterProducts : <<extend>>
+
+        usecase "Pesquisar Produtos" as UC_SearchProducts
+        UC_ExploreMenu ..> UC_SearchProducts : <<extend>>
+    }
+
+    ' Pedidos
+    rectangle "Pedidos" as Orders {
+        usecase "Realizar Pedido" as UC_PlaceOrder
+        Client --> UC_PlaceOrder
+
+        usecase "Gerenciar Carrinho" as UC_ManageCart
+        UC_PlaceOrder ..> UC_ManageCart : <<include>>
+
+        usecase "Adicionar Produto ao Carrinho" as UC_AddToCart
+        UC_ManageCart ..> UC_AddToCart: <<extend>>
+
+        usecase "Remover Produto do Carrinho" as UC_RemoveFromCart
+        UC_ManageCart ..> UC_RemoveFromCart: <<extend>>
+
+        usecase "Visualizar Carrinho" as UC_ViewCart
+        UC_ManageCart ..> UC_ViewCart: <<extend>>
+
+        usecase "Confirmar Pedido" as UC_ConfirmOrder
+        UC_PlaceOrder ..> UC_ConfirmOrder : <<include>>
+
+        ' Pós-pedido
+        usecase "Acompanhar Status do Pedido" as UC_TrackOrder
+        Client --> UC_TrackOrder
+
+        usecase "Cancelar Pedido" as UC_CancelOrder
+        UC_CancelOrder ..> UC_TrackOrder : <<extend>>
+        note on link
+            Apenas se o pedido ainda
+            não estiver em preparo
+        end note
+
+        usecase "Repetir Pedido Anterior" as UC_Reorder
+        UC_Reorder ..> UC_PlaceOrder : <<extend>>
+
+        usecase "Retirar Pedido" as UC_PickupOrder
+        UC_PickupOrder ..> UC_TrackOrder : <<extend>>
+    }
+
+    ' Avaliações
+    rectangle "Avaliações" as Reviews {
+        usecase "Ver Avaliações do Produto" as UC_ViewProductReviews
+        UC_ViewProductReviews ..> UC_ViewProductDetails : <<extend>>
+        
+        usecase "Avaliar Pedido" as UC_ReviewOrder
+        UC_ReviewOrder ..> UC_PickupOrder : <<extend>>
+    }
+}
+
+' GoSnack Admin
+rectangle "Admin Panel (GoSnack Admin)" {
+    ' Autenticação
+    rectangle "Autenticação" as AdminAuth {
+        usecase "Realizar Login" as UC_LoginAdmin
+        Employee --> UC_LoginAdmin
+
+        usecase "Recuperar Senha" as UC_PasswordRecoveryAdmin
+        Employee --> UC_PasswordRecoveryAdmin
+    }
+
+    ' Gerenciar Unidades
+    rectangle "Gerenciar Unidades" as ManageUnits {
+        usecase "Gerenciar Unidades" as UC_ManageUnits
+        Admin --> UC_ManageUnits
+
+        usecase "Adicionar Unidade" as UC_AddUnit
+        UC_ManageUnits ..> UC_AddUnit : <<include>>
+
+        usecase "Editar Unidade" as UC_EditUnit
+        UC_ManageUnits ..> UC_EditUnit : <<include>>
+
+        usecase "Remover Unidade" as UC_RemoveUnit
+        UC_ManageUnits ..> UC_RemoveUnit : <<include>>
+    }
+
+    ' Gerenciar Lanchonetes
+    rectangle "Gerenciar Lanchonetes" as ManageCafeterias {
+        usecase "Gerenciar Lanchonetes" as UC_ManageCafeterias
+        Admin --> UC_ManageCafeterias
+        
+        usecase "Adicionar Lanchonete" as UC_AddCafeteria
+        UC_ManageCafeterias <|-- UC_AddCafeteria
+        
+        usecase "Editar Lanchonete" as UC_EditCafeteria
+        UC_ManageCafeterias <|-- UC_EditCafeteria
+        Manager --> UC_EditCafeteria
+        
+        usecase "Remover Lanchonete" as UC_RemoveCafeteria
+        UC_ManageCafeterias <|-- UC_RemoveCafeteria
+    }
+
+    ' Gerenciar Usuários
+    rectangle "Gerenciar Usuários" as ManageUsers {
+        usecase "Gerenciar Usuários" as UC_ManageUsers
+        Admin --> UC_ManageUsers
+        
+        usecase "Adicionar Usuário" as UC_AddUser
+        UC_ManageUsers <|-- UC_AddUser
+
+        usecase "Editar Usuário" as UC_EditUser
+        UC_ManageUsers <|-- UC_EditUser
+
+        usecase "Remover Usuário" as UC_RemoveUser
+        UC_ManageUsers <|-- UC_RemoveUser      
+    }
+
+    ' Gerenciar Lanchonete e Cardápio
+    rectangle "Gerenciar Cardápio" as ManageMenu {
+        ' Produtos
+        usecase "Gerenciar Cardápio" as UC_ManageMenu
+        Manager --> UC_ManageMenu
+
+        usecase "Cadastrar Produto" as UC_AddProduct
+        UC_ManageMenu <|-- UC_AddProduct
+
+        usecase "Editar Produto" as UC_EditProduct
+        UC_ManageMenu <|-- UC_EditProduct
+
+        usecase "Remover Produto" as UC_RemoveProduct
+        UC_ManageMenu <|-- UC_RemoveProduct
+        
+        ' Categorias
+        usecase "Gerenciar Categorias" as UC_ManageCategories
+        Manager --> UC_ManageCategories
+
+        usecase "Adicionar Categoria" as UC_AddCategory
+        UC_ManageCategories <|-- UC_AddCategory
+        
+        usecase "Editar Categoria" as UC_EditCategory
+        UC_ManageCategories <|-- UC_EditCategory
+
+        usecase "Remover Categoria" as UC_RemoveCategory
+        UC_ManageCategories <|-- UC_RemoveCategory
+    }
+
+    ' Gerenciar Pedidos
+    rectangle "Gerenciar Pedidos" as OrdersPanel {
+        usecase "Gerenciar Pedidos" as UC_ManageOrders
+        Employee --> UC_ManageOrders
+
+        usecase "Visualizar Pedidos" as UC_ViewOrders
+        UC_ManageOrders <|-- UC_ViewOrders
+
+        usecase "Atualizar Status do Pedido" as UC_UpdateOrderStatus
+        UC_ManageOrders <|-- UC_UpdateOrderStatus
+
+        usecase "Gerar Relatórios de Vendas" as UC_GenerateSalesReports
+        Manager --> UC_GenerateSalesReports
+    }
+}
+
+@enduml
