@@ -1,4 +1,5 @@
 import { ModeToggle } from "@/components/shared/buttons/mode-toggle"
+import Logo from "@/components/shared/logos/logo"
 import { Card, CardContent } from "@/components/ui/card"
 import { IMAGES } from "@/constants/images"
 import Image from "next/image"
@@ -11,6 +12,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
     <div className="bg-muted min-h-svh flex flex-col items-center justify-center p-6 md:p-10 pt-0! gap-4">
       {/* Header */}
       <header className="flex flex-row items-center gap-8">
+        <Logo />
         <ModeToggle />
       </header>
 
