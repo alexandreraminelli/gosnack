@@ -1,0 +1,118 @@
+@startuml ER Diagram for GoSnack
+
+title "GoSnack - ER Diagram"
+
+' Configuração
+hide circle
+skinparam linetype ortho
+
+' Usuário
+entity "user" as user {
+    id: UUID PRIMARY KEY
+    --
+    first_name: TEXT NOT NULL
+    last_name: TEXT NOT NULL
+    email: TEXT NOT NULL UNIQUE
+    role: user_role NOT NULL DEFAULT 'customer'
+    is_active: BOOLEAN DEFAULT true
+    created_at: TIMESTAMP DEFAULT now()
+    updated_at: TIMESTAMP DEFAULT now()
+}
+note left
+    ENUM user_role {customer, employee, manager, admin}
+end note
+
+' Usuário Administrador
+entity "admin" as admin {
+    user_id: UUID PRIMARY KEY
+}
+admin ||--|| user : is
+
+' Unidades
+entity "unit" as unit {
+    id: UUID PRIMARY KEY
+    --
+    name: TEXT NOT NULL UNIQUE
+    is_active: BOOLEAN DEFAULT true
+    created_at: TIMESTAMP DEFAULT now()
+    updated_at: TIMESTAMP DEFAULT now()
+}
+
+' Relação entre Unidades e Administradores
+entity "unit_admin" as unit_admin {
+    unit_id: UUID NOT NULL PRIMARY KEY
+    admin_id: UUID NOT NULL PRIMARY KEY
+}
+unit ||--o{ unit_admin : has
+admin ||--o{ unit_admin : manages
+
+' Usuário Cliente
+entity "customer" as customer {
+    user_id: UUID PRIMARY KEY
+    unit_id: UUID
+    --
+}
+customer ||--|| user : is
+customer }|--|| unit : belongs_to
+
+' Lanchonetes
+entity "cafeteria" as cafeteria {
+    id: UUID PRIMARY KEY
+    --
+    name: TEXT NOT NULL UNIQUE
+    location: TEXT
+    is_active: BOOLEAN DEFAULT true
+    created_at: TIMESTAMP DEFAULT now()
+    updated_at: TIMESTAMP DEFAULT now()
+}
+unit ||--o{ cafeteria : in
+
+' Horários de Funcionamento de Lanchonetes
+entity "cafeteria_opening_hours" as cafeteria_opening_hours {
+    id: UUID PRIMARY KEY
+    cafeteria_id: UUID NOT NULL
+    --
+    period: day_period NOT NULL
+}
+note right
+    ENUM day_period {weekday, saturday}
+end note
+cafeteria ||--o{ cafeteria_opening_hours
+
+' Telefones das lanchonetes
+entity "cafeteria_phone" as cafeteria_phone {
+    id: UUID PRIMARY KEY
+    cafeteria_id: UUID NOT NULL
+    --
+    phone_number: TEXT NOT NULL
+    is_whatsapp: BOOLEAN DEFAULT false
+}
+cafeteria ||--o{ cafeteria_phone : has
+
+' Categorias de Produtos
+entity "category" as category {
+    id: UUID PRIMARY KEY
+    --
+    name: TEXT NOT NULL UNIQUE
+    icon: TEXT
+}
+
+' Produtos
+entity "product" as product {
+    id: UUID PRIMARY KEY
+    cafeteria_id: UUID NOT NULL
+    category_id: UUID NOT NULL
+    --
+    name: TEXT NOT NULL
+    description: TEXT
+    price: DECIMAL(10, 2) NOT NULL
+    discount: INTEGER DEFAULT 0
+    stock: INTEGER DEFAULT 0
+    is_active: BOOLEAN DEFAULT true
+    created_at: TIMESTAMP DEFAULT now()
+    updated_at: TIMESTAMP DEFAULT now()
+}
+cafeteria ||--o{ product : offers
+category ||--o{ product : categorizes
+
+@enduml
