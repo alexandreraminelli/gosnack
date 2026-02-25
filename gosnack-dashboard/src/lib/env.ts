@@ -1,7 +1,7 @@
 /**
  * Obter e armazenar as variáveis de ambiente para uso em toda a aplicação.
  */
-export const env = {
+const env = {
   /** Variáveis de ambiente do Supabase. */
   supabase: {
     url: process.env.NEXT_PUBLIC_SUPABASE_URL || "",
@@ -9,3 +9,4 @@ export const env = {
     anonKey: process.env.NEXT_SUPABASE_ANON_KEY || "",
   },
 } as const
+export default env
