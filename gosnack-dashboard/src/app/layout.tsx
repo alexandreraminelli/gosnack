@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/components/providers/theme-provider"
 import { SITE } from "@/constants/site"
 import "@/styles/globals.css"
 import type { Metadata } from "next"
@@ -47,9 +48,17 @@ export default function RootLayout({
       suppressHydrationWarning // suprime avisos de hidratação do React
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="antialiased">
-        {children} {/* Conteúdo aninhado */}
-      </body>
+      {/* Provedor de tema */}
+      <ThemeProvider
+        attribute="class" // usar classes CSS para controlar o tema
+        defaultTheme="system" // padrão: corresponder ao tema do SO
+        enableSystem // detecção automática do tema do SO
+        disableTransitionOnChange // desabilitar animações (evitar flashes e tornar mudança mais suave)
+      >
+        <body className="antialiased">
+          {children} {/* Conteúdo aninhado */}
+        </body>
+      </ThemeProvider>
     </html>
   )
 }

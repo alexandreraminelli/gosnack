@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/shared/buttons/mode-toggle"
 import { Card, CardContent } from "@/components/ui/card"
 import { IMAGES } from "@/constants/images"
 import Image from "next/image"
@@ -8,8 +9,10 @@ import Image from "next/image"
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-muted min-h-svh flex flex-col items-center justify-center p-6 md:p-10 pt-0! gap-4">
-      {/* TODO: Header */}
-      <header className="flex flex-row items-center gap-8"></header>
+      {/* Header */}
+      <header className="flex flex-row items-center gap-8">
+        <ModeToggle />
+      </header>
 
       {/* Card Central */}
       <div className="w-full max-w-sm md:max-w-4xl">
