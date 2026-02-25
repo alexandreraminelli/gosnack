@@ -44,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang={SITE.locale} // idioma da aplicação
+      lang="pt-BR" // idioma da aplicação
       suppressHydrationWarning // suprime avisos de hidratação do React
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
