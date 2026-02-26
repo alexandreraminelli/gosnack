@@ -210,3 +210,38 @@ create table categories (
 create trigger trg_categories_updated_at
 before update on categories
 for each row execute function update_updated_at();
+
+-- Tabela de produtos ----------------------------------------------------------
+
+create table products (
+    -- ID
+    id uuid primary key default gen_random_uuid(),
+    -- Lanchonete a qual o produto pertence
+    cafeteria_id uuid not null references cafeterias(id) on delete cascade,
+    -- Categoria do produto
+    category_id uuid not null references categories(id) on delete restrict,
+    -- Nome do produto
+    name text not null,
+    constraint uq_products_cafeteria_name unique (cafeteria_id, name),
+    -- Descrição do produto
+    description text,
+    -- Imagem do produto
+    image_path text,
+    -- Preço do produto
+    price numeric(10,2) not null check (price >= 0),
+    -- Desconto para alunos e professores
+    discount integer not null default 0 check (discount >= 0 and discount <= 100),
+    -- Estoque do produto
+    stock integer not null default 0 check (stock >= 0),
+    -- Se o produto está disponível para venda
+    is_available boolean not null default true,
+    -- Data e hora de criação
+    created_at timestamp not null default now(),
+    -- Data e hora de atualização
+    updated_at timestamp not null default now()
+);
+
+-- Trigger para atualizar updated_at automaticamente
+create trigger trg_products_updated_at
+before update on products
+for each row execute function update_updated_at();
