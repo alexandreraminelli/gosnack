@@ -245,3 +245,51 @@ create table products (
 create trigger trg_products_updated_at
 before update on products
 for each row execute function update_updated_at();
+
+-- Tabela de grupos de opções de um produto ------------------------------------
+
+create table product_option_groups (
+    -- ID
+    id uuid primary key default gen_random_uuid(),
+    -- Produto ao qual o grupo pertence
+    product_id uuid not null references products(id) on delete cascade,
+    -- Nome do grupo (exemplo: "Tamanho", "Molho", "Acompanhamento")
+    name text not null,
+    -- Se o grupo é obrigatório ou não
+    is_required boolean not null default false,
+    -- Mínimo de opções que devem ser selecionadas
+    min_selections integer not null default 0,
+    -- Máximo de opções que podem ser selecionadas
+    max_selections integer not null default 1,
+    -- Ordem de exibição no app
+    display_order integer not null default 0,
+
+    -- Verificar se valores são validos
+    constraint chk_selections check (
+        min_selections >= 0
+        and max_selections >= 1
+        and min_selections <= max_selections
+    ),
+    -- Nome do grupo único por produto
+    constraint uq_product_option_group unique (product_id, name)
+);
+
+-- Opções dentro de cada grupo -------------------------------------------------
+
+create table product_options (
+    -- ID
+    id uuid primary key default gen_random_uuid(),
+    -- Grupo ao qual a opção pertence
+    group_id uuid not null references product_option_groups(id) on delete cascade,
+    -- Nome da opção (exemplo: "Bacon", "Ketchup")
+    name text not null,
+    -- Preço adicional (0 se não mudar)
+    price_modifier numeric(10,2) not null default 0 check (price_modifier >= 0),
+    -- Ordem de exibição no app
+    display_order integer not null default 0,
+    -- Se a opção está disponível para seleção
+    is_available boolean not null default true,
+
+    -- Nome da opção único por grupo
+    constraint uq_product_option unique (group_id, name)
+);
