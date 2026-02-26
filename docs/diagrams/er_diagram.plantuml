@@ -22,12 +22,6 @@ note left
     ENUM user_role {customer, employee, manager, admin}
 end note
 
-' Usuário Administrador
-entity "admin" as admin {
-    user_id: UUID PRIMARY KEY
-}
-admin ||--|| user : is
-
 ' Unidades
 entity "unit" as unit {
     id: UUID PRIMARY KEY
@@ -44,16 +38,7 @@ entity "unit_admin" as unit_admin {
     admin_id: UUID NOT NULL PRIMARY KEY
 }
 unit ||--o{ unit_admin : has
-admin ||--o{ unit_admin : manages
-
-' Usuário Cliente
-entity "customer" as customer {
-    user_id: UUID PRIMARY KEY
-    unit_id: UUID
-    --
-}
-customer ||--|| user : is
-customer }|--|| unit : belongs_to
+user ||--o{ unit_admin : manages
 
 ' Lanchonetes
 entity "cafeteria" as cafeteria {
@@ -67,6 +52,17 @@ entity "cafeteria" as cafeteria {
 }
 unit ||--o{ cafeteria : in
 
+' Lanchonetes e Funcionários/Gerentes
+entity cafeteria_staff_profile {
+    user_id: UUID NOT NULL PRIMARY KEY
+    cafeteria_id: UUID NOT NULL PRIMARY KEY
+    --
+    hire_date: DATE NOT NULL
+}
+cafeteria ||--o{ cafeteria_staff_profile : employs
+user ||--o{ cafeteria_staff_profile : works_as
+
+
 ' Horários de Funcionamento de Lanchonetes
 entity "cafeteria_opening_hours" as cafeteria_opening_hours {
     id: UUID PRIMARY KEY
@@ -74,7 +70,7 @@ entity "cafeteria_opening_hours" as cafeteria_opening_hours {
     --
     period: day_period NOT NULL
 }
-note right
+note left
     ENUM day_period {weekday, saturday}
 end note
 cafeteria ||--o{ cafeteria_opening_hours
@@ -114,5 +110,34 @@ entity "product" as product {
 }
 cafeteria ||--o{ product : offers
 category ||--o{ product : categorizes
+
+' Pedidos
+entity order {
+    id: UUID PRIMARY KEY
+    customer_id: UUID NOT NULL
+    cafeteria_id: UUID NOT NULL
+    employee_id: UUID
+    --
+    status: order_status NOT NULL DEFAULT 'pending'
+}
+note right
+    ENUM order_status {pending, preparing, ready, completed, cancelled}
+end note
+user ||--o{ order : places
+cafeteria ||--o{ order : receives
+user ||--o{ order : handles
+
+' Item de pedido
+entity order_item {
+    id: UUID PRIMARY KEY
+    order_id: UUID NOT NULL
+    product_id: UUID NOT NULL
+    --
+    quantity: INTEGER NOT NULL
+    price_at_order: DECIMAL(10, 2) NOT NULL
+    notes: TEXT
+}
+order ||--o{ order_item : contains
+product ||--o{ order_item : included_in
 
 @enduml
