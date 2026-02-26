@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "db:migration": "supabase migration new",
+    "db:push": "supabase db push",
+    "db:reset": "supabase db reset",
+    "db:status": "supabase migration list",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
