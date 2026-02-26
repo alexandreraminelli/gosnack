@@ -41,6 +41,7 @@ user ||--o{ unit_admin : manages
 ' Lanchonetes
 entity "cafeteria" as cafeteria {
     id: UUID PRIMARY KEY
+    unit_id: UUID NOT NULL
     --
     name: TEXT NOT NULL UNIQUE
     location: TEXT

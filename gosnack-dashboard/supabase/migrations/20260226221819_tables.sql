@@ -79,4 +79,26 @@ create trigger trg_unit_admin_assignments_check_role
 before insert or update on unit_admin_assignments
 for each row execute function check_unit_admin_assignments_role();
 
+-- Tabela Lanchonete -----------------------------------------------------------
 
+create table cafeterias (
+    -- ID
+    id uuid primary key default gen_random_uuid(),
+    -- Unidade a qual a lanchonete pertence
+    unit_id uuid not null references units(id) on delete cascade,
+    -- Nome da lanchonete
+    name text not null unique (unit_id, name),
+    -- Localização
+    location text,
+    -- Data e hora de criação
+    created_at timestamp not null default now(),
+    -- Data e hora de atualização
+    updated_at timestamp not null default now(),
+    -- Se a lanchonete está ativa
+    is_active boolean not null default true
+);
+
+-- Trigger para atualizar updated_at automaticamente
+create trigger trg_cafeterias_updated_at
+before update on cafeterias
+for each row execute function update_updated_at();
