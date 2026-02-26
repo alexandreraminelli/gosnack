@@ -87,7 +87,8 @@ create table cafeterias (
     -- Unidade a qual a lanchonete pertence
     unit_id uuid not null references units(id) on delete cascade,
     -- Nome da lanchonete
-    name text not null unique (unit_id, name),
+    name text not null,
+    constraint uq_cafeterias_unit_name unique (unit_id, name),
     -- Localização
     location text,
     -- Data e hora de criação
@@ -102,3 +103,31 @@ create table cafeterias (
 create trigger trg_cafeterias_updated_at
 before update on cafeterias
 for each row execute function update_updated_at();
+
+-- Relação entre lanchonetes e usuários (managers e employees) (N:N) -----------
+
+create table cafeteria_staff_assignments (
+    -- FKs
+    cafeteria_id uuid not null references cafeterias(id) on delete cascade,
+    user_id uuid not null references users(id) on delete cascade,
+    -- PK composta
+    primary key (cafeteria_id, user_id),
+    -- Data e hora de atribuição
+    assigned_at timestamp not null default now()
+);
+
+-- Restrição para apenas usuários com role 'manager' ou 'employee' possam ser atribuídos
+create or replace function check_cafeteria_staff_role()
+returns trigger as $$
+begin
+    if (select role from users where id = NEW.user_id) not in ('employee', 'manager') then
+        raise exception 'only users with employee or manager role can be assigned to cafeterias';
+    end if;
+    return NEW;
+end;
+$$ language plpgsql security definer;
+
+-- Trigger para verificar o papel do usuário ao atribuir a uma lanchonete
+create trigger trg_cafeteria_staff_check_role
+before insert or update on cafeteria_staff_assignments
+for each row execute function check_cafeteria_staff_role();
