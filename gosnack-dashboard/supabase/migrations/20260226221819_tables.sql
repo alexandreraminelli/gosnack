@@ -188,3 +188,25 @@ create table cafeteria_phones (
 create trigger trg_cafeteria_phones_updated_at
 before update on cafeteria_phones
 for each row execute function update_updated_at();
+
+-- Tabela de categorias --------------------------------------------------------
+
+create table categories (
+    -- ID
+    id uuid primary key default gen_random_uuid(),
+    -- Nome da categoria
+    name text not null unique,
+    -- URL pro ícone
+    icon_path text,
+    -- Data e hora de criação
+    created_at timestamp not null default now(),
+    -- Data e hora de atualização   
+    updated_at timestamp not null default now(),
+    -- Se a categoria está ativa
+    is_active boolean not null default true
+);
+
+-- Trigger para atualizar updated_at automaticamente
+create trigger trg_categories_updated_at
+before update on categories
+for each row execute function update_updated_at();
