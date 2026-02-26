@@ -1,5 +1,16 @@
 -- Definir estrutura das tabelas
 
+-- Funções auxiliares ----------------------------------------------------------
+
+-- Função para atualizar o campo updated_at automaticamente
+create or replace function update_updated_at()
+returns trigger as $$
+begin
+    NEW.updated_at = now();
+    return NEW;
+end;
+$$ language plpgsql;
+
 -- Tabela de usuários ----------------------------------------------------------
 create table users (
     -- UID (User ID)
