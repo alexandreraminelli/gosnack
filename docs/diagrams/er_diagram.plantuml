@@ -68,6 +68,9 @@ entity "cafeteria_opening_hours" as cafeteria_opening_hours {
     cafeteria_id: UUID NOT NULL
     --
     period: day_period NOT NULL
+    is_open: BOOLEAN DEFAULT false
+    open_time: TIME NOT NULL
+    close_time: TIME NOT NULL
 }
 note left
     ENUM day_period {weekday, saturday}

@@ -131,3 +131,40 @@ $$ language plpgsql security definer;
 create trigger trg_cafeteria_staff_check_role
 before insert or update on cafeteria_staff_assignments
 for each row execute function check_cafeteria_staff_role();
+
+-- Horários de Funcionamento das lanchonetes -----------------------------------
+
+create table cafeteria_opening_hours (
+    -- ID
+    id uuid primary key default gen_random_uuid(),
+    -- Lanchonete
+    cafeteria_id uuid not null references cafeterias(id) on delete cascade,
+    -- Periodo
+    period day_period not null,
+    -- Se está aberto nesse período
+    is_open boolean not null default false,
+    -- Horário de abertura
+    open_time time,
+    -- Horário de fechamento
+    close_time time,
+    -- Data e hora de atualização
+    updated_at timestamp not null default now(),
+
+    -- um horário por período para cada lanchonete
+    constraint uq_cafeteria_opening_hours_period unique (cafeteria_id, period),
+    -- horários obrigatórios se is_open for true
+    constraint chk_cafeteria_opening_hours_times check (
+        is_open = false
+        or (open_time is not null and close_time is not null)
+    ),
+    -- horário de abertura deve ser antes do horário de fechamento
+    constraint chk_opening_before_closing check (
+        is_open = false
+        or (open_time < close_time)
+    )
+);
+
+-- Trigger para atualizar updated_at automaticamente
+create trigger trg_cafeteria_opening_hours_updated_at
+before update on cafeteria_opening_hours
+for each row execute function update_updated_at();
