@@ -3,7 +3,7 @@
 -- Tabela de usuários ----------------------------------------------------------
 create table users (
     -- UID (User ID)
-    id UUID primary key references auth.users(id) on delete cascade,
+    id uuid primary key references auth.users(id) on delete cascade,
     -- Primeiro nome
     first_name text not null,
     -- Sobrenome
@@ -40,5 +40,32 @@ create table units (
 create trigger trg_units_updated_at
 before update on units
 for each row execute function update_updated_at();
+
+-- Relação entre usuários e unidades (N:N) -------------------------------------
+
+create table unit_admin_assignments (
+    -- FKs
+    unit_id uuid not null references units(id) on delete cascade,
+    admin_id uuid not null references users(id) on delete cascade,
+    -- PK composta
+    primary key (unit_id, admin_id),
+    -- Data e hora de atribuição
+    assigned_at timestamp not null default now()
+);
+
+-- Restrição para apenas usuários com role 'admin' possam ser atribuídos
+create or replace function check_unit_admin_assignments_role() 
+returns trigger as $$
+begin
+    if (select role from users where id = NEW.admin_id) != 'admin' then
+        raise exception 'only users with admin role can be assigned to units';
+    end if;
+    return NEW;
+end;
+$$ language plpgsql security definer;
+
+create trigger trg_unit_admin_assignments_check_role
+before insert or update on unit_admin_assignments
+for each row execute function check_unit_admin_assignments_role();
 
 

@@ -31,7 +31,7 @@ entity "units" as unit {
 }
 
 ' Relação entre Unidades e Administradores
-entity "unit_admin" as unit_admin {
+entity "unit_admin_assignments" as unit_admin {
     unit_id: UUID NOT NULL PRIMARY KEY
     admin_id: UUID NOT NULL PRIMARY KEY
 }
