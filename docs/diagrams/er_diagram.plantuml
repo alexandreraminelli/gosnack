@@ -21,7 +21,7 @@ note left
 end note
 
 ' Unidades
-entity "unit" as unit {
+entity "units" as unit {
     id: UUID PRIMARY KEY
     --
     name: TEXT NOT NULL UNIQUE
