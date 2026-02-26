@@ -168,3 +168,23 @@ create table cafeteria_opening_hours (
 create trigger trg_cafeteria_opening_hours_updated_at
 before update on cafeteria_opening_hours
 for each row execute function update_updated_at();
+
+-- Tabela de telefones das lanchonetes -----------------------------------------
+
+create table cafeteria_phones (
+    -- ID
+    id uuid primary key default gen_random_uuid(),
+    -- Lanchonete   
+    cafeteria_id uuid not null references cafeterias(id) on delete cascade,
+    -- Número de telefone
+    phone_number text not null,
+    -- Se é do WhatsApp
+    is_whatsapp boolean not null default false,
+    -- Data e hora de modificação
+    updated_at timestamp not null default now()
+);
+
+-- Trigger para atualizar updated_at automaticamente
+create trigger trg_cafeteria_phones_updated_at
+before update on cafeteria_phones
+for each row execute function update_updated_at();
