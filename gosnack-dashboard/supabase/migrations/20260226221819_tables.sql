@@ -334,3 +334,96 @@ $$ language plpgsql security definer;
 create trigger trg_combo_items_check
 before insert or update on combo_items
 for each row execute function check_combo_items();
+
+-- Tabela de pedidos
+
+create table orders (
+    -- ID do pedido
+    id uuid primary key default gen_random_uuid(),
+    -- ID do usuário que fez o pedido
+    user_id uuid not null references users(id) on delete restrict,
+    -- ID da lanchonete onde o pedido foi feito
+    cafeteria_id uuid not null references cafeterias(id) on delete restrict,
+    -- Funcionário que atendeu o pedido
+    staff_id uuid references users(id) on delete restrict,
+    -- Status do pedido
+    status order_status not null default 'pending',
+    -- Valor total do pedido
+    total_amount numeric(10,2) not null default 0 check (total_amount >= 0),
+    -- Data e hora de criação do pedido
+    created_at timestamp not null default now(),
+    -- Data e hora de atualização do pedido
+    updated_at timestamp not null default now()
+);
+
+-- Trigger para atualizar updated_at automaticamente
+create trigger trg_orders_updated_at
+before update on orders
+for each row execute function update_updated_at();
+
+-- Tabela de itens do pedido ---------------------------------------------------
+
+create table order_items (
+    -- ID do item do pedido
+    id uuid primary key default gen_random_uuid(),
+    -- ID do pedido
+    order_id uuid not null references orders(id) on delete cascade,
+    -- ID do produto
+    product_id uuid not null references products(id) on delete restrict,
+    -- Quantidade do produto no pedido
+    quantity integer not null default 1 check (quantity > 0),
+    -- Preço do produto no momento do pedido (considerando desconto)
+    price_at_order numeric(10,2) not null check (price_at_order >= 0),
+    -- Observações do cliente
+    notes text
+);
+
+-- Opções selecionadas para cada item do pedido --------------------------------
+
+create table order_item_options (
+    -- ID 
+    id uuid primary key default gen_random_uuid(),
+    -- Item do pedido a qual a opção pertence
+    order_item_id uuid not null references order_items(id) on delete cascade,
+    -- Opção selecionada pelo cliente
+    option_id uuid not null references product_options(id) on delete restrict,
+    -- Preço no momento do pedido
+    price_modifier_at_order numeric(10,2) not null check (price_modifier_at_order > 0),
+
+    -- Uma opção não pode ser adicionada mais de uma vez para o mesmo item do pedido
+    constraint uq_order_item_option unique (order_item_id, option_id)
+);
+
+-- Tabela para rastrear o andamento do pedido ----------------------------------
+
+create table order_status_history (
+    -- ID
+    id uuid primary key default gen_random_uuid(),
+    -- ID do pedido
+    order_id uuid not null references orders(id) on delete cascade,
+    -- Status anterior
+    from_status order_status,
+    -- Novo status
+    to_status order_status not null,
+    -- Funcionário responsável pela mudança de status (null se automático)
+    changed_by uuid references users(id) on delete set null,
+    -- Data e hora da mudança de status
+    changed_at timestamp not null default now()
+);
+
+-- Função para registrar mudanças de status no pedido
+create or replace function record_order_status_change()
+returns trigger as $$
+begin
+    if OLD.status is distinct from NEW.status then
+        insert into order_status_history (order_id, from_status, to_status)
+        values (NEW.id, OLD.status, NEW.status);
+    end if;
+    return NEW;
+end;
+$$ language plpgsql security definer;
+
+-- Trigger para registrar mudanças de status no pedido  
+create trigger trg_orders_record_status_change
+after update on orders
+for each row execute function record_order_status_change();
