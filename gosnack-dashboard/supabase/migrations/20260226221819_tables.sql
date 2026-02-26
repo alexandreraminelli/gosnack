@@ -238,7 +238,9 @@ create table products (
     -- Data e hora de criação
     created_at timestamp not null default now(),
     -- Data e hora de atualização
-    updated_at timestamp not null default now()
+    updated_at timestamp not null default now(),
+    -- Se o produto é um combo
+    is_combo boolean not null default false
 );
 
 -- Trigger para atualizar updated_at automaticamente
@@ -293,3 +295,42 @@ create table product_options (
     -- Nome da opção único por grupo
     constraint uq_product_option unique (group_id, name)
 );
+
+-- Tabela de itens de um combo -------------------------------------------------
+
+create table combo_items (
+    -- ID do item do combo
+    id uuid primary key default gen_random_uuid(),
+    -- ID do produto de combo
+    combo_id uuid not null references products(id) on delete cascade,
+    -- ID do produto que é parte do combo
+    product_id uuid not null references products(id) on delete cascade,
+    -- Quantidade do produto no combo
+    quantity integer not null default 1 check (quantity > 0),
+
+    -- Garantir que um produto não seja adicionado mais de uma vez ao mesmo combo
+    constraint uq_combo_item unique (combo_id, product_id),
+    -- Combo não pode conter a si mesmo
+    constraint chk_combo_not_self check (combo_id != product_id)
+);
+
+create or replace function check_combo_items()
+returns trigger as $$
+begin
+    -- combo_id deve ser um produto marcado como combo
+    if (select is_combo from products where id = NEW.combo_id) = false then
+        raise exception 'combo_id must reference a product marked as combo';
+    end if;
+
+    -- product_id não pode ser outro combo
+    if (select is_combo from products where id = NEW.product_id) = true then
+        raise exception 'product_id cannot reference a product marked as combo';
+    end if;
+
+    return NEW;
+end;
+$$ language plpgsql security definer;
+
+create trigger trg_combo_items_check
+before insert or update on combo_items
+for each row execute function check_combo_items();
