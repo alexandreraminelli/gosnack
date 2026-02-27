@@ -388,7 +388,7 @@ create table order_item_options (
     -- Opção selecionada pelo cliente
     option_id uuid not null references product_options(id) on delete restrict,
     -- Preço no momento do pedido
-    price_modifier_at_order numeric(10,2) not null check (price_modifier_at_order > 0),
+    price_modifier_at_order numeric(10,2) not null check (price_modifier_at_order >= 0),
 
     -- Uma opção não pode ser adicionada mais de uma vez para o mesmo item do pedido
     constraint uq_order_item_option unique (order_item_id, option_id)
