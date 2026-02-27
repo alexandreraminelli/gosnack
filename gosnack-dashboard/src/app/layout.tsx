@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/components/providers/theme-provider"
+import { Toaster } from "@/components/ui/sonner"
 import { SITE } from "@/constants/site"
 import "@/styles/globals.css"
 import type { Metadata } from "next"
@@ -56,7 +57,11 @@ export default function RootLayout({
         disableTransitionOnChange // desabilitar animações (evitar flashes e tornar mudança mais suave)
       >
         <body className="antialiased">
-          {children} {/* Conteúdo aninhado */}
+          {/* Conteúdo aninhado */}
+          {children}
+
+          {/* Notificações do sonner */}
+          <Toaster position="top-right" richColors />
         </body>
       </ThemeProvider>
     </html>
