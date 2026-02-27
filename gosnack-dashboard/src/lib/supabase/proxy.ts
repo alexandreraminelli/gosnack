@@ -4,7 +4,7 @@
 
 import { ROUTES } from "@/constants/navigation/routes"
 import env from "@/lib/env"
-import { isAuthRequired } from "@/lib/navigation/route-access"
+import { isAuthRoute, isPrivateRoute } from "@/lib/navigation/route-access"
 import { createServerClient } from "@supabase/ssr"
 import { NextRequest, NextResponse } from "next/server"
 
@@ -55,12 +55,20 @@ export async function updateSession(request: NextRequest): Promise<NextResponse>
   // Se os dados de autenticação estiverem disponíveis, armazena as informações do usuário.
   const user = data?.claims
 
-  if (!user && isAuthRequired(request.nextUrl.pathname)) {
+  const pathname = request.nextUrl.pathname
+
+  if (!user && isPrivateRoute(pathname)) {
     // Se o usuário não estiver autenticado e a rota exigir autenticação
     const url = request.nextUrl.clone()
     url.pathname = ROUTES.login
     return NextResponse.redirect(url)
+  } else if (user && isAuthRoute(pathname)) {
+    // Se o usuário estiver autenticado e a rota for de autenticação
+    const url = request.nextUrl.clone()
+    url.pathname = ROUTES.home
+    return NextResponse.redirect(url)
+  } else {
+    // Se o usuário estiver em rota pública (independente de autenticação)
+    return supabaseResponse
   }
-  // Retorna a resposta com os cookies atualizados, se necessário.
-  return supabaseResponse
 }
