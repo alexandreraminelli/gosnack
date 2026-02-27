@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { UI_TEXTS } from "@/constants/content/ui"
+import { UI_TEXTS } from "@/constants/texts/ui.texts"
 import { ICONS } from "@/constants/icons"
 import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react"
 import { useTheme } from "next-themes"
