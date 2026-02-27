@@ -2,6 +2,11 @@
  * Textos para a funcionalidade de login.
  */
 export const LOGIN_TEXTS = {
+  fields: {
+    email: "E-mail",
+    password: "Senha",
+  },
+
   header: {
     title: "GoSnack: Painel de Controle",
     subtitle: "Acesse o sistema para gerenciar pedidos e produtos.",
@@ -10,6 +15,8 @@ export const LOGIN_TEXTS = {
   metadata: {
     title: "Login",
   },
+
+  submit: "Entrar",
 
   validation: {
     email: {

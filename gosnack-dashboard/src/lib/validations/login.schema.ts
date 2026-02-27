@@ -1,5 +1,5 @@
 import { LOGIN_TEXTS } from "@/constants/texts/login.texts"
-import z from "zod"
+import { z } from "zod"
 
 /**
  * Zod Schema para o formulário de login.

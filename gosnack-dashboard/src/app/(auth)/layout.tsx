@@ -1,6 +1,6 @@
 import { ModeToggle } from "@/components/shared/buttons/mode-toggle"
 import Logo from "@/components/shared/logos/logo"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { IMAGES } from "@/constants/images"
 import Image from "next/image"
 
@@ -20,7 +20,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="w-full max-w-sm md:max-w-4xl">
         <div className="flex flex-col gap-6">
           <Card className="overflow-hidden p-0 min-h-96">
-            <CardContent className="grid p-0 md:grid-cols-2 h-full">
+            <div className="grid p-0 md:grid-cols-2 h-full">
               {/* Página */}
               <div className="p-6 md:p-8">{children}</div>
 
@@ -34,7 +34,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                   className="object-cover"
                 />
               </aside>
-            </CardContent>
+            </div>
           </Card>
         </div>
       </div>
