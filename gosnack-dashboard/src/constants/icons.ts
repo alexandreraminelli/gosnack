@@ -1,6 +1,7 @@
 import {
   // Ícones do HugeIcons:
   ComputerIcon,
+  Loading03Icon,
   LoginSquare01Icon,
   LogoutSquare01Icon,
   Moon02Icon,
@@ -22,6 +23,8 @@ export const ICONS = {
       hide: ViewOffSlashIcon,
     },
   },
+
+  loading: Loading03Icon,
 
   theme: {
     light: Sun03Icon,

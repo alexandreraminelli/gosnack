@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
+import LoadingSpin from "../shared/feedback/loading/loading-spin"
 
 /**
  * Tipagem dos dados do formulário de login.
@@ -43,8 +44,11 @@ export default function LoginForm() {
   /**
    * Função executada ao submeter o formulário de login.
    */
-  function onSubmit(data: LoginFormData) {
+  async function onSubmit(data: LoginFormData) {
     // TODO: Implementar login
+
+    // Simular delay de 5 segundos
+    await new Promise((resolve) => setTimeout(resolve, 5000))
     console.log("Dados do formulário de login:", data)
   }
 
@@ -81,8 +85,8 @@ export default function LoginForm() {
       </CardContent>
 
       <CardFooter className="px-0">
-        <Button size="lg" className="w-full" type="submit">
-          <HugeiconsIcon icon={ICONS.auth.login} />
+        <Button size="lg" disabled={form.formState.isSubmitting} className="w-full" type="submit" onClick={() => console.log("Botão clicado")}>
+          {form.formState.isSubmitting ? <LoadingSpin /> : <HugeiconsIcon icon={ICONS.auth.login} />}
           {LOGIN_TEXTS.submit}
         </Button>
       </CardFooter>
