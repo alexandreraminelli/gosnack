@@ -18,6 +18,15 @@ export const LOGIN_TEXTS = {
 
   submit: "Entrar",
 
+  result: {
+    loading: "Autenticando...",
+    success: "Login realizado com sucesso!",
+    error: {
+      message: "Erro ao fazer o login!",
+      fallback: "Verifique suas credenciais e tente novamente.",
+    },
+  },
+
   validation: {
     email: {
       required: "Informe seu e-mail.",

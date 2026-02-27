@@ -12,6 +12,10 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 import LoadingSpin from "../shared/feedback/loading/loading-spin"
+import { toast } from "sonner"
+import { signInUser } from "@/services/auth"
+import { useRouter } from "next/navigation"
+import { ROUTES } from "@/constants/navigation/routes"
 
 /**
  * Tipagem dos dados do formulário de login.
@@ -19,17 +23,11 @@ import LoadingSpin from "../shared/feedback/loading/loading-spin"
 type LoginFormData = z.infer<typeof loginSchema>
 
 /**
- * IDs do formulário e dos campos.
- */
-const FORM_IDS = {
-  email: "email-field",
-  password: "password-field",
-} as const
-
-/**
  * Formulário de login.
  */
 export default function LoginForm() {
+  const router = useRouter()
+
   /**
    * Instância do React Hook Form para o formulário de login.
    */
@@ -45,11 +43,18 @@ export default function LoginForm() {
    * Função executada ao submeter o formulário de login.
    */
   async function onSubmit(data: LoginFormData) {
-    // TODO: Implementar login
+    const result = await signInUser(data)
 
-    // Simular delay de 5 segundos
-    await new Promise((resolve) => setTimeout(resolve, 5000))
-    console.log("Dados do formulário de login:", data)
+    if (result.success) {
+      // Login bem-sucedido
+      toast.success(LOGIN_TEXTS.result.success)
+      router.push(ROUTES.home)
+    } else {
+      // Erro no login
+      toast.error(LOGIN_TEXTS.result.error.message, {
+        description: result.message,
+      })
+    }
   }
 
   return (
