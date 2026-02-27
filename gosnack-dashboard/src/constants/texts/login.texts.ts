@@ -10,4 +10,14 @@ export const LOGIN_TEXTS = {
   metadata: {
     title: "Login",
   },
+
+  validation: {
+    email: {
+      required: "Informe seu e-mail.",
+      invalid: "Digite um e-mail válido.",
+    },
+    password: {
+      required: "Informe sua senha.",
+    },
+  },
 } as const
