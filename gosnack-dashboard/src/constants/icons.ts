@@ -1,5 +1,9 @@
 import {
   // Ícones do HugeIcons:
+  ArrowDown01Icon,
+  ArrowLeft01Icon,
+  ArrowRight01Icon,
+  ArrowUp01Icon,
   ComputerIcon,
   Loading03Icon,
   LoginSquare01Icon,
@@ -14,6 +18,13 @@ import {
  * Mapeamento dos ícones do HugeIcons para cada contexto de uso no site.
  */
 export const ICONS = {
+  arrows: {
+    up: ArrowUp01Icon,
+    down: ArrowDown01Icon,
+    left: ArrowLeft01Icon,
+    right: ArrowRight01Icon,
+  },
+
   auth: {
     login: LoginSquare01Icon,
     logout: LogoutSquare01Icon,
