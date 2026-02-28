@@ -33,7 +33,8 @@ export default function LoginForm() {
    * Instância do React Hook Form para o formulário de login.
    */
   const form = useForm<LoginFormData>({
-    resolver: zodResolver(loginSchema) as Resolver<LoginFormData>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(loginSchema as any) as Resolver<LoginFormData>,
     defaultValues: {
       email: "",
       password: "",
