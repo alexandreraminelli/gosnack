@@ -18,7 +18,7 @@ import {
  * Mapeamento dos ícones do HugeIcons para cada contexto de uso no site.
  */
 export const ICONS = {
-  arrows: {
+  arrow: {
     up: ArrowUp01Icon,
     down: ArrowDown01Icon,
     left: ArrowLeft01Icon,
