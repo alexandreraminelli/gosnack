@@ -1,4 +1,5 @@
-const APP_NAME = "GoSnack Dashboard"
+export const APP_NAME = "GoSnack Dashboard"
+export const COLLEGE_NAME = "Colégio Logoipsum"
 
 /**
  * Metadados globais da aplicação web do GoSnack Dashboard.
