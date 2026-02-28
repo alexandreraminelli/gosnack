@@ -11,12 +11,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Controller, type Resolver, useForm } from "react-hook-form"
 import { z } from "zod/v4"
-import LoadingSpin from "../shared/feedback/loading/loading-spin"
 import { toast } from "sonner"
 import { signInUser } from "@/services/auth"
 import { useRouter } from "next/navigation"
 import { ROUTES } from "@/constants/navigation/routes"
-import PasswordInput from "../shared/fields/password-input"
+import PasswordInput from "@/components/shared/fields/password-input"
+import LoadingSpin from "@/components/shared/feedback/loading/loading-spin"
 
 /**
  * Tipagem dos dados do formulário de login.
