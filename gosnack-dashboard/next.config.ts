@@ -1,7 +1,15 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
+/**
+ * Configurações do Next.js para o projeto.
+ */
 const nextConfig: NextConfig = {
   /* config options here */
-};
 
-export default nextConfig;
+  // Ícone do dev tools no browser
+  devIndicators: {
+    position: "bottom-right",
+  },
+}
+
+export default nextConfig
