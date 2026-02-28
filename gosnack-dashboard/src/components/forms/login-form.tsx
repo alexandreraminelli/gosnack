@@ -9,7 +9,7 @@ import { LOGIN_TEXTS } from "@/constants/texts/login.texts"
 import { loginSchema } from "@/lib/validations/login.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { Controller, useForm } from "react-hook-form"
+import { Controller, type Resolver, useForm } from "react-hook-form"
 import { z } from "zod/v4"
 import LoadingSpin from "../shared/feedback/loading/loading-spin"
 import { toast } from "sonner"
@@ -33,7 +33,7 @@ export default function LoginForm() {
    * Instância do React Hook Form para o formulário de login.
    */
   const form = useForm<LoginFormData>({
-    resolver: zodResolver(loginSchema), // Zod como resolvedor de validação
+    resolver: zodResolver(loginSchema) as Resolver<LoginFormData>,
     defaultValues: {
       email: "",
       password: "",
