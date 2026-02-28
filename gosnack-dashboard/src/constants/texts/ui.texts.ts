@@ -23,4 +23,9 @@ export const UI_TEXTS = {
     dark: "Escuro",
     system: "Sistema",
   },
+
+  password: {
+    hide: "Ocultar senha",
+    show: "Mostrar senha",
+  },
 } as const

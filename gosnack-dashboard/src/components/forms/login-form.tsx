@@ -16,6 +16,7 @@ import { toast } from "sonner"
 import { signInUser } from "@/services/auth"
 import { useRouter } from "next/navigation"
 import { ROUTES } from "@/constants/navigation/routes"
+import PasswordInput from "../shared/fields/password-input"
 
 /**
  * Tipagem dos dados do formulário de login.
@@ -81,7 +82,7 @@ export default function LoginForm() {
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel htmlFor={field.name}>{LOGIN_TEXTS.fields.password}</FieldLabel>
-                <Input {...field} id={field.name} aria-invalid={fieldState.invalid} autoComplete="current-password" />
+                <PasswordInput {...field} id={field.name} aria-invalid={fieldState.invalid} autoComplete="current-password" />
                 {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </Field>
             )}
