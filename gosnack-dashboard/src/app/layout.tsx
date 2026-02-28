@@ -50,23 +50,24 @@ export default function RootLayout({
       suppressHydrationWarning // suprime avisos de hidratação do React
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      {/* Provedor de tema */}
-      <ThemeProvider
-        attribute="class" // usar classes CSS para controlar o tema
-        defaultTheme="system" // padrão: corresponder ao tema do SO
-        enableSystem // detecção automática do tema do SO
-        disableTransitionOnChange // desabilitar animações (evitar flashes e tornar mudança mais suave)
-      >
-        <TooltipProvider>
-          <body className="antialiased">
+      <body className="antialiased">
+        {/* Provedor de tema */}
+        <ThemeProvider
+          attribute="class" // usar classes CSS para controlar o tema
+          defaultTheme="system" // padrão: corresponder ao tema do SO
+          enableSystem // detecção automática do tema do SO
+          disableTransitionOnChange // desabilitar animações (evitar flashes e tornar mudança mais suave)
+        >
+          {/* Provedor Tooltip */}
+          <TooltipProvider>
             {/* Conteúdo aninhado */}
             {children}
 
             {/* Notificações do sonner */}
             <Toaster position="top-right" richColors />
-          </body>
-        </TooltipProvider>
-      </ThemeProvider>
+          </TooltipProvider>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
