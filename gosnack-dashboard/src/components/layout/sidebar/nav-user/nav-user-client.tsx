@@ -1,5 +1,6 @@
 "use client"
 
+import LogoutButton from "@/components/layout/sidebar/nav-user/logout-button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar"
@@ -61,7 +62,8 @@ export default function NavUserClient({ user }: { user: UserData }) {
             <DropdownMenuSeparator />
 
             {/* Opções */}
-            {/* TODO: Botão de logout */}
+            <LogoutButton />
+            {/* TODO: Botão de minha conta */}
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

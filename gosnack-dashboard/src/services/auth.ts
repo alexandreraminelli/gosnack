@@ -1,4 +1,5 @@
 import { LOGIN_TEXTS } from "@/constants/texts/login.texts"
+import { UI_TEXTS } from "@/constants/texts/ui.texts"
 import { createClient } from "@/lib/supabase/client"
 import { getAuthErrorMessage } from "@/lib/supabase/errors/auth-errors"
 import { ActionResult } from "@/types"
@@ -21,6 +22,21 @@ export async function signInUser({ email, password }: SignInInput): Promise<Acti
 
   if (error) {
     const message = getAuthErrorMessage(error.code, LOGIN_TEXTS.result.error.fallback)
+    return { success: false, message }
+  }
+  return { success: true }
+}
+
+/**
+ * Encerra a sessão do usuário, deslogando-o do sistema.
+ */
+export async function signOutUser(): Promise<ActionResult> {
+  const supabase = createClient()
+
+  const { error } = await supabase.auth.signOut()
+
+  if (error) {
+    const message = getAuthErrorMessage(error.code, UI_TEXTS.status.error)
     return { success: false, message }
   }
   return { success: true }
