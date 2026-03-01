@@ -7,7 +7,9 @@ export function getFullName(firstName: string, lastName: string) {
 
 /**
  * Função utilitária para obter as iniciais de um nome completo.
+ * Se um dos valores for ausente, retorna "??".
  */
 export function getInitials(firstName: string, lastName: string) {
+  if (!firstName || !lastName) return "??"
   return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase()
 }
