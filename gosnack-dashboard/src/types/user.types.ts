@@ -4,19 +4,31 @@
 export type UserRole = "client" | "employee" | "manager" | "admin"
 
 /**
+ * Linha da tabela `users` no banco de dados (snake_case).
+ */
+export type UserRow = {
+  id: string
+  first_name: string
+  last_name: string
+  role: UserRole
+  is_active: boolean
+  updated_at: string
+}
+
+/**
  * Perfil do usuário autenticado, obtido da tabela `users`.
  */
 export interface UserProfile {
   /** UID (User ID). */
-  id: string
+  id: UserRow["id"]
   /** Primeiro nome do usuário. */
-  firstName: string
+  firstName: UserRow["first_name"]
   /** Sobrenome do usuário. */
-  lastName: string
+  lastName: UserRow["last_name"]
   /** Papel do usuário. */
-  role: UserRole
+  role: UserRow["role"]
   /** Se o usuário está ativo. */
-  isActive: boolean
+  isActive: UserRow["is_active"]
   /** Data de atualização dos dados do usuário. */
-  updatedAt: string
+  updatedAt: UserRow["updated_at"]
 }
