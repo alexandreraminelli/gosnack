@@ -1,5 +1,6 @@
+import NavUser from "@/components/layout/sidebar/nav-user/nav-user"
 import Logo from "@/components/shared/logos/logo"
-import { Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton } from "@/components/ui/sidebar"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarSeparator } from "@/components/ui/sidebar"
 import { APP_NAME, COLLEGE_NAME } from "@/constants/site"
 
 /**
@@ -12,8 +13,14 @@ export default function AppSidebar() {
       <AppSidebarHeader />
 
       {/* Nav Menu */}
+      <SidebarContent></SidebarContent>
+
+      <SidebarSeparator className="mx-0" />
 
       {/* Footer */}
+      <SidebarFooter>
+        <NavUser />
+      </SidebarFooter>
     </Sidebar>
   )
 }
