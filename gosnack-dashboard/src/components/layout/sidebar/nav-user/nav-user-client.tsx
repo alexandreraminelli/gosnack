@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar"
 import { ICONS } from "@/constants/icons"
+import { ACCOUNT_TEXTS } from "@/constants/texts/account.texts"
 import { getFullName, getInitials } from "@/utils/formatters/user.formatter"
 import { HugeiconsIcon } from "@hugeicons/react"
 
@@ -78,8 +79,7 @@ function UserTile(user: UserData) {
   return (
     <>
       <Avatar>
-        {/* TODO: texto do alt */}
-        <AvatarImage src={user.avatarUrl} alt="" />
+        <AvatarImage src={user.avatarUrl} alt={ACCOUNT_TEXTS.avatar.alt(user.firstName)} />
         {/* Fallback: iniciais */}
         <AvatarFallback
           className="bg-accent-foreground text-accent" // contraste com o fundo

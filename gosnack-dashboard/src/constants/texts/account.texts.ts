@@ -2,6 +2,10 @@
  *
  */
 export const ACCOUNT_TEXTS = {
+  avatar: {
+    alt: (name: string) => `Avatar de ${name}`,
+  },
+
   logout: {
     action: "Sair",
     loading: "Encerrando sessão...",
