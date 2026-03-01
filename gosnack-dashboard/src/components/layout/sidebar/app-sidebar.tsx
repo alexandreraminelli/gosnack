@@ -1,3 +1,4 @@
+import NavSidebar from "@/components/layout/sidebar/nav-menu/nav-sidebar"
 import NavUser from "@/components/layout/sidebar/nav-user/nav-user"
 import Logo from "@/components/shared/logos/logo"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarSeparator } from "@/components/ui/sidebar"
@@ -13,7 +14,9 @@ export default function AppSidebar() {
       <AppSidebarHeader />
 
       {/* Nav Menu */}
-      <SidebarContent></SidebarContent>
+      <SidebarContent>
+        <NavSidebar />
+      </SidebarContent>
 
       <SidebarSeparator className="mx-0" />
 
