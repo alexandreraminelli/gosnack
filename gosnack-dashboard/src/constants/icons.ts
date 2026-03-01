@@ -1,15 +1,29 @@
 import {
   // Ícones do HugeIcons:
+  Add01Icon,
   ArrowDown01Icon,
   ArrowLeft01Icon,
   ArrowRight01Icon,
   ArrowUp01Icon,
+  Calendar03Icon,
+  ChefIcon,
+  Clock01Icon,
   ComputerIcon,
+  Delete02Icon,
+  Edit04Icon,
+  HashtagIcon,
+  Home09Icon,
+  InformationCircleIcon,
   Loading03Icon,
   LoginSquare01Icon,
   LogoutSquare01Icon,
+  ManagerIcon,
+  MenuRestaurantIcon,
   Moon02Icon,
+  Restaurant02Icon,
+  SchoolIcon,
   Sun03Icon,
+  UserGroup03Icon,
   ViewIcon,
   ViewOffSlashIcon,
 } from "@hugeicons/core-free-icons"
@@ -18,6 +32,15 @@ import {
  * Mapeamento dos ícones do HugeIcons para cada contexto de uso no site.
  */
 export const ICONS = {
+  actions: {
+    create: Add01Icon,
+    delete: Delete02Icon,
+    edit: Edit04Icon,
+
+    loading: Loading03Icon,
+    moreDetails: InformationCircleIcon,
+  },
+
   arrow: {
     up: ArrowUp01Icon,
     down: ArrowDown01Icon,
@@ -35,11 +58,38 @@ export const ICONS = {
     },
   },
 
+  entities: {
+    cafeteria: Restaurant02Icon,
+    unit: SchoolIcon,
+
+    menu: MenuRestaurantIcon,
+  },
+
   loading: Loading03Icon,
+
+  id: HashtagIcon,
+
+  pages: {
+    home: Home09Icon,
+  },
 
   theme: {
     light: Sun03Icon,
     dark: Moon02Icon,
     system: ComputerIcon,
+  },
+
+  time: {
+    calendar: Calendar03Icon,
+    clock: Clock01Icon,
+  },
+
+  users: {
+    all: UserGroup03Icon,
+
+    roles: {
+      manager: ManagerIcon,
+      employee: ChefIcon,
+    },
   },
 } as const
