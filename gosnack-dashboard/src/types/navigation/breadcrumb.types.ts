@@ -1,28 +1,42 @@
 /**
- * Segmento de rota para construção do breadcrumb.
+ * Tipo de um segmento resolvido para exibição.
  */
-export type BreadcrumbSegment = {
+export type ResolvedSegment = {
   /**
    * Rótulo do segmento.
    */
-  label: string | ((params: Record<string, string>) => Promise<string> | string)
+  label: string
   /**
-   * Link do segmento.
-   * Se não for fornecido, o segmento será exibido como texto sem link.
+   * Link do segmento (se aplicável).
    */
-  href?: string | ((params: Record<string, string>) => string)
+  href?: string
 }
 
 /**
- * Configuração do breadcrumb para uma rota específica.
+ * Contexto disponível durante a resolução de segmentos dinâmicos.
+ * Acumula os valores dos segmentos anteriores da URL.
+ *
+ * **Exemplo:** para `/lanchonetes/[unitId]/[cafeteriaId]`,
+ * quando resolvendo `cafeteriaId`, `context.params` será `{ unitId: "abc" }`.
  */
-export type BreadcrumbConfig = {
-  /**
-   * Pattern da rota para corresponder.
-   */
-  pattern: RegExp
-  /**
-   * Segmentos do breadcrumb para a rota.
-   */
-  segments: BreadcrumbSegment[]
+export type SegmentContext = {
+  params: Record<string, string>
 }
+
+/**
+ * Configuração de um segmento de rota.
+ *
+ * - `static`: Segmento fixo (ex: "Início", "Lanchonetes", "adicionar", etc).
+ * - `dynamic`: Segmento dinâmico, que depende de parâmetros da rota
+ * (ex: nome da lanchonete).
+ */
+export type SegmentConfig =
+  // Segmento estático
+  | { type: "static"; label: string; href?: string }
+  // Segmento dinâmico
+  | {
+      type: "dynamic"
+      /** Resolve o label a partir do valor do segmento. */
+      resolveLabel: (value: string, context: SegmentContext) => Promise<string>
+      href?: (value: string, context: SegmentContext) => string
+    }
