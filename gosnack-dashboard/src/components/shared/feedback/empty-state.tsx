@@ -23,18 +23,20 @@ interface Props {
  */
 export default function EmptyState({ title, description = [], image = IMAGES.illustrations.empty, children }: Props) {
   return (
-    <Empty className="p-0">
+    <Empty>
       <EmptyHeader className="max-w-2xl">
         {/* Ilustração */}
         <EmptyMedia>
           <Image src={image} alt="" width={320} height={320} />
         </EmptyMedia>
         {/* Título */}
-        <EmptyTitle className="text-2xl lg:text-3xl mb-2">{title}</EmptyTitle>
+        <EmptyTitle className="text-2xl md:text-3xl mb-2">{title}</EmptyTitle>
         {/* Descrição */}
-        {description.map((msg, index) => (
-          <EmptyDescription key={index}>{msg}</EmptyDescription>
-        ))}
+        <div>
+          {description.map((paragraph, index) => (
+            <EmptyDescription key={index}>{paragraph}</EmptyDescription>
+          ))}
+        </div>
       </EmptyHeader>
 
       {/* Botões de ação */}

@@ -9,6 +9,10 @@ export const UI_TEXTS = {
     delete: "Excluir",
   },
 
+  navigation: {
+    backToHome: "Voltar para o início",
+  },
+
   status: {
     loading: "Carregando...",
     error: "Ocorreu um erro. Por favor, tente novamente mais tarde.",
