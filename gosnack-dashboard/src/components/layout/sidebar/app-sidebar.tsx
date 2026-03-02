@@ -21,7 +21,7 @@ export default function AppSidebar() {
       <SidebarSeparator className="mx-0" />
 
       {/* Footer */}
-      <SidebarFooter>
+      <SidebarFooter className="my-1">
         <NavUser />
       </SidebarFooter>
     </Sidebar>
@@ -33,7 +33,7 @@ export default function AppSidebar() {
  */
 function AppSidebarHeader() {
   return (
-    <SidebarHeader>
+    <SidebarHeader className="my-1">
       <SidebarMenu>
         <SidebarMenuButton size="lg">
           {/* Logo */}
