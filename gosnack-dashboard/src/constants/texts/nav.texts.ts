@@ -6,6 +6,7 @@ export const NAV_TEXTS = {
     overview: "Visão Geral",
     unitsAndCafeterias: "Unidades e Lanchonetes",
     usersAndAccess: "Usuários e Acessos",
+    reportsAndAnalytics: "Relatórios e Análises",
   },
 
   mainPages: {

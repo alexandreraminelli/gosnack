@@ -12,6 +12,8 @@ export const ENTITIES_TEXTS = {
     plural: "Categorias",
   },
 
+  menu: "Cardápio",
+
   order: {
     singular: "Pedido",
     plural: "Pedidos",
@@ -25,5 +27,10 @@ export const ENTITIES_TEXTS = {
   unit: {
     singular: "Unidade",
     plural: "Unidades",
+  },
+
+  user: {
+    singular: "Usuário",
+    plural: "Usuários",
   },
 } as const

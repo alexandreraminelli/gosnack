@@ -29,4 +29,49 @@ export const SIDEBAR_MENU: MenuGroup[] = [
       { label: ENTITIES_TEXTS.cafeteria.plural, href: ROUTES.cafeterias, icon: ICONS.entities.cafeteria, roles: ["admin"] },
     ],
   },
+
+  // Pedidos
+  {
+    label: ENTITIES_TEXTS.order.plural,
+    roles: ["admin", "manager", "employee"],
+    items: [
+      // TODO: Pedidos ativos
+      // TODO: Histórico de pedidos
+      // TODO: Fila de preparo
+    ],
+  },
+
+  // Cardápio
+  {
+    label: ENTITIES_TEXTS.menu,
+    roles: ["admin", "manager"],
+    items: [
+      // TODO: Produtos
+      // TODO: Categorias
+      // TODO: Estoque
+    ],
+  },
+
+  // Usuários
+  {
+    label: NAV_TEXTS.groups.usersAndAccess,
+    roles: ["admin", "manager"],
+    items: [
+      // TODO: Usuários
+      // TODO: Clientes
+      // TODO: Funcionários
+      // TODO: Permissões
+    ],
+  },
+
+  // Relatórios
+  {
+    label: NAV_TEXTS.groups.reportsAndAnalytics,
+    roles: ["admin", "manager"],
+    items: [
+      // TODO: Vendas
+      // TODO: Produtos mais vendidos
+      // TODO: Desempenho por unidade
+    ],
+  },
 ]
