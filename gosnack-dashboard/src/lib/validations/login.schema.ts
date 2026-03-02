@@ -1,4 +1,4 @@
-import { LOGIN_TEXTS } from "@/constants/texts/login.texts"
+import { LOGIN_TEXTS } from "@/constants/texts/auth/login.texts"
 import { z } from "zod/v4"
 
 /**

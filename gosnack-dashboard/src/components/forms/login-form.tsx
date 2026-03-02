@@ -1,27 +1,40 @@
 "use client"
 
+import LoadingSpin from "@/components/shared/feedback/loading/loading-spin"
+import PasswordInput from "@/components/shared/fields/password-input"
 import { Button } from "@/components/ui/button"
 import { CardContent, CardFooter } from "@/components/ui/card"
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { ICONS } from "@/constants/icons"
-import { LOGIN_TEXTS } from "@/constants/texts/login.texts"
+import { ROUTES } from "@/constants/navigation/routes"
+import { LOGIN_TEXTS } from "@/constants/texts/auth/login.texts"
+import { PASSWORD_RECOVERY_TEXTS } from "@/constants/texts/auth/password-recovery.texts"
 import { loginSchema } from "@/lib/validations/login.schema"
+import { signInUser } from "@/services/auth"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { Controller, type Resolver, useForm } from "react-hook-form"
-import { z } from "zod/v4"
-import { toast } from "sonner"
-import { signInUser } from "@/services/auth"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ROUTES } from "@/constants/navigation/routes"
-import PasswordInput from "@/components/shared/fields/password-input"
-import LoadingSpin from "@/components/shared/feedback/loading/loading-spin"
+import { Controller, type Resolver, useForm } from "react-hook-form"
+import { toast } from "sonner"
+import { z } from "zod/v4"
 
 /**
  * Tipagem dos dados do formulário de login.
  */
 type LoginFormData = z.infer<typeof loginSchema>
+
+/**
+ * Botão de Esqueci a Senha.
+ */
+function ForgotPasswordButton() {
+  return (
+    <Button type="button" variant="link" className="text-sm p-0 h-fit">
+      <Link href={ROUTES.forgotPassword}>{PASSWORD_RECOVERY_TEXTS.actions.forgotPassword}</Link>
+    </Button>
+  )
+}
 
 /**
  * Formulário de login.
@@ -82,7 +95,12 @@ export default function LoginForm() {
             name="password"
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name}>{LOGIN_TEXTS.fields.password}</FieldLabel>
+                <div className="flex items-center justify-between">
+                  <FieldLabel htmlFor={field.name}>{LOGIN_TEXTS.fields.password}</FieldLabel>
+
+                  {/* Botão de recuperar senha */}
+                  <ForgotPasswordButton />
+                </div>
                 <PasswordInput {...field} id={field.name} aria-invalid={fieldState.invalid} autoComplete="current-password" />
                 {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </Field>

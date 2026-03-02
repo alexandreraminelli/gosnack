@@ -1,6 +1,6 @@
 import LoginForm from "@/components/forms/login-form"
 import { CardHeader } from "@/components/ui/card"
-import { LOGIN_TEXTS } from "@/constants/texts/login.texts"
+import { LOGIN_TEXTS } from "@/constants/texts/auth/login.texts"
 import { Metadata } from "next"
 
 /**

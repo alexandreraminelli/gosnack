@@ -1,4 +1,4 @@
-import { LOGIN_TEXTS } from "@/constants/texts/login.texts"
+import { LOGIN_TEXTS } from "@/constants/texts/auth/login.texts"
 import { UI_TEXTS } from "@/constants/texts/ui.texts"
 import { createClient } from "@/lib/supabase/client"
 import { getAuthErrorMessage } from "@/lib/supabase/errors/auth-errors"
