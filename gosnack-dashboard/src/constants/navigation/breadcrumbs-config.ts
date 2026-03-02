@@ -1,62 +1,60 @@
-import { DYNAMIC_ROUTE_PATTERNS, STATIC_ROUTE_PATTERNS } from "@/constants/navigation/route-patterns"
 import { ROUTES } from "@/constants/navigation/routes"
 import { ENTITIES_TEXTS } from "@/constants/texts/entities.texts"
-import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
 import { NAV_TEXTS } from "@/constants/texts/nav.texts"
-import { BreadcrumbConfig } from "@/types/navigation/breadcrumb.types"
+import { ResolvedSegment, SegmentConfig } from "@/types/navigation/breadcrumb.types"
 
 /**
- * Segmento para a home.
- * Presente em todas as rotas, exceto na própria home.
+ * Segmento raiz, sempre presente e representando a página inicial.
  */
-const HOME_SEGMENT = {
+export const HOME_SEGMENT: ResolvedSegment = {
   label: NAV_TEXTS.mainPages.home,
   href: ROUTES.home,
 }
 
 /**
- * Segmentos frequentemente utilizados.
+ * Mapa de configuração de breadcrumbs por segmento de rota.
+ *
+ * Chaves correspondem aos segmentos literais da URL.
+ * Segmentos dinâmicos (ex: `[unitId]`) são identificados pelo prefixo `"["`.
+ *
+ * **Ordem de correspondência:** O hook percorre os segmentos do pathname em
+ * sequência e consulta este map para cada um.
  */
-const COMMON_SEGMENTS = {
-  // Unidades
-  units: [HOME_SEGMENT, { label: ENTITIES_TEXTS.unit.plural, href: ROUTES.units }],
-  // Lanchonetes
-  cafeterias: [HOME_SEGMENT, { label: ENTITIES_TEXTS.cafeteria.plural, href: ROUTES.cafeterias }],
-}
+export const BREADCRUMB_SEGMENT_MAP: Record<string, SegmentConfig> = {
+  // -- Segmentos Estáticos ------------------------------------------------- //
 
-/**
- * Lista de breadcrumbs para as rotas do aplicativo.
- */
-export const BREADCRUMBS: BreadcrumbConfig[] = [
-  // -- Home ---------------------------------------------------------------- //
-
-  // / (root)
-  { pattern: STATIC_ROUTE_PATTERNS.home, segments: [{ label: NAV_TEXTS.mainPages.home }] },
-
-  // -- Unidades ------------------------------------------------------------ //
-
-  // /unidades
-  { pattern: STATIC_ROUTE_PATTERNS.units, segments: [HOME_SEGMENT, { label: ENTITIES_TEXTS.unit.plural }] },
-
-  // -- Lanchonetes --------------------------------------------------------- //
-
-  // /lanchonetes
-  { pattern: STATIC_ROUTE_PATTERNS.cafeterias.main, segments: [HOME_SEGMENT, { label: ENTITIES_TEXTS.cafeteria.plural }] },
-
-  // /lanchonetes/adicionar
-
-  { pattern: STATIC_ROUTE_PATTERNS.cafeterias.add, segments: [...COMMON_SEGMENTS.cafeterias, { label: CAFETERIA_TEXTS.actions.add }] },
-
-  // /lanchonetes/[id]
-  {
-    pattern: DYNAMIC_ROUTE_PATTERNS.cafeterias.details,
-    segments: [
-      ...COMMON_SEGMENTS.cafeterias,
-      {
-        label: "__CAFETERIA_NAME__", // Placeholder para nome da lanchonete
-      },
-    ],
+  lanchonetes: {
+    type: "static",
+    label: ENTITIES_TEXTS.cafeteria.plural,
+    href: ROUTES.cafeterias,
   },
 
-  // -- Usuários ------------------------------------------------------------ //
-]
+  adicionar: {
+    type: "static",
+    label: "Adicionar",
+  },
+
+  // TODO: Adicionar segmentos de "unidades" quando a feature for implementada
+  // TODO: Adicionar segmentos de "produtos" quando a feature for implementada
+
+  // -- Segmentos Dinâmicos ------------------------------------------------- //
+
+  // TODO: Implementar quando a feature de cafeterias for criada
+  // "[unitId]": {
+  //   type: "dynamic",
+  //   resolveLabel: async (unitId) => {
+  //     const unit = await getUnitById(unitId)
+  //     return unit.name
+  //   },
+  //   href: (unitId) => ROUTES.units.details(unitId),
+  // },
+
+  // TODO: Implementar quando a feature de cafeterias for criada
+  // "[cafeteriaId]": {
+  //   type: "dynamic",
+  //   resolveLabel: async (cafeteriaId, context) => {
+  //     const cafeteria = await getCafeteriaById(context.params.unitId, cafeteriaId)
+  //     return cafeteria.name
+  //   },
+  // },
+}
