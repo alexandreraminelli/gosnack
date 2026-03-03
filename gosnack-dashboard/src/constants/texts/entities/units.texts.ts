@@ -7,4 +7,10 @@ export const UNITS_TEXTS = {
   },
 
   managerUnits: "Gerenciar Unidades",
+
+  validation: {
+    name: {
+      required: "O nome da unidade é obrigatório.",
+    },
+  },
 }
