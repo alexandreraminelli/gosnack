@@ -18,7 +18,7 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
             <AppHeader />
 
             {/* Conteúdo das páginas */}
-            {children}
+            <div className="px-4 pt-3.5 pb-10">{children}</div>
           </div>
         </div>
       </SidebarProvider>
