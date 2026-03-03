@@ -23,6 +23,12 @@ export const HOME_SEGMENT: ResolvedSegment = {
 export const BREADCRUMB_SEGMENT_MAP: Record<string, SegmentConfig> = {
   // -- Segmentos Estáticos ------------------------------------------------- //
 
+  unidades: {
+    type: "static",
+    label: ENTITIES_TEXTS.unit.plural,
+    href: ROUTES.units,
+  },
+
   lanchonetes: {
     type: "static",
     label: ENTITIES_TEXTS.cafeteria.plural,
