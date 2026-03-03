@@ -1,5 +1,3 @@
-import { title } from "process"
-
 /**
  * Textos relacionados às unidades.
  */
