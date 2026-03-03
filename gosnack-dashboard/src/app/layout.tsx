@@ -1,3 +1,4 @@
+import { QueryProvider } from "@/components/providers/query-provider"
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
@@ -58,14 +59,17 @@ export default function RootLayout({
           enableSystem // detecção automática do tema do SO
           disableTransitionOnChange // desabilitar animações (evitar flashes e tornar mudança mais suave)
         >
-          {/* Provedor Tooltip */}
-          <TooltipProvider>
-            {/* Conteúdo aninhado */}
-            {children}
+          {/* Provedor do React Query (TanStack) */}
+          <QueryProvider>
+            {/* Provedor Tooltip */}
+            <TooltipProvider>
+              {/* Conteúdo aninhado */}
+              {children}
 
-            {/* Notificações do sonner */}
-            <Toaster position="top-right" richColors />
-          </TooltipProvider>
+              {/* Notificações do sonner */}
+              <Toaster position="top-right" richColors />
+            </TooltipProvider>
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
