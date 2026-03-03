@@ -1,3 +1,4 @@
+import HeaderBreadcrumb from "@/components/layout/header/header-breadcrumb"
 import { ModeToggle } from "@/components/shared/buttons/mode-toggle"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 
@@ -12,7 +13,9 @@ export default function AppHeader() {
         <SidebarTrigger size="icon-lg" variant="outline" />
 
         {/* Breadcrumb */}
-        <div className="w-full">{/* TODO: Header Breadcrumb */}</div>
+        <div className="w-full flex items-center justify-start mx-4">
+          <HeaderBreadcrumb />
+        </div>
 
         {/* Botão de tema */}
         <ModeToggle size="icon-lg" />
