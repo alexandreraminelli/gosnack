@@ -40,4 +40,26 @@ export const unitService = {
     if (error) throw error
     return mapUnitRowToUnit(data)
   },
+
+  /**
+   * Verificar se já existe uma unidade com o mesmo nome, excluindo um ID
+   * específico (para edição).
+   */
+  async checkDuplicateName(name: string, excludeId?: string): Promise<boolean> {
+    const supabase = createClient()
+
+    // Query para verificar se existe alguma unidade com o mesmo nome (ignorando maiúsculas/minúsculas)
+    let query = supabase.from(TABLES.units).select(COLUMNS.units.id, { count: "exact", head: true }).ilike(COLUMNS.units.name, name.trim())
+
+    // Desconsiderar um ID específico (se houver)
+    if (excludeId) {
+      query = query.neq(COLUMNS.units.id, excludeId)
+    }
+
+    const { count, error } = await query
+
+    if (error) throw error
+    return (count ?? 0) > 0 // Retorna true se houver pelo menos um registro
+    // com o mesmo nome
+  },
 }

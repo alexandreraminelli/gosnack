@@ -22,3 +22,20 @@ export function useUnit(unitId?: string) {
     enabled: !!unitId, // habilitar apenas se unitId estiver presente
   })
 }
+
+/**
+ * Hook para verificar se já existe uma unidade com o mesmo nome.
+ *
+ * @param name Nome da unidade a ser verificada.
+ * @param excludeId ID da unidade a ser excluída da verificação (para edição).
+ */
+export function useCheckDuplicateUnitName(name: string, excludeId?: string) {
+  // Normalizar nome
+  const normalizedName = name.trim().toLowerCase()
+
+  return useQuery({
+    queryKey: unitKeys.checkDuplicateName(normalizedName, excludeId),
+    queryFn: () => unitService.checkDuplicateName(normalizedName, excludeId),
+    enabled: normalizedName.length > 0, // habilitar apenas se o nome não for vazio
+  })
+}
