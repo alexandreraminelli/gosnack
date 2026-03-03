@@ -3,6 +3,7 @@
  */
 export const UI_TEXTS = {
   actions: {
+    add: "Adicionar",
     save: "Salvar",
     cancel: "Cancelar",
     edit: "Editar",
