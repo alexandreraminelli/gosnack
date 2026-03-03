@@ -1,5 +1,5 @@
 import { ROUTES } from "@/constants/navigation/routes"
-import { ENTITIES_TEXTS } from "@/constants/texts/entities.texts"
+import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
 import { NAV_TEXTS } from "@/constants/texts/nav.texts"
 import { ResolvedSegment, SegmentConfig } from "@/types/navigation/breadcrumb.types"
 

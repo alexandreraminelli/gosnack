@@ -1,6 +1,6 @@
 import { ICONS } from "@/constants/icons"
 import { ROUTES } from "@/constants/navigation/routes"
-import { ENTITIES_TEXTS } from "@/constants/texts/entities.texts"
+import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
 import { NAV_TEXTS } from "@/constants/texts/nav.texts"
 import { MenuGroup } from "@/types/navigation/sidebar-menu.types"
 
