@@ -34,3 +34,8 @@ export interface Unit {
    */
   isActive: UnitRow["is_active"]
 }
+
+/**
+ * Tipagem de dados para inserção de unidade.
+ */
+export type UnitInsert = Omit<Unit, "id" | "createdAt" | "updatedAt">

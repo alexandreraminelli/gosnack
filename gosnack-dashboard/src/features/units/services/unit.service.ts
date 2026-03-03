@@ -1,4 +1,4 @@
-import { Unit, UnitRow } from "@/features/units/types/unit.types"
+import { Unit, UnitInsert, UnitRow } from "@/features/units/types/unit.types"
 import { createClient } from "@/lib/supabase/client"
 import { COLUMNS, TABLES } from "@/lib/supabase/schema"
 
@@ -14,9 +14,32 @@ const mapUnitRowToUnit = (row: UnitRow): Unit => ({
 })
 
 /**
+ * Converte `Unit` para `UnitRow`, adaptando os campos de camelCase para snake_case.
+ */
+const mapUnitToUnitRow = (unit: Omit<Unit, "id" | "createdAt" | "updatedAt">): Omit<UnitRow, "id" | "created_at" | "updated_at"> => ({
+  name: unit.name,
+  is_active: unit.isActive,
+})
+
+/**
  * Serviço para operações relacionadas a unidades.
  */
 export const unitService = {
+  /**
+   * Criar uma nova unidade no banco de dados.
+   */
+  async create(data: UnitInsert): Promise<Unit> {
+    const supabase = createClient()
+
+    // Mapear os dados do formato da aplicação para o formato do banco de dados
+    const payload = mapUnitToUnitRow(data)
+
+    const { data: createdData, error } = await supabase.from(TABLES.units).insert(payload).select("*").single<UnitRow>()
+
+    if (error) throw error
+    return mapUnitRowToUnit(createdData)
+  },
+
   /**
    * Obter todas as unidades do banco de dados.
    */
