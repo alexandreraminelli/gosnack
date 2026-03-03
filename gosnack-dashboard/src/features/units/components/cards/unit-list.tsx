@@ -3,6 +3,7 @@
 import EmptyState from "@/components/shared/feedback/empty-state"
 import { IMAGES } from "@/constants/images"
 import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
+import UnitCard from "@/features/units/components/cards/unit-card"
 import UnitListSkeleton from "@/features/units/components/cards/unit-list-skeleton"
 import CreateUnitButton from "@/features/units/components/create-unit-button"
 import { useUnits } from "@/features/units/hooks/queries/unit.queries"
@@ -36,15 +37,15 @@ export default function UnitList() {
 
   // Lista de unidades
   return (
-    <>
+    <div className="space-y-4">
       {/* Quantidade de unidades */}
       <p className="text-muted-foreground">{UNITS_TEXTS.quant(units.length)}</p>
 
-      <section className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <section className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {units.map((unit) => (
-          <p key={unit.id}>{unit.name}</p>
+          <UnitCard key={unit.id} unit={unit} />
         ))}
       </section>
-    </>
+    </div>
   )
 }

@@ -2,6 +2,10 @@
  * Textos relacionados às entidades do sistema.
  */
 export const ENTITIES_TEXTS = {
+  commonAttributes: {
+    id: "ID",
+  },
+
   cafeteria: {
     singular: "Lanchonete",
     plural: "Lanchonetes",

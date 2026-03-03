@@ -8,6 +8,8 @@ export const UI_TEXTS = {
     cancel: "Cancelar",
     edit: "Editar",
     delete: "Excluir",
+
+    details: "Ver detalhes",
   },
 
   navigation: {

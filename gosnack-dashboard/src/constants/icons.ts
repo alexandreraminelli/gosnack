@@ -22,6 +22,7 @@ import {
   Moon02Icon,
   Restaurant02Icon,
   SchoolIcon,
+  Share04Icon,
   Sun03Icon,
   UserGroup03Icon,
   ViewIcon,
@@ -38,7 +39,9 @@ export const ICONS = {
     edit: Edit04Icon,
 
     loading: Loading03Icon,
+
     moreDetails: InformationCircleIcon,
+    openPage: Share04Icon,
   },
 
   arrow: {

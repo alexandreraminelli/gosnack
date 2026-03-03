@@ -9,11 +9,14 @@ export const ROUTES = {
   // Visão Geral
   home: "/",
 
-  // Unidades e Lanchonetes
+  // Unidades
   units: "/unidades",
+  unitInfo: (unitId: string) => `unidades/${unitId}`,
+
+  // Lanchonetes
   cafeterias: "/lanchonetes",
   newCafeteria: "/lanchonetes/adicionar",
-  cafeteriaInfo: (unitId: string, cafeteriaId: string) => `/lanchonetes/${unitId}/${cafeteriaId}`,
+  cafeteriaInfo: (cafeteriaId: string) => `/lanchonetes/${cafeteriaId}`,
 
   // Usuários e Acessos
   users: "/usuarios",
