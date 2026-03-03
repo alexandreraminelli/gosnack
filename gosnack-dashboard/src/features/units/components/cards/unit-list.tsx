@@ -41,7 +41,7 @@ export default function UnitList() {
       {/* Quantidade de unidades */}
       <p className="text-muted-foreground">{UNITS_TEXTS.quant(units.length)}</p>
 
-      <section className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <section className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(var(--container-3xs),1fr))]">
         {units.map((unit) => (
           <UnitCard key={unit.id} unit={unit} />
         ))}
