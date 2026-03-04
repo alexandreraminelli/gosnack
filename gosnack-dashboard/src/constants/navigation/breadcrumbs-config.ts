@@ -1,6 +1,9 @@
 import { ROUTES } from "@/constants/navigation/routes"
 import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
 import { NAV_TEXTS } from "@/constants/texts/nav.texts"
+import { unitKeys } from "@/features/units/hooks/queries/unit.keys"
+import { unitService } from "@/features/units/services/unit.service"
+import { Unit } from "@/features/units/types/unit.types"
 import { ResolvedSegment, SegmentConfig } from "@/types/navigation/breadcrumb.types"
 
 /**
@@ -26,13 +29,13 @@ export const BREADCRUMB_SEGMENT_MAP: Record<string, SegmentConfig> = {
   unidades: {
     type: "static",
     label: ENTITIES_TEXTS.unit.plural,
-    href: ROUTES.units,
+    href: ROUTES.units.list,
   },
 
   lanchonetes: {
     type: "static",
     label: ENTITIES_TEXTS.cafeteria.plural,
-    href: ROUTES.cafeterias,
+    href: ROUTES.cafeterias.list,
   },
 
   adicionar: {
@@ -45,15 +48,14 @@ export const BREADCRUMB_SEGMENT_MAP: Record<string, SegmentConfig> = {
 
   // -- Segmentos Dinâmicos ------------------------------------------------- //
 
-  // TODO: Implementar quando a feature de cafeterias for criada
-  // "[unitId]": {
-  //   type: "dynamic",
-  //   resolveLabel: async (unitId) => {
-  //     const unit = await getUnitById(unitId)
-  //     return unit.name
-  //   },
-  //   href: (unitId) => ROUTES.units.details(unitId),
-  // },
+  // Unidades
+  "[unidades_id]": {
+    type: "dynamic",
+    queryKey: (id) => unitKeys.detail(id),
+    queryFn: (id) => unitService.getById(id),
+    resolveLabel: (unit) => (unit as Unit).name,
+    href: (unitId) => ROUTES.units.details(unitId),
+  },
 
   // TODO: Implementar quando a feature de cafeterias for criada
   // "[cafeteriaId]": {

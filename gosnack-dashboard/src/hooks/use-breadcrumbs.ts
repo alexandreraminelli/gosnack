@@ -2,6 +2,7 @@
 
 import { BREADCRUMB_SEGMENT_MAP, HOME_SEGMENT } from "@/constants/navigation/breadcrumbs-config"
 import { ResolvedSegment, SegmentContext } from "@/types/navigation/breadcrumb.types"
+import { useQueryClient } from "@tanstack/react-query"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -16,7 +17,11 @@ import { useEffect, useState } from "react"
  * 3. Resolve labels async quando necessário
  */
 export function useBreadcrumbs() {
+  // Hooks
   const pathname = usePathname()
+  const queryClient = useQueryClient()
+
+  // States
   const [segments, setSegments] = useState<ResolvedSegment[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -66,10 +71,16 @@ export function useBreadcrumbs() {
             // Armazena o valor no contexto antes de resolver
             context.params[dynamicKey.replace(/[\[\]]/g, "")] = part
 
-            const label = await dynamicConfig.resolveLabel(part, { ...context })
-            const href = !isLast && dynamicConfig.href ? dynamicConfig.href(part, { ...context }) : undefined
+            // Retorna dados do cache se disponível, busca no DB se não houver
+            const data = await queryClient.ensureQueryData({
+              queryKey: dynamicConfig.queryKey(part),
+              queryFn: () => dynamicConfig.queryFn(part),
+            })
 
-            resolved.push({ label, href })
+            resolved.push({
+              label: dynamicConfig.resolveLabel(data),
+              href: !isLast && dynamicConfig.href ? dynamicConfig.href(part, { ...context }) : undefined,
+            })
           } else {
             // Segmento sem configuração: exibe o valor bruto (fallback)
             resolved.push({ label: part })
@@ -89,7 +100,7 @@ export function useBreadcrumbs() {
     return () => {
       cancelled = true
     }
-  }, [pathname])
+  }, [pathname, queryClient])
 
   return { segments, isLoading }
 }

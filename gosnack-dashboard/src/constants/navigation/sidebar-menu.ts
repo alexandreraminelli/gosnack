@@ -24,9 +24,9 @@ export const SIDEBAR_MENU: MenuGroup[] = [
     roles: ["admin"],
     items: [
       // Unidades
-      { label: ENTITIES_TEXTS.unit.plural, href: ROUTES.units, icon: ICONS.entities.unit, roles: ["admin"] },
+      { label: ENTITIES_TEXTS.unit.plural, href: ROUTES.units.list, icon: ICONS.entities.unit, roles: ["admin"] },
       // Lanchonetes
-      { label: ENTITIES_TEXTS.cafeteria.plural, href: ROUTES.cafeterias, icon: ICONS.entities.cafeteria, roles: ["admin"] },
+      { label: ENTITIES_TEXTS.cafeteria.plural, href: ROUTES.cafeterias.list, icon: ICONS.entities.cafeteria, roles: ["admin"] },
     ],
   },
 

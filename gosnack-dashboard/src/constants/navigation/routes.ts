@@ -10,13 +10,17 @@ export const ROUTES = {
   home: "/",
 
   // Unidades
-  units: "/unidades",
-  unitInfo: (unitId: string) => `unidades/${unitId}`,
+  units: {
+    list: "/unidades",
+    details: (unitId: string) => `unidades/${unitId}`,
+  },
 
   // Lanchonetes
-  cafeterias: "/lanchonetes",
-  newCafeteria: "/lanchonetes/adicionar",
-  cafeteriaInfo: (cafeteriaId: string) => `/lanchonetes/${cafeteriaId}`,
+  cafeterias: {
+    list: "/lanchonetes",
+    add: "/lanchonetes/adicionar",
+    details: (cafeteriaId: string) => `/lanchonetes/${cafeteriaId}`,
+  },
 
   // Usuários e Acessos
   users: "/usuarios",

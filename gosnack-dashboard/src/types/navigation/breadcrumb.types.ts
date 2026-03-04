@@ -36,7 +36,23 @@ export type SegmentConfig =
   // Segmento dinâmico
   | {
       type: "dynamic"
-      /** Resolve o label a partir do valor do segmento. */
-      resolveLabel: (value: string, context: SegmentContext) => Promise<string>
+      /**
+       * Função para extrair o valor de consulta do segmento dinâmico.
+       */
+      queryKey: (value: string) => readonly unknown[]
+      /**
+       * Função para resolver o rótulo do segmento dinâmico, usando o valor do segmento.
+       */
+      queryFn: (value: string) => Promise<unknown>
+      /**
+       * Função para resolver o rótulo do segmento dinâmico, usando o
+       * valor do segmento
+       */
+      resolveLabel: (data: unknown) => string
+      /**
+       * Função para gerar o link do segmento dinâmico, usando o valor do
+       * segmento e o contexto acumulado dos segmentos anteriores.
+       * Retorna `undefined` se o segmento não deve ser clicável.
+       */
       href?: (value: string, context: SegmentContext) => string
     }

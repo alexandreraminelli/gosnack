@@ -44,7 +44,7 @@ export default function UnitCard({ unit }: Props) {
           <Tooltip>
             <TooltipTrigger>
               <Button asChild variant="secondary" size="icon-lg">
-                <Link href={ROUTES.unitInfo(unit.id)}>
+                <Link href={ROUTES.units.details(unit.id)}>
                   <HugeiconsIcon icon={ICONS.actions.moreDetails} />
                 </Link>
               </Button>
