@@ -1,4 +1,3 @@
-import PrivateLayout from "@/app/(private)/layout"
 import EmptyState from "@/components/shared/feedback/empty-state"
 import { Button } from "@/components/ui/button"
 import { ICONS } from "@/constants/icons"
@@ -14,16 +13,14 @@ import Link from "next/link"
  */
 export default function NotFoundPage() {
   return (
-    <PrivateLayout>
-      <EmptyState title={ERROR_TEXTS.notFound.title} description={[...ERROR_TEXTS.notFound.description]} image={IMAGES.illustrations.notFound}>
-        {/* Botão de voltar pro início */}
-        <Button size="lg" asChild>
-          <Link href={ROUTES.home}>
-            <HugeiconsIcon icon={ICONS.pages.home} />
-            {UI_TEXTS.navigation.backToHome}
-          </Link>
-        </Button>
-      </EmptyState>
-    </PrivateLayout>
+    <EmptyState title={ERROR_TEXTS.notFound.title} description={[...ERROR_TEXTS.notFound.description]} image={IMAGES.illustrations.notFound}>
+      {/* Botão de voltar pro início */}
+      <Button size="lg" asChild>
+        <Link href={ROUTES.home}>
+          <HugeiconsIcon icon={ICONS.pages.home} />
+          {UI_TEXTS.navigation.backToHome}
+        </Link>
+      </Button>
+    </EmptyState>
   )
 }
