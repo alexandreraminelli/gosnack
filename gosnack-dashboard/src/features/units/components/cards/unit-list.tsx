@@ -5,7 +5,7 @@ import { IMAGES } from "@/constants/images"
 import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
 import UnitCard from "@/features/units/components/cards/unit-card"
 import UnitListSkeleton from "@/features/units/components/cards/unit-list-skeleton"
-import CreateUnitButton from "@/features/units/components/create-unit-button"
+import CreateUnitButton from "@/features/units/components/buttons/create-unit-button"
 import { useUnits } from "@/features/units/hooks/queries/unit.queries"
 import { toast } from "sonner"
 
