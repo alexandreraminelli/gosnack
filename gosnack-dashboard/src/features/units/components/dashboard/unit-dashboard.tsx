@@ -5,8 +5,11 @@ import { Button } from "@/components/ui/button"
 import { IMAGES } from "@/constants/images"
 import { ROUTES } from "@/constants/navigation/routes"
 import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
+import EditUnitNameButton from "@/features/units/components/buttons/edit-unit-name"
+import ToggleUnitStatusButton from "@/features/units/components/buttons/toggle-unit-status-button"
 import UnitDashboardSkeleton from "@/features/units/components/dashboard/unit-dashboard-skeleton"
 import { useUnit } from "@/features/units/hooks/queries/unit.queries"
+import { Unit } from "@/features/units/types/unit.types"
 import Link from "next/link"
 
 /**
@@ -43,9 +46,39 @@ export default function UnitDashboard({ unitId }: Props) {
 
   return (
     <main>
-      <h1>Dashboard de Unidades</h1>
-      <p>ID da unidade: {unitId}</p>
-      <p>Nome da unidade: {unit.name}</p>
+      {/* Header */}
+      <DashboardHeader unit={unit} />
     </main>
+  )
+}
+
+/**
+ * Props dos componentes internos.
+ */
+interface InternalProps {
+  unit: Unit
+}
+
+/**
+ * Header do dashboard de unidade.
+ */
+function DashboardHeader({ unit }: InternalProps) {
+  return (
+    <header
+      className="bg-card text-card-foreground rounded-xl
+        flex flex-col sm:flex-row flex-wrap justify-between items-center
+        gap-6 mt-4 p-6"
+    >
+      {/* Nome da unidade */}
+      <h2 className="text-2xl md:text-3xl font-medium text-center">{unit.name}</h2>
+
+      <aside className="flex flex-row flex-wrap *:flex-1 gap-3">
+        {/* Botão de editar nome */}
+        <EditUnitNameButton />
+
+        {/* Botão de desativar/ativar */}
+        <ToggleUnitStatusButton unit={unit} />
+      </aside>
+    </header>
   )
 }

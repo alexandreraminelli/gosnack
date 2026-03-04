@@ -4,6 +4,20 @@
 export const UNITS_TEXTS = {
   actions: {
     add: "Adicionar Unidade",
+
+    editName: {
+      label: "Editar Nome ",
+      title: "Editar Nome da Unidade",
+    },
+
+    disable: {
+      label: "Desabilitar",
+      title: "Desabilitar Unidade",
+    },
+    enable: {
+      label: "Habilitar",
+      title: "Habilitar Unidade",
+    },
   },
 
   empty: {
