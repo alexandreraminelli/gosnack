@@ -1,5 +1,6 @@
 import { ROUTES } from "@/constants/navigation/routes"
 import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
+import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
 import { NAV_TEXTS } from "@/constants/texts/nav.texts"
 import { unitKeys } from "@/features/units/hooks/queries/unit.keys"
 import { unitService } from "@/features/units/services/unit.service"
@@ -54,6 +55,7 @@ export const BREADCRUMB_SEGMENT_MAP: Record<string, SegmentConfig> = {
     queryKey: (id) => unitKeys.detail(id),
     queryFn: (id) => unitService.getById(id),
     resolveLabel: (unit) => (unit as Unit).name,
+    notFoundLabel: UNITS_TEXTS.error.notFound.title,
     href: (unitId) => ROUTES.units.details(unitId),
   },
 

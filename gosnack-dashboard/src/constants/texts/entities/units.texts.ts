@@ -23,6 +23,9 @@ export const UNITS_TEXTS = {
     getList: {
       title: "Erro ao carregar unidades",
     },
+    notFound: {
+      title: "Unidade Não Encontrada",
+    },
   },
 
   fields: {

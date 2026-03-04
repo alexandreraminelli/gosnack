@@ -1,6 +1,7 @@
 "use client"
 
 import { BREADCRUMB_SEGMENT_MAP, HOME_SEGMENT } from "@/constants/navigation/breadcrumbs-config"
+import { ERROR_TEXTS } from "@/constants/texts/error.texts"
 import { ResolvedSegment, SegmentContext } from "@/types/navigation/breadcrumb.types"
 import { useQueryClient } from "@tanstack/react-query"
 import { usePathname } from "next/navigation"
@@ -67,20 +68,25 @@ export function useBreadcrumbs() {
           const dynamicKey = prevPart ? `[${prevPart}_id]` : `[id]`
           const dynamicConfig = BREADCRUMB_SEGMENT_MAP[dynamicKey]
 
-          if (dynamicConfig && dynamicConfig.type === "dynamic") {
+          if (dynamicConfig?.type === "dynamic") {
             // Armazena o valor no contexto antes de resolver
             context.params[dynamicKey.replace(/[\[\]]/g, "")] = part
 
-            // Retorna dados do cache se disponível, busca no DB se não houver
-            const data = await queryClient.ensureQueryData({
-              queryKey: dynamicConfig.queryKey(part),
-              queryFn: () => dynamicConfig.queryFn(part),
-            })
+            try {
+              // Retorna dados do cache se disponível, busca no DB se não houver
+              const data = await queryClient.ensureQueryData({
+                queryKey: dynamicConfig.queryKey(part),
+                queryFn: () => dynamicConfig.queryFn(part),
+              })
 
-            resolved.push({
-              label: dynamicConfig.resolveLabel(data),
-              href: !isLast && dynamicConfig.href ? dynamicConfig.href(part, { ...context }) : undefined,
-            })
+              resolved.push({
+                label: dynamicConfig.resolveLabel(data),
+                href: !isLast && dynamicConfig.href ? dynamicConfig.href(part, { ...context }) : undefined,
+              })
+            } catch {
+              // Recurso não encontrado: fallback sem link
+              resolved.push({ label: dynamicConfig.notFoundLabel ?? ERROR_TEXTS.resourceNotFound.title })
+            }
           } else {
             // Segmento sem configuração: exibe o valor bruto (fallback)
             resolved.push({ label: part })

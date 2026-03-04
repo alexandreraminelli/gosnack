@@ -50,6 +50,10 @@ export type SegmentConfig =
        */
       resolveLabel: (data: unknown) => string
       /**
+       * Fallback customizado por entidade.
+       */
+      notFoundLabel?: string
+      /**
        * Função para gerar o link do segmento dinâmico, usando o valor do
        * segmento e o contexto acumulado dos segmentos anteriores.
        * Retorna `undefined` se o segmento não deve ser clicável.
