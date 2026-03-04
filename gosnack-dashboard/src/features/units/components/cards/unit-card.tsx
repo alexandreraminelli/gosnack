@@ -21,15 +21,13 @@ interface Props {
  * Card de unidades escolares.
  */
 export default function UnitCard({ unit }: Props) {
-  // TODO: Obter contagem de lanchonetes da unidade
-
   // Informações principais da unidade
   const attributes: Attribute[] = [
     // Contagem de lanchonetes
     {
       label: ENTITIES_TEXTS.cafeteria.plural,
       // TODO: Contagem de lanchonetes
-      value: "NN",
+      value: unit.cafeteriasCount?.toString() ?? "0",
       icon: ICONS.entities.cafeteria,
     },
   ]

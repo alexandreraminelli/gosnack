@@ -7,6 +7,9 @@ export type UnitRow = {
   created_at: string
   updated_at: string
   is_active: boolean
+
+  // Atributos derivados
+  cafeterias?: { count: number }[]
 }
 
 /**
@@ -33,6 +36,11 @@ export interface Unit {
    * Se a unidade está ativa.
    */
   isActive: UnitRow["is_active"]
+  /**
+   * Quantidade de lanchonetes associadas à unidade
+   * (opcional, pode ser carregada separadamente).
+   */
+  cafeteriasCount?: number
 }
 
 /**

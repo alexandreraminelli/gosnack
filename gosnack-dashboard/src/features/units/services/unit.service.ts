@@ -11,6 +11,7 @@ const mapUnitRowToUnit = (row: UnitRow): Unit => ({
   createdAt: row.created_at,
   updatedAt: row.updated_at,
   isActive: row.is_active,
+  cafeteriasCount: row.cafeterias?.[0]?.count,
 })
 
 /**
@@ -34,7 +35,11 @@ export const unitService = {
     // Mapear os dados do formato da aplicação para o formato do banco de dados
     const payload = mapUnitToUnitRow(data)
 
-    const { data: createdData, error } = await supabase.from(TABLES.units).insert(payload).select("*").single<UnitRow>()
+    const { data: createdData, error } = await supabase
+      .from(TABLES.units)
+      .insert(payload)
+      .select("*, cafeterias(count)") // obter colunas e quantidade de lanchonetes
+      .single<UnitRow>()
 
     if (error) throw error
     return mapUnitRowToUnit(createdData)
@@ -46,7 +51,10 @@ export const unitService = {
   async getAll(): Promise<Unit[]> {
     const supabase = createClient()
 
-    const { data, error } = await supabase.from(TABLES.units).select("*").order(COLUMNS.units.name, { ascending: true })
+    const { data, error } = await supabase
+      .from(TABLES.units)
+      .select("*, cafeterias(count)") // obter colunas e quantidade de lanchonetes
+      .order(COLUMNS.units.name, { ascending: true })
 
     if (error) throw error
     return (data ?? []).map(mapUnitRowToUnit)
