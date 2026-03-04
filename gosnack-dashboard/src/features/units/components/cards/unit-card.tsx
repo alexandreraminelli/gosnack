@@ -37,7 +37,7 @@ export default function UnitCard({ unit }: Props) {
       {/* Header */}
       <CardHeader>
         {/* Nome da unidade */}
-        <CardTitle className="text-lg font-semibold">{unit.name}</CardTitle>
+        <CardTitle className="text-lg font-semibold line-clamp-2 min-h-14">{unit.name}</CardTitle>
 
         <CardAction>
           {/* Botão de informações */}
