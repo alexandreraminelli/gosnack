@@ -25,6 +25,8 @@ export const UNITS_TEXTS = {
     },
     notFound: {
       title: "Unidade Não Encontrada",
+      description: ["A unidade que você está tentando acessar não existe ou foi removida.", "Verifique se o ID da unidade está correto ou volte para a lista de unidades para selecionar outra."],
+      action: "Voltar para a lista de unidades",
     },
   },
 
