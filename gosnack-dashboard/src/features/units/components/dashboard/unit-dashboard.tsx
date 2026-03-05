@@ -67,9 +67,9 @@ interface InternalProps {
 function DashboardHeader({ unit }: InternalProps) {
   return (
     <header
-      className="bg-card text-card-foreground rounded-xl
+      className="bg-zinc-100 dark:bg-zinc-900 text-card-foreground rounded-xl
         flex flex-col sm:flex-row flex-wrap justify-between items-center
-        gap-6 mt-4 p-6"
+        gap-6 p-6"
     >
       {/* Nome da unidade */}
       <h2 className="text-2xl md:text-3xl font-medium text-center">{unit.name}</h2>
