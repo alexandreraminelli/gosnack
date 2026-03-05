@@ -1,4 +1,5 @@
 import AttributeList, { Attribute } from "@/components/shared/display/attribute-list"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
@@ -39,6 +40,9 @@ export default function UnitCard({ unit }: Props) {
         {/* Nome da unidade */}
         <CardTitle className="text-lg font-semibold line-clamp-2 min-h-14">{unit.name}</CardTitle>
 
+        {/* Status */}
+        <Badge variant={unit.isActive ? "secondary" : "destructive"}>{unit.isActive ? ENTITIES_TEXTS.commonAttributes.status.enabled : ENTITIES_TEXTS.commonAttributes.status.disabled}</Badge>
+
         <CardAction>
           {/* Botão de informações */}
           <Tooltip>
@@ -58,6 +62,7 @@ export default function UnitCard({ unit }: Props) {
 
       {/* Informações da unidade */}
       <CardContent>
+        {/* Atributos */}
         <AttributeList attributes={attributes} />
       </CardContent>
     </Card>

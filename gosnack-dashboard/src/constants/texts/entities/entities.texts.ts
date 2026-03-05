@@ -4,6 +4,11 @@
 export const ENTITIES_TEXTS = {
   commonAttributes: {
     id: "ID",
+
+    status: {
+      enabled: "Habilitado",
+      disabled: "Desabilitado",
+    },
   },
 
   cafeteria: {
