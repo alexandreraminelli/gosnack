@@ -44,6 +44,10 @@ export const UNITS_TEXTS = {
       description: ["A unidade que você está tentando acessar não existe ou foi removida.", "Verifique se o ID da unidade está correto ou volte para a lista de unidades para selecionar outra."],
       action: "Voltar para a lista de unidades",
     },
+    updateStatus: {
+      title: "Erro ao atualizar status",
+      description: "Não foi possível atualizar o status da unidade. Por favor, tente novamente mais tarde.",
+    },
   },
 
   fields: {
@@ -53,6 +57,8 @@ export const UNITS_TEXTS = {
   loading: {
     creating: "Criando unidade...",
     saving: "Salvando unidade...",
+    disabled: "Desabilitando unidade...",
+    enabled: "Habilitando unidade...",
     deleting: "Excluindo unidade...",
   },
 
@@ -64,6 +70,14 @@ export const UNITS_TEXTS = {
     create: {
       title: "Unidade criada",
       description: (name: string) => `A unidade "${name}" foi criada com sucesso`,
+    },
+    disabled: {
+      title: "Unidade desabilitada",
+      description: (name: string) => `A unidade "${name}" foi desabilitada com sucesso`,
+    },
+    enabled: {
+      title: "Unidade habilitada",
+      description: (name: string) => `A unidade "${name}" foi habilitada com sucesso`,
     },
   },
 

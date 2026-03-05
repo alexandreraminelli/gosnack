@@ -14,3 +14,15 @@ export function useCreateUnit() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: unitKeys.all }), // invalidar cache para refetch automático
   })
 }
+
+/**
+ * Hook para atualizar o status de uma unidade (ativo/inativo).
+ */
+export function useToggleUnitStatus() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: ({ id, value }: { id: string; value: boolean }) => unitService.toggleStatus(id, value),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: unitKeys.all }), // invalidar cache para refetch automático
+  })
+}

@@ -93,4 +93,15 @@ export const unitService = {
     return (count ?? 0) > 0 // Retorna true se houver pelo menos um registro
     // com o mesmo nome
   },
+
+  /**
+   * Alternar o status de uma unidade (ativo/inativo).
+   */
+  async toggleStatus(id: string, value: boolean): Promise<void> {
+    const supabase = createClient()
+
+    const { error } = await supabase.from(TABLES.units).update({ is_active: value }).eq(COLUMNS.units.id, id)
+
+    if (error) throw error
+  },
 }
