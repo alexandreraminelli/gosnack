@@ -14,6 +14,8 @@ export const UI_TEXTS = {
 
   navigation: {
     backToHome: "Voltar para o início",
+
+    expandBreadcrumb: "Expandir navegação",
   },
 
   status: {
