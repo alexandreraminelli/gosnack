@@ -1,7 +1,9 @@
 "use client"
 
 import EmptyState from "@/components/shared/feedback/empty-state"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
+import { ICONS } from "@/constants/icons"
 import { IMAGES } from "@/constants/images"
 import { ROUTES } from "@/constants/navigation/routes"
 import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
@@ -10,6 +12,7 @@ import ToggleUnitStatusButton from "@/features/units/components/buttons/toggle-u
 import UnitDashboardSkeleton from "@/features/units/components/dashboard/unit-dashboard-skeleton"
 import { useUnit } from "@/features/units/hooks/queries/unit.queries"
 import { Unit } from "@/features/units/types/unit.types"
+import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
 
 /**
@@ -45,11 +48,28 @@ export default function UnitDashboard({ unitId }: Props) {
   }
 
   return (
-    <main>
+    <main className="space-y-5">
       {/* Header */}
       <DashboardHeader unit={unit} />
 
-      {/* TODO: Alert de unidade desabilitada */}
+      {/* Alert de unidade desabilitada */}
+      {!unit.isActive && (
+        <Alert variant="destructive" className="border-destructive">
+          {/* Ícone */}
+          <HugeiconsIcon icon={ICONS.status.disable} />
+
+          <AlertTitle>{UNITS_TEXTS.message.disabled.title}</AlertTitle>
+          <AlertDescription>{UNITS_TEXTS.message.disabled.description}</AlertDescription>
+        </Alert>
+      )}
+
+      <div className="flex flex-col md:flex-row *:flex-1 gap-4">
+        {/* TODO: Lista de lanchonetes */}
+        <section>TODO: Lista de lanchonetes</section>
+
+        {/* TODO: Lista de administradores */}
+        <section>TODO: Lista de administradores</section>
+      </div>
     </main>
   )
 }

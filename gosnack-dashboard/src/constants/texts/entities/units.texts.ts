@@ -66,6 +66,13 @@ export const UNITS_TEXTS = {
 
   managerUnits: "Gerenciar Unidades",
 
+  message: {
+    disabled: {
+      title: "Unidade desabilitada",
+      description: "Esta unidade está invisível para alunos e funcionários. Ative-a para restaurar o acesso. Caso queira excluí-la permanentemente, entre em contato com o suporte técnico — essa ação requer autorização especial e não pode ser feita pelo painel.",
+    },
+  },
+
   quant: (count: number) => `${count} unidade${count !== 1 ? "s" : ""}`,
 
   success: {
