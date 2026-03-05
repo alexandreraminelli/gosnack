@@ -10,12 +10,13 @@ import { ROUTES } from "@/constants/navigation/routes"
 import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
 import { UI_TEXTS } from "@/constants/texts/ui.texts"
 import { useCreateUnit } from "@/features/units/hooks/queries/unit.mutations"
-import { useCheckDuplicateUnitName } from "@/features/units/hooks/queries/unit.queries"
 import { unitSchema } from "@/features/units/schemas/unit.schema"
+import { DB_ERROR_CODES, getDbErrorMessage } from "@/lib/supabase/errors/db-errors"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { PostgrestError } from "@supabase/supabase-js"
 import { useRouter } from "next/navigation"
-import { Controller, Resolver, useForm, useWatch } from "react-hook-form"
+import { Controller, Resolver, useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod/v4"
 
@@ -55,28 +56,9 @@ export default function CreateUnitForm({ onSuccess }: Props) {
   const createMutation = useCreateUnit()
 
   /**
-   * Hook para observar valores dos campos.
-   */
-  const watched = useWatch<UnitFormData>({ control: form.control })
-
-  /**
-   * Observador do campo name.
-   */
-  const nameValue = watched.name ?? ""
-
-  // Verificar se já existe uma unidade com o mesmo nome
-  const { data: duplicateUnitName } = useCheckDuplicateUnitName(nameValue)
-
-  /**
    * Função executada ao submeter o formulário de criar unidade.
    */
   async function onSubmit(data: UnitFormData) {
-    // Verificar se já existe uma unidade com o mesmo nome
-    if (duplicateUnitName) {
-      toast.warning(UNITS_TEXTS.error.duplicateName.title, { description: UNITS_TEXTS.error.duplicateName.description })
-      return
-    }
-
     // Criar unidade
     toast.promise(createMutation.mutateAsync({ ...data, isActive: true }), {
       // Carregamento
@@ -94,9 +76,14 @@ export default function CreateUnitForm({ onSuccess }: Props) {
         }
       },
       // Erro
-      error: {
-        message: UNITS_TEXTS.error.create.title,
-        description: UNITS_TEXTS.error.create.description,
+      error: (error: PostgrestError) => {
+        if (error.code === DB_ERROR_CODES.uniqueViolation) {
+          // Nome já existente
+          return { message: UNITS_TEXTS.error.duplicateName.title, description: UNITS_TEXTS.error.duplicateName.description }
+        } else {
+          // Erro genérico
+          return { message: UNITS_TEXTS.error.create.title, description: getDbErrorMessage(error, UNITS_TEXTS.error.create.description) }
+        }
       },
     })
   }
