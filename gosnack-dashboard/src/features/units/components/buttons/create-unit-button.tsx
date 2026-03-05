@@ -1,9 +1,12 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { ICONS } from "@/constants/icons"
 import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
 import CreateUnitForm from "@/features/units/forms/create-unit-form"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { useState } from "react"
 
 /**
  * Botão de adicionar unidade.
@@ -11,8 +14,11 @@ import { HugeiconsIcon } from "@hugeicons/react"
  * Abre um sheet com o formulário de criar unidade.
  */
 export default function CreateUnitButton() {
+  // Status do sheet
+  const [open, setOpen] = useState(false)
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         {/* Botão de adicionar unidade */}
         <Button>
@@ -29,7 +35,7 @@ export default function CreateUnitButton() {
         </SheetHeader>
 
         {/* Form */}
-        <CreateUnitForm />
+        <CreateUnitForm onSuccess={() => setOpen(false)} />
       </SheetContent>
     </Sheet>
   )

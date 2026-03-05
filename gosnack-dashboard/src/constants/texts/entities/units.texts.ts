@@ -10,6 +10,8 @@ export const UNITS_TEXTS = {
       title: "Editar Nome da Unidade",
     },
 
+    details: "Ver unidade",
+
     disable: {
       label: "Desabilitar",
       title: "Desabilitar Unidade",

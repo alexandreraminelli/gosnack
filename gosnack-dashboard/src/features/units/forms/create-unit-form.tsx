@@ -6,6 +6,7 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field
 import { Input } from "@/components/ui/input"
 import { SheetClose, SheetFooter } from "@/components/ui/sheet"
 import { ICONS } from "@/constants/icons"
+import { ROUTES } from "@/constants/navigation/routes"
 import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
 import { UI_TEXTS } from "@/constants/texts/ui.texts"
 import { useCreateUnit } from "@/features/units/hooks/queries/unit.mutations"
@@ -13,6 +14,7 @@ import { useCheckDuplicateUnitName } from "@/features/units/hooks/queries/unit.q
 import { unitSchema } from "@/features/units/schemas/unit.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { useRouter } from "next/navigation"
 import { Controller, Resolver, useForm, useWatch } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod/v4"
@@ -23,9 +25,20 @@ import { z } from "zod/v4"
 type UnitFormData = z.infer<typeof unitSchema>
 
 /**
+ * Props de `CreateUnitForm`.
+ */
+interface Props {
+  /** Função executada após criar a unidade com sucesso. */
+  onSuccess?: () => void
+}
+
+/**
  * Formulário para adicionar uma nova unidade.
  */
-export default function CreateUnitForm() {
+export default function CreateUnitForm({ onSuccess }: Props) {
+  // Hooks
+  const router = useRouter()
+
   /**
    * Instância do React Hook Form para o formulário de criar unidade.
    */
@@ -70,7 +83,15 @@ export default function CreateUnitForm() {
       loading: UNITS_TEXTS.loading.creating,
       // Sucesso
       success: (unit) => {
-        return { message: UNITS_TEXTS.success.create.title, description: UNITS_TEXTS.success.create.description(unit.name) }
+        onSuccess?.() // fechar sheet
+        return {
+          message: UNITS_TEXTS.success.create.title,
+          description: UNITS_TEXTS.success.create.description(unit.name),
+          action: {
+            label: UNITS_TEXTS.actions.details,
+            onClick: () => router.push(ROUTES.units.details(unit.id)),
+          },
+        }
       },
       // Erro
       error: {
