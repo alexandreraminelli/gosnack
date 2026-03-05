@@ -13,10 +13,12 @@ export const UNITS_TEXTS = {
     disable: {
       label: "Desabilitar",
       title: "Desabilitar Unidade",
+      description: "A unidade ficará invisível para alunos e funcionários. As lanchonetes vinculadas também serão afetadas. Você poderá reativá-la a qualquer momento.",
     },
     enable: {
       label: "Habilitar",
       title: "Habilitar Unidade",
+      description: "A unidade voltará a ficar visível para alunos e funcionários. As lanchonetes vinculadas precisarão ser reativadas manualmente.",
     },
   },
 

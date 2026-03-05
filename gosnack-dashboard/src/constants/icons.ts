@@ -1,11 +1,13 @@
 import {
   // Ícones do HugeIcons:
   Add01Icon,
+  Alert02Icon,
   ArrowDown01Icon,
   ArrowLeft01Icon,
   ArrowRight01Icon,
   ArrowUp01Icon,
   Calendar03Icon,
+  Cancel01Icon,
   ChefIcon,
   Clock01Icon,
   ComputerIcon,
@@ -24,6 +26,9 @@ import {
   SchoolIcon,
   Share04Icon,
   Sun03Icon,
+  Tick01Icon,
+  Tick02Icon,
+  UnavailableIcon,
   UserGroup03Icon,
   ViewIcon,
   ViewOffSlashIcon,
@@ -68,6 +73,12 @@ export const ICONS = {
     menu: MenuRestaurantIcon,
   },
 
+  feedback: {
+    success: Tick02Icon,
+    error: Cancel01Icon,
+    warning: Alert02Icon,
+  },
+
   loading: Loading03Icon,
 
   id: HashtagIcon,
@@ -85,6 +96,11 @@ export const ICONS = {
   time: {
     calendar: Calendar03Icon,
     clock: Clock01Icon,
+  },
+
+  status: {
+    enable: Tick01Icon,
+    disable: UnavailableIcon,
   },
 
   users: {

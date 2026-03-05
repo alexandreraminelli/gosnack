@@ -48,6 +48,8 @@ export default function UnitDashboard({ unitId }: Props) {
     <main>
       {/* Header */}
       <DashboardHeader unit={unit} />
+
+      {/* TODO: Alert de unidade desabilitada */}
     </main>
   )
 }
