@@ -1,4 +1,4 @@
-import HeaderWithTitleAndButton from "@/components/shared/layout/headers/header-with-title-and-button"
+import PageHeader from "@/components/shared/layout/headers/page-header"
 import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
 import UnitList from "@/features/units/components/cards/unit-list"
 import CreateUnitButton from "@/features/units/components/buttons/create-unit-button"
@@ -10,10 +10,10 @@ export default function ManageUnitsPage() {
   return (
     <section className="space-y-4">
       {/* Header */}
-      <HeaderWithTitleAndButton title={UNITS_TEXTS.managerUnits}>
+      <PageHeader title={UNITS_TEXTS.managerUnits}>
         {/* Botão de adicionar unidade */}
         <CreateUnitButton />
-      </HeaderWithTitleAndButton>
+      </PageHeader>
 
       <main>
         {/* Lista de unidades */}
