@@ -13,7 +13,7 @@ export default function CafeteriasPage() {
   return (
     <section className="space-y-4">
       {/* Header */}
-      <PageHeader title={CAFETERIA_TEXTS.manager}>
+      <PageHeader title={CAFETERIA_TEXTS.management}>
         {/* Botão de criar lanchonete */}
         <Button asChild>
           <Link href={ROUTES.cafeterias.add}>

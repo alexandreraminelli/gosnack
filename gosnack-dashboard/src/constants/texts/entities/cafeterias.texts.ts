@@ -61,5 +61,8 @@ export const CAFETERIA_TEXTS = {
     name: {
       required: "O nome da lanchonete é obrigatório.",
     },
+    openingHours: {
+      invalidRange: "Intervalo inválido.",
+    },
   },
 } as const
