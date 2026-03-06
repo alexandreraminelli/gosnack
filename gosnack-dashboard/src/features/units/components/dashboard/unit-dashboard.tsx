@@ -1,6 +1,7 @@
 "use client"
 
 import EmptyState from "@/components/shared/feedback/empty-state"
+import EntityHeader from "@/components/shared/layout/headers/entity-header"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { ICONS } from "@/constants/icons"
@@ -11,7 +12,6 @@ import EditUnitNameButton from "@/features/units/components/buttons/edit-unit-na
 import ToggleUnitStatusButton from "@/features/units/components/buttons/toggle-unit-status-button"
 import UnitDashboardSkeleton from "@/features/units/components/dashboard/unit-dashboard-skeleton"
 import { useUnit } from "@/features/units/hooks/queries/unit.queries"
-import { Unit } from "@/features/units/types/unit.types"
 import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
 
@@ -50,7 +50,13 @@ export default function UnitDashboard({ unitId }: Props) {
   return (
     <main className="space-y-5">
       {/* Header */}
-      <DashboardHeader unit={unit} />
+      <EntityHeader title={unit.name} icon={ICONS.entities.unit}>
+        {/* Botão de editar nome */}
+        <EditUnitNameButton unit={unit} />
+
+        {/* Botão de desativar/ativar */}
+        <ToggleUnitStatusButton unit={unit} />
+      </EntityHeader>
 
       {/* Alert de unidade desabilitada */}
       {!unit.isActive && (
@@ -71,43 +77,5 @@ export default function UnitDashboard({ unitId }: Props) {
         <section>TODO: Lista de administradores</section>
       </div>
     </main>
-  )
-}
-
-/**
- * Props dos componentes internos.
- */
-interface InternalProps {
-  unit: Unit
-}
-
-/**
- * Header do dashboard de unidade.
- */
-function DashboardHeader({ unit }: InternalProps) {
-  return (
-    <header
-      className="bg-zinc-100 dark:bg-zinc-900 text-card-foreground rounded-xl
-        flex flex-col sm:flex-row flex-wrap justify-between items-start md:items-center
-        gap-4 p-4 md:p-6 transition-all"
-    >
-      <div className="flex flex-row items-center gap-4 *:transition-all">
-        {/* Ícone */}
-        <div className="bg-zinc-200 dark:bg-zinc-800 p-2 rounded-md self-start">
-          <HugeiconsIcon icon={ICONS.entities.unit} className="size-7 md:size-9 transition-all" />
-        </div>
-
-        {/* Nome da unidade */}
-        <h2 className="text-2xl md:text-3xl font-medium text-start">{unit.name}</h2>
-      </div>
-
-      <aside className="flex flex-row flex-wrap *:flex-1 gap-3 max-md:self-center">
-        {/* Botão de editar nome */}
-        <EditUnitNameButton unit={unit} />
-
-        {/* Botão de desativar/ativar */}
-        <ToggleUnitStatusButton unit={unit} />
-      </aside>
-    </header>
   )
 }
