@@ -88,13 +88,20 @@ function DashboardHeader({ unit }: InternalProps) {
   return (
     <header
       className="bg-zinc-100 dark:bg-zinc-900 text-card-foreground rounded-xl
-        flex flex-col sm:flex-row flex-wrap justify-between items-center
-        gap-6 p-6"
+        flex flex-col sm:flex-row flex-wrap justify-between items-start md:items-center
+        gap-4 p-4 md:p-6 transition-all"
     >
-      {/* Nome da unidade */}
-      <h2 className="text-2xl md:text-3xl font-medium text-center">{unit.name}</h2>
+      <div className="flex flex-row items-center gap-4 *:transition-all">
+        {/* Ícone */}
+        <div className="bg-zinc-200 dark:bg-zinc-800 p-2 rounded-md self-start">
+          <HugeiconsIcon icon={ICONS.entities.unit} className="size-7 md:size-9 transition-all" />
+        </div>
 
-      <aside className="flex flex-row flex-wrap *:flex-1 gap-3">
+        {/* Nome da unidade */}
+        <h2 className="text-2xl md:text-3xl font-medium text-start">{unit.name}</h2>
+      </div>
+
+      <aside className="flex flex-row flex-wrap *:flex-1 gap-3 max-md:self-center">
         {/* Botão de editar nome */}
         <EditUnitNameButton unit={unit} />
 
