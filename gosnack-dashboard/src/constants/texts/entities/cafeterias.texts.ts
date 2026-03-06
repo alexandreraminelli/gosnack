@@ -3,8 +3,10 @@
  */
 export const CAFETERIA_TEXTS = {
   actions: {
-    add: "Adicionar lanchonete",
-    edit: "Editar lanchonete",
-    delete: "Excluir lanchonete",
+    add: "Adicionar Lanchonete",
+    edit: "Editar Lanchonete",
+    delete: "Excluir Lanchonete",
   },
+
+  manager: "Gerenciar Lanchonetes",
 } as const
