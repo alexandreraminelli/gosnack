@@ -1,7 +1,7 @@
 import NavUserClient from "@/components/layout/sidebar/nav-user/nav-user-client"
 import NavUserSkeleton from "@/components/layout/sidebar/nav-user/nav-user-skeleton"
 import { createClient } from "@/lib/supabase/server"
-import { getUserDisplayName } from "@/services/users"
+import { getUserDisplayName } from "@/features/authentication/shared/services/users"
 
 /**
  * Componente de navegação de opções do usuário no sidebar.

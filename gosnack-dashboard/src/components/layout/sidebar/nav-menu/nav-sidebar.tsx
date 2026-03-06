@@ -1,6 +1,6 @@
 import NavSidebarClient from "@/components/layout/sidebar/nav-menu/nav-sidebar-client"
 import { createClient } from "@/lib/supabase/server"
-import { getUserRole } from "@/services/users"
+import { getUserRole } from "@/features/authentication/shared/services/users"
 
 /**
  * Menu de navegação do sidebar.

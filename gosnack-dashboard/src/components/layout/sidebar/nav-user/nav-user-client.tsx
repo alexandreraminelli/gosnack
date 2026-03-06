@@ -1,6 +1,6 @@
 "use client"
 
-import LogoutButton from "@/components/layout/sidebar/nav-user/logout-button"
+import LogoutButton from "@/features/authentication/shared/components/logout-button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar"

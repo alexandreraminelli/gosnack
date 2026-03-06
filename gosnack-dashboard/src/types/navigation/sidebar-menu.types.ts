@@ -1,4 +1,4 @@
-import { UserRole } from "@/types/user.types"
+import { UserRole } from "@/features/authentication/shared/types/user.types"
 import { IconSvgElement } from "@hugeicons/react"
 
 /**

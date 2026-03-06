@@ -3,7 +3,7 @@
 import NavSidebarSkeleton from "@/components/layout/sidebar/nav-menu/nav-sidebar-skeleton"
 import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 import { SIDEBAR_MENU } from "@/constants/navigation/sidebar-menu"
-import { UserRole } from "@/types/user.types"
+import { UserRole } from "@/features/authentication/shared/types/user.types"
 import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"

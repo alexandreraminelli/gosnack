@@ -1,7 +1,7 @@
 import { toSelect } from "@/lib/supabase/helpers"
 import { COLUMNS, TABLES } from "@/lib/supabase/schema"
 import { createClient } from "@/lib/supabase/server"
-import { UserProfile, UserRole, UserRow } from "@/types/user.types"
+import { UserProfile, UserRole, UserRow } from "@/features/authentication/shared/types/user.types"
 
 /**
  * Obtém o nome do usuário.
