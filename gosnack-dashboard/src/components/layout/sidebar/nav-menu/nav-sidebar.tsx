@@ -1,6 +1,6 @@
 import NavSidebarClient from "@/components/layout/sidebar/nav-menu/nav-sidebar-client"
+import { profileService } from "@/features/authentication/shared/services/profile.service"
 import { createClient } from "@/lib/supabase/server"
-import { getUserRole } from "@/features/authentication/shared/services/users"
 
 /**
  * Menu de navegação do sidebar.
@@ -13,8 +13,7 @@ export default async function NavSidebar() {
   const {
     data: { user },
   } = await supabase.auth.getUser()
+  const profile = user ? await profileService.getProfile(user.id) : null
 
-  const role = user ? await getUserRole(user.id) : null
-
-  return <NavSidebarClient role={role} />
+  return <NavSidebarClient role={profile?.role ?? null} />
 }
