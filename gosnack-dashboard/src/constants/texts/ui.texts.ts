@@ -12,6 +12,10 @@ export const UI_TEXTS = {
     details: "Ver detalhes",
   },
 
+  loading: {
+    salving: "Salvando alterações...",
+  },
+
   navigation: {
     backToHome: "Voltar para o início",
 

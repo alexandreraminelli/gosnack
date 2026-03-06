@@ -50,6 +50,10 @@ export const UNITS_TEXTS = {
       title: "Erro ao atualizar status",
       description: "Não foi possível atualizar o status da unidade. Por favor, tente novamente mais tarde.",
     },
+    editName: {
+      title: "Erro ao editar nome",
+      description: "Não foi possível atualizar o nome da unidade. Por favor, tente novamente mais tarde.",
+    },
   },
 
   fields: {
@@ -87,6 +91,10 @@ export const UNITS_TEXTS = {
     enabled: {
       title: "Unidade habilitada",
       description: (name: string) => `A unidade "${name}" foi habilitada com sucesso`,
+    },
+    editName: {
+      title: "Nome atualizado",
+      description: (oldName: string, newName: string) => `A unidade "${oldName}" foi renomeada para "${newName}".`,
     },
   },
 

@@ -73,6 +73,17 @@ export const unitService = {
   },
 
   /**
+   * Atualizar o nome de uma unidade.
+   */
+  async updateName(id: string, newName: string): Promise<void> {
+    const supabase = createClient()
+
+    const { error } = await supabase.from(TABLES.units).update({ name: newName }).eq(COLUMNS.units.id, id)
+
+    if (error) throw error
+  },
+
+  /**
    * Alternar o status de uma unidade (ativo/inativo).
    */
   async toggleStatus(id: string, value: boolean): Promise<void> {

@@ -2,12 +2,21 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ICONS } from "@/constants/icons"
 import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
+import EditUnitNameForm from "@/features/units/forms/edit-unit-name-form"
+import { Unit } from "@/features/units/types/unit.types"
 import { HugeiconsIcon } from "@hugeicons/react"
+
+/**
+ * Props de `EditUnitNameButton`.
+ */
+interface Props {
+  unit: Unit
+}
 
 /**
  * Botão de editar nome da unidade.
  */
-export default function EditUnitNameButton() {
+export default function EditUnitNameButton({ unit }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -19,10 +28,13 @@ export default function EditUnitNameButton() {
       </DialogTrigger>
 
       <DialogContent>
+        {/* Header */}
         <DialogHeader>
           <DialogTitle>{UNITS_TEXTS.actions.editName.title}</DialogTitle>
         </DialogHeader>
-        TODO: Form de editar nome
+
+        {/* Formulário */}
+        <EditUnitNameForm unit={unit} />
       </DialogContent>
     </Dialog>
   )

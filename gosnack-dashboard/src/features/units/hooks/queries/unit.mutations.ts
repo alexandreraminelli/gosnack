@@ -26,3 +26,15 @@ export function useToggleUnitStatus() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: unitKeys.all }), // invalidar cache para refetch automático
   })
 }
+
+/**
+ * Hook para atualizar o nome de uma unidade.
+ */
+export function useEditUnitName() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: ({ id, newName }: { id: string; newName: string }) => unitService.updateName(id, newName),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: unitKeys.all }), // invalidar cache para refetch automático
+  })
+}

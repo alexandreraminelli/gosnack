@@ -96,7 +96,7 @@ function DashboardHeader({ unit }: InternalProps) {
 
       <aside className="flex flex-row flex-wrap *:flex-1 gap-3">
         {/* Botão de editar nome */}
-        <EditUnitNameButton />
+        <EditUnitNameButton unit={unit} />
 
         {/* Botão de desativar/ativar */}
         <ToggleUnitStatusButton unit={unit} />
