@@ -64,7 +64,12 @@ export default function NavSidebarClient({ role }: Props) {
                   <SidebarMenuButton
                     asChild
                     tooltip={item.label} // Tooltip para sidebar colapsado
-                    isActive={pathname === item.href} // Destacar rota ativa
+                    // Destacar rota ativa:
+                    isActive={
+                      item.href === "/"
+                        ? pathname === "/" // Destacar rota root (home) apenas se for exatamente "/"
+                        : pathname.startsWith(item.href) // Destacar rotas até para sub-rotas
+                    }
                   >
                     <Link href={item.href}>
                       {item.icon && <HugeiconsIcon icon={item.icon} />}
