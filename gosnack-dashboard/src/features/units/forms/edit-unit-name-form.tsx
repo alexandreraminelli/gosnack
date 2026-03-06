@@ -1,3 +1,4 @@
+import LoadingSpin from "@/components/shared/feedback/loading/loading-spin"
 import { Button } from "@/components/ui/button"
 import { DialogClose, DialogFooter } from "@/components/ui/dialog"
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
@@ -116,7 +117,10 @@ export default function EditUnitNameForm({ unit }: Props) {
         </DialogClose>
 
         {/* Botão de submit */}
-        <Button disabled={!isNameChanged}>{UI_TEXTS.actions.save}</Button>
+        <Button disabled={!isNameChanged || form.formState.isSubmitting}>
+          {form.formState.isSubmitting && <LoadingSpin />}
+          <span>{UI_TEXTS.actions.save}</span>
+        </Button>
       </DialogFooter>
     </form>
   )
