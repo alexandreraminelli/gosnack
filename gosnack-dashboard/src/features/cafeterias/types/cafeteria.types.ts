@@ -49,7 +49,7 @@ export interface Cafeteria {
   /**
    * Horário de funcionamento da lanchonete.
    */
-  openingHours?: OpeningHours[]
+  openingHours: OpeningHours[]
 }
 
 /** Modelo de dados para cadastro de lanchonete. */
