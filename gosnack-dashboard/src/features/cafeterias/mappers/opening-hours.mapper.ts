@@ -3,7 +3,7 @@ import { OpeningHours, OpeningHoursRow } from "@/features/cafeterias/types/openi
 /**
  * Converte `OpeningHoursRow` para `OpeningHours`, adaptando os campos de snake_case para camelCase.
  */
-export function mapOpeningHoursRowToOpeningHours(row: OpeningHoursRow): OpeningHours {
+export function mapRowToOpeningHours(row: OpeningHoursRow): OpeningHours {
   return {
     id: row.id,
     cafeteriaId: row.cafeteria_id,
@@ -18,7 +18,7 @@ export function mapOpeningHoursRowToOpeningHours(row: OpeningHoursRow): OpeningH
 /**
  * Converte `OpeningHours` para `OpeningHoursRow`, adaptando os campos de camelCase para snake_case.
  */
-export function mapOpeningHoursToOpeningHoursRow(hours: Omit<OpeningHours, "id" | "updatedAt">): Omit<OpeningHoursRow, "id" | "updated_at"> {
+export function mapOpeningHoursToRow(hours: Omit<OpeningHours, "id" | "updatedAt">): Omit<OpeningHoursRow, "id" | "updated_at"> {
   return {
     cafeteria_id: hours.cafeteriaId,
     period: hours.period,
