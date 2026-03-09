@@ -36,7 +36,7 @@ export const cafeteriaSchema = z.object({
   /**
    * Validação da seleção da unidade escolar.
    */
-  unit: z.string().nonempty(CAFETERIA_TEXTS.validation.unit.required),
+  unitId: z.string().nonempty(CAFETERIA_TEXTS.validation.unit.required),
   /**
    * Validação do campo de nome da lanchonete.
    */
