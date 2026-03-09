@@ -59,7 +59,7 @@ export const cafeteriaService = {
 
     const { data, error } = await supabase
       .from(TABLES.cafeterias)
-      .select(`*, ${TABLES.cafeteriaOpeningHours}`) // JOIN com horários de funcionamento
+      .select(`*, ${TABLES.cafeteriaOpeningHours}(*)`) // JOIN com horários de funcionamento
       .order(COLUMNS.cafeterias.name, { ascending: true }) // ordem alfabética
 
     if (error) throw error

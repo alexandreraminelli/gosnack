@@ -46,5 +46,14 @@ export default function CafeteriaCardList() {
   }
 
   // Lista de lanchonetes
-  return <div></div>
+  return (
+    <div>
+      {cafeterias.map((cafeteria) => (
+        <div key={cafeteria.id}>
+          <h2>{cafeteria.name}</h2>
+          <p>{cafeteria.id}</p>
+        </div>
+      ))}
+    </div>
+  )
 }
