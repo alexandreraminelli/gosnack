@@ -5,9 +5,11 @@ import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/componen
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { ICONS } from "@/constants/icons"
 import { ROUTES } from "@/constants/navigation/routes"
+import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
 import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
 import { UI_TEXTS } from "@/constants/texts/ui.texts"
 import { Cafeteria } from "@/features/cafeterias/types/cafeteria.types"
+import { formatOpeningHours } from "@/features/cafeterias/utils/opening-hours.utils"
 import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
 
@@ -30,6 +32,12 @@ export default function CafeteriaCard({ cafeteria }: Props) {
       label: ENTITIES_TEXTS.unit.singular,
       value: cafeteria.unitName ?? UI_TEXTS.status.notAvailable,
       icon: ICONS.entities.unit,
+    },
+    // Horário de funcionamento
+    {
+      icon: ICONS.time.clock,
+      label: CAFETERIA_TEXTS.fields.openingHours.label,
+      value: cafeteria.openingHours.map(formatOpeningHours),
     },
   ]
 

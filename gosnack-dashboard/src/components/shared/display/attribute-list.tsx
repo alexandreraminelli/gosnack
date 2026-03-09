@@ -7,7 +7,7 @@ import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react"
  */
 export interface Attribute {
   label: string
-  value: string
+  value: string | string[]
   icon?: IconSvgElement
 }
 
@@ -23,13 +23,30 @@ export function AttributeTile({ label, value, icon }: Attribute) {
       )}
     >
       {/* Ícone */}
-      {icon && <HugeiconsIcon icon={icon} className="size-5" />}
+      {icon && (
+        <HugeiconsIcon
+          icon={icon}
+          className={cn(
+            "size-5 self-start",
+            { "mt-1": Array.isArray(value) }, // alinhar ícone ao label
+          )}
+        />
+      )}
 
-      {/* Texto */}
-      <p className="truncate text-ellipsis *:inline">
-        <dt className="font-bold">{`${label}: `}</dt>
-        <dd>{value}</dd>
-      </p>
+      <div>
+        {/* Texto */}
+        <p className="truncate text-ellipsis *:inline">
+          <dt className="font-bold">{`${label}: `}</dt>
+          {typeof value === "string" && <dd>{value}</dd>}
+        </p>
+        {/* Sub=valores */}
+        {Array.isArray(value) &&
+          value.map((subValue, index) => (
+            <p key={index} className="truncate text-ellipsis *:inline">
+              <dd className="text-muted-foreground">{subValue}</dd>
+            </p>
+          ))}
+      </div>
     </div>
   )
 }
