@@ -32,4 +32,4 @@ export interface OpeningHours {
 /**
  * Modelo de dados para cadastro de horário de funcionamento.
  */
-export type OpeningHoursInputModel = Omit<OpeningHours, "id" | "updatedAt">
+export type OpeningHoursInsert = Omit<OpeningHours, "id" | "updatedAt">
