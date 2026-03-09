@@ -3,7 +3,7 @@ import { mapOpeningHoursToRow } from "@/features/cafeterias/mappers/opening-hour
 import { Cafeteria, CafeteriaInputModel, CafeteriaRow } from "@/features/cafeterias/types/cafeteria.types"
 import { OpeningHoursRow } from "@/features/cafeterias/types/opening-hours.types"
 import { createClient } from "@/lib/supabase/client"
-import { TABLES } from "@/lib/supabase/schema"
+import { COLUMNS, TABLES } from "@/lib/supabase/schema"
 
 /**
  * Serviço para operações relacionadas a lanchonetes.
@@ -48,5 +48,24 @@ export const cafeteriaService = {
 
     // Mapear os dados do banco de dados para o formato da aplicação
     return mapRowToCafeteria(cafeteriaRow, openingHoursRows)
+  },
+
+  /**
+   * Obter todas as lanchonetes do banco de dados, incluindo seus horários
+   * de funcionamento.
+   */
+  async getAll(): Promise<Cafeteria[]> {
+    const supabase = createClient()
+
+    const { data, error } = await supabase
+      .from(TABLES.cafeterias)
+      .select(`*, ${TABLES.cafeteriaOpeningHours}`) // JOIN com horários de funcionamento
+      .order(COLUMNS.cafeterias.name, { ascending: true }) // ordem alfabética
+
+    if (error) throw error
+    return (data ?? []).map((row) => {
+      const { cafeteria_opening_hours, ...cafeteriaRow } = row
+      return mapRowToCafeteria(cafeteriaRow as CafeteriaRow, cafeteria_opening_hours as OpeningHoursRow[])
+    })
   },
 }
