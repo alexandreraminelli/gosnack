@@ -1,4 +1,4 @@
-import { OpeningHours } from "@/features/cafeterias/types/opening-hours.types"
+import { OpeningHours, OpeningHoursInsert } from "@/features/cafeterias/types/opening-hours.types"
 
 /**
  * Linha da tabela `cafeterias` no banco de dados (snake_case).
@@ -53,4 +53,6 @@ export interface Cafeteria {
 }
 
 /** Modelo de dados para cadastro de lanchonete. */
-export type CafeteriaInsert = Omit<Cafeteria, "id" | "createdAt" | "updatedAt" | "isActive">
+export type CafeteriaInsert = Omit<Cafeteria, "id" | "createdAt" | "updatedAt" | "isActive" | "openingHours"> & {
+  openingHours: Omit<OpeningHoursInsert, "cafeteriaId">[]
+}

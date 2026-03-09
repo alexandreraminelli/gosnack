@@ -11,6 +11,7 @@ import { ICONS } from "@/constants/icons"
 import { ROUTES } from "@/constants/navigation/routes"
 import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
 import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
+import OpeningHoursField from "@/features/cafeterias/components/fields/opening-hours-fields"
 import { useCreateCafeteria } from "@/features/cafeterias/hooks/queries/cafeteria.mutations"
 import { cafeteriaSchema } from "@/features/cafeterias/schemas/cafeteria.schema"
 import { useUnits } from "@/features/units/hooks/queries/unit.queries"
@@ -57,7 +58,7 @@ export default function CreateCafeteriaForm() {
       name: "",
       location: "",
       openingHours: {
-        weekdays: {
+        weekday: {
           isOpen: false,
           openingTime: "07:00",
           closingTime: "18:00",
@@ -82,7 +83,20 @@ export default function CreateCafeteriaForm() {
         unitId: data.unitId,
         name: data.name,
         location: data.location,
-        openingHours: data.openingHours,
+        openingHours: [
+          {
+            period: "weekday",
+            isOpen: data.openingHours.weekday.isOpen,
+            openTime: data.openingHours.weekday.openingTime ?? null,
+            closeTime: data.openingHours.weekday.closingTime ?? null,
+          },
+          {
+            period: "saturday",
+            isOpen: data.openingHours.saturday?.isOpen ?? false,
+            openTime: data.openingHours.saturday?.openingTime ?? null,
+            closeTime: data.openingHours.saturday?.closingTime ?? null,
+          },
+        ],
       }),
       {
         // Carregamento
@@ -218,6 +232,9 @@ export default function CreateCafeteriaForm() {
           )}
         />
       </FieldGroup>
+
+      {/* Horários de Funcionamento */}
+      <OpeningHoursField control={form.control} />
 
       {/* Submit Button */}
       <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>

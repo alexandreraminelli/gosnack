@@ -22,7 +22,7 @@ const openingHoursSchema = z.object({
   /**
    * Validação do horário de funcionamento para dias de semana. (obrigatório)
    */
-  weekdays: timeRangeSchema,
+  weekday: timeRangeSchema,
   /**
    * Validação do horário de funcionamento para sábado. (opcional)
    */
