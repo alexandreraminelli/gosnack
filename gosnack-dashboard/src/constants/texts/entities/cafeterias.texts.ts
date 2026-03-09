@@ -43,7 +43,7 @@ export const CAFETERIA_TEXTS = {
     },
     openingHours: {
       label: "Horário de Funcionamento",
-      weekdays: "Segunda a Sexta",
+      weekday: "Segunda a Sexta",
       saturday: "Sábado",
     },
   },

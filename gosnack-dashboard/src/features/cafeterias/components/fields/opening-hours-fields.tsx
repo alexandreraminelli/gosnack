@@ -39,7 +39,7 @@ export default function OpeningHoursField<TFormValues extends FieldValues>({ con
   const dayPeriods: { value: DayPeriod; label: string; isOpen: boolean }[] = [
     {
       value: "weekday",
-      label: CAFETERIA_TEXTS.fields.openingHours.weekdays,
+      label: CAFETERIA_TEXTS.fields.openingHours.weekday,
       isOpen: weekdaysOpen,
     },
     {
