@@ -7,6 +7,7 @@ import { IMAGES } from "@/constants/images"
 import { ROUTES } from "@/constants/navigation/routes"
 import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
 import { UI_TEXTS } from "@/constants/texts/ui.texts"
+import CafeteriaCard from "@/features/cafeterias/components/cards/cafeteria-card"
 import CafeteriaCardListSkeleton from "@/features/cafeterias/components/cards/cafeteria-card-list-skeleton"
 import { useCafeterias } from "@/features/cafeterias/hooks/queries/cafeteria.queries"
 import { getDbErrorMessage } from "@/lib/supabase/errors/db-errors"
@@ -47,13 +48,15 @@ export default function CafeteriaCardList() {
 
   // Lista de lanchonetes
   return (
-    <div>
-      {cafeterias.map((cafeteria) => (
-        <div key={cafeteria.id}>
-          <h2>{cafeteria.name}</h2>
-          <p>{cafeteria.id}</p>
-        </div>
-      ))}
+    <div className="space-y-4">
+      {/* Quantidade de unidades */}
+      <p className="text-muted-foreground">{CAFETERIA_TEXTS.quant(cafeterias.length)}</p>
+
+      <section className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(var(--container-3xs),1fr))]">
+        {cafeterias.map((cafeteria) => (
+          <CafeteriaCard key={cafeteria.id} cafeteria={cafeteria} />
+        ))}
+      </section>
     </div>
   )
 }
