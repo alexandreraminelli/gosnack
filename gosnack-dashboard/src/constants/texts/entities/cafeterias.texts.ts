@@ -11,11 +11,17 @@ export const CAFETERIA_TEXTS = {
   },
 
   error: {
-    create: "Não foi possível criar a lanchonete.",
+    create: {
+      title: "Erro ao criar uma nova lanchonete.",
+      fallback: "Não foi possível criar uma nova lanchonete. Tente novamente mais tarde.",
+    },
     update: "Não foi possível salvar as alterações da lanchonete.",
 
     getAll: "Não foi possível carregar as lanchonetes.",
-    duplicateName: "Já existe uma lanchonete com este nome nessa unidade.",
+    duplicateName: {
+      title: "Nome já utilizado",
+      description: "Já existe uma lanchonete com este nome nessa unidade. Escolha um nome diferente.",
+    },
   },
 
   fields: {
@@ -35,6 +41,10 @@ export const CAFETERIA_TEXTS = {
       weekdays: "Segunda a Sexta",
       saturday: "Sábado",
     },
+  },
+
+  loading: {
+    create: "Criando lanchonete...",
   },
 
   management: "Gerenciar Lanchonetes",
