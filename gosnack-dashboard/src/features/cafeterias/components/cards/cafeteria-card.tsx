@@ -25,6 +25,12 @@ export default function CafeteriaCard({ cafeteria }: Props) {
   // Informações principais da lanchonete
   const attributes: Attribute[] = [
     // TODO: Informações da lanchonete
+    // Nome da unidade
+    {
+      label: ENTITIES_TEXTS.unit.singular,
+      value: cafeteria.unitName ?? UI_TEXTS.status.notAvailable,
+      icon: ICONS.entities.unit,
+    },
   ]
 
   return (

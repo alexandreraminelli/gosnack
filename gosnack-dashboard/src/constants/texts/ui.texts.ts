@@ -26,6 +26,7 @@ export const UI_TEXTS = {
     loading: "Carregando...",
     error: "Ocorreu um erro. Por favor, tente novamente mais tarde.",
     empty: "Nenhum item encontrado.",
+    notAvailable: "Indisponível",
   },
 
   theme: {

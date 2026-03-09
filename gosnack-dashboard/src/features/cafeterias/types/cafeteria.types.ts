@@ -27,6 +27,10 @@ export interface Cafeteria {
    */
   unitId: CafeteriaRow["unit_id"]
   /**
+   * Nome da unidade associada à lanchonete.
+   */
+  unitName?: string
+  /**
    * Nome da lanchonete.
    */
   name: CafeteriaRow["name"]
@@ -53,6 +57,6 @@ export interface Cafeteria {
 }
 
 /** Modelo de dados para cadastro de lanchonete. */
-export type CafeteriaInsert = Omit<Cafeteria, "id" | "createdAt" | "updatedAt" | "isActive" | "openingHours"> & {
+export type CafeteriaInsert = Omit<Cafeteria, "id" | "createdAt" | "updatedAt" | "isActive" | "openingHours" | "unitName"> & {
   openingHours: Omit<OpeningHoursInsert, "cafeteriaId">[]
 }

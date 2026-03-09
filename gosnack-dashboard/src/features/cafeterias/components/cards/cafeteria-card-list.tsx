@@ -52,7 +52,7 @@ export default function CafeteriaCardList() {
       {/* Quantidade de unidades */}
       <p className="text-muted-foreground">{CAFETERIA_TEXTS.quant(cafeterias.length)}</p>
 
-      <section className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(var(--container-3xs),1fr))]">
+      <section className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(var(--container-xs),1fr))]">
         {cafeterias.map((cafeteria) => (
           <CafeteriaCard key={cafeteria.id} cafeteria={cafeteria} />
         ))}
