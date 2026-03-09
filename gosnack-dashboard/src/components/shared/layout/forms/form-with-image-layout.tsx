@@ -28,8 +28,8 @@ export default function FormWithImageLayout({ image, imageAlt = "", title, child
 
       {/* Imagem */}
       {/* TODO: Ajustar responsividade da imagem */}
-      <aside className="max-w-2/5 md:h-[calc(100vh-10rem)] md:self-start md:mt-10 md:sticky md:top-20 transition-all">
-        <Image src={image} alt={imageAlt} width={750} height={750} className="object-cover" />
+      <aside className="bg-card p-4 rounded-xl max-w-2/5 dmd:h-[calc(100vh-10rem)] md:self-start md:sticky md:top-20 transition-all">
+        <Image src={image} alt={imageAlt} width={500} height={500} className="object-cover" />
       </aside>
     </div>
   )
