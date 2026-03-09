@@ -100,7 +100,7 @@ export default function CreateCafeteriaForm() {
   }
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
       {/* Campos */}
       <FieldGroup>
         {/* Field Unidade */}
