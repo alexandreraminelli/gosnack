@@ -1,3 +1,5 @@
+import { title } from "process"
+
 /**
  * Textos relacionados às lanchonetes.
  */
@@ -8,6 +10,11 @@ export const CAFETERIA_TEXTS = {
     delete: "Excluir Lanchonete",
 
     view: "Ver Lanchonete",
+  },
+
+  empty: {
+    title: "Nenhuma lanchonete encontrada",
+    description: ["Parece que ainda não há lanchonetes cadastradas no sistema.", "Clique no botão abaixo para adicionar a primeira lanchonete e começar a gerenciar os lanches disponíveis para os estudantes!"],
   },
 
   error: {

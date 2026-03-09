@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { ICONS } from "@/constants/icons"
 import { ROUTES } from "@/constants/navigation/routes"
 import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
+import CafeteriaCardList from "@/features/cafeterias/components/cards/cafeteria-card-list"
 import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
 
@@ -22,6 +23,9 @@ export default function CafeteriasPage() {
           </Link>
         </Button>
       </PageHeader>
+
+      {/* Lista */}
+      <CafeteriaCardList />
     </section>
   )
 }
