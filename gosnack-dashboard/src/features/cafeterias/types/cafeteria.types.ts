@@ -53,4 +53,4 @@ export interface Cafeteria {
 }
 
 /** Modelo de dados para cadastro de lanchonete. */
-export type CafeteriaInputModel = Omit<Cafeteria, "id" | "createdAt" | "updatedAt" | "isActive">
+export type CafeteriaInsert = Omit<Cafeteria, "id" | "createdAt" | "updatedAt" | "isActive">

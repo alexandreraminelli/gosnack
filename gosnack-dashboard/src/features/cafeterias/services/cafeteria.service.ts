@@ -1,6 +1,6 @@
 import { mapRowToCafeteria } from "@/features/cafeterias/mappers/cafeteria.mapper"
 import { mapOpeningHoursToRow } from "@/features/cafeterias/mappers/opening-hours.mapper"
-import { Cafeteria, CafeteriaInputModel, CafeteriaRow } from "@/features/cafeterias/types/cafeteria.types"
+import { Cafeteria, CafeteriaInsert, CafeteriaRow } from "@/features/cafeterias/types/cafeteria.types"
 import { OpeningHoursRow } from "@/features/cafeterias/types/opening-hours.types"
 import { createClient } from "@/lib/supabase/client"
 import { COLUMNS, TABLES } from "@/lib/supabase/schema"
@@ -12,7 +12,7 @@ export const cafeteriaService = {
   /**
    * Criar uma nova lanchonete no banco de dados.
    */
-  async create(input: CafeteriaInputModel): Promise<Cafeteria> {
+  async create(input: CafeteriaInsert): Promise<Cafeteria> {
     const supabase = createClient()
 
     // Criar lanchonete no banco de dados
