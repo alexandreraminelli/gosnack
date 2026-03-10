@@ -2,6 +2,7 @@
 
 import EmptyState from "@/components/shared/feedback/empty-state"
 import EntityHeader from "@/components/shared/layout/headers/entity-header"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { ICONS } from "@/constants/icons"
 import { IMAGES } from "@/constants/images"
@@ -11,6 +12,7 @@ import ToggleCafeteriaStatusButton from "@/features/cafeterias/components/button
 import CafeteriaDashboardSkeleton from "@/features/cafeterias/components/dashboard/cafeteria-dashboard-skeleton"
 import { useCafeteria } from "@/features/cafeterias/hooks/queries/cafeteria.queries"
 import { getDbErrorMessage } from "@/lib/supabase/errors/db-errors"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { PostgrestError } from "@supabase/supabase-js"
 import Link from "next/link"
 import { toast } from "sonner"
@@ -52,10 +54,23 @@ export default function CafeteriaDashboard({ cafeteriaId }: Props) {
   // Lanchonete encontrada
   return (
     <main className="space-y-5">
+      {/* Header */}
       <EntityHeader title={cafeteria.name} icon={ICONS.entities.cafeteria}>
         {/* Botão de ativar/desativar */}
         <ToggleCafeteriaStatusButton cafeteria={cafeteria} />
       </EntityHeader>
+
+      {/* Alert de lanchonete desabilitada */}
+      {!cafeteria.isActive && (
+        <Alert variant="destructive" className="border-destructive">
+          {/* Ícone */}
+          <HugeiconsIcon icon={ICONS.status.disable} />
+
+          {/* Título e Descrição */}
+          <AlertTitle>{CAFETERIA_TEXTS.message.disabled.title}</AlertTitle>
+          <AlertDescription>{CAFETERIA_TEXTS.message.disabled.description}</AlertDescription>
+        </Alert>
+      )}
     </main>
   )
 }

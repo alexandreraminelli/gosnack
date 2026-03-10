@@ -1,5 +1,3 @@
-import { disabled } from "node_modules/@base-ui/react/esm/utils/reason-parts"
-
 /**
  * Textos relacionados às lanchonetes.
  */
@@ -86,6 +84,13 @@ export const CAFETERIA_TEXTS = {
   },
 
   management: "Gerenciar Lanchonetes",
+
+  message: {
+    disabled: {
+      title: "Lanchonete Desabilitada",
+      description: "Esta lanchonete está atualmente desabilitada e não está disponível para os clientes. O gerente deve reativá-la para voltar a receber pedidos. Caso queira excluí-la permanentemente, entre em contato com o suporte técnico — essa ação requer autorização especial e não pode ser feita pelo painel.",
+    },
+  },
 
   quant: {
     cafeterias: (quant: number) => `${quant} ${quant === 1 ? "lanchonete" : "lanchonetes"}`,
