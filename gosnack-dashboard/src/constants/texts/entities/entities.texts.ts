@@ -6,8 +6,11 @@ export const ENTITIES_TEXTS = {
     id: "ID",
 
     status: {
-      enabled: "Habilitado",
-      disabled: "Desabilitado",
+      enabled: "Ativado",
+      enable: "Ativar",
+
+      disabled: "Desativado",
+      disable: "Desativar",
     },
   },
 

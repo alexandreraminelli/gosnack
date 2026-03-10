@@ -103,4 +103,20 @@ export const cafeteriaService = {
     // Converter Row para Cafeteria
     return mapRowToCafeteria(cafeteriaRow as CafeteriaRow, cafeteriaOpeningHours as OpeningHoursRow[], unitName, productsCount, employeesCount)
   },
+
+  /**
+   * Alterar o status de uma lanchonete (ativo/desativado).
+   */
+  async toggleStatus(id: string, value: boolean): Promise<void> {
+    const supabase = createClient()
+
+    const { error } = await supabase
+      .from(TABLES.cafeterias)
+      .update({
+        [COLUMNS.cafeterias.isActive]: value,
+      })
+      .eq(COLUMNS.cafeterias.id, id)
+
+    if (error) throw error
+  },
 }

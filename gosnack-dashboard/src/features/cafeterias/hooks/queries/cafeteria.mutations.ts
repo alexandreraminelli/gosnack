@@ -14,3 +14,15 @@ export function useCreateCafeteria() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: cafeteriaKeys.all }), // invalidar cache para refetch automático
   })
 }
+
+/**
+ * Hook para atualizar o status de uma lanchonete (ativo/desativado).
+ */
+export function useToggleCafeteriaStatus() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: ({ id, value }: { id: string; value: boolean }) => cafeteriaService.toggleStatus(id, value),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: cafeteriaKeys.all }), // invalidar cache para refetch automático
+  })
+}

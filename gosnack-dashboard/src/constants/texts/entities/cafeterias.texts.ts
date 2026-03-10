@@ -1,3 +1,5 @@
+import { disabled } from "node_modules/@base-ui/react/esm/utils/reason-parts"
+
 /**
  * Textos relacionados às lanchonetes.
  */
@@ -10,10 +12,12 @@ export const CAFETERIA_TEXTS = {
     view: "Ver Lanchonete",
 
     disable: {
-      label: "Desativar Lanchonete",
+      title: "Desativar Lanchonete",
+      description: "Tem certeza de que deseja desativar esta lanchonete? Ela não ficará mais disponível para os clientes, mas você poderá reativá-la a qualquer momento.",
     },
     enable: {
-      label: "Ativar Lanchonete",
+      title: "Ativar Lanchonete",
+      description: "Tem certeza de que deseja ativar esta lanchonete? Ela ficará disponível para os clientes e poderá receber pedidos normalmente.",
     },
   },
 
@@ -43,6 +47,15 @@ export const CAFETERIA_TEXTS = {
       description: ["A lanchonete que você está tentando acessar não existe ou foi removida.", "Verifique se o link está correto ou volte para a lista de lanchonetes."],
       action: "Voltar para a lista",
     },
+
+    enabled: {
+      title: "Erro ao ativar lanchonete.",
+      fallback: "Não foi possível ativar a lanchonete. Tente novamente mais tarde.",
+    },
+    disabled: {
+      title: "Erro ao desativar lanchonete.",
+      fallback: "Não foi possível desativar a lanchonete. Tente novamente mais tarde.",
+    },
   },
 
   fields: {
@@ -68,6 +81,8 @@ export const CAFETERIA_TEXTS = {
 
   loading: {
     create: "Criando lanchonete...",
+    enable: "Ativando lanchonete...",
+    disable: "Desativando lanchonete...",
   },
 
   management: "Gerenciar Lanchonetes",
