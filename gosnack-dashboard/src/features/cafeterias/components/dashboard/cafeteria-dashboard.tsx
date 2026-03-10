@@ -8,7 +8,7 @@ import { ICONS } from "@/constants/icons"
 import { IMAGES } from "@/constants/images"
 import { ROUTES } from "@/constants/navigation/routes"
 import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
-import ToggleCafeteriaStatusButton from "@/features/cafeterias/components/buttons/toggle-cafeteria-status-button"
+import { UI_TEXTS } from "@/constants/texts/ui.texts"
 import CafeteriaDashboardSkeleton from "@/features/cafeterias/components/dashboard/cafeteria-dashboard-skeleton"
 import { useCafeteria } from "@/features/cafeterias/hooks/queries/cafeteria.queries"
 import { getDbErrorMessage } from "@/lib/supabase/errors/db-errors"
@@ -56,8 +56,13 @@ export default function CafeteriaDashboard({ cafeteriaId }: Props) {
     <main className="space-y-5">
       {/* Header */}
       <EntityHeader title={cafeteria.name} icon={ICONS.entities.cafeteria}>
-        {/* Botão de ativar/desativar */}
-        <ToggleCafeteriaStatusButton cafeteria={cafeteria} />
+        {/* Link para configurações */}
+        <Button variant="outline" asChild>
+          <Link href={ROUTES.cafeterias.settings(cafeteriaId)}>
+            <HugeiconsIcon icon={ICONS.actions.settings} />
+            <span>{UI_TEXTS.actions.settings}</span>
+          </Link>
+        </Button>
       </EntityHeader>
 
       {/* Alert de lanchonete desabilitada */}

@@ -10,6 +10,7 @@ export const UI_TEXTS = {
     delete: "Excluir",
 
     details: "Ver detalhes",
+    settings: "Configurações",
   },
 
   loading: {

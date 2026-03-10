@@ -20,6 +20,7 @@ export const ROUTES = {
     list: "/lanchonetes",
     add: "/lanchonetes/adicionar",
     details: (cafeteriaId: string) => `/lanchonetes/${cafeteriaId}`,
+    settings: (cafeteriaId: string) => `/lanchonetes/${cafeteriaId}/configuracoes`,
   },
 
   // Usuários e Acessos

@@ -1,7 +1,12 @@
 import { ROUTES } from "@/constants/navigation/routes"
+import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
 import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
 import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
 import { NAV_TEXTS } from "@/constants/texts/nav.texts"
+import { UI_TEXTS } from "@/constants/texts/ui.texts"
+import { cafeteriaKeys } from "@/features/cafeterias/hooks/queries/cafeteria.keys"
+import { cafeteriaService } from "@/features/cafeterias/services/cafeteria.service"
+import { Cafeteria } from "@/features/cafeterias/types/cafeteria.types"
 import { unitKeys } from "@/features/units/hooks/queries/unit.keys"
 import { unitService } from "@/features/units/services/unit.service"
 import { Unit } from "@/features/units/types/unit.types"
@@ -41,7 +46,12 @@ export const BREADCRUMB_SEGMENT_MAP: Record<string, SegmentConfig> = {
 
   adicionar: {
     type: "static",
-    label: "Adicionar",
+    label: UI_TEXTS.actions.add,
+  },
+
+  configuracoes: {
+    type: "static",
+    label: UI_TEXTS.actions.settings,
   },
 
   // TODO: Adicionar segmentos de "unidades" quando a feature for implementada
@@ -59,12 +69,13 @@ export const BREADCRUMB_SEGMENT_MAP: Record<string, SegmentConfig> = {
     href: (unitId) => ROUTES.units.details(unitId),
   },
 
-  // TODO: Implementar quando a feature de cafeterias for criada
-  // "[cafeteriaId]": {
-  //   type: "dynamic",
-  //   resolveLabel: async (cafeteriaId, context) => {
-  //     const cafeteria = await getCafeteriaById(context.params.unitId, cafeteriaId)
-  //     return cafeteria.name
-  //   },
-  // },
+  // Lanchonetes
+  "[lanchonetes_id]": {
+    type: "dynamic",
+    queryKey: (id) => cafeteriaKeys.detail(id),
+    queryFn: (id) => cafeteriaService.getById(id),
+    resolveLabel: (cafeteria) => (cafeteria as Cafeteria).name,
+    notFoundLabel: CAFETERIA_TEXTS.error.notFound.title,
+    href: (cafeteriaId) => ROUTES.cafeterias.details(cafeteriaId),
+  },
 }

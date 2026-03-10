@@ -24,6 +24,7 @@ import {
   Moon02Icon,
   Restaurant02Icon,
   SchoolIcon,
+  Settings01Icon,
   Share04Icon,
   Sun03Icon,
   Tick01Icon,
@@ -47,6 +48,7 @@ export const ICONS = {
 
     moreDetails: InformationCircleIcon,
     openPage: Share04Icon,
+    settings: Settings01Icon,
   },
 
   arrow: {
