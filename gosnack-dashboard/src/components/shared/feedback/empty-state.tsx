@@ -23,7 +23,7 @@ interface Props {
  */
 export default function EmptyState({ title, description = [], image = IMAGES.illustrations.empty, children }: Props) {
   return (
-    <Empty>
+    <Empty className="px-0">
       <EmptyHeader className="max-w-2xl">
         {/* Ilustração */}
         <EmptyMedia>
@@ -40,7 +40,7 @@ export default function EmptyState({ title, description = [], image = IMAGES.ill
       </EmptyHeader>
 
       {/* Botões de ação */}
-      <EmptyContent>{children}</EmptyContent>
+      <EmptyContent className="flex flex-row flex-wrap *:flex-1">{children}</EmptyContent>
     </Empty>
   )
 }

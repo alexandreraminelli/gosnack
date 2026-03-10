@@ -5,6 +5,7 @@ import {
   ArrowDown01Icon,
   ArrowLeft01Icon,
   ArrowRight01Icon,
+  ArrowTurnBackwardIcon,
   ArrowUp01Icon,
   Calendar03Icon,
   Cancel01Icon,
@@ -56,6 +57,8 @@ export const ICONS = {
     down: ArrowDown01Icon,
     left: ArrowLeft01Icon,
     right: ArrowRight01Icon,
+
+    back: ArrowTurnBackwardIcon,
   },
 
   auth: {

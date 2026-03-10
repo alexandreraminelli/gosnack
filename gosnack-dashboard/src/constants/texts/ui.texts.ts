@@ -18,6 +18,7 @@ export const UI_TEXTS = {
   },
 
   navigation: {
+    back: "Voltar",
     backToHome: "Voltar para o início",
 
     expandBreadcrumb: "Expandir navegação",
