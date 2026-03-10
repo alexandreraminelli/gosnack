@@ -42,4 +42,23 @@ export const ENTITIES_TEXTS = {
     singular: "Usuário",
     plural: "Usuários",
   },
+
+  roles: {
+    admin: {
+      singular: "Administrador",
+      plural: "Administradores",
+    },
+    manager: {
+      singular: "Gerente",
+      plural: "Gerentes",
+    },
+    employee: {
+      singular: "Funcionário",
+      plural: "Funcionários",
+    },
+    customer: {
+      singular: "Cliente",
+      plural: "Clientes",
+    },
+  },
 } as const

@@ -56,7 +56,11 @@ export const CAFETERIA_TEXTS = {
 
   management: "Gerenciar Lanchonetes",
 
-  quant: (quant: number) => `${quant} ${quant === 1 ? "lanchonete" : "lanchonetes"}`,
+  quant: {
+    cafeterias: (quant: number) => `${quant} ${quant === 1 ? "lanchonete" : "lanchonetes"}`,
+    menuItems: (quant: number) => `${quant} ${quant === 1 ? "item" : "itens"}`,
+    employees: (quant: number) => `${quant} ${quant === 1 ? "funcionário" : "funcionários"}`,
+  },
 
   success: {
     create: {

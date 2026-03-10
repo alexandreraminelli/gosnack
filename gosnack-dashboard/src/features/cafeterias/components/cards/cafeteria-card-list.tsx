@@ -50,7 +50,7 @@ export default function CafeteriaCardList() {
   return (
     <div className="space-y-4">
       {/* Quantidade de unidades */}
-      <p className="text-muted-foreground">{CAFETERIA_TEXTS.quant(cafeterias.length)}</p>
+      <p className="text-muted-foreground">{CAFETERIA_TEXTS.quant.cafeterias(cafeterias.length)}</p>
 
       <section className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(var(--container-xs),1fr))]">
         {cafeterias.map((cafeteria) => (
