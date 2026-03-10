@@ -71,7 +71,7 @@ export default function OpeningHoursField<TFormValues extends FieldValues>({ con
                   <Controller control={control} name={`${base}.openingTime` as never} render={({ field }) => <Input type="time" disabled={!day.isOpen} {...field} />} />
 
                   {/* Separador */}
-                  <span className="shrink-0">--</span>
+                  <span>–</span>
 
                   {/* Horário de fechamento */}
                   <Controller control={control} name={`${base}.closingTime` as never} render={({ field }) => <Input type="time" disabled={!day.isOpen} {...field} />} />
