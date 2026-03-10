@@ -7,20 +7,20 @@ interface Props {
   image: string
   imageAlt?: string
 
-  title: string
+  title?: string
   children: React.ReactNode
 }
 
 /**
- * Layout de formulário com uma imagem lateral.
+ * Layout que exibe um conteúdo na esquerda e uma imagem ilustrativa na direita.
  */
-export default function FormWithImageLayout({ image, imageAlt = "", title, children }: Props) {
+export default function ContentWithImageLayout({ image, imageAlt = "", title, children }: Props) {
   return (
     <div className="flex flex-col md:flex-row items-center md:items-start gap-10 justify-around">
       {/* Conteúdo principal */}
       <main className="space-y-6 w-full max-w-xl">
         {/* Título */}
-        <h2 className="font-semibold text-3xl md:text-4xl text-start transition-all">{title}</h2>
+        {title && <h2 className="font-semibold text-3xl md:text-4xl text-start transition-all">{title}</h2>}
 
         {/* Form */}
         <div>{children}</div>
