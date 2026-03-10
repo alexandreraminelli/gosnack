@@ -60,17 +60,19 @@ export const cafeteriaService = {
     const { data, error } = await supabase
       .from(TABLES.cafeterias)
       // JOIN com: nome da unidade; horários de funcionamento
-      .select(`*, ${TABLES.units}(${COLUMNS.units.name}), ${TABLES.cafeteriaOpeningHours}(*)`)
+      .select(`*, ${TABLES.units}(${COLUMNS.units.name}), ${TABLES.cafeteriaOpeningHours}(*), ${TABLES.products}(count), ${TABLES.cafeteriaStaffAssignments}(count)`)
       .order(COLUMNS.cafeterias.name, { ascending: true }) // ordem alfabética
 
     if (error) throw error
     return (data ?? []).map((row) => {
       const {
-        units: { name: unitName },
-        cafeteria_opening_hours,
+        [TABLES.units]: { name: unitName },
+        [TABLES.cafeteriaOpeningHours]: cafeteriaOpeningHours,
+        [TABLES.products]: [{ count: productsCount }],
+        [TABLES.cafeteriaStaffAssignments]: [{ count: employeesCount }],
         ...cafeteriaRow
       } = row
-      return mapRowToCafeteria(cafeteriaRow as CafeteriaRow, cafeteria_opening_hours as OpeningHoursRow[], unitName)
+      return mapRowToCafeteria(cafeteriaRow as CafeteriaRow, cafeteriaOpeningHours as OpeningHoursRow[], unitName, productsCount, employeesCount)
     })
   },
 }

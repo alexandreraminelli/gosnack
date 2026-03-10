@@ -5,7 +5,14 @@ import { OpeningHoursRow } from "@/features/cafeterias/types/opening-hours.types
 /**
  * Mapear `CafeteriaRow` para `Cafeteria`, adaptando os campos de snake_case para camelCase e incluindo os horários de funcionamento.
  */
-export function mapRowToCafeteria(row: CafeteriaRow, openingHoursRows?: OpeningHoursRow[], unitName?: string): Cafeteria {
+export function mapRowToCafeteria(
+  row: CafeteriaRow,
+  openingHoursRows?: OpeningHoursRow[],
+  // Atributos derivados:
+  unitName?: string,
+  productsCount?: number,
+  employeesCount?: number,
+): Cafeteria {
   return {
     id: row.id,
     unitId: row.unit_id,
@@ -16,6 +23,8 @@ export function mapRowToCafeteria(row: CafeteriaRow, openingHoursRows?: OpeningH
     updatedAt: row.updated_at,
     isActive: row.is_active,
     openingHours: openingHoursRows?.map(mapRowToOpeningHours) ?? [],
+    productsCount,
+    employeesCount,
   }
 }
 

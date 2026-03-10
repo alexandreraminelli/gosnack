@@ -54,9 +54,17 @@ export interface Cafeteria {
    * Horário de funcionamento da lanchonete.
    */
   openingHours: OpeningHours[]
+  /**
+   * Quantidade de itens no cardápio da lanchonete.
+   */
+  productsCount?: number
+  /**
+   * Quantidade de funcionários associados à lanchonete.
+   */
+  employeesCount?: number
 }
 
 /** Modelo de dados para cadastro de lanchonete. */
-export type CafeteriaInsert = Omit<Cafeteria, "id" | "createdAt" | "updatedAt" | "isActive" | "openingHours" | "unitName"> & {
+export type CafeteriaInsert = Omit<Cafeteria, "id" | "createdAt" | "updatedAt" | "isActive" | "openingHours" | "unitName" | "productsCount" | "employeesCount"> & {
   openingHours: Omit<OpeningHoursInsert, "cafeteriaId">[]
 }

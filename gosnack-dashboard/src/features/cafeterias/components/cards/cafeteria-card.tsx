@@ -43,13 +43,13 @@ export default function CafeteriaCard({ cafeteria }: Props) {
     {
       icon: ICONS.entities.menu,
       label: ENTITIES_TEXTS.menu,
-      value: CAFETERIA_TEXTS.quant.menuItems(0), // TODO: Obter quantidade de produtos
+      value: CAFETERIA_TEXTS.quant.menuItems(cafeteria.productsCount ?? 0), // TODO: Obter quantidade de produtos
     },
     // Quantidade de funcionários
     {
       icon: ICONS.users.roles.employee,
       label: ENTITIES_TEXTS.roles.employee.plural,
-      value: CAFETERIA_TEXTS.quant.employees(0), // TODO: Obter quantidade de funcionários
+      value: CAFETERIA_TEXTS.quant.employees(cafeteria.employeesCount ?? 0), // TODO: Obter quantidade de funcionários
     },
   ]
 
