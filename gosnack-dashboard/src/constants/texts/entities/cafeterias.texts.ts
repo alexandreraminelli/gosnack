@@ -27,6 +27,15 @@ export const CAFETERIA_TEXTS = {
       title: "Nome já utilizado",
       description: "Já existe uma lanchonete com este nome nessa unidade. Escolha um nome diferente.",
     },
+    getDetails: {
+      title: "Erro ao carregar lanchonete.",
+      fallback: "Não foi possível carregar os dados da lanchonete. Tente novamente mais tarde.",
+    },
+    notFound: {
+      title: "Lanchonete não encontrada",
+      description: ["A lanchonete que você está tentando acessar não existe ou foi removida.", "Verifique se o link está correto ou volte para a lista de lanchonetes."],
+      action: "Voltar para a lista",
+    },
   },
 
   fields: {

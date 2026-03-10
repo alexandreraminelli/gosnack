@@ -64,6 +64,7 @@ export const cafeteriaService = {
       .order(COLUMNS.cafeterias.name, { ascending: true }) // ordem alfabética
 
     if (error) throw error
+
     return (data ?? []).map((row) => {
       const {
         [TABLES.units]: { name: unitName },
@@ -74,5 +75,32 @@ export const cafeteriaService = {
       } = row
       return mapRowToCafeteria(cafeteriaRow as CafeteriaRow, cafeteriaOpeningHours as OpeningHoursRow[], unitName, productsCount, employeesCount)
     })
+  },
+
+  /**
+   * Obter uma lanchonete específica pelo ID.
+   */
+  async getById(id: string): Promise<Cafeteria> {
+    const supabase = createClient()
+
+    const { data: row, error } = await supabase
+      .from(TABLES.cafeterias)
+      // JOIN com: nome da unidade; horários de funcionamento
+      .select(`*, ${TABLES.units}(${COLUMNS.units.name}), ${TABLES.cafeteriaOpeningHours}(*), ${TABLES.products}(count), ${TABLES.cafeteriaStaffAssignments}(count)`)
+      .eq(COLUMNS.cafeterias.id, id) // filtrar por ID
+      .single()
+
+    if (error) throw error
+
+    // Desestruturar dados do JSON
+    const {
+      [TABLES.units]: { name: unitName },
+      [TABLES.cafeteriaOpeningHours]: cafeteriaOpeningHours,
+      [TABLES.products]: [{ count: productsCount }],
+      [TABLES.cafeteriaStaffAssignments]: [{ count: employeesCount }],
+      ...cafeteriaRow
+    } = row
+    // Converter Row para Cafeteria
+    return mapRowToCafeteria(cafeteriaRow as CafeteriaRow, cafeteriaOpeningHours as OpeningHoursRow[], unitName, productsCount, employeesCount)
   },
 }
