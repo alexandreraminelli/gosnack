@@ -2,6 +2,14 @@ import PageHeader from "@/components/shared/layout/headers/page-header"
 import { UNITS_TEXTS } from "@/constants/texts/entities/units.texts"
 import UnitList from "@/features/units/components/cards/unit-list"
 import CreateUnitButton from "@/features/units/components/buttons/create-unit-button"
+import { Metadata } from "next"
+
+/**
+ * Metadados da página de unidades.
+ */
+export const metadata: Metadata = {
+  title: UNITS_TEXTS.managerUnits,
+}
 
 /**
  * Página de gerenciamento de unidades.
