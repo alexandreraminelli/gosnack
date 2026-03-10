@@ -1,10 +1,13 @@
 "use client"
 
 import EmptyState from "@/components/shared/feedback/empty-state"
+import EntityHeader from "@/components/shared/layout/headers/entity-header"
 import { Button } from "@/components/ui/button"
+import { ICONS } from "@/constants/icons"
 import { IMAGES } from "@/constants/images"
 import { ROUTES } from "@/constants/navigation/routes"
 import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
+import ToggleCafeteriaStatusButton from "@/features/cafeterias/components/buttons/toggle-cafeteria-status-button"
 import CafeteriaDashboardSkeleton from "@/features/cafeterias/components/dashboard/cafeteria-dashboard-skeleton"
 import { useCafeteria } from "@/features/cafeterias/hooks/queries/cafeteria.queries"
 import { getDbErrorMessage } from "@/lib/supabase/errors/db-errors"
@@ -48,10 +51,11 @@ export default function CafeteriaDashboard({ cafeteriaId }: Props) {
 
   // Lanchonete encontrada
   return (
-    <section>
-      <h1>{cafeteria.name}</h1>
-      <p>{cafeteria.id}</p>
-      <p>{cafeteria.location}</p>
-    </section>
+    <main className="space-y-5">
+      <EntityHeader title={cafeteria.name} icon={ICONS.entities.cafeteria}>
+        {/* Botão de ativar/desativar */}
+        <ToggleCafeteriaStatusButton cafeteria={cafeteria} />
+      </EntityHeader>
+    </main>
   )
 }

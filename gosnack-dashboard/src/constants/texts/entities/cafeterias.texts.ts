@@ -8,6 +8,13 @@ export const CAFETERIA_TEXTS = {
     delete: "Excluir Lanchonete",
 
     view: "Ver Lanchonete",
+
+    disable: {
+      label: "Desativar Lanchonete",
+    },
+    enable: {
+      label: "Ativar Lanchonete",
+    },
   },
 
   empty: {
