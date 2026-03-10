@@ -32,5 +32,6 @@ const DB_ERROR_MESSAGES: Record<string, string> = {
  * @param fallback Mensagem genérica caso o código não seja reconhecido.
  */
 export function getDbErrorMessage(error: PostgrestError, fallback: string): string {
+  if (!error?.code) return fallback
   return DB_ERROR_MESSAGES[error.code] ?? fallback
 }
