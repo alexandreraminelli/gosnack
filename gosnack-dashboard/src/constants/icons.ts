@@ -18,6 +18,7 @@ import {
   Home09Icon,
   InformationCircleIcon,
   Loading03Icon,
+  Location01Icon,
   LoginSquare01Icon,
   LogoutSquare01Icon,
   ManagerIcon,
@@ -28,6 +29,7 @@ import {
   Settings01Icon,
   Share04Icon,
   Sun03Icon,
+  TextIcon,
   Tick01Icon,
   Tick02Icon,
   UnavailableIcon,
@@ -59,6 +61,11 @@ export const ICONS = {
     right: ArrowRight01Icon,
 
     back: ArrowTurnBackwardIcon,
+  },
+
+  attributes: {
+    location: Location01Icon,
+    name: TextIcon,
   },
 
   auth: {

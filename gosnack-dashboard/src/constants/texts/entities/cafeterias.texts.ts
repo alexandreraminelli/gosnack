@@ -98,6 +98,10 @@ export const CAFETERIA_TEXTS = {
     employees: (quant: number) => `${quant} ${quant === 1 ? "funcionário" : "funcionários"}`,
   },
 
+  settings: {
+    title: "Configurações da Lanchonete",
+  },
+
   success: {
     create: {
       title: "Lanchonete Criada",
