@@ -1,6 +1,6 @@
 import { mapRowToCafeteria } from "@/features/cafeterias/mappers/cafeteria.mapper"
 import { mapOpeningHoursToRow } from "@/features/cafeterias/mappers/opening-hours.mapper"
-import { Cafeteria, CafeteriaInsert, CafeteriaRow } from "@/features/cafeterias/types/cafeteria.types"
+import { Cafeteria, CafeteriaInsert, CafeteriaRow, CafeteriaTextField } from "@/features/cafeterias/types/cafeteria.types"
 import { OpeningHoursRow } from "@/features/cafeterias/types/opening-hours.types"
 import { createClient } from "@/lib/supabase/client"
 import { COLUMNS, TABLES } from "@/lib/supabase/schema"
@@ -115,6 +115,20 @@ export const cafeteriaService = {
       .update({
         [COLUMNS.cafeterias.isActive]: value,
       })
+      .eq(COLUMNS.cafeterias.id, id)
+
+    if (error) throw error
+  },
+
+  /**
+   * Alterar um campo de texto editável de uma lanchonete (ex: nome, localização).
+   */
+  async updateTextField(id: string, field: CafeteriaTextField, newValue: string): Promise<void> {
+    const supabase = createClient()
+
+    const { error } = await supabase
+      .from(TABLES.cafeterias)
+      .update({ [field]: newValue })
       .eq(COLUMNS.cafeterias.id, id)
 
     if (error) throw error

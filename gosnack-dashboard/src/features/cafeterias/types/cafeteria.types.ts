@@ -1,4 +1,10 @@
 import { OpeningHours, OpeningHoursInsert } from "@/features/cafeterias/types/opening-hours.types"
+import { COLUMNS } from "@/lib/supabase/schema"
+
+/**
+ * Campos de texto editáveis de uma lanchonete.
+ */
+export type CafeteriaTextField = typeof COLUMNS.cafeterias.name | typeof COLUMNS.cafeterias.location
 
 /**
  * Linha da tabela `cafeterias` no banco de dados (snake_case).

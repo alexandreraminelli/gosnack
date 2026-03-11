@@ -1,6 +1,6 @@
 import { cafeteriaKeys } from "@/features/cafeterias/hooks/queries/cafeteria.keys"
 import { cafeteriaService } from "@/features/cafeterias/services/cafeteria.service"
-import { CafeteriaInsert } from "@/features/cafeterias/types/cafeteria.types"
+import { CafeteriaInsert, CafeteriaTextField } from "@/features/cafeterias/types/cafeteria.types"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 /**
@@ -24,5 +24,14 @@ export function useToggleCafeteriaStatus() {
   return useMutation({
     mutationFn: ({ id, value }: { id: string; value: boolean }) => cafeteriaService.toggleStatus(id, value),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: cafeteriaKeys.all }), // invalidar cache para refetch automático
+  })
+}
+
+/**
+ * Hook para atualizar um campo de texto editável de uma lanchonete (como nome ou localização).
+ */
+export function useEditCafeteriaTextField() {
+  return useMutation({
+    mutationFn: ({ id, field, newValue }: { id: string; field: CafeteriaTextField; newValue: string }) => cafeteriaService.updateTextField(id, field, newValue),
   })
 }
