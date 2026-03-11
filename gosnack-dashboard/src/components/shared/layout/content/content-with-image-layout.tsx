@@ -8,7 +8,7 @@ interface Props {
   imageAlt?: string
 
   title?: string
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 /**
