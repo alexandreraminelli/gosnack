@@ -94,7 +94,7 @@ export default function CafeteriaSettings({ cafeteria }: Props) {
 function EditButtonWithTooltip({ children }: { children?: React.ReactNode }) {
   return (
     <Tooltip>
-      <TooltipTrigger>
+      <TooltipTrigger asChild>
         {/* Botão */}
         <Button variant="outline">
           <HugeiconsIcon icon={ICONS.actions.edit} />
