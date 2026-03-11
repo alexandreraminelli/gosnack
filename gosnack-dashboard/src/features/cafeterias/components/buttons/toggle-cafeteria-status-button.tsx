@@ -1,3 +1,5 @@
+"use client"
+
 import LoadingSpin from "@/components/shared/feedback/loading/loading-spin"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogMedia, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
@@ -10,6 +12,7 @@ import { Cafeteria } from "@/features/cafeterias/types/cafeteria.types"
 import { getDbErrorMessage } from "@/lib/supabase/errors/db-errors"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { PostgrestError } from "@supabase/supabase-js"
+import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 
 /**
@@ -26,6 +29,9 @@ export default function ToggleCafeteriaStatusButton({ cafeteria }: Props) {
   // Texts
   const label = ENTITIES_TEXTS.commonAttributes.status[cafeteria.isActive ? "disable" : "enable"]
 
+  // Hooks
+  const router = useRouter()
+
   // Mutation Hook
   const { mutateAsync: toggleStatus, isPending, error } = useToggleCafeteriaStatus()
 
@@ -37,9 +43,12 @@ export default function ToggleCafeteriaStatusButton({ cafeteria }: Props) {
         // Carregamento
         loading: CAFETERIA_TEXTS.loading[cafeteria.isActive ? "disable" : "enable"],
         // Sucesso
-        success: {
-          message: CAFETERIA_TEXTS.success[cafeteria.isActive ? "disabled" : "enabled"].title,
-          description: CAFETERIA_TEXTS.success[cafeteria.isActive ? "disabled" : "enabled"].description(cafeteria.name),
+        success: () => {
+          router.refresh() // Atualizar página
+          return {
+            message: CAFETERIA_TEXTS.success[cafeteria.isActive ? "disabled" : "enabled"].title,
+            description: CAFETERIA_TEXTS.success[cafeteria.isActive ? "disabled" : "enabled"].description(cafeteria.name),
+          }
         },
         // Erro
         error: {
