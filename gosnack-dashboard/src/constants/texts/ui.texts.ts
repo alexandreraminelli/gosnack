@@ -44,4 +44,6 @@ export const UI_TEXTS = {
     hide: "Ocultar senha",
     show: "Mostrar senha",
   },
+
+  undefined: "Não definido",
 } as const
