@@ -1,5 +1,0 @@
-
-
-/**
- * Botão que abre
- */

@@ -4,7 +4,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { ICONS } from "@/constants/icons"
 import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
 import { UI_TEXTS } from "@/constants/texts/ui.texts"
-import ToggleCafeteriaStatusButton from "@/features/cafeterias/components/buttons/toggle-cafeteria-status-button"
+import ToggleCafeteriaStatusDialog from "@/features/cafeterias/components/dialogs/toggle-cafeteria-status-dialog"
 import { Cafeteria } from "@/features/cafeterias/types/cafeteria.types"
 import { formatOpeningHours } from "@/features/cafeterias/utils/opening-hours.utils"
 import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react"
@@ -51,7 +51,7 @@ export default function CafeteriaSettings({ cafeteria }: Props) {
     {
       label: CAFETERIA_TEXTS.actions[cafeteria.isActive ? "disable" : "enable"].title,
       icon: ICONS.feedback.warning,
-      action: <ToggleCafeteriaStatusButton cafeteria={cafeteria} />,
+      action: <ToggleCafeteriaStatusDialog cafeteria={cafeteria} />,
     },
   ]
 

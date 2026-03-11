@@ -25,7 +25,7 @@ interface Props {
 /**
  * Botão para ativar/desativar lanchonete.
  */
-export default function ToggleCafeteriaStatusButton({ cafeteria }: Props) {
+export default function ToggleCafeteriaStatusDialog({ cafeteria }: Props) {
   // Texts
   const label = ENTITIES_TEXTS.commonAttributes.status[cafeteria.isActive ? "disable" : "enable"]
 
