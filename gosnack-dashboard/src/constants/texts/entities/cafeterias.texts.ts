@@ -78,6 +78,8 @@ export const CAFETERIA_TEXTS = {
     },
     openingHours: {
       label: "Horário de Funcionamento",
+      edit: "Editar horário de funcionamento da lanchonete",
+      edited: "Horário de funcionamento atualizado com sucesso",
       weekday: "Segunda a Sexta",
       saturday: "Sábado",
       open: "Aberto",

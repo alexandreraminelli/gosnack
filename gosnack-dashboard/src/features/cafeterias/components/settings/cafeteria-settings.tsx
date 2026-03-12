@@ -3,6 +3,7 @@ import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle }
 import { ICONS } from "@/constants/icons"
 import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
 import { UI_TEXTS } from "@/constants/texts/ui.texts"
+import EditCafeteriaOpeningHoursDialog from "@/features/cafeterias/components/dialogs/edit-cafeteria-opening-hours-dialog"
 import EditCafeteriaTextFieldDialog from "@/features/cafeterias/components/dialogs/edit-cafeteria-text-field-dialog"
 import ToggleCafeteriaStatusDialog from "@/features/cafeterias/components/dialogs/toggle-cafeteria-status-dialog"
 import { Cafeteria } from "@/features/cafeterias/types/cafeteria.types"
@@ -65,7 +66,11 @@ export default function CafeteriaSettings({ cafeteria }: Props) {
       label: CAFETERIA_TEXTS.fields.openingHours.label,
       value: cafeteria.openingHours.map(formatOpeningHours),
       icon: ICONS.time.clock,
-      action: <EditButton />,
+      action: (
+        <EditCafeteriaOpeningHoursDialog cafeteria={cafeteria}>
+          <EditButton />
+        </EditCafeteriaOpeningHoursDialog>
+      ),
     },
     // Ativar/Desativar
     {

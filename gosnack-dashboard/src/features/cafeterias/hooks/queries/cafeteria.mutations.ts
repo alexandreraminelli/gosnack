@@ -1,6 +1,7 @@
 import { cafeteriaKeys } from "@/features/cafeterias/hooks/queries/cafeteria.keys"
 import { cafeteriaService } from "@/features/cafeterias/services/cafeteria.service"
 import { CafeteriaInsert, CafeteriaTextField } from "@/features/cafeterias/types/cafeteria.types"
+import { OpeningHours } from "@/features/cafeterias/types/opening-hours.types"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 /**
@@ -33,5 +34,14 @@ export function useToggleCafeteriaStatus() {
 export function useEditCafeteriaTextField() {
   return useMutation({
     mutationFn: ({ id, field, newValue }: { id: string; field: CafeteriaTextField; newValue: string }) => cafeteriaService.updateTextField(id, field, newValue),
+  })
+}
+
+/**
+ * Hook para atualizar os horários de funcionamento de uma lanchonete.
+ */
+export function useEditCafeteriaOpeningHours() {
+  return useMutation({
+    mutationFn: ({ id, openingHours }: { id: string; openingHours: OpeningHours[] }) => cafeteriaService.updateOpeningHours(id, openingHours),
   })
 }

@@ -1,7 +1,7 @@
 import { mapRowToCafeteria } from "@/features/cafeterias/mappers/cafeteria.mapper"
 import { mapOpeningHoursToRow } from "@/features/cafeterias/mappers/opening-hours.mapper"
 import { Cafeteria, CafeteriaInsert, CafeteriaRow, CafeteriaTextField } from "@/features/cafeterias/types/cafeteria.types"
-import { OpeningHoursRow } from "@/features/cafeterias/types/opening-hours.types"
+import { OpeningHours, OpeningHoursRow } from "@/features/cafeterias/types/opening-hours.types"
 import { createClient } from "@/lib/supabase/client"
 import { COLUMNS, TABLES } from "@/lib/supabase/schema"
 
@@ -130,6 +130,23 @@ export const cafeteriaService = {
       .from(TABLES.cafeterias)
       .update({ [field]: newValue })
       .eq(COLUMNS.cafeterias.id, id)
+
+    if (error) throw error
+  },
+
+  /**
+   * Atualizar os horários de funcionamento de uma lanchonete.
+   */
+  async updateOpeningHours(id: string, openingHours: OpeningHours[]): Promise<void> {
+    const supabase = createClient()
+
+    // upsert: insere novos horários e atualiza os existentes com base no ID (PK)
+    const { error } = await supabase.from(TABLES.cafeteriaOpeningHours).upsert(
+      openingHours.map((hours) => ({
+        [COLUMNS.cafeteriaOpeningHours.id]: hours.id, // PK para identificar se é update ou insert
+        ...mapOpeningHoursToRow(hours),
+      })),
+    )
 
     if (error) throw error
   },
