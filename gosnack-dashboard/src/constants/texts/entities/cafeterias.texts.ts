@@ -54,6 +54,10 @@ export const CAFETERIA_TEXTS = {
       title: "Erro ao desativar lanchonete.",
       fallback: "Não foi possível desativar a lanchonete. Tente novamente mais tarde.",
     },
+    edit: {
+      title: "Erro ao editar lanchonete.",
+      fallback: "Não foi possível salvar as alterações da lanchonete. Tente novamente mais tarde.",
+    },
   },
 
   fields: {
@@ -63,10 +67,14 @@ export const CAFETERIA_TEXTS = {
     },
     name: {
       label: "Nome da Lanchonete",
+      edit: "Editar nome da lanchonete",
+      edited: "Nome atualizado com sucesso",
     },
     location: {
       label: "Localização",
+      edit: "Editar localização da lanchonete",
       placeholder: "Ex: Bloco A, próximo à biblioteca",
+      edited: "Localização atualizada com sucesso",
     },
     openingHours: {
       label: "Horário de Funcionamento",
@@ -81,6 +89,7 @@ export const CAFETERIA_TEXTS = {
     create: "Criando lanchonete...",
     enable: "Ativando lanchonete...",
     disable: "Desativando lanchonete...",
+    edit: "Salvando alterações...",
   },
 
   management: "Gerenciar Lanchonetes",
@@ -114,6 +123,9 @@ export const CAFETERIA_TEXTS = {
     enabled: {
       title: "Lanchonete Habilitada",
       description: (name: string) => `A lanchonete "${name}" foi habilitada com sucesso.`,
+    },
+    edit: {
+      title: "Lanchonete Atualizada",
     },
   },
 

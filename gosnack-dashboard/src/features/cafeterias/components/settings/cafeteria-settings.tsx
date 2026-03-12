@@ -1,13 +1,25 @@
 import { Button } from "@/components/ui/button"
 import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/ui/item"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { ICONS } from "@/constants/icons"
 import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
 import { UI_TEXTS } from "@/constants/texts/ui.texts"
+import EditCafeteriaTextFieldDialog from "@/features/cafeterias/components/dialogs/edit-cafeteria-text-field-dialog"
 import ToggleCafeteriaStatusDialog from "@/features/cafeterias/components/dialogs/toggle-cafeteria-status-dialog"
 import { Cafeteria } from "@/features/cafeterias/types/cafeteria.types"
 import { formatOpeningHours } from "@/features/cafeterias/utils/opening-hours.utils"
 import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react"
+
+/**
+ * Botão de editar da página de configurações da lanchonete.
+ */
+function EditButton() {
+  return (
+    <Button variant="outline" size="icon">
+      <HugeiconsIcon icon={ICONS.actions.edit} />
+      <span className="sr-only">{UI_TEXTS.actions.edit}</span>
+    </Button>
+  )
+}
 
 /**
  * Props de `CafeteriaSettings`.
@@ -31,21 +43,29 @@ export default function CafeteriaSettings({ cafeteria }: Props) {
       label: CAFETERIA_TEXTS.fields.name.label,
       value: cafeteria.name,
       icon: ICONS.attributes.name,
-      action: <EditButtonWithTooltip></EditButtonWithTooltip>,
+      action: (
+        <EditCafeteriaTextFieldDialog cafeteria={cafeteria} field="name">
+          <EditButton />
+        </EditCafeteriaTextFieldDialog>
+      ),
     },
     // Localização
     {
       label: CAFETERIA_TEXTS.fields.location.label,
       value: cafeteria.location || UI_TEXTS.undefined,
       icon: ICONS.attributes.location,
-      action: <EditButtonWithTooltip></EditButtonWithTooltip>,
+      action: (
+        <EditCafeteriaTextFieldDialog cafeteria={cafeteria} field="location">
+          <EditButton />
+        </EditCafeteriaTextFieldDialog>
+      ),
     },
     // Horário de funcionamento
     {
       label: CAFETERIA_TEXTS.fields.openingHours.label,
       value: cafeteria.openingHours.map(formatOpeningHours),
       icon: ICONS.time.clock,
-      action: <EditButtonWithTooltip></EditButtonWithTooltip>,
+      action: <EditButton />,
     },
     // Ativar/Desativar
     {
@@ -85,23 +105,5 @@ export default function CafeteriaSettings({ cafeteria }: Props) {
         </Item>
       ))}
     </section>
-  )
-}
-
-/**
- * Componente de botão com tooltip de edição.
- */
-function EditButtonWithTooltip({ children }: { children?: React.ReactNode }) {
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        {/* Botão */}
-        <Button variant="outline">
-          <HugeiconsIcon icon={ICONS.actions.edit} />
-        </Button>
-      </TooltipTrigger>
-      {/* Texto do tooltip */}
-      <TooltipContent>{UI_TEXTS.actions.edit}</TooltipContent>
-    </Tooltip>
   )
 }

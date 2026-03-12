@@ -50,3 +50,7 @@ export const cafeteriaSchema = z.object({
    */
   openingHours: openingHoursSchema,
 })
+
+// Schemas específicos para campos de texto editáveis
+export const cafeteriaNameSchema = cafeteriaSchema.pick({ name: true })
+export const cafeteriaLocationSchema = cafeteriaSchema.pick({ location: true })
