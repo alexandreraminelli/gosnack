@@ -70,6 +70,11 @@ export default function EditCafeteriaOpeningHoursForm({ cafeteria }: Props) {
   })
 
   /**
+   * Se houve uma alteração nos horários em relação aos valores originais.
+   */
+  const hasOpeningHoursChanged = form.formState.isDirty
+
+  /**
    * Função executada ao submeter o formulário
    */
   async function onSubmit(data: EditOpeningHoursFormData) {
@@ -133,7 +138,7 @@ export default function EditCafeteriaOpeningHoursForm({ cafeteria }: Props) {
         </DialogClose>
 
         {/* Submit */}
-        <Button disabled={form.formState.isSubmitting} type="submit">
+        <Button disabled={!hasOpeningHoursChanged || form.formState.isSubmitting} type="submit">
           {form.formState.isSubmitting && <LoadingSpin />}
           <span>{UI_TEXTS.actions.save}</span>
         </Button>
