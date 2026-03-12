@@ -1,5 +1,6 @@
+import SquareIconBadge from "@/components/shared/icons/square-icon-badge"
 import { cn } from "@/lib/utils"
-import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react"
+import { IconSvgElement } from "@hugeicons/react"
 
 /**
  * Props de `EntityHeader`.
@@ -25,11 +26,7 @@ export default function EntityHeader({ title, icon, children }: Props) {
     >
       <div className="flex flex-row items-center gap-4 *:transition-all">
         {/* Ícone */}
-        {icon && (
-          <div className="bg-zinc-200 dark:bg-zinc-800 p-2 rounded-md self-start">
-            <HugeiconsIcon icon={icon} className="size-7 md:size-9 transition-all" />
-          </div>
-        )}
+        {icon && <SquareIconBadge icon={icon} className="self-start" />}
 
         {/* Nome da unidade */}
         <h2 className="text-2xl md:text-3xl font-medium text-start">{title}</h2>

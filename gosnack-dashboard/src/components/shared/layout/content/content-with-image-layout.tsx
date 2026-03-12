@@ -1,3 +1,5 @@
+import SquareIconBadge from "@/components/shared/icons/square-icon-badge"
+import { IconSvgElement } from "@hugeicons/react"
 import Image from "next/image"
 
 /**
@@ -8,19 +10,25 @@ interface Props {
   imageAlt?: string
 
   title?: string
+  icon?: IconSvgElement
   children?: React.ReactNode
 }
 
 /**
  * Layout que exibe um conteúdo na esquerda e uma imagem ilustrativa na direita.
  */
-export default function ContentWithImageLayout({ image, imageAlt = "", title, children }: Props) {
+export default function ContentWithImageLayout({ image, imageAlt = "", title, icon, children }: Props) {
   return (
     <div className="flex flex-col md:flex-row items-center md:items-start gap-10 justify-around">
       {/* Conteúdo principal */}
       <main className="space-y-6 w-full max-w-xl">
-        {/* Título */}
-        {title && <h2 className="font-semibold text-3xl md:text-4xl text-start transition-all">{title}</h2>}
+        <header className="flex flex-row items-center gap-4 *:transition-all">
+          {/* Ícone */}
+          {icon && <SquareIconBadge icon={icon} />}
+
+          {/* Título */}
+          {title && <h2 className="font-semibold text-3xl md:text-4xl text-start transition-all">{title}</h2>}
+        </header>
 
         {/* Form */}
         <div>{children}</div>

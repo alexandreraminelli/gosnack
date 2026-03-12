@@ -1,4 +1,5 @@
 import ContentWithImageLayout from "@/components/shared/layout/content/content-with-image-layout"
+import { ICONS } from "@/constants/icons"
 import { IMAGES } from "@/constants/images"
 import { CAFETERIA_TEXTS } from "@/constants/texts/entities/cafeterias.texts"
 import CafeteriaSettings from "@/features/cafeterias/components/settings/cafeteria-settings"
@@ -26,7 +27,7 @@ export default async function CafeteriaSettingsPage({ params }: Params) {
 
   return (
     <section>
-      <ContentWithImageLayout title={CAFETERIA_TEXTS.settings.title} image={IMAGES.illustrations.cafeteria}>
+      <ContentWithImageLayout title={CAFETERIA_TEXTS.settings.title} icon={ICONS.entities.cafeteria} image={IMAGES.illustrations.cafeteria}>
         <CafeteriaSettings cafeteria={cafeteria} />
       </ContentWithImageLayout>
     </section>
