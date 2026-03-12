@@ -24,6 +24,8 @@ export const ROUTES = {
   },
 
   // Usuários e Acessos
-  users: "/usuarios",
-  addUsers: "/usuarios/adicionar",
+  users: {
+    list: "/usuarios",
+    add: "/usuarios/adicionar",
+  },
 } as const

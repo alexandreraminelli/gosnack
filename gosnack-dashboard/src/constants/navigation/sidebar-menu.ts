@@ -58,6 +58,8 @@ export const SIDEBAR_MENU: MenuGroup[] = [
     roles: ["admin", "manager"],
     items: [
       // TODO: Usuários
+      { label: ENTITIES_TEXTS.user.plural, href: ROUTES.users.list, roles: ["admin"], icon: ICONS.users.all },
+
       // TODO: Clientes
       // TODO: Funcionários
       // TODO: Permissões
