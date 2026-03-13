@@ -7,6 +7,7 @@ const env = {
     url: process.env.NEXT_PUBLIC_SUPABASE_URL || "",
     publishableKey: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "",
     anonKey: process.env.NEXT_SUPABASE_ANON_KEY || "",
+    serviceRoleKey: process.env.NEXT_SUPABASE_SERVICE_ROLE_KEY || "",
   },
 } as const
 export default env
