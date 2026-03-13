@@ -159,9 +159,11 @@ export const COLUMNS = {
 
   users: {
     id: "id",
+    email: "email",
     firstName: "first_name",
     lastName: "last_name",
     role: "role",
+    avatarUrl: "avatar_url",
     isActive: "is_active",
     updatedAt: "updated_at",
   },
