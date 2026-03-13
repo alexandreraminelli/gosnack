@@ -1,7 +1,12 @@
 /**
+ * Papéis do usuário no sistema.
+ */
+export const USER_ROLES = ["customer", "employee", "manager", "admin"] as const
+
+/**
  * Papel do usuário no sistema.
  */
-export type UserRole = "client" | "employee" | "manager" | "admin"
+export type UserRole = (typeof USER_ROLES)[number]
 
 /**
  * Linha da tabela `users` no banco de dados (snake_case).
