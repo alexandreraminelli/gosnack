@@ -8,9 +8,11 @@ import { createClient } from "@/lib/supabase/server"
  */
 const mapUserRowToUserProfile = (row: UserRow): UserProfile => ({
   id: row.id,
+  email: row.email,
   firstName: row.first_name,
   lastName: row.last_name,
   role: row.role,
+  avatarUrl: row.avatar_url,
   isActive: row.is_active,
   updatedAt: row.updated_at,
 })

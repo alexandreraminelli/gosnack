@@ -18,5 +18,5 @@ export default async function NavUser() {
   const profile = await profileService.getProfile(user.id)
   if (!profile) return <NavUserSkeleton />
 
-  return <NavUserClient user={{ firstName: profile.firstName, lastName: profile.lastName, email: user.email, avatarUrl: user.user_metadata.avatar_url }} />
+  return <NavUserClient user={{ firstName: profile.firstName, lastName: profile.lastName, email: user.email, avatarUrl: profile.avatarUrl || undefined }} />
 }
