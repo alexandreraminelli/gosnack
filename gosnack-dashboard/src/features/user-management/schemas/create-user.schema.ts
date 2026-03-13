@@ -1,5 +1,5 @@
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
-import { USER_ROLES } from "@/features/authentication/shared/types/user.types"
+import { USER_ROLES } from "@/types/user.types"
 import { REGEX_PATTERNS } from "@/utils/validation/patterns"
 import { z } from "zod/v4"
 

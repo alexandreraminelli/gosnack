@@ -1,4 +1,4 @@
-import { UserProfile, UserRow } from "@/features/authentication/shared/types/user.types"
+import { UserProfile, UserRow } from "@/types/user.types"
 import { toSelect } from "@/lib/supabase/helpers"
 import { COLUMNS, TABLES } from "@/lib/supabase/schema"
 import { createClient } from "@/lib/supabase/server"
