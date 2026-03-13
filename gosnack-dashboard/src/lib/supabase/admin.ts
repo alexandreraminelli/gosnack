@@ -1,8 +1,12 @@
+"server-only"
+
 import env from "@/lib/env"
 import { createClient } from "@supabase/supabase-js"
 
 /**
  * Cliente do Supabase para acessar a API de administração, utilizando a chave de função de serviço (service role key) para autenticação.
+ *
+ * @see https://supabase.com/docs/reference/javascript/admin-api
  */
 const adminClient = createClient(env.supabase.url, env.supabase.serviceRoleKey, {
   auth: {
