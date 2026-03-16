@@ -1,5 +1,5 @@
+import { getUsersAction } from "@/features/user-management/actions/get-users.action"
 import { userKeys } from "@/features/user-management/hooks/queries/user.keys"
-import { userService } from "@/features/user-management/services/user.service"
 import { useQuery } from "@tanstack/react-query"
 
 /**
@@ -8,6 +8,6 @@ import { useQuery } from "@tanstack/react-query"
 export function useUsers() {
   return useQuery({
     queryKey: userKeys.list(),
-    queryFn: () => userService.listAll(),
+    queryFn: getUsersAction,
   })
 }
