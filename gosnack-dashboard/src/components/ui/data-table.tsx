@@ -1,32 +1,36 @@
 "use client"
 
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
-import EmptyState from "@/components/shared/feedback/empty-state"
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 
 /**
- * Props de `UsersDataTable`.
+ * Props de `DataTable`.
  */
-interface Props<TData, TValue> {
+interface DataTableProps<TData, TValue> {
   /**
    * Definição das colunas da tabela, incluindo renderização personalizada para campos específicos.
    */
   columns: ColumnDef<TData, TValue>[]
   /**
-   * Dados a serem exibidos na tabela, representando os usuários do sistema. Cada item deve corresponder à estrutura definida nas colunas.
+   * Dados a serem exibidos na tabela, tipados de acordo com a definição das colunas. A tabela renderizará uma linha para cada item neste array, utilizando as definições de coluna para determinar o conteúdo de cada célula.
    */
   data: TData[]
+
+  /**
+   * Componente opcional a ser exibido quando não houver dados para mostrar na tabela, permitindo personalização do estado vazio. Se não for fornecido, será exibido um estado vazio padrão.
+   */
+  emptyComponent?: React.ReactNode
 }
 
 /**
- * Tabela de dados para exibir os usuários do sistema, utilizando a biblioteca TanStack Table para renderização e gerenciamento de estado.
+ * Componente genérico de tabela de dados, utilizando o TanStack Table para renderizar uma tabela flexível e personalizável. Suporta renderização personalizada de células e exibição de estado vazio quando não há dados.
  *
  * @see https://ui.shadcn.com/docs/components/radix/data-table
  */
-export function UsersDataTable<TData, TValue>({ columns, data }: Props<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns, data, emptyComponent }: DataTableProps<TData, TValue>) {
   /**
-   * Instância do TanStack Table para a tabela de usuários, configurada com os dados e colunas fornecidos, e utilizando o modelo de linha principal para renderização.
+   * Configuração da tabela usando o hook `useReactTable` do TanStack Table, passando os dados e as colunas, e definindo o modelo de linha principal. A tabela é renderizada com base nessa configuração, permitindo flexibilidade na definição das colunas e no conteúdo das células.
    */
   const table = useReactTable({
     data,
@@ -76,7 +80,8 @@ export function UsersDataTable<TData, TValue>({ columns, data }: Props<TData, TV
             // Sem resultados
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                <EmptyState title={USERS_TEXTS.empty.title} description={[USERS_TEXTS.empty.description]} />
+                {/* Mensagem  */}
+                {emptyComponent || USERS_TEXTS.empty.title}
               </TableCell>
             </TableRow>
           )}
