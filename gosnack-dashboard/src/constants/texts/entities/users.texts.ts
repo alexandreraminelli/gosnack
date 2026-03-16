@@ -4,20 +4,90 @@
 export const USERS_TEXTS = {
   actions: {
     create: "Adicionar Usuário",
-    update: "Editar Usuário",
-    disable: "Desativar Usuário",
-  },
 
-  errors: {
-    getAll: {
-      title: "Erro ao Buscar Usuários",
-      message: "Ocorreu um erro ao carregar a lista de usuários. Por favor, tente novamente mais tarde.",
+    editRole: {
+      label: "Editar Tipo",
+      title: "Editar Tipo de Usuário",
+    },
+
+    disable: {
+      label: "Desativar",
+      title: "Desativar Usuário",
+      description: "O usuário perderá o acesso ao sistema. Você poderá reativá-lo a qualquer momento.",
+    },
+    enable: {
+      label: "Ativar",
+      title: "Ativar Usuário",
+      description: "O usuário voltará a ter acesso ao sistema.",
     },
   },
 
-  quant: (count: number) => `${count} usuário${count !== 1 ? "s" : ""} no sistema`,
+  empty: {
+    title: "Nenhum usuário encontrado",
+    description: "Ainda não há usuários cadastrados no sistema.",
+  },
+
+  error: {
+    getAll: {
+      title: "Erro ao carregar usuários",
+      description: "Não foi possível carregar a lista de usuários. Tente novamente mais tarde.",
+    },
+    create: {
+      title: "Erro ao criar usuário",
+      description: "Não foi possível criar o usuário. Tente novamente mais tarde.",
+    },
+    updateRole: {
+      title: "Erro ao atualizar tipo",
+      description: "Não foi possível atualizar o tipo do usuário. Tente novamente mais tarde.",
+    },
+    updateStatus: {
+      title: "Erro ao atualizar status",
+      description: "Não foi possível atualizar o status do usuário. Tente novamente mais tarde.",
+    },
+  },
+
+  fields: {
+    name: "Nome",
+    firstName: "Primeiro Nome",
+    lastName: "Sobrenome",
+    email: "E-mail",
+    password: "Senha",
+    role: "Tipo de Usuário",
+    status: "Status",
+  },
+
+  loading: {
+    creating: "Criando usuário...",
+    updatingRole: "Atualizando tipo...",
+    activating: "Ativando usuário...",
+    deactivating: "Desativando usuário...",
+  },
 
   management: "Gerenciar Usuários",
+
+  quant: (count: number) => `${count} usuário${count !== 1 ? "s" : ""} no sistema`,
+
+  roles: {
+    customer: "Cliente",
+    employee: "Funcionário",
+    manager: "Gerente",
+    admin: "Administrador",
+  },
+
+  success: {
+    created: {
+      title: "Usuário criado",
+      description: (name: string) => `${name} foi adicionado ao sistema.`,
+    },
+    enabled: {
+      title: "Usuário ativado",
+      description: (name: string) => `${name} voltou a ter acesso ao sistema.`,
+    },
+    disabled: {
+      title: "Usuário desativado",
+      description: (name: string) => `${name} perdeu o acesso ao sistema.`,
+    },
+  },
 
   validation: {
     firstName: {
