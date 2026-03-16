@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { ICONS } from "@/constants/icons"
 import { ROUTES } from "@/constants/navigation/routes"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
+import UsersTable from "@/features/user-management/components/table/users-table"
 import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
 
@@ -11,7 +12,7 @@ import Link from "next/link"
  */
 export default function UsersManagementPage() {
   return (
-    <section>
+    <section className="space-y-8">
       <PageHeader title={USERS_TEXTS.management}>
         {/* Botão de adicionar usuário */}
         <Button asChild>
@@ -23,7 +24,9 @@ export default function UsersManagementPage() {
       </PageHeader>
 
       {/* Tabela de usuários */}
-      <main></main>
+      <main>
+        <UsersTable />
+      </main>
     </section>
   )
 }
