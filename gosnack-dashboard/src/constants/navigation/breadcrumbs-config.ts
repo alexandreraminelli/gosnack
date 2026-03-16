@@ -32,18 +32,6 @@ export const HOME_SEGMENT: ResolvedSegment = {
 export const BREADCRUMB_SEGMENT_MAP: Record<string, SegmentConfig> = {
   // -- Segmentos Estáticos ------------------------------------------------- //
 
-  unidades: {
-    type: "static",
-    label: ENTITIES_TEXTS.unit.plural,
-    href: ROUTES.units.list,
-  },
-
-  lanchonetes: {
-    type: "static",
-    label: ENTITIES_TEXTS.cafeteria.plural,
-    href: ROUTES.cafeterias.list,
-  },
-
   adicionar: {
     type: "static",
     label: UI_TEXTS.actions.add,
@@ -54,8 +42,23 @@ export const BREADCRUMB_SEGMENT_MAP: Record<string, SegmentConfig> = {
     label: UI_TEXTS.actions.settings,
   },
 
-  // TODO: Adicionar segmentos de "unidades" quando a feature for implementada
-  // TODO: Adicionar segmentos de "produtos" quando a feature for implementada
+  lanchonetes: {
+    type: "static",
+    label: ENTITIES_TEXTS.cafeteria.plural,
+    href: ROUTES.cafeterias.list,
+  },
+
+  unidades: {
+    type: "static",
+    label: ENTITIES_TEXTS.unit.plural,
+    href: ROUTES.units.list,
+  },
+
+  usuarios: {
+    type: "static",
+    label: ENTITIES_TEXTS.user.plural,
+    href: ROUTES.users.list,
+  },
 
   // -- Segmentos Dinâmicos ------------------------------------------------- //
 
