@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
-import { UserProfile } from "@/types/user.types"
+import { UserProfile, UserRole } from "@/types/user.types"
 import { ColumnDef } from "@tanstack/react-table"
 
 /**
@@ -31,6 +31,10 @@ export const userColumns: ColumnDef<UserProfile>[] = [
   {
     accessorKey: "role",
     header: USERS_TEXTS.fields.role,
+    cell: ({ row }) => {
+      const role = row.original.role as UserRole
+      return ENTITIES_TEXTS.roles[role].singular
+    },
   },
 
   // Status (ativo, desativado)

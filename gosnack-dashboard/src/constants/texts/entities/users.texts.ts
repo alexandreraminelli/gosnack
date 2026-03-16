@@ -67,13 +67,6 @@ export const USERS_TEXTS = {
 
   quant: (count: number) => `${count} usuário${count !== 1 ? "s" : ""} no sistema`,
 
-  roles: {
-    customer: "Cliente",
-    employee: "Funcionário",
-    manager: "Gerente",
-    admin: "Administrador",
-  },
-
   success: {
     created: {
       title: "Usuário criado",
