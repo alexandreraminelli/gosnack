@@ -43,3 +43,8 @@ export interface UserProfile {
   /** Data de atualização dos dados do usuário. */
   updatedAt: UserRow["updated_at"]
 }
+
+/**
+ * Dados para criar usuário.
+ */
+export type UserInsert = Omit<UserProfile, "id" | "updatedAt" | "avatarUrl" | "isActive">
