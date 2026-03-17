@@ -14,6 +14,7 @@ import {
   ComputerIcon,
   Delete02Icon,
   Edit04Icon,
+  EditUser02Icon,
   HashtagIcon,
   Home09Icon,
   InformationCircleIcon,
@@ -33,6 +34,9 @@ import {
   Tick01Icon,
   Tick02Icon,
   UnavailableIcon,
+  UserAdd02Icon,
+  UserBlock02Icon,
+  UserCheck02Icon,
   UserGroup03Icon,
   ViewIcon,
   ViewOffSlashIcon,
@@ -117,6 +121,14 @@ export const ICONS = {
 
   users: {
     all: UserGroup03Icon,
+
+    actions: {
+      create: UserAdd02Icon,
+      edit: EditUser02Icon,
+
+      disable: UserBlock02Icon,
+      enable: UserCheck02Icon,
+    },
 
     roles: {
       manager: ManagerIcon,
