@@ -1,7 +1,6 @@
-import { UserProfile, UserRow } from "@/types/user.types"
-import { toSelect } from "@/lib/supabase/helpers"
 import { COLUMNS, TABLES } from "@/lib/supabase/schema"
 import { createClient } from "@/lib/supabase/server"
+import { UserProfile, UserRow } from "@/types/user.types"
 import { mapRowToUserProfile } from "@/utils/mappers/profile.mapper"
 
 /**
@@ -14,11 +13,7 @@ export const profileService = {
   async getProfile(userId: string): Promise<UserProfile | null> {
     const supabase = await createClient()
 
-    const { data: userProfile, error } = await supabase
-      .from(TABLES.users)
-      .select(toSelect([COLUMNS.users.firstName, COLUMNS.users.lastName, COLUMNS.users.role]))
-      .eq(COLUMNS.users.id, userId)
-      .single<UserRow>()
+    const { data: userProfile, error } = await supabase.from(TABLES.users).select().eq(COLUMNS.users.id, userId).single<UserRow>()
 
     if (error) throw error
     return mapRowToUserProfile(userProfile)
