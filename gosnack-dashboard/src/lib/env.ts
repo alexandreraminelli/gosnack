@@ -2,6 +2,9 @@
  * Obter e armazenar as variáveis de ambiente para uso em toda a aplicação.
  */
 const env = {
+  /** URL pública do aplicativo. */
+  appUrl: process.env.NEXT_PUBLIC_APP_URL || "",
+
   /** Variáveis de ambiente do Supabase. */
   supabase: {
     url: process.env.NEXT_PUBLIC_SUPABASE_URL || "",
