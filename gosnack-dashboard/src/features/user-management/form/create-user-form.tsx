@@ -11,12 +11,9 @@ import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
 import { useCreateUser } from "@/features/user-management/hooks/queries/user.mutations"
 import { createUserSchema } from "@/features/user-management/schemas/create-user.schema"
-import { getAuthErrorMessage } from "@/lib/supabase/errors/auth-errors"
-import { DB_ERROR_CODES, getDbErrorMessage } from "@/lib/supabase/errors/db-errors"
 import { USER_ROLES } from "@/types/user.types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { AuthError, PostgrestError } from "@supabase/supabase-js"
 import { useRouter } from "next/navigation"
 import { Controller, Resolver, useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -77,28 +74,14 @@ export default function CreateUserForm() {
           }
         },
         // Erro
-        error: (error: AuthError | PostgrestError) => {
-          if (error instanceof AuthError) {
-            // Erro do Supabase Auth
-            return {
-              message: USERS_TEXTS.error.create.title,
-              description: getAuthErrorMessage(error, USERS_TEXTS.error.create.fallback),
-            }
-          } else {
-            // Erro do Postgre
-            if (error.code === DB_ERROR_CODES.uniqueViolation) {
-              // E-mail duplicado
-              return {
-                message: USERS_TEXTS.error.create.title,
-                description: USERS_TEXTS.error.duplicateEmail.description,
-              }
-            } else {
-              // Outro erro do Postgre
-              return {
-                message: USERS_TEXTS.error.create.title,
-                description: getDbErrorMessage(error, USERS_TEXTS.error.create.fallback),
-              }
-            }
+        error: (e) => {
+          const error = e as { message?: string }
+
+          const { title, fallback } = USERS_TEXTS.error.create
+
+          return {
+            message: title,
+            description: typeof error?.message === "string" && error.message.trim().length > 0 ? error.message : fallback,
           }
         },
       },

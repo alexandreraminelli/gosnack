@@ -1,6 +1,6 @@
 import { createUserAction } from "@/features/user-management/actions/create-user.action"
 import { userKeys } from "@/features/user-management/hooks/queries/user.keys"
-import { UserInsert } from "@/types/user.types"
+import { UserInsert, UserProfile } from "@/types/user.types"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 /**
@@ -10,7 +10,17 @@ export function useCreateUser() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (data: UserInsert) => createUserAction(data),
+    mutationFn: async (data: UserInsert) => {
+      const result = await createUserAction(data)
+
+      if (!result.success) {
+        throw { message: result.message } // lançar erro para ser capturado no onError
+      }
+
+      // Sucesso: retornar usuário criado
+      return result.data as UserProfile
+    },
+
     onSuccess: () => queryClient.invalidateQueries({ queryKey: userKeys.all }), // invalidar cache para refetch automático
   })
 }

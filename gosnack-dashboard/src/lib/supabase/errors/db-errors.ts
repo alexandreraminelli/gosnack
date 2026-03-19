@@ -1,4 +1,4 @@
-import { PostgrestError } from "@supabase/supabase-js"
+import { ErrorWithCode } from "@/lib/supabase/errors/error.types"
 
 /**
  * Códigos de erro do PostgreSQL.
@@ -31,7 +31,8 @@ const DB_ERROR_MESSAGES: Record<string, string> = {
  * @param error Erro retornado pelo Supabase.
  * @param fallback Mensagem genérica caso o código não seja reconhecido.
  */
-export function getDbErrorMessage(error: PostgrestError, fallback: string): string {
-  if (!error?.code) return fallback
-  return DB_ERROR_MESSAGES[error.code] ?? fallback
+export function getDbErrorMessage(error: ErrorWithCode, fallback: string): string {
+  const code = error?.code
+  if (!code) return fallback
+  return DB_ERROR_MESSAGES[code] ?? fallback
 }
