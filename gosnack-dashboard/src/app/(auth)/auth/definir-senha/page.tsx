@@ -1,4 +1,4 @@
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { SET_PASSWORD_TEXTS } from "@/constants/texts/auth/set-password.texts"
 import PasswordForm from "@/features/authentication/password-recovery/form/password-form"
 import { Metadata } from "next"
@@ -22,10 +22,8 @@ export default function SetPasswordPage() {
         <CardDescription>{SET_PASSWORD_TEXTS.header.description}</CardDescription>
       </CardHeader>
 
-      <CardContent>
-        {/* Formulário */}
-        <PasswordForm />
-      </CardContent>
+      {/* Formulário */}
+      <PasswordForm />
     </main>
   )
 }

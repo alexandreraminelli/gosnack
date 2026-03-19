@@ -20,6 +20,7 @@ import {
   InformationCircleIcon,
   Loading03Icon,
   Location01Icon,
+  LockPasswordIcon,
   LoginSquare01Icon,
   LogoutSquare01Icon,
   ManagerIcon,
@@ -77,6 +78,8 @@ export const ICONS = {
     logout: LogoutSquare01Icon,
 
     password: {
+      icon: LockPasswordIcon,
+
       show: ViewIcon,
       hide: ViewOffSlashIcon,
     },
