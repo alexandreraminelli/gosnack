@@ -21,7 +21,7 @@ export async function signInUser({ email, password }: SignInInput): Promise<Acti
   const { error } = await supabase.auth.signInWithPassword({ email, password })
 
   if (error) {
-    const message = getAuthErrorMessage(error.code, LOGIN_TEXTS.result.error.fallback)
+    const message = getAuthErrorMessage(error, LOGIN_TEXTS.result.error.fallback)
     return { success: false, message }
   }
   return { success: true }
@@ -36,7 +36,7 @@ export async function signOutUser(): Promise<ActionResult> {
   const { error } = await supabase.auth.signOut()
 
   if (error) {
-    const message = getAuthErrorMessage(error.code, UI_TEXTS.status.error)
+    const message = getAuthErrorMessage(error, UI_TEXTS.status.error)
     return { success: false, message }
   }
   return { success: true }

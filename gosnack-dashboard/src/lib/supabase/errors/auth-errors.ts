@@ -1,3 +1,5 @@
+import { AuthError } from "@supabase/supabase-js"
+
 /**
  * Mapeamento dos códigos de erro de autenticação do Supabase para mensagens
  * de erro em português amigáveis ao usuário.
@@ -12,6 +14,7 @@ const AUTH_ERROR_MESSAGES: Record<string, string> = {
   user_banned: "Sua conta foi suspensa. Entre em contato com o suporte.",
 
   // Criar usuário por admin
+  email_exists: "Já existe um usuário com esse e-mail.",
   user_already_exists: "Já existe um usuário com esse e-mail.",
 
   // Criar ou recuperar senha
@@ -37,7 +40,7 @@ const AUTH_ERROR_MESSAGES: Record<string, string> = {
  * reconhecido.
  *
  */
-export function getAuthErrorMessage(code: string | undefined, fallback: string): string {
-  if (!code) return fallback
-  return AUTH_ERROR_MESSAGES[code] || fallback
+export function getAuthErrorMessage(error: AuthError, fallback: string): string {
+  if (!error?.code) return fallback
+  return AUTH_ERROR_MESSAGES[error.code] || fallback
 }

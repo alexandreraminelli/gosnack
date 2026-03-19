@@ -82,7 +82,7 @@ export default function CreateUserForm() {
             // Erro do Supabase Auth
             return {
               message: USERS_TEXTS.error.create.title,
-              description: getAuthErrorMessage(error.code, USERS_TEXTS.error.create.fallback),
+              description: getAuthErrorMessage(error, USERS_TEXTS.error.create.fallback),
             }
           } else {
             // Erro do Postgre
