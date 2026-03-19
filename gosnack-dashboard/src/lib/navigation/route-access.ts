@@ -14,6 +14,7 @@ export const AUTH_ROUTES = new Set<string>([
   // Rotas de autenticação:
   ROUTES.login,
   ROUTES.forgotPassword,
+  ROUTES.auth.setPassword,
 ])
 
 /**

@@ -5,6 +5,9 @@ export const ROUTES = {
   // Autenticação
   login: "/login",
   forgotPassword: "/recuperar-senha",
+  auth: {
+    setPassword: "/auth/definir-senha",
+  },
 
   // Visão Geral
   home: "/",
