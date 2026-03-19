@@ -7,11 +7,15 @@ import { CardContent, CardFooter } from "@/components/ui/card"
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { ICONS } from "@/constants/icons"
 import { SET_PASSWORD_TEXTS } from "@/constants/texts/auth/set-password.texts"
+import { ERROR_TEXTS } from "@/constants/texts/error.texts"
 import { passwordSchema } from "@/features/authentication/password-recovery/schemas/password.schema"
+import { createClient } from "@/lib/supabase/client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 import { Controller, Resolver, useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { z } from "zod/v4"
 
 /**
@@ -30,6 +34,55 @@ export default function PasswordForm() {
   // Hooks
   const router = useRouter()
 
+  // State do token
+  const [tokenReady, setTokenReady] = useState(false)
+  const [tokenInvalid, setTokenInvalid] = useState(false)
+
+  useEffect(() => {
+    const supabase = createClient()
+    /**
+     * Hash da URL, usado para obter o token de recuperação/definição de senha.
+     *
+     * O token é necessário para validar a solicitação de definição de senha, garantindo que apenas usuários autorizados possam definir uma nova senha para a conta.
+     */
+    const hash = window.location.hash.startsWith("#") ? window.location.hash.slice(1) : ""
+    /**
+     * Parâmetros da URL, usados para extrair o token de recuperação/definição de senha do hash da URL.
+     */
+    const params = new URLSearchParams(hash)
+
+    const access_token = params.get("access_token")
+    const refresh_token = params.get("refresh_token")
+    const type = params.get("type")
+
+    async function consumeToken() {
+      if (type !== "invite" || !access_token || !refresh_token) {
+        setTokenInvalid(true)
+        setTokenReady(true)
+        return
+      }
+
+      // Iniciar sessão no Supabase Auth com o token no hash da URL
+      const { error } = await supabase.auth.setSession({
+        access_token,
+        refresh_token,
+      })
+
+      if (error) {
+        // Tratar erros
+        setTokenInvalid(true)
+        toast.error(ERROR_TEXTS.invalidLink.title)
+      } else {
+        // Remover hash da URL após consumir o token
+        window.history.replaceState({}, document.title, window.location.pathname + window.location.search)
+      }
+
+      setTokenReady(true) // Indicar que o token foi processado, independentemente do resultado
+    }
+
+    consumeToken() // Consumir o token ao montar o componente
+  }, [])
+
   /**
    * Instância do React Hook Form para o formulário de definir senha.
    */
@@ -47,6 +100,12 @@ export default function PasswordForm() {
    * Função executada ao submeter o formulário de definir senha.
    */
   async function onSubmit(data: PasswordFormData) {
+    // Verificar se o token foi consumido
+    if (!tokenReady || tokenInvalid) {
+      toast.error(ERROR_TEXTS.invalidLink.title)
+      return
+    }
+
     // TODO: Implementar função
   }
 
