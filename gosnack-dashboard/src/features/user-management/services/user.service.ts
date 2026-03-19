@@ -1,3 +1,5 @@
+import "server-only"
+
 import { UserInsert, UserProfile, UserRow } from "@/types/user.types"
 import { adminClient } from "@/lib/supabase/admin"
 import { COLUMNS, TABLES } from "@/lib/supabase/schema"
