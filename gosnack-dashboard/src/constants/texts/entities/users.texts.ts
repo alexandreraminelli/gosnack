@@ -58,7 +58,10 @@ export const USERS_TEXTS = {
     lastName: "Sobrenome",
     email: "E-mail",
     password: "Senha",
-    role: "Tipo de Usuário",
+    role: {
+      label: "Tipo de Usuário",
+      placeholder: "Selecione o tipo de usuário",
+    },
     status: "Status",
   },
 

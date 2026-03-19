@@ -4,13 +4,16 @@ import LoadingSpin from "@/components/shared/feedback/loading/loading-spin"
 import { Button } from "@/components/ui/button"
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ICONS } from "@/constants/icons"
 import { ROUTES } from "@/constants/navigation/routes"
+import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
 import { useCreateUser } from "@/features/user-management/hooks/queries/user.mutations"
 import { createUserSchema } from "@/features/user-management/schemas/create-user.schema"
 import { getAuthErrorMessage } from "@/lib/supabase/errors/auth-errors"
 import { DB_ERROR_CODES, getDbErrorMessage } from "@/lib/supabase/errors/db-errors"
+import { USER_ROLES } from "@/types/user.types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { AuthError, PostgrestError } from "@supabase/supabase-js"
@@ -155,6 +158,37 @@ export default function CreateUserForm() {
               <Input id={field.name} type="text" aria-invalid={fieldState.invalid} autoComplete="email" {...field} />
 
               {/* Erro E-mail */}
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+
+        {/* Field Role */}
+        <Controller
+          control={form.control}
+          name="role"
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              {/* Label Role */}
+              <FieldLabel htmlFor={field.name}>{USERS_TEXTS.fields.role.label}</FieldLabel>
+
+              {/* Select Role */}
+              <Select value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger aria-invalid={fieldState.invalid} {...field}>
+                  <SelectValue placeholder={USERS_TEXTS.fields.role.placeholder} />
+                </SelectTrigger>
+
+                {/* Opções de role */}
+                <SelectContent position="popper">
+                  {USER_ROLES.map((role) => (
+                    <SelectItem key={role} value={role}>
+                      {ENTITIES_TEXTS.roles[role].singular}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              {/* Erro Role */}
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
