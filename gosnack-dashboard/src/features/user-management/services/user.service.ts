@@ -18,7 +18,13 @@ export const userService = {
    * Lista todos os usuários do sistema.
    */
   async listAll(): Promise<UserProfile[]> {
-    const { data, error } = await adminClient.from(TABLES.users).select().order(COLUMNS.users.updatedAt, { ascending: false }).overrideTypes<UserRow[], { merge: false }>()
+    const { data, error } = await adminClient
+      .from(TABLES.users)
+      .select()
+      // ordem alfabética pelo nome
+      .order(COLUMNS.users.firstName, { ascending: true })
+      .order(COLUMNS.users.lastName, { ascending: true })
+      .overrideTypes<UserRow[], { merge: false }>()
 
     if (error) throw error
 
