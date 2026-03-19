@@ -47,7 +47,7 @@ export const userColumns: ColumnDef<UserProfile>[] = [
   // Papel do usuário
   {
     accessorKey: "role",
-    header: USERS_TEXTS.fields.role,
+    header: USERS_TEXTS.fields.role.label,
     cell: ({ row }) => {
       const role = row.original.role as UserRole
       return ENTITIES_TEXTS.roles[role].singular
