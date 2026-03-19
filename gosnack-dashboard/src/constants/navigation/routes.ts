@@ -30,5 +30,6 @@ export const ROUTES = {
   users: {
     list: "/usuarios",
     add: "/usuarios/adicionar",
+    details: (userId: string) => `/usuarios/${userId}`,
   },
 } as const

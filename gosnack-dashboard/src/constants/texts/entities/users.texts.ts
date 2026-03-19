@@ -20,6 +20,8 @@ export const USERS_TEXTS = {
       title: "Ativar Usuário",
       description: "O usuário voltará a ter acesso ao sistema.",
     },
+
+    view: "Ver Usuário",
   },
 
   empty: {
@@ -34,7 +36,7 @@ export const USERS_TEXTS = {
     },
     create: {
       title: "Erro ao criar usuário",
-      description: "Não foi possível criar o usuário. Tente novamente mais tarde.",
+      fallback: "Não foi possível criar o usuário. Tente novamente mais tarde.",
     },
     updateRole: {
       title: "Erro ao atualizar tipo",
@@ -43,6 +45,10 @@ export const USERS_TEXTS = {
     updateStatus: {
       title: "Erro ao atualizar status",
       description: "Não foi possível atualizar o status do usuário. Tente novamente mais tarde.",
+    },
+
+    duplicateEmail: {
+      description: "Já existe um usuário com esse e-mail.",
     },
   },
 
@@ -70,7 +76,7 @@ export const USERS_TEXTS = {
   success: {
     created: {
       title: "Usuário criado",
-      description: (name: string) => `${name} foi adicionado ao sistema.`,
+      description: (name: string) => `Foi enviado um convite por e-mail para ${name} para criar uma senha e acessar o sistema.`,
     },
     enabled: {
       title: "Usuário ativado",

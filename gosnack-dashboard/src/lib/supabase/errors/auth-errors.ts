@@ -2,7 +2,7 @@
  * Mapeamento dos códigos de erro de autenticação do Supabase para mensagens
  * de erro em português amigáveis ao usuário.
  *
- * Fonte: https://supabase.com/docs/guides/auth/debugging/error-codes#auth-error-codes-table
+ * @see https://supabase.com/docs/guides/auth/debugging/error-codes#auth-error-codes-table
  */
 const AUTH_ERROR_MESSAGES: Record<string, string> = {
   // Login
@@ -11,12 +11,16 @@ const AUTH_ERROR_MESSAGES: Record<string, string> = {
   user_not_found: "Nenhuma conta encontrada com esse e-mail.",
   user_banned: "Sua conta foi suspensa. Entre em contato com o suporte.",
 
+  // Criar usuário por admin
+  user_already_exists: "Já existe um usuário com esse e-mail.",
+
+  // Criar ou recuperar senha
+  weak_password: "A senha não atende aos requisitos de segurança.",
+  otp_expired: "O link de recuperação expirou. Solicite um novo.",
+
   // Rate limits
   too_many_requests: "Muitas tentativas. Aguarde alguns minutos e tente novamente.",
   over_request_rate_limit: "Muitas tentativas. Aguarde alguns minutos e tente novamente.",
-
-  // Recuperação de senha
-  otp_expired: "O link de recuperação expirou. Solicite um novo.",
 
   // Genérico
   unexpected_failure: "Ocorreu um erro inesperado. Tente novamente.",
