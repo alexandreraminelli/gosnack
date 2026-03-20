@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button"
 import { CardContent, CardFooter } from "@/components/ui/card"
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { ICONS } from "@/constants/icons"
+import { ROUTES } from "@/constants/navigation/routes"
 import { SET_PASSWORD_TEXTS } from "@/constants/texts/auth/set-password.texts"
 import { ERROR_TEXTS } from "@/constants/texts/error.texts"
 import { passwordSchema } from "@/features/authentication/password-recovery/schemas/password.schema"
 import { createClient } from "@/lib/supabase/client"
+import { getAuthErrorMessage } from "@/lib/supabase/errors/auth-errors"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { useRouter } from "next/navigation"
@@ -107,7 +109,20 @@ export default function PasswordForm() {
       return
     }
 
-    // TODO: Implementar função
+    // Definir senha
+    const supabase = createClient()
+    const { error } = await supabase.auth.updateUser({ password: data.password })
+
+    if (error) {
+      // Erro
+      toast.error(SET_PASSWORD_TEXTS.error.title, {
+        description: getAuthErrorMessage(error, SET_PASSWORD_TEXTS.error.fallback),
+      })
+    }
+
+    // Sucesso
+    toast.success(SET_PASSWORD_TEXTS.success.title, { description: SET_PASSWORD_TEXTS.success.description })
+    router.push(ROUTES.login) // Redirecionar para a página de login após definir a senha
   }
 
   return (
