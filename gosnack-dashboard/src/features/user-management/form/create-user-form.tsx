@@ -92,6 +92,37 @@ export default function CreateUserForm() {
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
       {/* Campos */}
       <FieldGroup>
+        {/* Field Role */}
+        <Controller
+          control={form.control}
+          name="role"
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              {/* Label Role */}
+              <FieldLabel htmlFor={field.name}>{USERS_TEXTS.fields.role.label}</FieldLabel>
+
+              {/* Select Role */}
+              <Select value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger aria-invalid={fieldState.invalid} {...field}>
+                  <SelectValue placeholder={USERS_TEXTS.fields.role.placeholder} />
+                </SelectTrigger>
+
+                {/* Opções de role */}
+                <SelectContent position="popper">
+                  {USER_ROLES.map((role) => (
+                    <SelectItem key={role} value={role}>
+                      {ENTITIES_TEXTS.roles[role].singular}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              {/* Erro Role */}
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+
         {/* Field Primeiro Nome */}
         <Controller
           control={form.control}
@@ -146,36 +177,7 @@ export default function CreateUserForm() {
           )}
         />
 
-        {/* Field Role */}
-        <Controller
-          control={form.control}
-          name="role"
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              {/* Label Role */}
-              <FieldLabel htmlFor={field.name}>{USERS_TEXTS.fields.role.label}</FieldLabel>
-
-              {/* Select Role */}
-              <Select value={field.value} onValueChange={field.onChange}>
-                <SelectTrigger aria-invalid={fieldState.invalid} {...field}>
-                  <SelectValue placeholder={USERS_TEXTS.fields.role.placeholder} />
-                </SelectTrigger>
-
-                {/* Opções de role */}
-                <SelectContent position="popper">
-                  {USER_ROLES.map((role) => (
-                    <SelectItem key={role} value={role}>
-                      {ENTITIES_TEXTS.roles[role].singular}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              {/* Erro Role */}
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-            </Field>
-          )}
-        />
+        {/* TODO: Senha (e-mail fictício) */}
       </FieldGroup>
 
       {/* Submit Button */}
