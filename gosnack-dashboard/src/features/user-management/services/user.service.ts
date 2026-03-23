@@ -1,13 +1,13 @@
 import "server-only"
 
-import { UserInsert, UserProfile, UserRow } from "@/types/user.types"
-import { adminClient } from "@/lib/supabase/admin"
-import { COLUMNS, TABLES } from "@/lib/supabase/schema"
-import { mapRowToUserProfile } from "@/utils/mappers/profile.mapper"
-import env from "@/lib/env"
 import { ROUTES } from "@/constants/navigation/routes"
-import { isAllowedEmailForRole, shouldSkipInvite } from "@/utils/validation/email"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
+import env from "@/lib/env"
+import { adminClient } from "@/lib/supabase/admin"
+import { COLUMNS, TABLES, VIEWS } from "@/lib/supabase/schema"
+import { UserInsert, UserProfile, UserRow, UserTableRow } from "@/types/user.types"
+import { mapRowToUserProfile } from "@/utils/mappers/profile.mapper"
+import { isAllowedEmailForRole, shouldSkipInvite } from "@/utils/validation/email"
 import { User } from "@supabase/supabase-js"
 
 /**
@@ -22,7 +22,7 @@ export const userService = {
    */
   async listAll(): Promise<UserProfile[]> {
     const { data, error } = await adminClient
-      .from(TABLES.users)
+      .from(VIEWS.usersWithEmail)
       .select()
       // ordem alfabética pelo nome
       .order(COLUMNS.users.firstName, { ascending: true })
@@ -84,20 +84,25 @@ export const userService = {
     }
 
     // Inserir perfil na tabela `users`
-    const { data: profileRow, error: dbError } = await adminClient
+    const { error: dbError } = await adminClient
       .from(TABLES.users)
       .upsert({
         id: authData.user.id, // UID do usuário no Supabase Auth
-        email: input.email,
         first_name: input.firstName,
         last_name: input.lastName,
         role: input.role,
         is_active: true,
-      } as UserRow)
+      } as UserTableRow)
       .select()
       .single()
       .overrideTypes<UserRow, { merge: false }>()
+
     if (dbError) throw dbError // lançar erro
+
+    // Buscar perfil completo com e-mail via view
+    const { data: profileRow, error: viewError } = await adminClient.from(VIEWS.usersWithEmail).select().eq(COLUMNS.users.id, authData.user.id).single().overrideTypes<UserRow, { merge: false }>()
+
+    if (viewError) throw viewError
 
     return mapRowToUserProfile(profileRow as UserRow)
   },

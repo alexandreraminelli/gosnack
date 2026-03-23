@@ -11,15 +11,21 @@ export type UserRole = (typeof USER_ROLES)[number]
 /**
  * Linha da tabela `users` no banco de dados (snake_case).
  */
-export type UserRow = {
+export type UserTableRow = {
   id: string
-  email: string
   first_name: string
   last_name: string
   role: UserRole
   avatar_url: string | null
   is_active: boolean
   updated_at: string
+}
+
+/**
+ * Linha da view `users_with_email` que inclui o email do usuário.
+ */
+export type UserRow = UserTableRow & {
+  email: string
 }
 
 /**

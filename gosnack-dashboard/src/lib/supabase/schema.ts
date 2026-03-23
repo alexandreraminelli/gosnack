@@ -168,3 +168,13 @@ export const COLUMNS = {
     updatedAt: "updated_at",
   },
 } as const satisfies Record<TableKeys, Record<string, string>>
+
+/**
+ * Views do banco de dados (se necessário, para consultas complexas ou agregações).
+ */
+export const VIEWS = {
+  /**
+   * View que junta dados da tabela `users` com os e-mails do Supabase Auth, para facilitar consultas de usuários com seus e-mails.
+   */
+  usersWithEmail: "users_with_email",
+}
