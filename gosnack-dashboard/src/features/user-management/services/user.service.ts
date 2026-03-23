@@ -6,6 +6,9 @@ import { COLUMNS, TABLES } from "@/lib/supabase/schema"
 import { mapRowToUserProfile } from "@/utils/mappers/profile.mapper"
 import env from "@/lib/env"
 import { ROUTES } from "@/constants/navigation/routes"
+import { isAllowedEmailForRole, shouldSkipInvite } from "@/utils/validation/email"
+import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
+import { User } from "@supabase/supabase-js"
 
 /**
  * Serviço para gerenciamento de usuários, incluindo listagem, criação,
@@ -37,21 +40,48 @@ export const userService = {
    * @see https://supabase.com/docs/reference/javascript/auth-admin-inviteuserbyemail
    */
   async create(input: UserInsert): Promise<UserProfile> {
-    // Convidar usuário por e-mail pro Supabase Auth
-    const { data: authData, error: authError } = await adminClient.auth.admin.inviteUserByEmail(
-      input.email, // e-mail onde o convite será enviado
-      {
-        data: {
-          // Metadados do usuário
+    // Validar se o e-mail é permitido para o role do usuário selecionado
+    if (!isAllowedEmailForRole(input.email, input.role)) {
+      throw new Error(USERS_TEXTS.validation.email.domain)
+    }
+
+    /** Dados retornados do Supabase Auth */
+    let authData: { user: User }
+
+    // Verificar se e-mail é fictício
+    if (shouldSkipInvite(input.email)) {
+      // Criar usuário diretamente sem convite por e-mail
+      const { data, error } = await adminClient.auth.admin.createUser({
+        email: input.email,
+        email_confirm: true, // marcar e-mail como confirmado
+        password: input.password, // senha obrigatória para e-mails fictícios
+        user_metadata: {
           first_name: input.firstName,
           last_name: input.lastName,
           role: input.role,
         },
-        // Link de redirecionamento após o usuário aceitar o convite e criar a senha
-        redirectTo: `${env.appUrl}/${ROUTES.auth.setPassword}`,
-      },
-    )
-    if (authError) throw authError // lançar erro
+      })
+      if (error) throw error
+      authData = data
+    } else {
+      // Convidar usuário por e-mail pro Supabase Auth
+
+      const { data, error } = await adminClient.auth.admin.inviteUserByEmail(
+        input.email, // e-mail onde o convite será enviado
+        {
+          data: {
+            // Metadados do usuário
+            first_name: input.firstName,
+            last_name: input.lastName,
+            role: input.role,
+          },
+          // Link de redirecionamento após o usuário aceitar o convite e criar a senha
+          redirectTo: `${env.appUrl}/${ROUTES.auth.setPassword}`,
+        },
+      )
+      if (error) throw error // lançar erro
+      authData = data
+    }
 
     // Inserir perfil na tabela `users`
     const { data: profileRow, error: dbError } = await adminClient
