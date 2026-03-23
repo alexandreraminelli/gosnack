@@ -12,5 +12,8 @@ const env = {
     anonKey: process.env.NEXT_SUPABASE_ANON_KEY || "",
     serviceRoleKey: process.env.NEXT_SUPABASE_SERVICE_ROLE_KEY || "",
   },
+
+  /** E-mails de teste com acesso irrestrito. */
+  devEmails: process.env.DEV_EMAILS?.split(",") ?? [],
 } as const
 export default env
