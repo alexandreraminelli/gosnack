@@ -41,7 +41,7 @@ export const createUserSchema = z
     }
 
     // Senha obrigatória para e-mails fictícios
-    if (shouldSkipInvite(data.email)) {
+    if (shouldSkipInvite(data.email) && !data.password) {
       ctx.addIssue({
         code: "custom",
         path: ["password"],
