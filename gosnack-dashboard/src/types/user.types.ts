@@ -47,4 +47,7 @@ export interface UserProfile {
 /**
  * Dados para criar usuário.
  */
-export type UserInsert = Omit<UserProfile, "id" | "updatedAt" | "avatarUrl" | "isActive">
+export type UserInsert = Omit<UserProfile, "id" | "updatedAt" | "avatarUrl" | "isActive"> & {
+  /** Senha obrigatória para e-mails fictícios. */
+  password?: string
+}
