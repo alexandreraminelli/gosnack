@@ -1,4 +1,5 @@
 import { APP_CONFIG } from "@/config/app.config"
+import { UserRole } from "@/types/user.types"
 
 /**
  * Verifica se um e-mail pertence ao domínio institucional.
@@ -22,10 +23,20 @@ export function isDevEmail(email: string): boolean {
 }
 
 /**
- * Verifica se o e-mail é aceito pelo sistema.
+ * Verifica se o e-mail é aceito para o papel do usuário.
+ *
+ * - **Admin, manager e employee:** aceitam apenas e-mails institucionais ou e-mails de desenvolvimento.
+ * - **Customers:** qualquer e-mail, institucional ou não.
  */
-export function isAllowedEmail(email: string): boolean {
-  return isInstitutionalEmail(email) || isDevEmail(email)
+export function isAllowedEmailForRole(email: string, role: UserRole): boolean {
+  const workerRoles: UserRole[] = ["admin", "manager", "employee"]
+
+  if (workerRoles.includes(role)) {
+    // Conta de trabalho: apenas e-mail institucional ou e-mail de desenvolvimento
+    return isInstitutionalEmail(email) || isDevEmail(email)
+  }
+  // Conta de cliente: qualquer e-mail é aceito
+  return true
 }
 
 /**

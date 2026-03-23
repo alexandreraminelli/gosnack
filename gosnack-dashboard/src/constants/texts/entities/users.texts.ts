@@ -103,7 +103,7 @@ export const USERS_TEXTS = {
     email: {
       required: "O e-mail é obrigatório.",
       invalid: "Forneça um e-mail válido.",
-      domain: `É necessário usar um e-mail institucional (${APP_CONFIG.email.emailDomain}).`,
+      domain: `É necessário usar um e-mail institucional (${APP_CONFIG.email.emailDomain}) para funcionários, gerentes e administradores.`,
     },
     password: {
       required: "A senha é obrigatória.",
