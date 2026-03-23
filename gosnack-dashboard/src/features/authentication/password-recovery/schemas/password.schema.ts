@@ -18,3 +18,8 @@ export const passwordSchema = z.object({
     .regex(REGEX_PATTERNS.digit, USERS_TEXTS.validation.password.number) // número
     .regex(REGEX_PATTERNS.specialChar, USERS_TEXTS.validation.password.specialChar), // caractere especial
 })
+
+/**
+ * Shape do campo de senha reutilizável em outros schemas.
+ */
+export const passwordFieldShape = passwordSchema.shape.password
