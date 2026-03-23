@@ -1,6 +1,7 @@
 "use client"
 
 import LoadingSpin from "@/components/shared/feedback/loading/loading-spin"
+import PasswordInput from "@/components/shared/fields/password-input"
 import { Button } from "@/components/ui/button"
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
@@ -12,10 +13,12 @@ import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
 import { useCreateUser } from "@/features/user-management/hooks/queries/user.mutations"
 import { createUserSchema } from "@/features/user-management/schemas/create-user.schema"
 import { USER_ROLES } from "@/types/user.types"
+import { shouldSkipInvite } from "@/utils/validation/email"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { useRouter } from "next/navigation"
-import { Controller, Resolver, useForm } from "react-hook-form"
+import { useEffect } from "react"
+import { Controller, Resolver, useForm, useWatch } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod/v4"
 
@@ -45,8 +48,20 @@ export default function CreateUserForm() {
       firstName: "",
       lastName: "",
       role: undefined,
+      password: "",
     },
   })
+
+  // Observar e-mail para exibir campo de senha condicionalmente
+  const emailValue = useWatch({ control: form.control, name: "email" })
+  const showPasswordField = shouldSkipInvite(emailValue)
+  // Limpar campo de senha quando ele não deve ser exibido
+  useEffect(() => {
+    if (!showPasswordField) {
+      form.resetField("password")
+      form.clearErrors("password")
+    }
+  }, [showPasswordField, form])
 
   /**
    * Função executada ao submeter o formulário de criar usuário.
@@ -177,7 +192,25 @@ export default function CreateUserForm() {
           )}
         />
 
-        {/* TODO: Senha (e-mail fictício) */}
+        {/* Senha (e-mail fictício) */}
+        {showPasswordField && (
+          <Controller
+            control={form.control}
+            name="password"
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                {/* Label Password */}
+                <FieldLabel htmlFor={field.name}>{USERS_TEXTS.fields.password}</FieldLabel>
+
+                {/* Input Password */}
+                <PasswordInput id={field.name} aria-invalid={fieldState.invalid} autoComplete="new-password" {...field} />
+
+                {/* Error Password */}
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              </Field>
+            )}
+          />
+        )}
       </FieldGroup>
 
       {/* Submit Button */}
