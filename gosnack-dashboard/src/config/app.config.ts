@@ -15,7 +15,7 @@ export const APP_CONFIG = {
     /**
      * Se o domínio de e-mail institucional é fictício (apenas para desenvolvimento).
      */
-    isFictitiousDomain: false,
+    isFictitiousDomain: true,
     /**
      * E-mail com acesso irrestrito (apenas desenvolvimento).
      */
