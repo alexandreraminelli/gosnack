@@ -5,11 +5,20 @@ import env from "@/lib/env"
  */
 export const APP_CONFIG = {
   /**
-   * Domínio de e-mail institucional permitido.
+   * Configurações de e-mail institucional.
    */
-  emailDomain: "colegioipsum.edu.br",
-  /**
-   * E-mail com acesso irrestrito (apenas desenvolvimento).
-   */
-  devEmails: env.devEmails,
+  email: {
+    /**
+     * Domínio de e-mail institucional permitido.
+     */
+    emailDomain: "@colegioipsum.edu.br",
+    /**
+     * Se o domínio de e-mail institucional é fictício (apenas para desenvolvimento).
+     */
+    isFictitiousDomain: false,
+    /**
+     * E-mail com acesso irrestrito (apenas desenvolvimento).
+     */
+    devEmails: env.devEmails,
+  },
 } as const

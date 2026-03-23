@@ -1,3 +1,5 @@
+import { APP_CONFIG } from "@/config/app.config"
+
 /**
  * Textos para gerenciamento de usuários.
  */
@@ -101,6 +103,7 @@ export const USERS_TEXTS = {
     email: {
       required: "O e-mail é obrigatório.",
       invalid: "Forneça um e-mail válido.",
+      domain: `É necessário usar um e-mail institucional (${APP_CONFIG.email.emailDomain}).`,
     },
     password: {
       required: "A senha é obrigatória.",

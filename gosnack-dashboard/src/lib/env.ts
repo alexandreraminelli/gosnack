@@ -14,6 +14,6 @@ const env = {
   },
 
   /** E-mails de teste com acesso irrestrito. */
-  devEmails: process.env.DEV_EMAILS?.split(",") ?? [],
+  devEmails: process.env.NEXT_PUBLIC_DEV_EMAILS?.split(",").map((email) => email.trim()) ?? [],
 } as const
 export default env
