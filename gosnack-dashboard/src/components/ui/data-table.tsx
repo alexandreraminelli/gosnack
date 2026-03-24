@@ -39,15 +39,15 @@ export function DataTable<TData, TValue>({ columns, data, emptyComponent }: Data
   })
 
   return (
-    <div>
+    <div className="overflow-hidden rounded-lg border">
       <Table>
         {/* Header */}
-        <TableHeader>
+        <TableHeader className="bg-sidebar">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="border-x">
                     {header.isPlaceholder
                       ? null // Renderiza apenas se não for um placeholder
                       : flexRender(header.column.columnDef.header, header.getContext())}
@@ -67,7 +67,7 @@ export function DataTable<TData, TValue>({ columns, data, emptyComponent }: Data
                 data-state={row.getIsSelected() && "selected"} // Estado de linha selecionada
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id} className="border-x">
                     {
                       // Renderiza o conteúdo da célula usando a função de renderização definida na coluna
                       flexRender(cell.column.columnDef.cell, cell.getContext())
