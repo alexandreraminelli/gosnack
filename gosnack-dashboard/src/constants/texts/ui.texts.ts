@@ -26,6 +26,9 @@ export const UI_TEXTS = {
     backToHome: "Voltar para o início",
 
     expandBreadcrumb: "Expandir navegação",
+
+    previous: "Página anterior",
+    next: "Próxima página",
   },
 
   status: {
