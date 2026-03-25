@@ -47,7 +47,7 @@ export function DataTable<TData, TValue>({ columns, data, emptyComponent }: Data
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id} className="border-x">
+                  <TableHead key={header.id}>
                     {header.isPlaceholder
                       ? null // Renderiza apenas se não for um placeholder
                       : flexRender(header.column.columnDef.header, header.getContext())}
@@ -67,7 +67,7 @@ export function DataTable<TData, TValue>({ columns, data, emptyComponent }: Data
                 data-state={row.getIsSelected() && "selected"} // Estado de linha selecionada
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="border-x">
+                  <TableCell key={cell.id}>
                     {
                       // Renderiza o conteúdo da célula usando a função de renderização definida na coluna
                       flexRender(cell.column.columnDef.cell, cell.getContext())

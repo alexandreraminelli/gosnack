@@ -11,6 +11,10 @@ export const UI_TEXTS = {
 
     details: "Ver detalhes",
     settings: "Configurações",
+
+    menu: {
+      open: "Abrir menu de ações",
+    },
   },
 
   loading: {

@@ -2,10 +2,15 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { ICONS } from "@/constants/icons"
 import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
+import { UI_TEXTS } from "@/constants/texts/ui.texts"
 import { UserProfile, UserRole } from "@/types/user.types"
-import { getInitials } from "@/utils/formatters/user.formatter"
+import { getFullName, getInitials } from "@/utils/formatters/user.formatter"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { ColumnDef } from "@tanstack/react-table"
 
 /**
@@ -61,6 +66,58 @@ export const userColumns: ColumnDef<UserProfile>[] = [
     cell: ({ row }) => {
       const isActive = row.original.isActive
       return <Badge variant={isActive ? "secondary" : "destructive"}>{isActive ? ENTITIES_TEXTS.commonAttributes.status.enabled : ENTITIES_TEXTS.commonAttributes.status.disabled}</Badge>
+    },
+  },
+
+  // Actions
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      const user = row.original
+
+      return (
+        <DropdownMenu>
+          {/* Trigger Button */}
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost">
+              <HugeiconsIcon icon={ICONS.actions.more.vertical} />
+              <span className="sr-only">{UI_TEXTS.actions.menu.open}</span>
+            </Button>
+          </DropdownMenuTrigger>
+
+          {/* Dropdown Content */}
+          <DropdownMenuContent align="end">
+            {/* Nome */}
+            <DropdownMenuLabel className="truncate">{getFullName(user.firstName, user.lastName)}</DropdownMenuLabel>
+
+            {/* Editar */}
+            <DropdownMenuItem>
+              <HugeiconsIcon icon={ICONS.actions.edit} />
+              <span>{UI_TEXTS.actions.edit}</span>
+            </DropdownMenuItem>
+
+            {/* Ver detalhes */}
+            <DropdownMenuItem>
+              <HugeiconsIcon icon={ICONS.actions.moreDetails} />
+              <span>{UI_TEXTS.actions.details}</span>
+            </DropdownMenuItem>
+
+            {/* Desativar/ativar */}
+            <DropdownMenuItem>
+              <HugeiconsIcon icon={user.isActive ? ICONS.status.disable : ICONS.status.enable} />
+              <span>{ENTITIES_TEXTS.commonAttributes.status[user.isActive ? "disable" : "enable"]}</span>
+            </DropdownMenuItem>
+
+            <DropdownMenuSeparator />
+
+            {/* Excluir */}
+            <DropdownMenuItem variant="destructive">
+              <HugeiconsIcon icon={ICONS.actions.delete} />
+              <span>{UI_TEXTS.actions.delete}</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )
     },
   },
 ]

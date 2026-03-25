@@ -26,6 +26,8 @@ import {
   ManagerIcon,
   MenuRestaurantIcon,
   Moon02Icon,
+  MoreHorizontalIcon,
+  MoreVerticalIcon,
   Restaurant02Icon,
   SchoolIcon,
   Settings01Icon,
@@ -53,6 +55,11 @@ export const ICONS = {
     edit: Edit04Icon,
 
     loading: Loading03Icon,
+
+    more: {
+      horizontal: MoreHorizontalIcon,
+      vertical: MoreVerticalIcon,
+    },
 
     moreDetails: InformationCircleIcon,
     openPage: Share04Icon,
