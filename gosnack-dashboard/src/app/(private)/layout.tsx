@@ -9,11 +9,11 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
   return (
     <div>
       <SidebarProvider className="flex flex-col">
-        <div className="flex flex-1">
+        <div className="flex flex-1 min-w-0">
           {/* Sidebar */}
           <AppSidebar />
 
-          <div className="flex flex-col flex-1">
+          <div className="flex flex-col flex-1 min-w-0">
             {/* Cabeçalho */}
             <AppHeader />
 

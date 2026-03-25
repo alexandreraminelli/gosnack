@@ -39,7 +39,7 @@ export function DataTable<TData, TValue>({ columns, data, emptyComponent }: Data
   })
 
   return (
-    <div className="overflow-hidden rounded-lg border">
+    <div className="min-w-0 overflow-hidden rounded-lg border">
       <Table>
         {/* Header */}
         <TableHeader className="bg-sidebar">
@@ -57,7 +57,6 @@ export function DataTable<TData, TValue>({ columns, data, emptyComponent }: Data
             </TableRow>
           ))}
         </TableHeader>
-
         {/* Body */}
         <TableBody>
           {table.getRowModel().rows?.length ? (
