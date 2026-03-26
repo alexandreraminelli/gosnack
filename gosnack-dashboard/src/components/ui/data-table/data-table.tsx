@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { DataTablePagination } from "@/components/ui/data-table/data-table-pagination"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { ICONS } from "@/constants/icons"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
@@ -118,6 +119,9 @@ export function DataTable<TData, TValue>({ columns, data, emptyComponent }: Data
           <span className="sr-only">{UI_TEXTS.navigation.next}</span>
         </Button>
       </div>
+
+      {/* Controle de paginação */}
+      <DataTablePagination table={table} />
     </div>
   )
 }

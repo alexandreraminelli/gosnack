@@ -3,7 +3,7 @@
 import EmptyState from "@/components/shared/feedback/empty-state"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
 import { userColumns } from "@/features/user-management/components/table/users-columns"
-import { DataTable } from "@/components/ui/data-table"
+import { DataTable } from "@/components/ui/data-table/data-table"
 import { useUsers } from "@/features/user-management/hooks/queries/user.queries"
 
 /**
