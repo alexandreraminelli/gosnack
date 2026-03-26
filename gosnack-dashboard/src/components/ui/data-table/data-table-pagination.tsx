@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { ICONS } from "@/constants/icons"
 import { PAGINATION_TEXTS } from "@/constants/texts/pagination.texts"
 import { UI_TEXTS } from "@/constants/texts/ui.texts"
@@ -67,6 +68,8 @@ function PaginationControls<TData>({ table }: DataTablePaginationProps<TData>) {
  * Botões para avançar e voltar páginas.
  */
 function PaginationButton<TData>({ table, direction }: DataTablePaginationProps<TData> & { direction: "previous" | "next" | "first" | "last" }) {
+  const currentPage = table.getState().pagination.pageIndex + 1
+
   type DirectionConfig = {
     icon: IconSvgElement
     label: string
@@ -94,14 +97,14 @@ function PaginationButton<TData>({ table, direction }: DataTablePaginationProps<
     first: {
       icon: ICONS.arrow.doubleLeft,
       label: UI_TEXTS.navigation.first,
-      canNavigate: true,
+      canNavigate: !(currentPage === 1),
       onClick: () => table.firstPage(),
     },
     // Última página
     last: {
       icon: ICONS.arrow.doubleRight,
-      label: UI_TEXTS.navigation.next,
-      canNavigate: true,
+      label: UI_TEXTS.navigation.last,
+      canNavigate: !(currentPage === table.getPageCount()),
       onClick: () => table.lastPage(),
     },
   }
@@ -109,15 +112,20 @@ function PaginationButton<TData>({ table, direction }: DataTablePaginationProps<
   const config = directionConfig[direction]
 
   return (
-    <Button
-      variant="outline"
-      size="icon-sm"
-      onClick={config.onClick} // Chamar função do TanStack Table
-      disabled={!config.canNavigate} // Desabilitar se não puder executar navegação
-    >
-      <HugeiconsIcon icon={config.icon} /> {/* Seta */}
-      <span className="sr-only">{config.label}</span>
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="outline"
+          size="icon-sm"
+          onClick={config.onClick} // Chamar função do TanStack Table
+          disabled={!config.canNavigate} // Desabilitar se não puder executar navegação
+        >
+          <HugeiconsIcon icon={config.icon} /> {/* Seta */}
+        </Button>
+      </TooltipTrigger>
+      {/* Label */}
+      <TooltipContent>{config.label}</TooltipContent>
+    </Tooltip>
   )
 }
 
