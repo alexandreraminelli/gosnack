@@ -20,11 +20,12 @@ interface DataTablePaginationProps<TData> {
  */
 export function DataTablePagination<TData>({ table }: DataTablePaginationProps<TData>) {
   return (
-    <footer className="flex flex-row gap-3.5 flex-wrap items-center justify-between px-2">
+    <footer className="flex *:flex-1 flex-col md:flex-row flex-wrap gap-3.5 items-center">
       {/* Quantidade de rows selecionadas */}
       <SelectedRowCount table={table} />
 
-      <div className="flex items-center space-x-6 lg:space-x-8">
+      {/* Controladores */}
+      <div className="flex flex-row max-sm:flex-wrap gap-3.5 items-center justify-center">
         {/* Configurar quantidade de linhas por página */}
         <PageSizeSelect table={table} />
 
@@ -129,7 +130,7 @@ function SelectedRowCount<TData>({ table }: DataTablePaginationProps<TData>) {
   /** Quantidades de linhas no total. */
   const totalRowCount = table.getFilteredRowModel().rows.length
 
-  return <div className="flex-1 min-w-2xs truncate text-sm text-muted-foreground">{PAGINATION_TEXTS.selectedRowCount(selectedRowCount, totalRowCount)}</div>
+  return <div className="w-fit min-w-40 truncate text-sm text-muted-foreground text-center sm:text-start">{PAGINATION_TEXTS.selectedRowCount(selectedRowCount, totalRowCount)}</div>
 }
 
 /**
@@ -144,7 +145,7 @@ function PageSizeSelect<TData>({ table }: DataTablePaginationProps<TData>) {
   return (
     <div className="flex items-center space-x-2">
       {/* Label */}
-      <p className="text-sm font-medium">{PAGINATION_TEXTS.rowsPerPage.label}</p>
+      <p className="text-sm font-medium truncate">{PAGINATION_TEXTS.rowsPerPage.label}</p>
 
       {/* Select de quantidades de linhas por página */}
       <Select
