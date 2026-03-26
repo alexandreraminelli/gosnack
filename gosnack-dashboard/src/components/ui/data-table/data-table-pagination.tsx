@@ -1,5 +1,9 @@
+import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { ICONS } from "@/constants/icons"
 import { PAGINATION_TEXTS } from "@/constants/texts/pagination.texts"
+import { UI_TEXTS } from "@/constants/texts/ui.texts"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { type Table } from "@tanstack/react-table"
 
 /**
@@ -21,8 +25,52 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
       <div className="flex items-center space-x-6 lg:space-x-8">
         {/* Configurar quantidade de linhas por página */}
         <PageSizeSelect table={table} />
+
+        {/* Controlador de paginação */}
+        <PaginationControls table={table} />
       </div>
     </footer>
+  )
+}
+
+/**
+ * Controlador de paginação com a página atual e o botão de avançar/voltar.
+ */
+function PaginationControls<TData>({ table }: DataTablePaginationProps<TData>) {
+  const currentPage = table.getState().pagination.pageIndex + 1
+  const totalPageCount = table.getPageCount()
+
+  return (
+    <>
+      {/* Botão de voltar */}
+      <PaginationButton table={table} direction="previous" />
+
+      {/* Índice da página atual */}
+      <div className="flex items-center justify-center text-sm font-medium">{PAGINATION_TEXTS.currentPage(currentPage, totalPageCount)}</div>
+
+      {/* Botão de avançar */}
+      <PaginationButton table={table} direction="next" />
+    </>
+  )
+}
+
+/**
+ * Botões para avançar e voltar páginas.
+ */
+function PaginationButton<TData>({ table, direction }: DataTablePaginationProps<TData> & { direction: "previous" | "next" }) {
+  return (
+    <Button
+      variant="outline"
+      size="icon-sm"
+      // Chamar função para avançar ou voltar:
+      onClick={direction === "previous" ? () => table.previousPage() : () => table.nextPage()}
+      // Desabilitar se não puder avançar ou voltar:
+      disabled={direction === "previous" ? !table.getCanPreviousPage() : !table.getCanNextPage()}
+    >
+      {/* Seta */}
+      <HugeiconsIcon icon={direction === "previous" ? ICONS.arrow.left : ICONS.arrow.right} />
+      <span className="sr-only">{UI_TEXTS.navigation.next}</span>
+    </Button>
   )
 }
 

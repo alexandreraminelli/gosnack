@@ -1,12 +1,8 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { DataTablePagination } from "@/components/ui/data-table/data-table-pagination"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { ICONS } from "@/constants/icons"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
-import { UI_TEXTS } from "@/constants/texts/ui.texts"
-import { HugeiconsIcon } from "@hugeicons/react"
 import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table"
 
 /**
@@ -93,31 +89,6 @@ export function DataTable<TData, TValue>({ columns, data, emptyComponent }: Data
             )}
           </TableBody>
         </Table>
-      </div>
-
-      {/* Botões de controle de paginação */}
-      <div className="flex items-center justify-between">
-        {/* Botão de voltar */}
-        <Button
-          variant="outline"
-          size="icon-sm"
-          onClick={() => table.previousPage()} // Chama a função de página anterior do TanStack Table
-          disabled={!table.getCanPreviousPage()} // Desabilitar se não houver página anterior
-        >
-          <HugeiconsIcon icon={ICONS.arrow.left} />
-          <span className="sr-only">{UI_TEXTS.navigation.previous}</span>
-        </Button>
-
-        {/* Botão de avançar */}
-        <Button
-          variant="outline"
-          size="icon-sm"
-          onClick={() => table.nextPage()} // Chama a função de próxima página do TanStack Table
-          disabled={!table.getCanNextPage()} // Desabilitar se não houver próxima página
-        >
-          <HugeiconsIcon icon={ICONS.arrow.right} />
-          <span className="sr-only">{UI_TEXTS.navigation.next}</span>
-        </Button>
       </div>
 
       {/* Controle de paginação */}
