@@ -1,9 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { UI_TEXTS } from "@/constants/texts/ui.texts"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { ICONS } from "@/constants/icons"
+import { UI_TEXTS } from "@/constants/texts/ui.texts"
 import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react"
 import { useTheme } from "next-themes"
 
@@ -36,7 +36,7 @@ export function ModeToggle({ size = "icon", ...props }: React.ComponentPropsWith
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size={size} {...props}>
           {/* Ícone */}
-          <HugeiconsIcon icon={theme === "light" || resolvedTheme === "light" ? ICONS.theme.light : ICONS.theme.dark} className="absolute h-7 w-7" />
+          <HugeiconsIcon icon={theme === "light" || resolvedTheme === "light" ? ICONS.theme.light : ICONS.theme.dark} />
           <span className="sr-only">{UI_TEXTS.theme.toggleTheme}</span>
         </Button>
       </DropdownMenuTrigger>
@@ -44,18 +44,20 @@ export function ModeToggle({ size = "icon", ...props }: React.ComponentPropsWith
       {/* Opções de tema */}
       <DropdownMenuContent className="space-y-0.5">
         <DropdownMenuLabel>{UI_TEXTS.theme.label}</DropdownMenuLabel>
+
         {/* Opções de tema */}
-        {themeOptions.map((option) => (
-          <DropdownMenuItem
-            key={option.value}
-            onClick={() => setTheme(option.value)} // aplicar tema
-            className={theme === option.value ? "bg-accent/75" : ""} // destacar tema ativo
-          >
-            {/* Ícone e texto */}
-            <HugeiconsIcon icon={option.icon} />
-            {option.label}
-          </DropdownMenuItem>
-        ))}
+        <DropdownMenuRadioGroup
+          value={theme}
+          onValueChange={(value) => setTheme(value)} // aplicar tema
+        >
+          {themeOptions.map((option) => (
+            <DropdownMenuRadioItem key={option.value} value={option.value}>
+              {/* Ícone e texto */}
+              <HugeiconsIcon icon={option.icon} />
+              {option.label}
+            </DropdownMenuRadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   )
