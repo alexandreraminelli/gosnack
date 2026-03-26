@@ -4,7 +4,9 @@ import {
   Alert02Icon,
   ArrowDown01Icon,
   ArrowLeft01Icon,
+  ArrowLeftDoubleIcon,
   ArrowRight01Icon,
+  ArrowRightDoubleIcon,
   ArrowTurnBackwardIcon,
   ArrowUp01Icon,
   Calendar03Icon,
@@ -71,6 +73,9 @@ export const ICONS = {
     down: ArrowDown01Icon,
     left: ArrowLeft01Icon,
     right: ArrowRight01Icon,
+
+    doubleLeft: ArrowLeftDoubleIcon,
+    doubleRight: ArrowRightDoubleIcon,
 
     back: ArrowTurnBackwardIcon,
   },

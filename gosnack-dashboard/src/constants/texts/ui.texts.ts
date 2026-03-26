@@ -29,6 +29,8 @@ export const UI_TEXTS = {
 
     previous: "Página anterior",
     next: "Próxima página",
+    first: "Primeira página",
+    last: "Última página",
   },
 
   status: {
