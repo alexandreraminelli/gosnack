@@ -5,12 +5,18 @@ import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
 import { userColumns } from "@/features/user-management/components/table/users-columns"
 import { DataTable } from "@/components/ui/data-table/data-table"
 import { useUsers } from "@/features/user-management/hooks/queries/user.queries"
+import { Input } from "@/components/ui/input"
+import { useState } from "react"
 
 /**
  * Tabela de usuários do sistema.
  */
 export default function UsersTable() {
+  /** Lista de usuários. */
   const { data: users = [], isLoading, isError } = useUsers()
+
+  /** State do filtro de e-mail. */
+  const [emailFilter, setEmailFilter] = useState("")
 
   // Skeleton durante carregamento
   if (isLoading) {
@@ -24,11 +30,26 @@ export default function UsersTable() {
   }
 
   return (
-    <DataTable
-      columns={userColumns}
-      data={users}
-      // Mensagem de estado vazio:
-      emptyComponent={<EmptyState title={USERS_TEXTS.empty.title} description={[USERS_TEXTS.empty.description]} />}
-    />
+    <div className="space-y-4">
+      {/* Filtro de e-mail */}
+      <div className="flex items-center py-4">
+        <Input
+          placeholder={USERS_TEXTS.filter.email}
+          // Valor do filtro:
+          value={emailFilter}
+          // Atualizar filtro ao digitar:
+          onChange={(event) => setEmailFilter(event.target.value)}
+        />
+      </div>
+
+      {/* Tabela de usuários */}
+      <DataTable
+        columns={userColumns}
+        data={users.filter(u => u.email.includes(emailFilter))}
+        // Mensagem de estado vazio:
+        emptyComponent={<EmptyState title={USERS_TEXTS.empty.title} description={[USERS_TEXTS.empty.description]} />}
+      />
+    </div>
   )
 }
+

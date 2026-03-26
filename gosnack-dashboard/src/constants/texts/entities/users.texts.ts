@@ -28,7 +28,7 @@ export const USERS_TEXTS = {
 
   empty: {
     title: "Nenhum usuário encontrado",
-    description: "Ainda não há usuários cadastrados no sistema.",
+    description: "Tente limpar os filtros e buscar novamente.",
   },
 
   error: {
@@ -65,6 +65,11 @@ export const USERS_TEXTS = {
       placeholder: "Selecione o tipo de usuário",
     },
     status: "Status",
+  },
+
+  filter: {
+    name: "Pesquisar nome...",
+    email: "Pesquisar e-mail...",
   },
 
   loading: {

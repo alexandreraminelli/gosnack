@@ -3,7 +3,7 @@
 import { DataTablePagination } from "@/components/ui/data-table/data-table-pagination"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
-import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable } from "@tanstack/react-table"
+import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable } from "@tanstack/react-table"
 import { useState } from "react"
 
 /**
@@ -33,10 +33,13 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({ columns, data, emptyComponent }: DataTableProps<TData, TValue>) {
   /** Estado da ordenação. */
   const [sorting, setSorting] = useState<SortingState>([])
+  /** Estado do filtro. */
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
   /**
    * Configuração da tabela usando o hook `useReactTable` do TanStack Table, passando os dados e as colunas, e definindo o modelo de linha principal. A tabela é renderizada com base nessa configuração, permitindo flexibilidade na definição das colunas e no conteúdo das células.
    */
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,
@@ -45,8 +48,13 @@ export function DataTable<TData, TValue>({ columns, data, emptyComponent }: Data
     // Configuração da ordenação:
     onSortingChange: setSorting, // atualizar ordenação
     getSortedRowModel: getSortedRowModel(), // Modelo de linha para suporte à ordenação (se necessário)
+    // Configuração da filtragem:
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
+
     state: {
       sorting, // estado de ordenação
+      columnFilters, // estado de filtro
     },
   })
 
