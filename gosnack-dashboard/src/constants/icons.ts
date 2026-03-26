@@ -58,6 +58,7 @@ export const ICONS = {
     delete: Delete02Icon,
     edit: Edit04Icon,
 
+    cancel: Cancel01Icon,
     loading: Loading03Icon,
 
     more: {
@@ -132,8 +133,8 @@ export const ICONS = {
   },
 
   sorting: {
-    asc: SortByDown02Icon,
-    desc: SortByUp02Icon,
+    asc: SortByUp02Icon,
+    desc: SortByDown02Icon,
   },
 
   status: {

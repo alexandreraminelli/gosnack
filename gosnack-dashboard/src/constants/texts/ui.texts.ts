@@ -33,6 +33,12 @@ export const UI_TEXTS = {
     last: "Última página",
   },
 
+  sorting: {
+    asc: "Ordem crescente",
+    desc: "Ordem decrescente",
+    none: "Sem ordenação",
+  },
+
   status: {
     loading: "Carregando...",
     error: "Ocorreu um erro. Por favor, tente novamente mais tarde.",
