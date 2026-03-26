@@ -3,7 +3,8 @@
 import { DataTablePagination } from "@/components/ui/data-table/data-table-pagination"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { USERS_TEXTS } from "@/constants/texts/entities/users.texts"
-import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table"
+import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable } from "@tanstack/react-table"
+import { useState } from "react"
 
 /**
  * Props de `DataTable`.
@@ -30,6 +31,9 @@ interface DataTableProps<TData, TValue> {
  * @see https://ui.shadcn.com/docs/components/radix/data-table
  */
 export function DataTable<TData, TValue>({ columns, data, emptyComponent }: DataTableProps<TData, TValue>) {
+  /** Estado da ordenação. */
+  const [sorting, setSorting] = useState<SortingState>([])
+
   /**
    * Configuração da tabela usando o hook `useReactTable` do TanStack Table, passando os dados e as colunas, e definindo o modelo de linha principal. A tabela é renderizada com base nessa configuração, permitindo flexibilidade na definição das colunas e no conteúdo das células.
    */
@@ -38,6 +42,12 @@ export function DataTable<TData, TValue>({ columns, data, emptyComponent }: Data
     columns,
     getCoreRowModel: getCoreRowModel(), // Modelo de linha principal para renderização básica da tabela
     getPaginationRowModel: getPaginationRowModel(), // Modelo de linha para suporte à paginação (se necessário)
+    // Configuração da ordenação:
+    onSortingChange: setSorting, // atualizar ordenação
+    getSortedRowModel: getSortedRowModel(), // Modelo de linha para suporte à ordenação (se necessário)
+    state: {
+      sorting, // estado de ordenação
+    },
   })
 
   return (

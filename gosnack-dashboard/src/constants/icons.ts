@@ -34,6 +34,8 @@ import {
   SchoolIcon,
   Settings01Icon,
   Share04Icon,
+  SortByDown02Icon,
+  SortByUp02Icon,
   Sun03Icon,
   TextIcon,
   Tick01Icon,
@@ -127,6 +129,11 @@ export const ICONS = {
   time: {
     calendar: Calendar03Icon,
     clock: Clock01Icon,
+  },
+
+  sorting: {
+    asc: SortByDown02Icon,
+    desc: SortByUp02Icon,
   },
 
   status: {

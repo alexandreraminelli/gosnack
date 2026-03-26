@@ -3,6 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import SortableHeader from "@/components/ui/data-table/sortable-header"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { ICONS } from "@/constants/icons"
 import { ENTITIES_TEXTS } from "@/constants/texts/entities/entities.texts"
@@ -21,7 +22,8 @@ export const userColumns: ColumnDef<UserProfile>[] = [
   // Nome completo
   {
     id: "fullName",
-    header: USERS_TEXTS.fields.name,
+    accessorFn: (row) => `${row.firstName} ${row.lastName}`,
+    header: ({ column }) => <SortableHeader label={USERS_TEXTS.fields.name} column={column} />,
     cell: ({ row }) => {
       // Obter nome
       const { firstName, lastName, avatarUrl } = row.original
@@ -46,7 +48,7 @@ export const userColumns: ColumnDef<UserProfile>[] = [
   // E-mail
   {
     accessorKey: "email",
-    header: USERS_TEXTS.fields.email,
+    header: ({ column }) => <SortableHeader label={USERS_TEXTS.fields.email} column={column} />,
   },
 
   // Papel do usuário
