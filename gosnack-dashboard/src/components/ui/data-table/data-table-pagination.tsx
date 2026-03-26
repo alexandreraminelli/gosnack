@@ -16,7 +16,7 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
   return (
     <footer className="flex items-center justify-between px-2">
       {/* Quantidade de rows selecionadas */}
-      <div className="flex-1 text-sm text-muted-foreground">{PAGINATION_TEXTS.selectedRowCount(table.getFilteredSelectedRowModel().rows.length, table.getFilteredRowModel().rows.length)}</div>
+      <SelectedRowCount table={table} />
 
       <div className="flex items-center space-x-6 lg:space-x-8">
         {/* Configurar quantidade de linhas por página */}
@@ -26,6 +26,9 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
   )
 }
 
+/**
+ * Quantidade de linhas selecionadas.
+ */
 function SelectedRowCount<TData>({ table }: DataTablePaginationProps<TData>) {
   /** Quantidade de linhas selecionadas. */
   const selectedRowCount = table.getFilteredSelectedRowModel().rows.length
