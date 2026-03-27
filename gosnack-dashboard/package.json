@@ -7,9 +7,11 @@
     "db:push": "supabase db push",
     "db:reset": "supabase db reset",
     "db:status": "supabase migration list",
-    "dev": "next dev",
+    "dev": "portless run --name gosnack next dev",
+    "dev:port": "next dev",
     "build": "next build",
     "start": "next start",
+    "preview": "pnpm run build && pnpm run start",
     "lint": "eslint"
   },
   "dependencies": {
