@@ -25,6 +25,7 @@ import {
   LockPasswordIcon,
   LoginSquare01Icon,
   LogoutSquare01Icon,
+  MailSearch01Icon,
   ManagerIcon,
   MenuRestaurantIcon,
   Moon02Icon,
@@ -32,6 +33,7 @@ import {
   MoreVerticalIcon,
   Restaurant02Icon,
   SchoolIcon,
+  Search02Icon,
   Settings01Icon,
   Share04Icon,
   SortByDown02Icon,
@@ -45,6 +47,7 @@ import {
   UserBlock02Icon,
   UserCheck02Icon,
   UserGroup03Icon,
+  UserSearch02Icon,
   ViewIcon,
   ViewOffSlashIcon,
 } from "@hugeicons/core-free-icons"
@@ -130,6 +133,12 @@ export const ICONS = {
   time: {
     calendar: Calendar03Icon,
     clock: Clock01Icon,
+  },
+
+  search: {
+    icon: Search02Icon,
+    user: UserSearch02Icon,
+    email: MailSearch01Icon,
   },
 
   sorting: {

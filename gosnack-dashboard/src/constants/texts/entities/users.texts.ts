@@ -68,8 +68,14 @@ export const USERS_TEXTS = {
   },
 
   filter: {
-    name: "Pesquisar nome...",
-    email: "Pesquisar e-mail...",
+    name: {
+      label: "Filtrar por nome",
+      placeholder: "Pesquisar nome...",
+    },
+    email: {
+      label: "Filtrar por e-mail",
+      placeholder: "Pesquisar e-mail...",
+    },
   },
 
   loading: {
