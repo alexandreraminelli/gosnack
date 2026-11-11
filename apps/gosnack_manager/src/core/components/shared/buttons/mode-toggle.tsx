@@ -2,7 +2,7 @@
 
 import { ICONS } from "@/constants/icons";
 import { Button } from "@/core/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/core/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/core/components/ui/dropdown-menu";
 import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react";
 import { useTheme } from "next-themes";
 
@@ -75,18 +75,16 @@ export function ModeToggle({ size = "icon", ...props }: React.ComponentPropsWith
           </DropdownMenuLabel>
 
           {/* Opções de tema */}
-          {themeOptions.map((option) => (
-            <DropdownMenuItem
-              key={option.value}
-              onClick={() => setTheme(option.value)} // Aplicar tema ao app
-              className={theme === option.value ? "bg-accent/75" : ""} // destacar tema atual
-            >
-              {/* Ícone */}
-              <HugeiconsIcon icon={option.icon} />
-              {/* Label */}
-              <span>{option.label}</span>
-            </DropdownMenuItem>
-          ))}
+          <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
+            {themeOptions.map((option) => (
+              <DropdownMenuRadioItem value={option.value} key={option.value}>
+                {/* Ícone */}
+                <HugeiconsIcon icon={option.icon} />
+                {/* Label */}
+                <span>{option.label}</span>
+              </DropdownMenuRadioItem>
+            ))}
+          </DropdownMenuRadioGroup>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
