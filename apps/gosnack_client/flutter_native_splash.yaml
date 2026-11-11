@@ -1,0 +1,41 @@
+# ---------------------------------------------------------------------------- #
+#                             Flutter Native Splash                            #
+# ---------------------------------------------------------------------------- #
+
+# Gerar: dart run flutter_native_splash:create
+# Remover: dart run flutter_native_splash:remove
+
+flutter_native_splash:
+  # Plataformas -------------------------------------------------------------- #
+  android: true
+  ios: true
+  web: false
+
+  # Background-Color --------------------------------------------------------- #
+  color: "#FAFAFA"
+  color_dark: "#18181B"
+
+  # Logo --------------------------------------------------------------------- #
+  image: assets/branding/splash_logo.png
+
+  # Branding ----------------------------------------------------------------- #
+  branding: assets/branding/branding_black.png
+  branding_dark: assets/branding/branding_white.png
+  branding_bottom_padding: 36
+
+  # Android 12 --------------------------------------------------------------- #
+  android_12:
+    # Background-Color ------------------------------------------------------- #
+    color: "#FAFAFA"
+    color_dark: "#18181B"
+
+    # Logo ------------------------------------------------------------------- #
+    image: assets/branding/splash_logo.png
+
+    # Branding --------------------------------------------------------------- #
+    branding: assets/branding/branding_black.png
+    branding_dark: assets/branding/branding_white.png
+
+    # Circle Icon Color ------------------------------------------------------ #
+    icon_background_color: "#18181B"
+    icon_background_color_dark: "#FAFAFA"
