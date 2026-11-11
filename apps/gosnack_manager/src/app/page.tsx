@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/core/components/shared/buttons/mode-toggle";
 import { Button } from "@/core/components/ui/button";
 
 export default function HomePage() {
@@ -6,6 +7,8 @@ export default function HomePage() {
       <h1 className="text-3xl font-bold">GoSnack Manager</h1>
 
       <Button>Exemplo de botão</Button>
+
+      <ModeToggle />
     </div>
   );
 }
