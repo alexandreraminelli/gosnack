@@ -1,0 +1,28 @@
+# App Properties ------------------------------------------------------------- #
+name: gosnack_client
+description: "Aplicativo de pedidos para lanchonetes escolares."
+publish_to: "none"
+version: 0.1.0+1
+
+# Environment ---------------------------------------------------------------- #
+environment:
+  sdk: ^3.13.7 # Versão mínima do Dart
+
+# Dependencies --------------------------------------------------------------- #
+dependencies:
+  flutter:
+    sdk: flutter
+
+# Dev Dependencies ----------------------------------------------------------- #
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+# Flutter Configuration ------------------------------------------------------ #
+flutter:
+  uses-material-design: true
+
+  # Assets ------------------------------------------------------------------- #
+
+  # Fonts -------------------------------------------------------------------- #
