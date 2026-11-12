@@ -1,4 +1,8 @@
 {
+  "logo": {
+    "alt": "Logo do GoSnack"
+  },
+
   "theme": {
     "toggle": "Alterar tema",
     "label": "Tema",
