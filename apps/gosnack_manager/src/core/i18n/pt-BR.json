@@ -1,0 +1,14 @@
+{
+  "theme": {
+    "toggle": "Alterar tema",
+    "label": "Tema",
+    "options": {
+      "system": "Sistema",
+      "light": "Claro",
+      "dark": "Escuro"
+    }
+  },
+  "metadata": {
+    "description": "Plataforma de gestão de lanchonetes escolares do colégio Logoipsum."
+  }
+}

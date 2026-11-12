@@ -1,5 +1,16 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
+/**
+ * Suporte a internacionalização para o Next.js.
+ */
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
+/**
+ * Configuração do Next.js.
+ *
+ * @see https://nextjs.org/docs/app/api-reference/config/next-config-js
+ */
 const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
@@ -17,4 +28,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

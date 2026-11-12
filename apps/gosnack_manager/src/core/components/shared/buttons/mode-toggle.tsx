@@ -2,15 +2,15 @@
 
 import { ICONS } from "@/constants/icons";
 import { Button } from "@/core/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/core/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/core/components/ui/dropdown-menu";
 import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
 /**
  * Tipagem de opções de tema.
  */
 interface ThemeOption {
-  label: string;
   value: "system" | "light" | "dark";
   icon: IconSvgElement;
 }
@@ -19,19 +19,15 @@ interface ThemeOption {
  * Opções de tema.
  */
 const themeOptions: ThemeOption[] = [
-  // TODO: Extrair strings de texto para constantes
   {
-    label: "Sistema",
     value: "system",
     icon: ICONS.theme.system,
   },
   {
-    label: "Claro",
     value: "light",
     icon: ICONS.theme.light,
   },
   {
-    label: "Escuro",
     value: "dark",
     icon: ICONS.theme.dark,
   },
@@ -41,6 +37,9 @@ const themeOptions: ThemeOption[] = [
  * Botão de alternância de tema.
  */
 export function ModeToggle({ size = "icon", ...props }: React.ComponentPropsWithRef<typeof Button>) {
+  // Textos
+  const texts = useTranslations("core.theme");
+
   // Estado do tema
   const { theme, setTheme, resolvedTheme } = useTheme();
 
@@ -57,10 +56,7 @@ export function ModeToggle({ size = "icon", ...props }: React.ComponentPropsWith
             <HugeiconsIcon icon={currentThemeIcon} />
 
             {/* Label */}
-            <span className="sr-only">
-              {/* TODO: Extrair strings de texto para constantes */}
-              {"Alterar Tema"}
-            </span>
+            <span className="sr-only">{texts("toggle")}</span>
           </Button>
         }
       />
@@ -69,10 +65,7 @@ export function ModeToggle({ size = "icon", ...props }: React.ComponentPropsWith
       <DropdownMenuContent>
         <DropdownMenuGroup>
           {/* Label */}
-          <DropdownMenuLabel>
-            {/* TODO: Extrair texto para constante */}
-            {"Tema"}
-          </DropdownMenuLabel>
+          <DropdownMenuLabel>{texts("label")}</DropdownMenuLabel>
 
           {/* Opções de tema */}
           <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
@@ -81,7 +74,7 @@ export function ModeToggle({ size = "icon", ...props }: React.ComponentPropsWith
                 {/* Ícone */}
                 <HugeiconsIcon icon={option.icon} />
                 {/* Label */}
-                <span>{option.label}</span>
+                <span>{texts(`options.${option.value}`)}</span>
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>
