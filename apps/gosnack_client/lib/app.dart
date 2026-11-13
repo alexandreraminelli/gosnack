@@ -9,8 +9,12 @@ class GoSnackApp extends StatelessWidget {
   // Build Method ----------------------------------------------------------- //
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('GoSnack Client'))),
+    return MaterialApp(
+      // Theme -------------------------------------------------------------- //
+      // TODO(Theme): Extrair ThemeData para arquivo separado.
+      theme: ThemeData(fontFamily: 'Geist'),
+
+      home: const Scaffold(body: Center(child: Text('GoSnack Client'))),
     );
   }
 }
