@@ -7,6 +7,7 @@ version: 0.1.0+1
 # Environment ---------------------------------------------------------------- #
 environment:
   sdk: ^3.13.7 # Versão mínima do Dart
+  flutter: ^3.47.9 # Versão mínima do Flutter
 
 # Dependencies --------------------------------------------------------------- #
 dependencies:
