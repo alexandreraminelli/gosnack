@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gosnack_client/core/theme/colors/color_schemes.dart';
 
 /// Widget raiz do aplicativo GoSnack.
 class GoSnackApp extends StatelessWidget {
@@ -12,7 +13,10 @@ class GoSnackApp extends StatelessWidget {
     return MaterialApp(
       // Theme -------------------------------------------------------------- //
       // TODO(Theme): Extrair ThemeData para arquivo separado.
-      theme: ThemeData(fontFamily: 'Geist'),
+      theme: ThemeData(
+        fontFamily: 'Geist',
+        colorScheme: AppColorSchemes.light,
+      ),
 
       home: const Scaffold(body: Center(child: Text('GoSnack Client'))),
     );
