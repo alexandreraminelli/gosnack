@@ -12,8 +12,8 @@ abstract final class AppColors {
   static const Color white = Colors.white;
   static const Color black = Colors.black;
 
-  static const Color whiteForeground = Color(0xFF11181C);
-  static const Color blackForeground = Color(0xFFECEDEE);
+  static const Color onWhite = Color(0xFF11181C);
+  static const Color onBlack = Color(0xFFECEDEE);
 
   // Transparências --------------------------------------------------------- //
 

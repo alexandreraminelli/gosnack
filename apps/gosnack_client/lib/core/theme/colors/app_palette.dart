@@ -59,7 +59,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
   /// Paleta de cores no modo claro.
   static const light = AppPalette(
     background: AppColors.white,
-    foreground: AppColors.whiteForeground,
+    foreground: AppColors.onWhite,
 
     divider: AppColors.blackAlpha15,
 
@@ -78,7 +78,7 @@ class AppPalette extends ThemeExtension<AppPalette> {
   /// Paleta de cores pro modo escuro.
   static final dark = AppPalette(
     background: AppColors.black,
-    foreground: AppColors.blackForeground,
+    foreground: AppColors.onBlack,
 
     divider: AppColors.whiteAlpha15,
 

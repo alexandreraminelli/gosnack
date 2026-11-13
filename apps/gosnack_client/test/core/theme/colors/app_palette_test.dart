@@ -6,7 +6,7 @@ void main() {
   group('AppPalette', () {
     test('defines the light palette with the expected colors', () {
       expect(AppPalette.light.background, AppColors.white);
-      expect(AppPalette.light.foreground, AppColors.whiteForeground);
+      expect(AppPalette.light.foreground, AppColors.onWhite);
       expect(AppPalette.light.divider, AppColors.blackAlpha15);
       expect(AppPalette.light.defaultColor, AppColors.zinc300);
       expect(AppPalette.light.defaultForeground, AppColors.black);
@@ -16,7 +16,7 @@ void main() {
 
     test('defines the dark palette with reversed scales', () {
       expect(AppPalette.dark.background, AppColors.black);
-      expect(AppPalette.dark.foreground, AppColors.blackForeground);
+      expect(AppPalette.dark.foreground, AppColors.onBlack);
       expect(AppPalette.dark.divider, AppColors.whiteAlpha15);
       expect(AppPalette.dark.defaultColor, AppColors.zinc700);
       expect(AppPalette.dark.defaultForeground, AppColors.white);
