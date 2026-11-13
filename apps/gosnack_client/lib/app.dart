@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gosnack_client/core/extensions/context_extensions.dart';
 import 'package:gosnack_client/core/theme/colors/color_schemes.dart';
 import 'package:gosnack_client/core/theme/typography/typography.dart';
 
@@ -26,47 +27,47 @@ class GoSnackApp extends StatelessWidget {
           children: [
             Text(
               'Display Large',
-              style: Theme.of(context).textTheme.displayLarge,
+              style: context.textTheme.displayLarge,
             ),
             Text(
               'Display Medium',
-              style: Theme.of(context).textTheme.displayMedium,
+              style: context.textTheme.displayMedium,
             ),
             Text(
               'Display Small',
-              style: Theme.of(context).textTheme.displaySmall,
+              style: context.textTheme.displaySmall,
             ),
 
             Text(
               'Headline Large',
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: context.textTheme.headlineLarge,
             ),
             Text(
               'Headline Medium',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: context.textTheme.headlineMedium,
             ),
             Text(
               'Headline Small',
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: context.textTheme.headlineSmall,
             ),
 
-            Text('Title Large', style: Theme.of(context).textTheme.titleLarge),
+            Text('Title Large', style: context.textTheme.titleLarge),
             Text(
               'Title Medium',
-              style: Theme.of(context).textTheme.titleMedium,
+              style: context.textTheme.titleMedium,
             ),
-            Text('Title Small', style: Theme.of(context).textTheme.titleSmall),
+            Text('Title Small', style: context.textTheme.titleSmall),
 
-            Text('Body Large', style: Theme.of(context).textTheme.bodyLarge),
-            Text('Body Medium', style: Theme.of(context).textTheme.bodyMedium),
-            Text('Body Small', style: Theme.of(context).textTheme.bodySmall),
+            Text('Body Large', style: context.textTheme.bodyLarge),
+            Text('Body Medium', style: context.textTheme.bodyMedium),
+            Text('Body Small', style: context.textTheme.bodySmall),
 
-            Text('Label Large', style: Theme.of(context).textTheme.labelLarge),
+            Text('Label Large', style: context.textTheme.labelLarge),
             Text(
               'Label Medium',
-              style: Theme.of(context).textTheme.labelMedium,
+              style: context.textTheme.labelMedium,
             ),
-            Text('Label Small', style: Theme.of(context).textTheme.labelSmall),
+            Text('Label Small', style: context.textTheme.labelSmall),
           ],
         ),
       ),
