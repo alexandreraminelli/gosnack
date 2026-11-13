@@ -6,13 +6,14 @@ version: 0.1.0+1
 
 # Environment ---------------------------------------------------------------- #
 environment:
-  sdk: ^3.13.7 # Versão mínima do Dart
-  flutter: ^3.47.9 # Versão mínima do Flutter
+  sdk: ^3.13.7 # Versão do Dart
+  flutter: ^3.47.9 # Versão do Flutter
 
 # Dependencies --------------------------------------------------------------- #
 dependencies:
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.1
   flutter_native_splash: ^2.4.8
 
 # Dev Dependencies ----------------------------------------------------------- #
