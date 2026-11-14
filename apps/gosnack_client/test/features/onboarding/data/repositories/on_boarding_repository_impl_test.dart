@@ -9,7 +9,7 @@ import 'package:mocktail/mocktail.dart';
 // Mock Dependencies -------------------------------------------------------- //
 
 class MockOnBoardingLocalDataSource extends Mock
-    implements OnBoardingLocalDataSource {}
+    implements OnBoardingLocalDataSource;
 
 void main() {
   late MockOnBoardingLocalDataSource localDataSource;
