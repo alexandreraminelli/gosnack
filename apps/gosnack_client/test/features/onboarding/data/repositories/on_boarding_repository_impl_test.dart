@@ -6,6 +6,8 @@ import 'package:gosnack_client/features/onboarding/data/datasources/on_boarding_
 import 'package:gosnack_client/features/onboarding/data/repositories/on_boarding_repository_impl.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../../../core/utils/app_logger.mock.dart';
+
 // Mock Dependencies -------------------------------------------------------- //
 
 class MockOnBoardingLocalDataSource extends Mock
@@ -13,11 +15,13 @@ class MockOnBoardingLocalDataSource extends Mock
 
 void main() {
   late MockOnBoardingLocalDataSource localDataSource;
+  late MockAppLogger logger;
   late OnBoardingRepositoryImpl repository;
 
   setUp(() {
     localDataSource = MockOnBoardingLocalDataSource();
-    repository = OnBoardingRepositoryImpl(localDataSource);
+    logger = MockAppLogger();
+    repository = OnBoardingRepositoryImpl(localDataSource, logger);
   });
 
   group('cacheFirstTimer', () {
@@ -31,6 +35,7 @@ void main() {
       expect(result, const Right<Failure, void>(null));
       verify(() => localDataSource.cacheFirstTimer()).called(1);
       verifyNoMoreInteractions(localDataSource);
+      verifyNoMoreInteractions(logger);
     });
 
     test(
@@ -51,6 +56,13 @@ void main() {
             ),
           ),
         );
+        verify(
+          () => logger.error(
+            any(),
+            error: any(named: 'error'),
+            stackTrace: any(named: 'stackTrace'),
+          ),
+        ).called(1);
         verify(() => localDataSource.cacheFirstTimer()).called(1);
         verifyNoMoreInteractions(localDataSource);
       },
@@ -68,6 +80,7 @@ void main() {
       expect(result, const Right<Failure, bool>(true));
       verify(() => localDataSource.checkIfUserIsFirstTimer()).called(1);
       verifyNoMoreInteractions(localDataSource);
+      verifyNoMoreInteractions(logger);
     });
 
     test(
@@ -88,6 +101,13 @@ void main() {
             ),
           ),
         );
+        verify(
+          () => logger.error(
+            any(),
+            error: any(named: 'error'),
+            stackTrace: any(named: 'stackTrace'),
+          ),
+        ).called(1);
         verify(() => localDataSource.checkIfUserIsFirstTimer()).called(1);
         verifyNoMoreInteractions(localDataSource);
       },

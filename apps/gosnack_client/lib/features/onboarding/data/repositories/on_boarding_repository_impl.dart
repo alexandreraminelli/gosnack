@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:gosnack_client/core/errors/exceptions.dart';
 import 'package:gosnack_client/core/errors/failures.dart';
+import 'package:gosnack_client/core/utils/logger.dart';
 import 'package:gosnack_client/core/utils/typedef.dart';
 import 'package:gosnack_client/features/onboarding/data/datasources/on_boarding_local_data_source.dart';
 import 'package:gosnack_client/features/onboarding/domain/repositories/on_boarding_repository.dart';
@@ -9,11 +10,12 @@ import 'package:gosnack_client/features/onboarding/domain/repositories/on_boardi
 class OnBoardingRepositoryImpl implements OnBoardingRepository {
   // Constructor ------------------------------------------------------------ //
   /// Construtor da classe [OnBoardingRepositoryImpl].
-  const new(this._localDataSource);
+  const new(this._localDataSource, this._logger);
 
   // Dependencies ----------------------------------------------------------- //
 
   final OnBoardingLocalDataSource _localDataSource;
+  final AppLogger _logger;
 
   // Implemented Methods ---------------------------------------------------- //
 
@@ -23,7 +25,12 @@ class OnBoardingRepositoryImpl implements OnBoardingRepository {
       await _localDataSource.cacheFirstTimer();
       return const Right(null);
     } on CacheException catch (e) {
-      return Left(CacheFailure(message: e.message));
+      _logger.error(
+        'Failed to save first access',
+        error: e.cause ?? e,
+        stackTrace: e.stackTrace,
+      );
+      return Left(CacheFailure.fromException(e));
     }
   }
 
@@ -33,7 +40,12 @@ class OnBoardingRepositoryImpl implements OnBoardingRepository {
       final result = await _localDataSource.checkIfUserIsFirstTimer();
       return Right(result);
     } on CacheException catch (e) {
-      return Left(CacheFailure(message: e.message));
+      _logger.error(
+        'Failed to check if user is first timer',
+        error: e.cause ?? e,
+        stackTrace: e.stackTrace,
+      );
+      return Left(CacheFailure.fromException(e));
     }
   }
 }
