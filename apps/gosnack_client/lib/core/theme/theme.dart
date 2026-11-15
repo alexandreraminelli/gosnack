@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gosnack_client/core/theme/colors/app_palette.dart';
 import 'package:gosnack_client/core/theme/colors/color_schemes.dart';
 import 'package:gosnack_client/core/theme/colors/colors.dart';
-import 'package:gosnack_client/core/theme/sizes.dart';
+import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
 import 'package:gosnack_client/core/theme/typography/typography.dart';
 
 /// Tema do aplicativo.
