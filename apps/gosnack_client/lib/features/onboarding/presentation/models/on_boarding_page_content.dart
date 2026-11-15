@@ -1,7 +1,5 @@
-import 'package:equatable/equatable.dart';
-
 /// Conteúdo de uma página de OnBoarding.
-class OnBoardingPageContent extends Equatable {
+class OnBoardingPageContent {
   // Constructor ------------------------------------------------------------ //
   /// Construtor da classe [OnBoardingPageContent].
   const new({
@@ -20,8 +18,4 @@ class OnBoardingPageContent extends Equatable {
 
   /// Animação Lottie da página.
   final String animation;
-
-  // Overrides -------------------------------------------------------------- //
-  @override
-  List<String?> get props => [title, description, animation];
 }
