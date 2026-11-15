@@ -1,0 +1,31 @@
+{
+  "@@locale": "pt",
+  "commonContinue": "Continuar",
+  "@commonContinue": {
+    "description": "Ação de avançar em fluxos"
+  },
+  "onBoardingPage1Title": "Bem-vindo ao GoSnack",
+  "@onBoardingPage1Title": {
+    "description": "Título da primeira página de OnBoarding."
+  },
+  "onBoardingPage1Description": "O jeito mais rápido e fácil de pedir seus lanches dentro do colégio. Evite filas e aproveite seus intervalos ao máximo!",
+  "@onBoardingPage1Description": {
+    "description": "Descrição da primeira página de OnBoarding."
+  },
+  "onBoardingPage2Title": "Explore o cardápio da sua unidade",
+  "@onBoardingPage2Title": {
+    "description": "Título da segunda página de OnBoarding."
+  },
+  "onBoardingPage2Description": "Selecione a lanchonete do seu colégio, descubra o cardápio disponível e monte seu pedido do seu jeito!",
+  "@onBoardingPage2Description": {
+    "description": "Descrição da segunda página de OnBoarding."
+  },
+  "onBoardingPage3Title": "Pague e Retire Sem Complicações",
+  "@onBoardingPage3Title": {
+    "description": "Título da terceira página de OnBoarding."
+  },
+  "onBoardingPage3Description": "Finalize o pedido pelo app e retire quando estiver pronto. Rápido, seguro e sem filas!",
+  "@onBoardingPage3Description": {
+    "description": "Descrição da terceira página de OnBoarding."
+  }
+}

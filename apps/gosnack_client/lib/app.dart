@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gosnack_client/core/theme/theme.dart';
+import 'package:gosnack_client/l10n/app_localizations.dart';
 
 /// Widget raiz do aplicativo GoSnack.
 class GoSnackApp extends StatelessWidget {
@@ -23,6 +24,10 @@ class GoSnackApp extends StatelessWidget {
       // Theme -------------------------------------------------------------- //
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
+
+      // Internationalization ----------------------------------------------- //
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
 
       // Navigation --------------------------------------------------------- //
       routerConfig: router,

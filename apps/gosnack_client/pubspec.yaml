@@ -39,6 +39,7 @@ dev_dependencies:
 # Flutter Configuration ------------------------------------------------------ #
 flutter:
   uses-material-design: true
+  generate: true # Gerar arquivos de internacionalização automaticamente
 
   # Assets ------------------------------------------------------------------- #
   assets:
