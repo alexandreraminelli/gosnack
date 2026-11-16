@@ -39,9 +39,7 @@ GoRouter createRouter(AppSession session) {
         path: AppRoutes.onBoarding,
         builder: (_, _) => BlocProvider(
           create: (_) => sl<OnBoardingCubit>(),
-          child: OnBoardingScreen(
-            onCompleted: session.completeOnBoarding,
-          ),
+          child: const OnBoardingScreen(),
         ),
       ),
 
