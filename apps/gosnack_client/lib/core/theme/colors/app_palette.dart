@@ -12,9 +12,21 @@ class AppPalette extends ThemeExtension<AppPalette> {
   const new({
     required this.background,
     required this.foreground,
+
     required this.divider,
     required this.defaultColor,
     required this.defaultForeground,
+
+    required this.content1,
+    required this.content2,
+    required this.content3,
+    required this.content4,
+
+    required this.content1foreground,
+    required this.content2foreground,
+    required this.content3foreground,
+    required this.content4foreground,
+
     required this.primaryScale,
     required this.defaultScale,
     required this.successScale,
@@ -43,6 +55,30 @@ class AppPalette extends ThemeExtension<AppPalette> {
   final ColorScale primaryScale;
 
   /// Escala da cor neutra do app.
+  final Color content1;
+
+  /// Escala da cor neutra do app.
+  final Color content2;
+
+  /// Escala da cor neutra do app.
+  final Color content3;
+
+  /// Escala da cor neutra do app.
+  final Color content4;
+
+  /// Foreground da cor neutra do app.
+  final Color content1foreground;
+
+  /// Foreground da cor neutra do app.
+  final Color content2foreground;
+
+  /// Foreground da cor neutra do app.
+  final Color content3foreground;
+
+  /// Foreground da cor neutra do app.
+  final Color content4foreground;
+
+  /// Escala da cor neutra do app.
   final ColorScale defaultScale;
 
   /// Escala da cor de sucesso do app.
@@ -66,6 +102,16 @@ class AppPalette extends ThemeExtension<AppPalette> {
     defaultColor: AppColors.zinc300,
     defaultForeground: AppColors.black,
 
+    content1: AppColors.zinc50,
+    content2: AppColors.zinc100,
+    content3: AppColors.zinc300,
+    content4: AppColors.zinc300,
+
+    content1foreground: AppColors.zinc900,
+    content2foreground: AppColors.zinc800,
+    content3foreground: AppColors.zinc700,
+    content4foreground: AppColors.zinc600,
+
     primaryScale: AppColors.primaryScale,
     defaultScale: AppColors.zincScale,
     successScale: AppColors.successScale,
@@ -85,6 +131,16 @@ class AppPalette extends ThemeExtension<AppPalette> {
     defaultColor: AppColors.zinc700,
     defaultForeground: AppColors.white,
 
+    content1: AppColors.zinc900,
+    content2: AppColors.zinc800,
+    content3: AppColors.zinc700,
+    content4: AppColors.zinc600,
+
+    content1foreground: AppColors.zinc300,
+    content2foreground: AppColors.zinc200,
+    content3foreground: AppColors.zinc100,
+    content4foreground: AppColors.zinc50,
+
     primaryScale: AppColors.primaryScale.reversed,
     defaultScale: AppColors.zincScale.reversed,
     successScale: AppColors.successScale.reversed,
@@ -102,10 +158,4 @@ class AppPalette extends ThemeExtension<AppPalette> {
     covariant ThemeExtension<AppPalette>? other,
     double t,
   ) => other == null || t < 0.5 ? this : other;
-}
-
-/// Extensão do [BuildContext] para acessar a paleta de cores do app.
-extension AppPaletteX on BuildContext {
-  /// Retorna a paleta de cores do app para o tema atual.
-  AppPalette get palette => Theme.of(this).extension<AppPalette>()!;
 }
