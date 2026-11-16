@@ -4,7 +4,7 @@
 /// Valores para tamanhos e espaçamentos.
 abstract final class KSizes {
   /// Espaçamento horizontal padrão da tela para mobile.
-  static const double horizontalScreenPadding = md;
+  static const double horizontalScreenPadding = sm;
 
   // Unit ------------------------------------------------------------------- //
 
