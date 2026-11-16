@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gosnack_client/core/extensions/build_context_x.dart';
 import 'package:gosnack_client/core/extensions/context_extensions.dart';
 import 'package:gosnack_client/core/resources/icons.dart';
 import 'package:gosnack_client/core/resources/vectors.dart';
@@ -60,6 +61,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
               ? AppVectors.logoInlineWhite
               : AppVectors.logoInlineBlack,
           height: KSizes.xl,
+          semanticsLabel: context.l10n.logoDescription,
         );
 
     // Main Widget ---------------------------------------------------------- //

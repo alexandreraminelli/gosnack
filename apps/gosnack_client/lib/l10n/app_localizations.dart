@@ -100,6 +100,12 @@ abstract class AppLocalizations {
   /// **'Continuar'**
   String get commonContinue;
 
+  /// Descrição de imagens do logo do aplicativo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Logo do GoSnack'**
+  String get logoDescription;
+
   /// Título da primeira página de OnBoarding.
   ///
   /// In pt, this message translates to:

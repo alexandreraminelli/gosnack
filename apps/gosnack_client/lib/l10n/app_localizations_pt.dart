@@ -13,6 +13,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get commonContinue => 'Continuar';
 
   @override
+  String get logoDescription => 'Logo do GoSnack';
+
+  @override
   String get onBoardingPage1Title => 'Bem-vindo ao GoSnack';
 
   @override

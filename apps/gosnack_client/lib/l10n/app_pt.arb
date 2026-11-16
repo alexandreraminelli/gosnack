@@ -4,6 +4,10 @@
   "@commonContinue": {
     "description": "Ação de avançar em fluxos"
   },
+  "logoDescription": "Logo do GoSnack",
+  "@logoDescription": {
+    "description": "Descrição de imagens do logo do aplicativo."
+  },
   "onBoardingPage1Title": "Bem-vindo ao GoSnack",
   "@onBoardingPage1Title": {
     "description": "Título da primeira página de OnBoarding."
