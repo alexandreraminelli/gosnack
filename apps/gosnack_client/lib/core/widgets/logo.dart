@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gosnack_client/core/extensions/build_context_x.dart';
 import 'package:gosnack_client/core/extensions/context_extensions.dart';
 import 'package:gosnack_client/core/resources/vectors.dart';
-import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
 
 /// Variações da logo do aplicativo.
 enum LogoVariation {
@@ -48,7 +47,8 @@ class Logo extends StatelessWidget {
   /// Construtor do widget de logo do aplicativo [Logo].
   const new({
     this.variation = LogoVariation.icon,
-    this.height = KSizes.xl,
+    this.height,
+    this.width,
     super.key,
   });
 
@@ -60,6 +60,9 @@ class Logo extends StatelessWidget {
   /// Altura da logo.
   final double? height;
 
+  /// Largura da logo.
+  final double? width;
+
   // Build Method ----------------------------------------------------------- //
   @override
   Widget build(BuildContext context) {
@@ -69,7 +72,11 @@ class Logo extends StatelessWidget {
 
     return SvgPicture.asset(
       logoPath,
+      // Size
       height: height,
+      width: width,
+
+      // Alt Text
       semanticsLabel: context.l10n.logoDescription,
     );
   }

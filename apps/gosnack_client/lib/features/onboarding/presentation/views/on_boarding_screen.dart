@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gosnack_client/core/extensions/build_context_x.dart';
 import 'package:gosnack_client/core/resources/animations.dart';
+import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
+import 'package:gosnack_client/core/widgets/logo.dart';
 import 'package:gosnack_client/features/onboarding/presentation/widgets/on_boarding_slide.dart';
 
 /// Tela de OnBoarding (Boas-Vindas).
@@ -72,6 +74,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     // Scaffold ------------------------------------------------------------- //
     return Scaffold(
       // AppBar ------------------------------------------------------------- //
+      appBar: AppBar(
+        toolbarHeight: KSizes.xl4,
+        centerTitle: true,
+        title: const Logo(
+          variation: .inline,
+          height: KSizes.xl3,
+        ),
+      ),
 
       // Body --------------------------------------------------------------- //
       body: Column(
