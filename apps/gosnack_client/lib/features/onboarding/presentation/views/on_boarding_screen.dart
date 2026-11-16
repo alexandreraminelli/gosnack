@@ -41,8 +41,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   // Build Method ----------------------------------------------------------- //
   @override
   Widget build(BuildContext context) {
-    // Page List ------------------------------------------------------------ //
-    final pages = [
+    // Slides --------------------------------------------------------------- //
+    final slides = [
       // Page 1
       OnBoardingSlide(
         title: context.l10n.onBoardingPage1Title,
@@ -63,10 +63,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
     ];
 
-    // PageView ------------------------------------------------------------- //
-    final pageView = PageView(
+    // Slides Carrousel ----------------------------------------------------- //
+    final slidesCarrousel = PageView(
       controller: pageController,
-      children: pages,
+      children: slides,
     );
 
     // Footer --------------------------------------------------------------- //
@@ -85,7 +85,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
       // Body --------------------------------------------------------------- //
       body: Column(
-        children: [Expanded(child: pageView)],
+        children: [Expanded(child: slidesCarrousel)],
       ),
     );
   }

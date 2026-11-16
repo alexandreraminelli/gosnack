@@ -37,7 +37,7 @@ class OnBoardingSlide extends StatelessWidget {
     final titleWidget = Text(
       title,
       textAlign: .center,
-      style: context.textTheme.headlineMedium,
+      style: context.textTheme.displayMedium,
     );
     final descriptionWidget = Text(
       description,

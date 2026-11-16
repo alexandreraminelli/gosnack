@@ -52,17 +52,17 @@ abstract final class AppTypography {
     // Display -------------------------------------------------------------- //
     displayLarge: TextStyle(
       fontSize: font4xl,
-      fontWeight: semiBold,
+      fontWeight: bold,
       height: heightTightest,
     ),
     displayMedium: TextStyle(
       fontSize: font3xl,
-      fontWeight: semiBold,
+      fontWeight: bold,
       height: heightTighter,
     ),
     displaySmall: TextStyle(
       fontSize: font2xl,
-      fontWeight: semiBold,
+      fontWeight: bold,
       height: heightTight,
     ),
 
