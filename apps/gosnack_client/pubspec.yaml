@@ -46,6 +46,7 @@ flutter:
   # Assets ------------------------------------------------------------------- #
   assets:
     - assets/animations/ # Animações Lottie
+    - assets/vectors/logos/ # Logos SVG
 
   # Fonts -------------------------------------------------------------------- #
   fonts:
