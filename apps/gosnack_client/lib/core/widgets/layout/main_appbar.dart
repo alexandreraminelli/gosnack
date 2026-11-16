@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:gosnack_client/core/extensions/build_context_x.dart';
-import 'package:gosnack_client/core/extensions/context_extensions.dart';
 import 'package:gosnack_client/core/resources/icons.dart';
-import 'package:gosnack_client/core/resources/vectors.dart';
 import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
 import 'package:gosnack_client/core/widgets/app_icon.dart';
+import 'package:gosnack_client/core/widgets/logo.dart';
 
 /// Appbar principal do aplicativo.
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -54,15 +51,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     // Title Widget --------------------------------------------------------- //
 
-    final title =
-        titleWidget ??
-        SvgPicture.asset(
-          context.isDarkMode
-              ? AppVectors.logoInlineWhite
-              : AppVectors.logoInlineBlack,
-          height: KSizes.xl,
-          semanticsLabel: context.l10n.logoDescription,
-        );
+    final title = titleWidget ?? const Logo(variation: .inline);
 
     // Main Widget ---------------------------------------------------------- //
     return AppBar(
