@@ -26,12 +26,24 @@ extension ContextExtensions on BuildContext {
   /// Retorna o [MediaQueryData] do contexto atual.
   MediaQueryData get mediaQuery => MediaQuery.of(this);
 
-  /// Retorna o tamanho da tela, [Size], do contexto atual.
+  /// Retorna o tamanho da tela do contexto atual.
   Size get size => MediaQuery.sizeOf(this);
 
-  /// Retorna a altura da tela, [double], do contexto atual.
+  /// Retorna a largura da tela do contexto atual.
+  double get width => size.width;
+
+  /// Retorna a altura da tela do contexto atual.
   double get height => size.height;
 
-  /// Retorna a largura da tela, [double], do contexto atual.
-  double get width => size.width;
+  /// Retorna a densidade de pixels da tela do contexto atual.
+  double get pixelRatio => MediaQuery.devicePixelRatioOf(this);
+
+  /// Retorna a altura da barra de status do contexto atual.
+  double get statusBarHeight => MediaQuery.paddingOf(this).top;
+
+  /// Retorna a altura do teclado virtual do contexto atual.
+  double get keyboardHeight => MediaQuery.viewInsetsOf(this).bottom;
+
+  /// Retorna se o teclado virtual está visível no contexto atual.
+  bool get isKeyboardVisible => keyboardHeight > 0;
 }
