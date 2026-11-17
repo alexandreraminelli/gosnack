@@ -122,17 +122,15 @@ class _OnBoardingCarrouselState extends State<OnBoardingCarrousel> {
       builder: (context, value, child) {
         return Align(
           alignment: .bottomEnd,
-          child: SizedBox(
-            width: isLastSlide ? double.infinity : null,
-            child: AppButton(
-              label: context.l10n.commonContinue,
-              size: ButtonSize.xl2,
-              icon: AppIcons.arrowRight,
-              // Variação do botão:
-              isIconOnly: !isLastSlide,
-              // Ação do botão:
-              onPressed: isLastSlide ? _finish : _nextPage,
-            ),
+          child: AppButton(
+            label: context.l10n.commonContinue,
+            size: ButtonSize.xl2,
+            icon: AppIcons.arrowRight,
+            // Variação do botão:
+            iconOnly: !isLastSlide,
+            fullWidth: isLastSlide,
+            // Ação do botão:
+            onPressed: isLastSlide ? _finish : _nextPage,
           ),
         );
       },

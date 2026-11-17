@@ -246,7 +246,7 @@ Widget dangerButtonWithIconPreview() => AppButton(
 Widget primaryIconOnlyButtonPreview() => AppButton(
   label: 'Create',
   icon: AppIcons.create,
-  isIconOnly: true,
+  iconOnly: true,
   onPressed: () {},
 );
 
@@ -259,7 +259,7 @@ Widget primaryIconOnlyButtonPreview() => AppButton(
 Widget secondaryIconOnlyButtonPreview() => AppButton(
   label: 'Create',
   icon: AppIcons.create,
-  isIconOnly: true,
+  iconOnly: true,
   variant: ButtonVariant.secondary,
   onPressed: () {},
 );
@@ -273,7 +273,7 @@ Widget secondaryIconOnlyButtonPreview() => AppButton(
 Widget tertiaryIconOnlyButtonPreview() => AppButton(
   label: 'Create',
   icon: AppIcons.create,
-  isIconOnly: true,
+  iconOnly: true,
   variant: ButtonVariant.tertiary,
   onPressed: () {},
 );
@@ -287,7 +287,7 @@ Widget tertiaryIconOnlyButtonPreview() => AppButton(
 Widget outlineIconOnlyButtonPreview() => AppButton(
   label: 'Create',
   icon: AppIcons.create,
-  isIconOnly: true,
+  iconOnly: true,
   variant: ButtonVariant.outline,
   onPressed: () {},
 );
@@ -301,7 +301,7 @@ Widget outlineIconOnlyButtonPreview() => AppButton(
 Widget dangerIconOnlyButtonPreview() => AppButton(
   label: 'Delete',
   icon: AppIcons.delete,
-  isIconOnly: true,
+  iconOnly: true,
   variant: ButtonVariant.danger,
   onPressed: () {},
 );

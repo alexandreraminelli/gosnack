@@ -143,13 +143,13 @@ class AppButton extends StatelessWidget {
     this.onPressed,
     this.variant = ButtonVariant.primary,
     this.size = ButtonSize.md,
-    this.width,
-    this.isIconOnly = false,
+    this.fullWidth = false,
+    this.iconOnly = false,
     this.isLoading = false,
     super.key,
   }) : assert(
          // Evitar botão com iconOnly sem ícone
-         !isIconOnly || icon != null,
+         !iconOnly || icon != null,
          'Button cannot be icon only without an icon.',
        );
 
@@ -170,11 +170,11 @@ class AppButton extends StatelessWidget {
   /// Tamanho do botão.
   final ButtonSize size;
 
-  /// Largura do botão.
-  final double? width;
+  /// Se o botão deve ter width full.
+  final bool fullWidth;
 
   /// Se o botão tem apenas um ícone.
-  final bool isIconOnly;
+  final bool iconOnly;
 
   /// Se o botão está no estado de carregamento.
   /// Se `true`, exibe um loading spinner.
@@ -207,15 +207,15 @@ class AppButton extends StatelessWidget {
       // IconOnly: formato quadrado (width igual a height)
       minimumSize: WidgetStatePropertyAll(
         Size(
-          isIconOnly ? size.height : 0,
+          iconOnly ? size.height : 0,
           size.height,
         ),
       ),
-      maximumSize: isIconOnly
+      maximumSize: iconOnly
           ? WidgetStatePropertyAll(Size.square(size.height))
           : null,
       padding: WidgetStatePropertyAll(
-        isIconOnly ? EdgeInsets.zero : size.paddingX,
+        iconOnly ? EdgeInsets.zero : size.paddingX,
       ),
 
       // Tipografia
@@ -264,7 +264,7 @@ class AppButton extends StatelessWidget {
               : null);
 
     /// Conteúdo do botão.
-    final Widget content = isIconOnly
+    final content = iconOnly
         ? leading!
         : Row(
             mainAxisSize: MainAxisSize.min,
@@ -281,14 +281,17 @@ class AppButton extends StatelessWidget {
 
     return Semantics(
       // Label de acessibilidade
-      label: isIconOnly ? label : null,
+      label: iconOnly ? label : null,
       child: Opacity(
         // Escurecer quando desabilitado
         opacity: onPressed == null ? 0.5 : 1.0,
-        child: FilledButton(
-          onPressed: isLoading ? null : onPressed,
-          style: _style(context, colors),
-          child: content,
+        child: SizedBox(
+          width: fullWidth ? double.infinity : null,
+          child: FilledButton(
+            onPressed: isLoading ? null : onPressed,
+            style: _style(context, colors),
+            child: content,
+          ),
         ),
       ),
     );
