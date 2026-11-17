@@ -51,51 +51,51 @@ abstract final class AppTypography {
   static TextTheme get textTheme => const TextTheme(
     // Display -------------------------------------------------------------- //
     displayLarge: TextStyle(
-      fontSize: font4xl,
+      fontSize: font6xl,
       fontWeight: bold,
       height: heightTightest,
     ),
     displayMedium: TextStyle(
-      fontSize: font3xl,
+      fontSize: font5xl,
       fontWeight: bold,
       height: heightTighter,
     ),
     displaySmall: TextStyle(
-      fontSize: font2xl,
+      fontSize: font4xl,
       fontWeight: bold,
       height: heightTight,
     ),
 
     // Headline ------------------------------------------------------------- //
     headlineLarge: TextStyle(
-      fontSize: font3xl,
+      fontSize: font4xl,
       fontWeight: semiBold,
       height: heightTighter,
     ),
     headlineMedium: TextStyle(
-      fontSize: font2xl,
+      fontSize: font3xl,
       fontWeight: semiBold,
       height: heightTight,
     ),
     headlineSmall: TextStyle(
-      fontSize: fontXl,
+      fontSize: font2xl,
       fontWeight: semiBold,
       height: heightSnug,
     ),
 
     // Title ---------------------------------------------------------------- //
     titleLarge: TextStyle(
-      fontSize: fontXl,
+      fontSize: fontLg,
       fontWeight: semiBold,
       height: heightSnug,
     ),
     titleMedium: TextStyle(
-      fontSize: fontLg,
+      fontSize: fontMd,
       fontWeight: semiBold,
       height: heightCompact,
     ),
     titleSmall: TextStyle(
-      fontSize: fontMd,
+      fontSize: fontSm,
       fontWeight: semiBold,
       height: heightNormal,
     ),

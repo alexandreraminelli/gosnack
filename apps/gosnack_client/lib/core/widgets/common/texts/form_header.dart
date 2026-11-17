@@ -33,7 +33,7 @@ class FormHeader extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: context.textTheme.displayMedium,
+            style: context.textTheme.headlineLarge,
           ),
 
           // Subtitle --------------------------------------------------------- //
@@ -42,7 +42,9 @@ class FormHeader extends StatelessWidget {
             Text(
               subtitle!,
               textAlign: TextAlign.center,
-              style: context.textTheme.bodyLarge,
+              style: context.textTheme.bodyMedium?.copyWith(
+                color: context.palette.content4foreground,
+              ),
             ),
           ],
         ],
