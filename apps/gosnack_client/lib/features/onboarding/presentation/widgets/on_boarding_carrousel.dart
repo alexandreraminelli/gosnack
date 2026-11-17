@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:gosnack_client/core/extensions/build_context_x.dart';
 import 'package:gosnack_client/core/extensions/context_extensions.dart';
 import 'package:gosnack_client/core/resources/animations.dart';
 import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
+import 'package:gosnack_client/core/theme/dimensions/spacing.dart';
 import 'package:gosnack_client/features/onboarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:gosnack_client/features/onboarding/presentation/widgets/on_boarding_slide.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -52,17 +54,19 @@ class _OnBoardingCarrouselState extends State<OnBoardingCarrousel> {
     ),
   ];
 
-  /// Página atual do carrossel de slides.
-  final currentPage = ValueNotifier<int>(0);
+  /// Slide atual do carrossel de slides.
+  final currentSlide = ValueNotifier<int>(0);
 
-  int get lastPageIndex => slides.length;
+  /// Índice do último slide.
+  int get lastSlidesIndex => slides.length;
 
   // Lifecycle Methods ------------------------------------------------------ //
 
   @override
   void dispose() {
+    // Liberar recursos da memória
     pageController.dispose();
-    currentPage.dispose();
+    currentSlide.dispose();
     super.dispose();
   }
 
@@ -70,7 +74,8 @@ class _OnBoardingCarrouselState extends State<OnBoardingCarrousel> {
 
   /// Avança para a próxima página do carrossel de slides.
   void _nextPage() {
-    if (currentPage.value >= lastPageIndex - 1) return;
+    // Só avançar se ainda houver slides
+    if (currentSlide.value >= lastSlidesIndex - 1) return;
     pageController.nextPage(
       duration: const Duration(milliseconds: 300), // Tempo da animação
       curve: Curves.easeInOut, // Curva da animação
@@ -79,6 +84,7 @@ class _OnBoardingCarrouselState extends State<OnBoardingCarrousel> {
 
   /// Finalizar OnBoarding.
   Future<void> _finish() {
+    // Registrar que o usuário
     return context.read<OnBoardingCubit>().cacheFirstTimer();
   }
 
@@ -105,14 +111,25 @@ class _OnBoardingCarrouselState extends State<OnBoardingCarrousel> {
       ),
     );
 
+    // Next Button ---------------------------------------------------------- //
+
+    const nextButton = SizedBox(
+      height: 50,
+      child: Placeholder(),
+    );
+
     // Main Widget ---------------------------------------------------------- //
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(bottom: KSizes.md),
+        padding: KSpacing.horizontalScreenPadding.copyWith(
+          bottom: KSizes.spacingBtwItems,
+        ),
         child: Column(
           children: [
             Expanded(child: slidesCarrousel), // Carrousel
             pageIndicator, // Indicador
+            const Gap(KSizes.spacingBtwItems),
+            nextButton, // Botão de avançar
           ],
         ),
       ),
