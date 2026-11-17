@@ -202,6 +202,12 @@ abstract class AppLocalizations {
   /// **'Entrar com Google'**
   String get authSignInWithGoogle;
 
+  /// Chamada de ação para criar uma conta.
+  ///
+  /// In pt, this message translates to:
+  /// **'Não tem uma conta? Crie uma'**
+  String get authSignUpCTA;
+
   /// Opção de criar uma conta usando o Google.
   ///
   /// In pt, this message translates to:

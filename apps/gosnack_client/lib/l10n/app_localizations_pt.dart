@@ -71,6 +71,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get authSignInWithGoogle => 'Entrar com Google';
 
   @override
+  String get authSignUpCTA => 'Não tem uma conta? Crie uma';
+
+  @override
   String get authSignUpWithGoogle => 'Cadastrar com o Google';
 
   @override

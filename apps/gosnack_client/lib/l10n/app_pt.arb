@@ -72,6 +72,10 @@
   "@authSignInWithGoogle": {
     "description": "Ação de realizar login no aplicativo com Google."
   },
+  "authSignUpCTA": "Não tem uma conta? Crie uma",
+  "@authSignUpCTA": {
+    "description": "Chamada de ação para criar uma conta."
+  },
   "authSignUpWithGoogle": "Cadastrar com o Google",
   "@authSignUpWithGoogle": {
     "description": "Opção de criar uma conta usando o Google."
