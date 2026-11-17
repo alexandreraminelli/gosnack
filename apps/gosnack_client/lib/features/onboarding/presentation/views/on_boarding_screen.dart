@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gosnack_client/core/router/routes.dart';
 import 'package:gosnack_client/core/router/session.dart';
 import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
-import 'package:gosnack_client/core/widgets/logo.dart';
+import 'package:gosnack_client/core/widgets/common/logo.dart';
 import 'package:gosnack_client/features/onboarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:gosnack_client/features/onboarding/presentation/widgets/on_boarding_carrousel.dart';
 

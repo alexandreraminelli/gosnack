@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gosnack_client/core/resources/icons.dart';
 import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
-import 'package:gosnack_client/core/widgets/app_icon.dart';
-import 'package:gosnack_client/core/widgets/logo.dart';
+import 'package:gosnack_client/core/widgets/ui/icon_widget.dart';
+import 'package:gosnack_client/core/widgets/common/logo.dart';
 
 /// Appbar principal do aplicativo.
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {

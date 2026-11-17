@@ -8,7 +8,7 @@ import 'package:gosnack_client/core/theme/dimensions/radius.dart';
 import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
 import 'package:gosnack_client/core/theme/dimensions/spacing.dart';
 import 'package:gosnack_client/core/theme/typography/typography.dart';
-import 'package:gosnack_client/core/widgets/app_icon.dart';
+import 'package:gosnack_client/core/widgets/ui/icon_widget.dart';
 
 // Button Properties -------------------------------------------------------- //
 
