@@ -2,71 +2,73 @@
 
 import 'package:hugeicons/hugeicons.dart';
 
-/// Tipagem dos ícones do Hugeicons.
-typedef HugeIconType = List<List<dynamic>>;
+/// Tipagem da biblioteca de ícones usada pelo app.
+///
+/// Biblioteca em uso: HugeIcons
+typedef AppIconType = List<List<dynamic>>;
 
 /// Constantes dos ícones do Hugeicons para cada contexto do aplicativo.
 abstract final class AppIcons {
   // Actions ---------------------------------------------------------------- //
 
-  static const HugeIconType create = HugeIcons.strokeRoundedAdd01;
-  static const HugeIconType edit = HugeIcons.strokeRoundedEdit04;
-  static const HugeIconType delete = HugeIcons.strokeRoundedDelete02;
+  static const AppIconType create = HugeIcons.strokeRoundedAdd01;
+  static const AppIconType edit = HugeIcons.strokeRoundedEdit04;
+  static const AppIconType delete = HugeIcons.strokeRoundedDelete02;
 
   // Arrows ----------------------------------------------------------------- //
 
-  static const HugeIconType arrowLeft = HugeIcons.strokeRoundedArrowLeft01;
-  static const HugeIconType arrowRight = HugeIcons.strokeRoundedArrowRight01;
-  static const HugeIconType arrowUp = HugeIcons.strokeRoundedArrowUp01;
-  static const HugeIconType arrowDown = HugeIcons.strokeRoundedArrowDown01;
+  static const AppIconType arrowLeft = HugeIcons.strokeRoundedArrowLeft01;
+  static const AppIconType arrowRight = HugeIcons.strokeRoundedArrowRight01;
+  static const AppIconType arrowUp = HugeIcons.strokeRoundedArrowUp01;
+  static const AppIconType arrowDown = HugeIcons.strokeRoundedArrowDown01;
 
   // Authentication --------------------------------------------------------- //
 
-  static const HugeIconType login = HugeIcons.strokeRoundedLoginSquare01;
-  static const HugeIconType logout = HugeIcons.strokeRoundedLogoutSquare01;
+  static const AppIconType login = HugeIcons.strokeRoundedLoginSquare01;
+  static const AppIconType logout = HugeIcons.strokeRoundedLogoutSquare01;
 
-  static const HugeIconType showPassword = HugeIcons.strokeRoundedView;
-  static const HugeIconType hidePassword = HugeIcons.strokeRoundedViewOffSlash;
+  static const AppIconType showPassword = HugeIcons.strokeRoundedView;
+  static const AppIconType hidePassword = HugeIcons.strokeRoundedViewOffSlash;
 
   // Data & Time ------------------------------------------------------------ //
 
-  static const HugeIconType calendar = HugeIcons.strokeRoundedCalendar03;
-  static const HugeIconType clock = HugeIcons.strokeRoundedClock01;
+  static const AppIconType calendar = HugeIcons.strokeRoundedCalendar03;
+  static const AppIconType clock = HugeIcons.strokeRoundedClock01;
 
   // Entities --------------------------------------------------------------- //
 
-  static const HugeIconType unit = HugeIcons.strokeRoundedSchool;
-  static const HugeIconType cafeteria = HugeIcons.strokeRoundedRestaurant02;
+  static const AppIconType unit = HugeIcons.strokeRoundedSchool;
+  static const AppIconType cafeteria = HugeIcons.strokeRoundedRestaurant02;
 
-  static const HugeIconType location = HugeIcons.strokeRoundedLocation01;
+  static const AppIconType location = HugeIcons.strokeRoundedLocation01;
 
   // Errors And Warnings ---------------------------------------------------- //
 
-  static const HugeIconType noInternet = HugeIcons.strokeRoundedNoInternet;
+  static const AppIconType noInternet = HugeIcons.strokeRoundedNoInternet;
 
   // Screens ---------------------------------------------------------------- //
 
-  static const HugeIconType home = HugeIcons.strokeRoundedHome09;
-  static const HugeIconType menu = HugeIcons.strokeRoundedMenuRestaurant;
-  static const HugeIconType favorites = HugeIcons.strokeRoundedFavourite;
-  static const HugeIconType myAccount = HugeIcons.strokeRoundedUserCircle;
+  static const AppIconType home = HugeIcons.strokeRoundedHome09;
+  static const AppIconType menu = HugeIcons.strokeRoundedMenuRestaurant;
+  static const AppIconType favorites = HugeIcons.strokeRoundedFavourite;
+  static const AppIconType myAccount = HugeIcons.strokeRoundedUserCircle;
 
   // Status ----------------------------------------------------------------- //
 
-  static const HugeIconType info = HugeIcons.strokeRoundedInformationCircle;
-  static const HugeIconType success = HugeIcons.strokeRoundedCheckmarkCircle02;
-  static const HugeIconType warning = HugeIcons.strokeRoundedAlert02;
-  static const HugeIconType error =
+  static const AppIconType info = HugeIcons.strokeRoundedInformationCircle;
+  static const AppIconType success = HugeIcons.strokeRoundedCheckmarkCircle02;
+  static const AppIconType warning = HugeIcons.strokeRoundedAlert02;
+  static const AppIconType error =
       HugeIcons.strokeRoundedMultiplicationSignCircle;
 
   // Roles ------------------------------------------------------------------ //
 
-  static const HugeIconType manager = HugeIcons.strokeRoundedManager;
-  static const HugeIconType employee = HugeIcons.strokeRoundedChef;
+  static const AppIconType manager = HugeIcons.strokeRoundedManager;
+  static const AppIconType employee = HugeIcons.strokeRoundedChef;
 
   // Users Fields ------------------------------------------------------- //
 
-  static const HugeIconType email = HugeIcons.strokeRoundedMail01;
-  static const HugeIconType password = HugeIcons.strokeRoundedLockPassword;
-  static const HugeIconType name = HugeIcons.strokeRoundedIdentityCard;
+  static const AppIconType email = HugeIcons.strokeRoundedMail01;
+  static const AppIconType password = HugeIcons.strokeRoundedLockPassword;
+  static const AppIconType name = HugeIcons.strokeRoundedIdentityCard;
 }

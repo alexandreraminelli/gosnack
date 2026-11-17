@@ -20,7 +20,7 @@ class AppIcon extends StatelessWidget {
   // Properties ------------------------------------------------------------- //
 
   /// Ícone a ser exibido.
-  final HugeIconType icon;
+  final AppIconType icon;
 
   /// Tamanho do ícone.
   final double? size;
