@@ -130,12 +130,6 @@ abstract class AppLocalizations {
   /// **'Bem-vindo ao GoSnack'**
   String get authLoginTitle;
 
-  /// Descrição de imagens do logo do aplicativo.
-  ///
-  /// In pt, this message translates to:
-  /// **'Logo do GoSnack'**
-  String get authLogoDescription;
-
   /// Placeholder do campo de criar senha.
   ///
   /// In pt, this message translates to:
@@ -225,6 +219,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Próximo'**
   String get commonNext;
+
+  /// Descrição de imagens do logo do aplicativo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Logo do GoSnack'**
+  String get logoDescription;
 
   /// Descrição da primeira página de OnBoarding.
   ///

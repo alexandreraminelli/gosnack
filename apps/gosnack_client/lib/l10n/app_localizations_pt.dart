@@ -30,9 +30,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get authLoginTitle => 'Bem-vindo ao GoSnack';
 
   @override
-  String get authLogoDescription => 'Logo do GoSnack';
-
-  @override
   String get authPasswordCreateHint => 'Digite sua nova senha';
 
   @override
@@ -81,6 +78,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get commonNext => 'Próximo';
+
+  @override
+  String get logoDescription => 'Logo do GoSnack';
 
   @override
   String get onBoardingPage1Description =>

@@ -24,10 +24,6 @@
   "@authLoginTitle": {
     "description": "Título da tela de login."
   },
-  "authLogoDescription": "Logo do GoSnack",
-  "@authLogoDescription": {
-    "description": "Descrição de imagens do logo do aplicativo."
-  },
   "authPasswordCreateHint": "Digite sua nova senha",
   "@authPasswordCreateHint": {
     "description": "Placeholder do campo de criar senha."
@@ -87,6 +83,10 @@
   "commonNext": "Próximo",
   "@commonNext": {
     "description": "Ação de avançar"
+  },
+  "logoDescription": "Logo do GoSnack",
+  "@logoDescription": {
+    "description": "Descrição de imagens do logo do aplicativo."
   },
   "onBoardingPage1Description": "O jeito mais rápido e fácil de pedir seus lanches dentro do colégio. Evite filas e aproveite seus intervalos ao máximo!",
   "@onBoardingPage1Description": {
