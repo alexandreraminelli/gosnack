@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gosnack_client/core/extensions/context_extensions.dart';
 import 'package:gosnack_client/core/resources/icons.dart';
 import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
-import 'package:gosnack_client/core/widgets/ui/icon_widget.dart';
 import 'package:gosnack_client/core/widgets/common/logo.dart';
+import 'package:gosnack_client/core/widgets/ui/icon_widget.dart';
 
 /// Appbar principal do aplicativo.
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -51,27 +52,41 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     // Title Widget --------------------------------------------------------- //
 
-    final title = titleWidget ?? const Logo(variation: .inline);
+    final title =
+        titleWidget ?? const Logo(variation: .inline, height: KSizes.xl);
 
     // Main Widget ---------------------------------------------------------- //
     return AppBar(
+      // Appearance --------------------------------------------------------- //
+      backgroundColor: context.palette.content2,
+      foregroundColor: context.palette.content2foreground,
+      elevation: 0, // sem sombra
+      // Borda inferior:
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(KSizes.borderSm),
+        child: Container(
+          height: KSizes.borderSm,
+          color: context.palette.primaryScale[300],
+        ),
+      ),
+
       // Title -------------------------------------------------------------- //
       centerTitle: true,
       title: title,
 
       // BackButton --------------------------------------------------------- //
       automaticallyImplyLeading: false,
-      leadingWidth: KSizes.horizontalScreenPadding + kToolbarHeight,
+      leadingWidth: KSizes.xs + kToolbarHeight,
+
       leading: showBackButton
           ? Padding(
-              padding: const EdgeInsets.only(
-                left: KSizes.horizontalScreenPadding,
-              ),
+              padding: const EdgeInsets.only(left: KSizes.xs),
               child: backButton,
             )
           : null,
 
       // Actions ------------------------------------------------------------ //
+      actionsPadding: const EdgeInsets.only(right: KSizes.xs),
       actions: actions,
     );
   }
