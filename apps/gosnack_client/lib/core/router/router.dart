@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gosnack_client/core/di/injection_container.dart';
 import 'package:gosnack_client/core/router/routes.dart';
 import 'package:gosnack_client/core/router/session.dart';
+import 'package:gosnack_client/features/auth/presentation/views/login_screen.dart';
 import 'package:gosnack_client/features/onboarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:gosnack_client/features/onboarding/presentation/views/on_boarding_screen.dart';
 
@@ -13,12 +14,22 @@ String? appRedirect({
   required AppSession session,
   required String location,
 }) {
+  /// Verifica se a rota atual é a tela de OnBoarding.
   final isOnBoarding = location == AppRoutes.onBoarding;
 
+  /// Verifica se a rota atual é a tela de login.
+  final isLogin = location == AppRoutes.signIn;
+
   if (session.isFirstTimer) {
+    // Primeira vez: redirecionar para OnBoarding se não estiver lá
     return isOnBoarding ? null : AppRoutes.onBoarding;
+  } else if (!session.isAuthenticated) {
+    // Não autenticado: redirecionar para login se não estiver lá
+    return isLogin ? null : AppRoutes.signIn;
+  } else {
+    // Autenticado: redirecionar para menu se estiver em OnBoarding ou login
+    return isOnBoarding || isLogin ? AppRoutes.menu : null;
   }
-  return isOnBoarding ? AppRoutes.menu : null;
 }
 
 /// Cria e configura o [GoRouter] com base na sessão do usuário.
@@ -34,32 +45,28 @@ GoRouter createRouter(AppSession session) {
 
     // Routes --------------------------------------------------------------- //
     routes: [
-      // OnBoarding --------------------------------------------------------- //
+      // Authentication ----------------------------------------------------- //
+
       GoRoute(
-        path: AppRoutes.onBoarding,
-        builder: (_, _) => BlocProvider(
-          create: (_) => sl<OnBoardingCubit>(),
-          child: const OnBoardingScreen(),
-        ),
+        path: AppRoutes.signIn,
+        builder: (_, _) => const LoginScreen(),
       ),
 
       // Menu --------------------------------------------------------------- //
       GoRoute(
         path: AppRoutes.menu,
-        builder: (_, _) => const MenuPlaceholderScreen(),
+        builder: (_, _) =>
+            const Scaffold(body: Center(child: Text('Tela de Cardápio'))),
+      ),
+
+      // OnBoarding --------------------------------------------------------- //
+      GoRoute(
+        path: AppRoutes.onBoarding,
+        builder: (_, _) => BlocProvider(
+          create: (_) => sl<OnBoardingCubit>(),
+          child: OnBoardingScreen(session: session),
+        ),
       ),
     ],
   );
-}
-
-/// TODO(Menu): Placeholder temporário até a página de menu existir.
-class MenuPlaceholderScreen extends StatelessWidget {
-  // Constructors ----------------------------------------------------------- //
-  const new({super.key});
-
-  // Build Method ----------------------------------------------------------- //
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
 }
