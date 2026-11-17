@@ -95,14 +95,28 @@ enum ButtonSize {
     height: 48,
     fontSize: AppTypography.fontMd,
     paddingX: KSpacing.horizontalLg,
+  ),
+
+  /// Tamanho extra grande do botão.
+  xl(
+    height: 56,
+    fontSize: AppTypography.fontLg,
+    paddingX: KSpacing.horizontalXl,
+  ),
+
+  /// Tamanho extra grande 2 do botão.
+  xl2(
+    height: 64,
+    fontSize: AppTypography.fontXl,
+    paddingX: KSpacing.horizontalXl2,
   );
 
   new({
     required this.height,
     required this.fontSize,
     required this.paddingX,
-  }) : // Valores iguais para todas as variantes:
-       iconSize = 20;
+  }) : // Valores iguais para todas as variantes ou calculados:
+       iconSize = fontSize * 1.5;
 
   /// Altura do botão.
   final double height;

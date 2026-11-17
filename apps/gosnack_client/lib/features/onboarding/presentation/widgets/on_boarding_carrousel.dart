@@ -4,8 +4,10 @@ import 'package:gap/gap.dart';
 import 'package:gosnack_client/core/extensions/build_context_x.dart';
 import 'package:gosnack_client/core/extensions/context_extensions.dart';
 import 'package:gosnack_client/core/resources/animations.dart';
+import 'package:gosnack_client/core/resources/icons.dart';
 import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
 import 'package:gosnack_client/core/theme/dimensions/spacing.dart';
+import 'package:gosnack_client/core/widgets/ui/button.dart';
 import 'package:gosnack_client/features/onboarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:gosnack_client/features/onboarding/presentation/widgets/on_boarding_slide.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -57,8 +59,8 @@ class _OnBoardingCarrouselState extends State<OnBoardingCarrousel> {
   /// Slide atual do carrossel de slides.
   final currentSlide = ValueNotifier<int>(0);
 
-  /// Índice do último slide.
-  int get lastSlidesIndex => slides.length;
+  /// Verifica se é o último slide.
+  bool get isLastSlide => currentSlide.value >= (slides.length - 1);
 
   // Lifecycle Methods ------------------------------------------------------ //
 
@@ -75,10 +77,10 @@ class _OnBoardingCarrouselState extends State<OnBoardingCarrousel> {
   /// Avança para a próxima página do carrossel de slides.
   void _nextPage() {
     // Só avançar se ainda houver slides
-    if (currentSlide.value >= lastSlidesIndex - 1) return;
+    if (isLastSlide) return;
     pageController.nextPage(
-      duration: const Duration(milliseconds: 300), // Tempo da animação
-      curve: Curves.easeInOut, // Curva da animação
+      duration: const Duration(milliseconds: 500), // Tempo da animação
+      curve: Curves.easeInOutCubic, // Curva da animação
     );
   }
 
@@ -96,6 +98,8 @@ class _OnBoardingCarrouselState extends State<OnBoardingCarrousel> {
     // Slides Carrousel ----------------------------------------------------- //
     final slidesCarrousel = PageView(
       controller: pageController,
+      // Atualizar slide atual:
+      onPageChanged: (value) => currentSlide.value = value,
       children: slides,
     );
 
@@ -113,9 +117,25 @@ class _OnBoardingCarrouselState extends State<OnBoardingCarrousel> {
 
     // Next Button ---------------------------------------------------------- //
 
-    const nextButton = SizedBox(
-      height: 50,
-      child: Placeholder(),
+    final nextButton = ValueListenableBuilder<int>(
+      valueListenable: currentSlide,
+      builder: (context, value, child) {
+        return Align(
+          alignment: .bottomEnd,
+          child: SizedBox(
+            width: isLastSlide ? double.infinity : null,
+            child: AppButton(
+              label: context.l10n.commonContinue,
+              size: ButtonSize.xl2,
+              icon: AppIcons.arrowRight,
+              // Variação do botão:
+              isIconOnly: !isLastSlide,
+              // Ação do botão:
+              onPressed: isLastSlide ? _finish : _nextPage,
+            ),
+          ),
+        );
+      },
     );
 
     // Main Widget ---------------------------------------------------------- //
@@ -129,7 +149,10 @@ class _OnBoardingCarrouselState extends State<OnBoardingCarrousel> {
             Expanded(child: slidesCarrousel), // Carrousel
             pageIndicator, // Indicador
             const Gap(KSizes.spacingBtwItems),
-            nextButton, // Botão de avançar
+            Padding(
+              padding: KSpacing.horizontalXs,
+              child: nextButton,
+            ), // Botão de avançar
           ],
         ),
       ),
