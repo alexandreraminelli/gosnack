@@ -1,35 +1,131 @@
 {
   "@@locale": "pt",
+  "authEmailDescription": "Entre com seu e-mail acadêmico ou, se for pai/responsável, seu e-mail pessoal.",
+  "@authEmailDescription": {
+    "description": "Texto de dica do campo de e-mail."
+  },
+  "authEmailHint": "Digite seu e-mail",
+  "@authEmailHint": {
+    "description": "Placeholder do campo de e-mail."
+  },
+  "authEmailLabel": "E-mail",
+  "@authEmailLabel": {
+    "description": "Rótulo de e-mail"
+  },
+  "authEnterAsGuest": "Entrar como visitante",
+  "@authEnterAsGuest": {
+    "description": "Ação de entrar no aplicativo como visitante."
+  },
+  "authLoginSubTitle": "Entre com sua conta para explorar o cardápio da lanchonete do seu colégio, fazer pedidos e aproveitar seus intervalos ao máximo!",
+  "@authLoginSubTitle": {
+    "description": "Subtítulo da tela de login."
+  },
+  "authLoginTitle": "Bem-vindo ao GoSnack",
+  "@authLoginTitle": {
+    "description": "Título da tela de login."
+  },
+  "authLogoDescription": "Logo do GoSnack",
+  "@authLogoDescription": {
+    "description": "Descrição de imagens do logo do aplicativo."
+  },
+  "authPasswordCreateHint": "Digite sua nova senha",
+  "@authPasswordCreateHint": {
+    "description": "Placeholder do campo de criar senha."
+  },
+  "authPasswordCreateLabel": "Criar senha",
+  "@authPasswordCreateLabel": {
+    "description": "Rótulo de criar senha"
+  },
+  "authPasswordHint": "Digite sua senha",
+  "@authPasswordHint": {
+    "description": "Placeholder do campo de senha."
+  },
+  "authPasswordLabel": "Senha",
+  "@authPasswordLabel": {
+    "description": "Rótulo de senha"
+  },
+  "authPasswordRequirementLength": "A senha deve ter pelo menos 8 caracteres.",
+  "@authPasswordRequirementLength": {
+    "description": "Mensagem de requisito de senha sobre tamanho."
+  },
+  "authPasswordRequirementLowercase": "A senha deve conter pelo menos uma letra minúscula.",
+  "@authPasswordRequirementLowercase": {
+    "description": "Mensagem de requisito de senha sobre letra minúscula."
+  },
+  "authPasswordRequirementNumber": "A senha deve conter pelo menos um número.",
+  "@authPasswordRequirementNumber": {
+    "description": "Mensagem de requisito de senha sobre número."
+  },
+  "authPasswordRequirementSpecialChar": "A senha deve conter pelo menos um caractere especial.",
+  "@authPasswordRequirementSpecialChar": {
+    "description": "Mensagem de requisito de senha sobre caractere especial."
+  },
+  "authPasswordRequirementUppercase": "A senha deve conter pelo menos uma letra maiúscula.",
+  "@authPasswordRequirementUppercase": {
+    "description": "Mensagem de requisito de senha sobre letra maiúscula."
+  },
+  "authSignIn": "Entrar",
+  "@authSignIn": {
+    "description": "Ação de realizar login no aplicativo."
+  },
+  "authSignInCTA": "Já tem uma conta? Entre agora!",
+  "@authSignInCTA": {
+    "description": "Chamada para ação para o formulário de login."
+  },
+  "authSignInWithGoogle": "Entrar com Google",
+  "@authSignInWithGoogle": {
+    "description": "Ação de realizar login no aplicativo com Google."
+  },
+  "authSignUpWithGoogle": "Cadastrar com o Google",
+  "@authSignUpWithGoogle": {
+    "description": "Opção de criar uma conta usando o Google."
+  },
   "commonContinue": "Continuar",
   "@commonContinue": {
     "description": "Ação de avançar em fluxos"
   },
-  "logoDescription": "Logo do GoSnack",
-  "@logoDescription": {
-    "description": "Descrição de imagens do logo do aplicativo."
-  },
-  "onBoardingPage1Title": "Bem-vindo ao GoSnack",
-  "@onBoardingPage1Title": {
-    "description": "Título da primeira página de OnBoarding."
+  "commonNext": "Próximo",
+  "@commonNext": {
+    "description": "Ação de avançar"
   },
   "onBoardingPage1Description": "O jeito mais rápido e fácil de pedir seus lanches dentro do colégio. Evite filas e aproveite seus intervalos ao máximo!",
   "@onBoardingPage1Description": {
     "description": "Descrição da primeira página de OnBoarding."
   },
-  "onBoardingPage2Title": "Explore o cardápio da sua unidade",
-  "@onBoardingPage2Title": {
-    "description": "Título da segunda página de OnBoarding."
+  "onBoardingPage1Title": "Bem-vindo ao GoSnack",
+  "@onBoardingPage1Title": {
+    "description": "Título da primeira página de OnBoarding."
   },
   "onBoardingPage2Description": "Selecione a lanchonete do seu colégio, descubra o cardápio disponível e monte seu pedido do seu jeito!",
   "@onBoardingPage2Description": {
     "description": "Descrição da segunda página de OnBoarding."
   },
-  "onBoardingPage3Title": "Pague e Retire Sem Complicações",
-  "@onBoardingPage3Title": {
-    "description": "Título da terceira página de OnBoarding."
+  "onBoardingPage2Title": "Explore o cardápio da sua unidade",
+  "@onBoardingPage2Title": {
+    "description": "Título da segunda página de OnBoarding."
   },
   "onBoardingPage3Description": "Finalize o pedido pelo app e retire quando estiver pronto. Rápido, seguro e sem filas!",
   "@onBoardingPage3Description": {
     "description": "Descrição da terceira página de OnBoarding."
+  },
+  "onBoardingPage3Title": "Pague e Retire Sem Complicações",
+  "@onBoardingPage3Title": {
+    "description": "Título da terceira página de OnBoarding."
+  },
+  "profileFistNameHint": "Digite seu primeiro nome",
+  "@profileFistNameHint": {
+    "description": "Placeholder do campo de primeiro nome."
+  },
+  "profileFistNameLabel": "Primeiro Nome",
+  "@profileFistNameLabel": {
+    "description": "Rótulo de primeiro nome"
+  },
+  "profileLastNameHint": "Digite seu último nome",
+  "@profileLastNameHint": {
+    "description": "Placeholder do campo de último nome."
+  },
+  "profileLastNameLabel": "Último Nome",
+  "@profileLastNameLabel": {
+    "description": "Rótulo de último nome"
   }
 }

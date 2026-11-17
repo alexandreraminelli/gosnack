@@ -94,23 +94,137 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('pt')];
 
+  /// Texto de dica do campo de e-mail.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entre com seu e-mail acadêmico ou, se for pai/responsável, seu e-mail pessoal.'**
+  String get authEmailDescription;
+
+  /// Placeholder do campo de e-mail.
+  ///
+  /// In pt, this message translates to:
+  /// **'Digite seu e-mail'**
+  String get authEmailHint;
+
+  /// Rótulo de e-mail
+  ///
+  /// In pt, this message translates to:
+  /// **'E-mail'**
+  String get authEmailLabel;
+
+  /// Ação de entrar no aplicativo como visitante.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrar como visitante'**
+  String get authEnterAsGuest;
+
+  /// Subtítulo da tela de login.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entre com sua conta para explorar o cardápio da lanchonete do seu colégio, fazer pedidos e aproveitar seus intervalos ao máximo!'**
+  String get authLoginSubTitle;
+
+  /// Título da tela de login.
+  ///
+  /// In pt, this message translates to:
+  /// **'Bem-vindo ao GoSnack'**
+  String get authLoginTitle;
+
+  /// Descrição de imagens do logo do aplicativo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Logo do GoSnack'**
+  String get authLogoDescription;
+
+  /// Placeholder do campo de criar senha.
+  ///
+  /// In pt, this message translates to:
+  /// **'Digite sua nova senha'**
+  String get authPasswordCreateHint;
+
+  /// Rótulo de criar senha
+  ///
+  /// In pt, this message translates to:
+  /// **'Criar senha'**
+  String get authPasswordCreateLabel;
+
+  /// Placeholder do campo de senha.
+  ///
+  /// In pt, this message translates to:
+  /// **'Digite sua senha'**
+  String get authPasswordHint;
+
+  /// Rótulo de senha
+  ///
+  /// In pt, this message translates to:
+  /// **'Senha'**
+  String get authPasswordLabel;
+
+  /// Mensagem de requisito de senha sobre tamanho.
+  ///
+  /// In pt, this message translates to:
+  /// **'A senha deve ter pelo menos 8 caracteres.'**
+  String get authPasswordRequirementLength;
+
+  /// Mensagem de requisito de senha sobre letra minúscula.
+  ///
+  /// In pt, this message translates to:
+  /// **'A senha deve conter pelo menos uma letra minúscula.'**
+  String get authPasswordRequirementLowercase;
+
+  /// Mensagem de requisito de senha sobre número.
+  ///
+  /// In pt, this message translates to:
+  /// **'A senha deve conter pelo menos um número.'**
+  String get authPasswordRequirementNumber;
+
+  /// Mensagem de requisito de senha sobre caractere especial.
+  ///
+  /// In pt, this message translates to:
+  /// **'A senha deve conter pelo menos um caractere especial.'**
+  String get authPasswordRequirementSpecialChar;
+
+  /// Mensagem de requisito de senha sobre letra maiúscula.
+  ///
+  /// In pt, this message translates to:
+  /// **'A senha deve conter pelo menos uma letra maiúscula.'**
+  String get authPasswordRequirementUppercase;
+
+  /// Ação de realizar login no aplicativo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrar'**
+  String get authSignIn;
+
+  /// Chamada para ação para o formulário de login.
+  ///
+  /// In pt, this message translates to:
+  /// **'Já tem uma conta? Entre agora!'**
+  String get authSignInCTA;
+
+  /// Ação de realizar login no aplicativo com Google.
+  ///
+  /// In pt, this message translates to:
+  /// **'Entrar com Google'**
+  String get authSignInWithGoogle;
+
+  /// Opção de criar uma conta usando o Google.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cadastrar com o Google'**
+  String get authSignUpWithGoogle;
+
   /// Ação de avançar em fluxos
   ///
   /// In pt, this message translates to:
   /// **'Continuar'**
   String get commonContinue;
 
-  /// Descrição de imagens do logo do aplicativo.
+  /// Ação de avançar
   ///
   /// In pt, this message translates to:
-  /// **'Logo do GoSnack'**
-  String get logoDescription;
-
-  /// Título da primeira página de OnBoarding.
-  ///
-  /// In pt, this message translates to:
-  /// **'Bem-vindo ao GoSnack'**
-  String get onBoardingPage1Title;
+  /// **'Próximo'**
+  String get commonNext;
 
   /// Descrição da primeira página de OnBoarding.
   ///
@@ -118,11 +232,11 @@ abstract class AppLocalizations {
   /// **'O jeito mais rápido e fácil de pedir seus lanches dentro do colégio. Evite filas e aproveite seus intervalos ao máximo!'**
   String get onBoardingPage1Description;
 
-  /// Título da segunda página de OnBoarding.
+  /// Título da primeira página de OnBoarding.
   ///
   /// In pt, this message translates to:
-  /// **'Explore o cardápio da sua unidade'**
-  String get onBoardingPage2Title;
+  /// **'Bem-vindo ao GoSnack'**
+  String get onBoardingPage1Title;
 
   /// Descrição da segunda página de OnBoarding.
   ///
@@ -130,17 +244,47 @@ abstract class AppLocalizations {
   /// **'Selecione a lanchonete do seu colégio, descubra o cardápio disponível e monte seu pedido do seu jeito!'**
   String get onBoardingPage2Description;
 
-  /// Título da terceira página de OnBoarding.
+  /// Título da segunda página de OnBoarding.
   ///
   /// In pt, this message translates to:
-  /// **'Pague e Retire Sem Complicações'**
-  String get onBoardingPage3Title;
+  /// **'Explore o cardápio da sua unidade'**
+  String get onBoardingPage2Title;
 
   /// Descrição da terceira página de OnBoarding.
   ///
   /// In pt, this message translates to:
   /// **'Finalize o pedido pelo app e retire quando estiver pronto. Rápido, seguro e sem filas!'**
   String get onBoardingPage3Description;
+
+  /// Título da terceira página de OnBoarding.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pague e Retire Sem Complicações'**
+  String get onBoardingPage3Title;
+
+  /// Placeholder do campo de primeiro nome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Digite seu primeiro nome'**
+  String get profileFistNameHint;
+
+  /// Rótulo de primeiro nome
+  ///
+  /// In pt, this message translates to:
+  /// **'Primeiro Nome'**
+  String get profileFistNameLabel;
+
+  /// Placeholder do campo de último nome.
+  ///
+  /// In pt, this message translates to:
+  /// **'Digite seu último nome'**
+  String get profileLastNameHint;
+
+  /// Rótulo de último nome
+  ///
+  /// In pt, this message translates to:
+  /// **'Último Nome'**
+  String get profileLastNameLabel;
 }
 
 class _AppLocalizationsDelegate
