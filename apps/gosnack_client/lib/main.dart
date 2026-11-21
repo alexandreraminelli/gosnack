@@ -6,8 +6,9 @@ import 'package:gosnack_client/core/di/injection_container.dart';
 import 'package:gosnack_client/core/router/router.dart';
 import 'package:gosnack_client/core/router/session.dart';
 import 'package:gosnack_client/features/onboarding/domain/usecases/check_if_user_is_first_timer.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() async {
+Future<void> main() async {
   // Garantir que bindings do Flutter estejam inicializados
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -18,6 +19,12 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+
+  // Inicializar Supabase
+  await Supabase.initialize(
+    url: EnvConfig.supabaseUrl,
+    publishableKey: EnvConfig.supabasePublishableKey,
+  );
 
   // Iniciar dependências com GoRouter
   await initDependencies();
