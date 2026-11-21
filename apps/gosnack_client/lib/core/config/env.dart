@@ -1,7 +1,11 @@
 // -------------------------------------------------------------------------- //
 
+import 'package:gosnack_client/core/utils/logger.dart';
+
 /// Utilitário para obter as variáveis de ambiente do projeto.
-abstract class EnvConfig {
+class EnvConfig {
+  const new _();
+
   // Environment Variable Names --------------------------------------------- //
 
   static const _supabaseUrlEnv = 'SUPABASE_URL';
@@ -19,15 +23,25 @@ abstract class EnvConfig {
 
   // Validate --------------------------------------------------------------- //
 
-  static String _missingEnvMessage(String variable) =>
-      'Environment variable $variable is not defined!';
+  static String _missingEnvMessage(List<String> missing) {
+    return 'Missing environment variables: ${missing.join(', ')}.\n'
+        'Run `flutter run --dart-define-from-file=config/dev.json` to provide '
+        'the necessary environment variables.\n'
+        'Check the `config/dev.json` file for the required variables.';
+  }
 
   /// Valida se as variáveis de ambiente necessárias estão definidas.
   static void validate() {
-    assert(supabaseUrl.isNotEmpty, _missingEnvMessage(_supabaseUrlEnv));
-    assert(
-      supabasePublishableKey.isNotEmpty,
-      _missingEnvMessage(_supabasePublishableKeyEnv),
-    );
+    /// Lista de variáveis de ambiente ausentes.
+    final missing = <String>[
+      if (supabaseUrl.isEmpty) _supabaseUrlEnv,
+      if (supabasePublishableKey.isEmpty) _supabasePublishableKeyEnv,
+    ];
+
+    // Lançar exceção se houver variáveis ausentes.
+    if (missing.isNotEmpty) {
+      LoggerHelp().error(_missingEnvMessage(missing));
+      throw StateError(_missingEnvMessage(missing));
+    }
   }
 }
