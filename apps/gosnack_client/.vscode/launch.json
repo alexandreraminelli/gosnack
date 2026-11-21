@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "GoSnack Client (dev)",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--dart-define-from-file=config/dev.json"]
+    },
+    {
+      "name": "GoSnack (prod)",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--dart-define-from-file=config/prod.json"]
+    }
+  ]
+}
