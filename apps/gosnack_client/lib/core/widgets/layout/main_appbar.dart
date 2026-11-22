@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gosnack_client/core/extensions/context_extensions.dart';
 import 'package:gosnack_client/core/resources/icons.dart';
-import 'package:gosnack_client/core/theme/dimensions/radius.dart';
 import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
 import 'package:gosnack_client/core/widgets/common/logo.dart';
 import 'package:gosnack_client/core/widgets/ui/icon_widget.dart';
