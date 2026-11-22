@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gosnack_client/core/extensions/context_extensions.dart';
 import 'package:gosnack_client/core/resources/icons.dart';
+import 'package:gosnack_client/core/theme/dimensions/radius.dart';
 import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
 import 'package:gosnack_client/core/widgets/common/logo.dart';
 import 'package:gosnack_client/core/widgets/ui/icon_widget.dart';
@@ -61,12 +62,10 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: context.palette.content2,
       foregroundColor: context.palette.content2foreground,
       elevation: 0, // sem sombra
-      // Borda inferior:
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(KSizes.borderSm),
-        child: Container(
-          height: KSizes.borderSm,
-          color: context.palette.primaryScale[300],
+      // Border radius:
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(KSizes.radiusLg),
         ),
       ),
 
