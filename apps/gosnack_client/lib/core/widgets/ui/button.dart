@@ -47,8 +47,8 @@ enum ButtonVariant {
       border: null,
     ),
     secondary => (
-      background: palette.content2,
-      foreground: AppColors.primary,
+      background: palette.defaultScale[100],
+      foreground: palette.defaultScale[900],
       border: AppColors.primary,
     ),
     tertiary => (
@@ -57,7 +57,7 @@ enum ButtonVariant {
       border: null,
     ),
     outline => (
-      background: Colors.transparent,
+      background: palette.background,
       foreground: palette.foreground,
       border: palette.defaultColor,
     ),
