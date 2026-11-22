@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gosnack_client/core/extensions/build_context_x.dart';
 import 'package:gosnack_client/core/resources/icons.dart';
+import 'package:gosnack_client/core/router/routes.dart';
 import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
 import 'package:gosnack_client/core/theme/dimensions/spacing.dart';
 import 'package:gosnack_client/core/widgets/common/texts/form_header.dart';
@@ -40,6 +42,7 @@ class LoginScreen extends StatelessWidget {
           size: .lg,
           onPressed: () {
             // TODO(Sign-Up): Navegar pra página de cadastro
+            context.push(AppRoutes.signUp);
           },
         ),
         // Botão de entrar como convidado

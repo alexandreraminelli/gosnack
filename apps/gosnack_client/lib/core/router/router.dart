@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gosnack_client/core/di/injection_container.dart';
 import 'package:gosnack_client/core/router/routes.dart';
 import 'package:gosnack_client/core/router/session.dart';
+import 'package:gosnack_client/features/auth/presentation/views/create_account_screen.dart';
 import 'package:gosnack_client/features/auth/presentation/views/login_screen.dart';
 import 'package:gosnack_client/features/onboarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:gosnack_client/features/onboarding/presentation/views/on_boarding_screen.dart';
@@ -14,21 +15,31 @@ String? appRedirect({
   required AppSession session,
   required String location,
 }) {
-  /// Verifica se a rota atual é a tela de OnBoarding.
-  final isOnBoarding = location == AppRoutes.onBoarding;
+  /// Rotas de autenticação
+  final authRoutes = {
+    AppRoutes.signIn,
+    AppRoutes.signUp,
+    AppRoutes.forgotPassword,
+  };
 
-  /// Verifica se a rota atual é a tela de login.
-  final isLogin = location == AppRoutes.signIn;
+  /// Verifica se a rota atual é uma rota de autenticação
+  final routeStatus = (
+    isOnBoarding: location == AppRoutes.onBoarding,
+    isAuthenticationRoute: authRoutes.contains(location),
+  );
 
+  // Redirecionamento:
   if (session.isFirstTimer) {
     // Primeira vez: redirecionar para OnBoarding se não estiver lá
-    return isOnBoarding ? null : AppRoutes.onBoarding;
+    return routeStatus.isOnBoarding ? null : AppRoutes.onBoarding;
   } else if (!session.isAuthenticated) {
-    // Não autenticado: redirecionar para login se não estiver lá
-    return isLogin ? null : AppRoutes.signIn;
+    // Não autenticado: redirecionar para login
+    return routeStatus.isAuthenticationRoute ? null : AppRoutes.signIn;
   } else {
     // Autenticado: redirecionar para menu se estiver em OnBoarding ou login
-    return isOnBoarding || isLogin ? AppRoutes.menu : null;
+    return routeStatus.isOnBoarding || routeStatus.isAuthenticationRoute
+        ? AppRoutes.menu
+        : null;
   }
 }
 
@@ -50,6 +61,11 @@ GoRouter createRouter(AppSession session) {
       GoRoute(
         path: AppRoutes.signIn,
         builder: (_, _) => const LoginScreen(),
+      ),
+
+      GoRoute(
+        path: AppRoutes.signUp,
+        builder: (_, _) => const CreateAccountScreen(),
       ),
 
       // Menu --------------------------------------------------------------- //
