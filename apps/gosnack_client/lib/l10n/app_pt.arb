@@ -4,10 +4,6 @@
   "@authEmailDescription": {
     "description": "Texto de dica do campo de e-mail."
   },
-  "authEmailHint": "Digite seu e-mail",
-  "@authEmailHint": {
-    "description": "Placeholder do campo de e-mail."
-  },
   "authEmailLabel": "E-mail",
   "@authEmailLabel": {
     "description": "Rótulo de e-mail"
@@ -15,6 +11,14 @@
   "authEnterAsGuest": "Entrar como visitante",
   "@authEnterAsGuest": {
     "description": "Ação de entrar no aplicativo como visitante."
+  },
+  "authFirstNameLabel": "Primeiro Nome",
+  "@authFirstNameLabel": {
+    "description": "Rótulo de primeiro nome"
+  },
+  "authLastNameLabel": "Último Nome",
+  "@authLastNameLabel": {
+    "description": "Rótulo de último nome"
   },
   "authLoginSubTitle": "Entre com sua conta para explorar o cardápio da lanchonete do seu colégio, fazer pedidos e aproveitar seus intervalos ao máximo!",
   "@authLoginSubTitle": {
@@ -24,17 +28,9 @@
   "@authLoginTitle": {
     "description": "Título da tela de login."
   },
-  "authPasswordCreateHint": "Digite sua nova senha",
-  "@authPasswordCreateHint": {
-    "description": "Placeholder do campo de criar senha."
-  },
   "authPasswordCreateLabel": "Criar senha",
   "@authPasswordCreateLabel": {
     "description": "Rótulo de criar senha"
-  },
-  "authPasswordHint": "Digite sua senha",
-  "@authPasswordHint": {
-    "description": "Placeholder do campo de senha."
   },
   "authPasswordLabel": "Senha",
   "@authPasswordLabel": {
@@ -76,6 +72,10 @@
   "@authSignUpCTA": {
     "description": "Chamada de ação para criar uma conta."
   },
+  "authSignUpSubmit": "Criar conta",
+  "@authSignUpSubmit": {
+    "description": "Ação de submeter formulário de cadastro"
+  },
   "authSignUpWithGoogle": "Cadastrar com o Google",
   "@authSignUpWithGoogle": {
     "description": "Opção de criar uma conta usando o Google."
@@ -116,29 +116,13 @@
   "@onBoardingPage3Title": {
     "description": "Título da terceira página de OnBoarding."
   },
-  "profileFistNameHint": "Digite seu primeiro nome",
-  "@profileFistNameHint": {
-    "description": "Placeholder do campo de primeiro nome."
-  },
-  "profileFistNameLabel": "Primeiro Nome",
-  "@profileFistNameLabel": {
-    "description": "Rótulo de primeiro nome"
-  },
-  "profileLastNameHint": "Digite seu último nome",
-  "@profileLastNameHint": {
-    "description": "Placeholder do campo de último nome."
-  },
-  "profileLastNameLabel": "Último Nome",
-  "@profileLastNameLabel": {
-    "description": "Rótulo de último nome"
-  },
-  "validationRequiredField": "Campo obrigatório",
-  "@validationRequiredField": {
-    "description": "Mensagem exibida quanto um campo obrigatório não for preenchido."
-  },
   "validationInvalidEmail": "E-mail inválido",
   "@validationInvalidEmail": {
     "description": "Mensagem exibida quando o e-mail informado for inválido."
+  },
+  "validationInvalidName": "Nome inválido",
+  "@validationInvalidName": {
+    "description": "Mensagem exibida quando o nome pessoal informado for inválido."
   },
   "validationPasswordTooShort": "A senha deve ter pelo menos {length} caracteres",
   "@validationPasswordTooShort": {
@@ -149,8 +133,8 @@
       }
     }
   },
-  "validationInvalidName": "Nome inválido",
-  "@validationInvalidName": {
-    "description": "Mensagem exibida quando o nome pessoal informado for inválido."
+  "validationRequiredField": "Campo obrigatório",
+  "@validationRequiredField": {
+    "description": "Mensagem exibida quanto um campo obrigatório não for preenchido."
   }
 }

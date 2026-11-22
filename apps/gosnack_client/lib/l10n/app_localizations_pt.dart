@@ -14,13 +14,16 @@ class AppLocalizationsPt extends AppLocalizations {
       'Entre com seu e-mail acadêmico ou, se for pai/responsável, seu e-mail pessoal.';
 
   @override
-  String get authEmailHint => 'Digite seu e-mail';
-
-  @override
   String get authEmailLabel => 'E-mail';
 
   @override
   String get authEnterAsGuest => 'Entrar como visitante';
+
+  @override
+  String get authFirstNameLabel => 'Primeiro Nome';
+
+  @override
+  String get authLastNameLabel => 'Último Nome';
 
   @override
   String get authLoginSubTitle =>
@@ -30,13 +33,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get authLoginTitle => 'Bem-vindo ao GoSnack';
 
   @override
-  String get authPasswordCreateHint => 'Digite sua nova senha';
-
-  @override
   String get authPasswordCreateLabel => 'Criar senha';
-
-  @override
-  String get authPasswordHint => 'Digite sua senha';
 
   @override
   String get authPasswordLabel => 'Senha';
@@ -74,6 +71,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get authSignUpCTA => 'Não tem uma conta? Crie uma';
 
   @override
+  String get authSignUpSubmit => 'Criar conta';
+
+  @override
   String get authSignUpWithGoogle => 'Cadastrar com o Google';
 
   @override
@@ -107,22 +107,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get onBoardingPage3Title => 'Pague e Retire Sem Complicações';
 
   @override
-  String get profileFistNameHint => 'Digite seu primeiro nome';
-
-  @override
-  String get profileFistNameLabel => 'Primeiro Nome';
-
-  @override
-  String get profileLastNameHint => 'Digite seu último nome';
-
-  @override
-  String get profileLastNameLabel => 'Último Nome';
-
-  @override
-  String get validationRequiredField => 'Campo obrigatório';
-
-  @override
   String get validationInvalidEmail => 'E-mail inválido';
+
+  @override
+  String get validationInvalidName => 'Nome inválido';
 
   @override
   String validationPasswordTooShort(int length) {
@@ -130,5 +118,5 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get validationInvalidName => 'Nome inválido';
+  String get validationRequiredField => 'Campo obrigatório';
 }

@@ -100,12 +100,6 @@ abstract class AppLocalizations {
   /// **'Entre com seu e-mail acadêmico ou, se for pai/responsável, seu e-mail pessoal.'**
   String get authEmailDescription;
 
-  /// Placeholder do campo de e-mail.
-  ///
-  /// In pt, this message translates to:
-  /// **'Digite seu e-mail'**
-  String get authEmailHint;
-
   /// Rótulo de e-mail
   ///
   /// In pt, this message translates to:
@@ -117,6 +111,18 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Entrar como visitante'**
   String get authEnterAsGuest;
+
+  /// Rótulo de primeiro nome
+  ///
+  /// In pt, this message translates to:
+  /// **'Primeiro Nome'**
+  String get authFirstNameLabel;
+
+  /// Rótulo de último nome
+  ///
+  /// In pt, this message translates to:
+  /// **'Último Nome'**
+  String get authLastNameLabel;
 
   /// Subtítulo da tela de login.
   ///
@@ -130,23 +136,11 @@ abstract class AppLocalizations {
   /// **'Bem-vindo ao GoSnack'**
   String get authLoginTitle;
 
-  /// Placeholder do campo de criar senha.
-  ///
-  /// In pt, this message translates to:
-  /// **'Digite sua nova senha'**
-  String get authPasswordCreateHint;
-
   /// Rótulo de criar senha
   ///
   /// In pt, this message translates to:
   /// **'Criar senha'**
   String get authPasswordCreateLabel;
-
-  /// Placeholder do campo de senha.
-  ///
-  /// In pt, this message translates to:
-  /// **'Digite sua senha'**
-  String get authPasswordHint;
 
   /// Rótulo de senha
   ///
@@ -208,6 +202,12 @@ abstract class AppLocalizations {
   /// **'Não tem uma conta? Crie uma'**
   String get authSignUpCTA;
 
+  /// Ação de submeter formulário de cadastro
+  ///
+  /// In pt, this message translates to:
+  /// **'Criar conta'**
+  String get authSignUpSubmit;
+
   /// Opção de criar uma conta usando o Google.
   ///
   /// In pt, this message translates to:
@@ -268,41 +268,17 @@ abstract class AppLocalizations {
   /// **'Pague e Retire Sem Complicações'**
   String get onBoardingPage3Title;
 
-  /// Placeholder do campo de primeiro nome.
-  ///
-  /// In pt, this message translates to:
-  /// **'Digite seu primeiro nome'**
-  String get profileFistNameHint;
-
-  /// Rótulo de primeiro nome
-  ///
-  /// In pt, this message translates to:
-  /// **'Primeiro Nome'**
-  String get profileFistNameLabel;
-
-  /// Placeholder do campo de último nome.
-  ///
-  /// In pt, this message translates to:
-  /// **'Digite seu último nome'**
-  String get profileLastNameHint;
-
-  /// Rótulo de último nome
-  ///
-  /// In pt, this message translates to:
-  /// **'Último Nome'**
-  String get profileLastNameLabel;
-
-  /// Mensagem exibida quanto um campo obrigatório não for preenchido.
-  ///
-  /// In pt, this message translates to:
-  /// **'Campo obrigatório'**
-  String get validationRequiredField;
-
   /// Mensagem exibida quando o e-mail informado for inválido.
   ///
   /// In pt, this message translates to:
   /// **'E-mail inválido'**
   String get validationInvalidEmail;
+
+  /// Mensagem exibida quando o nome pessoal informado for inválido.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nome inválido'**
+  String get validationInvalidName;
 
   /// Mensagem de requisito mínimo de tamanho de senha.
   ///
@@ -310,11 +286,11 @@ abstract class AppLocalizations {
   /// **'A senha deve ter pelo menos {length} caracteres'**
   String validationPasswordTooShort(int length);
 
-  /// Mensagem exibida quando o nome pessoal informado for inválido.
+  /// Mensagem exibida quanto um campo obrigatório não for preenchido.
   ///
   /// In pt, this message translates to:
-  /// **'Nome inválido'**
-  String get validationInvalidName;
+  /// **'Campo obrigatório'**
+  String get validationRequiredField;
 }
 
 class _AppLocalizationsDelegate
