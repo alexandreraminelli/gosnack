@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
           icon: AppIcons.create,
           fullWidth: true,
           variant: .tertiary,
-          size: .lg,
+          size: .xl,
           onPressed: () {
             // TODO(Sign-Up): Navegar pra página de cadastro
             context.push(AppRoutes.signUp);
