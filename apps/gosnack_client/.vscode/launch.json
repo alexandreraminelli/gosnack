@@ -5,13 +5,15 @@
       "name": "GoSnack Client (dev)",
       "request": "launch",
       "type": "dart",
+      "flutterMode": "debug",
       "args": ["--dart-define-from-file=config/dev.json"]
     },
     {
-      "name": "GoSnack (prod)",
+      "name": "GoSnack (profile)",
       "request": "launch",
       "type": "dart",
+      "flutterMode": "profile",
       "args": ["--dart-define-from-file=config/prod.json"]
-    }
+    },
   ]
 }
