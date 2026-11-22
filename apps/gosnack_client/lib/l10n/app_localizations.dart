@@ -291,6 +291,30 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Último Nome'**
   String get profileLastNameLabel;
+
+  /// Mensagem exibida quanto um campo obrigatório não for preenchido.
+  ///
+  /// In pt, this message translates to:
+  /// **'Campo obrigatório'**
+  String get validationRequiredField;
+
+  /// Mensagem exibida quando o e-mail informado for inválido.
+  ///
+  /// In pt, this message translates to:
+  /// **'E-mail inválido'**
+  String get validationInvalidEmail;
+
+  /// Mensagem de requisito mínimo de tamanho de senha.
+  ///
+  /// In pt, this message translates to:
+  /// **'A senha deve ter pelo menos {length} caracteres'**
+  String validationPasswordTooShort(int length);
+
+  /// Mensagem exibida quando o nome pessoal informado for inválido.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nome inválido'**
+  String get validationInvalidName;
 }
 
 class _AppLocalizationsDelegate

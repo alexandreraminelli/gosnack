@@ -117,4 +117,18 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get profileLastNameLabel => 'Último Nome';
+
+  @override
+  String get validationRequiredField => 'Campo obrigatório';
+
+  @override
+  String get validationInvalidEmail => 'E-mail inválido';
+
+  @override
+  String validationPasswordTooShort(int length) {
+    return 'A senha deve ter pelo menos $length caracteres';
+  }
+
+  @override
+  String get validationInvalidName => 'Nome inválido';
 }

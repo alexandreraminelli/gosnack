@@ -131,5 +131,26 @@
   "profileLastNameLabel": "Último Nome",
   "@profileLastNameLabel": {
     "description": "Rótulo de último nome"
+  },
+  "validationRequiredField": "Campo obrigatório",
+  "@validationRequiredField": {
+    "description": "Mensagem exibida quanto um campo obrigatório não for preenchido."
+  },
+  "validationInvalidEmail": "E-mail inválido",
+  "@validationInvalidEmail": {
+    "description": "Mensagem exibida quando o e-mail informado for inválido."
+  },
+  "validationPasswordTooShort": "A senha deve ter pelo menos {length} caracteres",
+  "@validationPasswordTooShort": {
+    "description": "Mensagem de requisito mínimo de tamanho de senha.",
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "validationInvalidName": "Nome inválido",
+  "@validationInvalidName": {
+    "description": "Mensagem exibida quando o nome pessoal informado for inválido."
   }
 }
