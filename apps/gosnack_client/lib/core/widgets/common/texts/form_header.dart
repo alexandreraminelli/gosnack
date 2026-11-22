@@ -11,6 +11,7 @@ class FormHeader extends StatelessWidget {
   const new({
     required this.title,
     this.subtitle,
+    this.fullWidth = false,
     super.key,
   });
 
@@ -22,32 +23,38 @@ class FormHeader extends StatelessWidget {
   /// Subtítulo do cabeçalho.
   final String? subtitle;
 
+  /// Se deve ocupar toda a largura disponível.
+  final bool fullWidth;
+
   // Build Method ----------------------------------------------------------- //
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: KSpacing.verticalLg,
-      child: Column(
-        children: [
-          // Title ------------------------------------------------------------ //
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: context.textTheme.headlineLarge,
-          ),
-
-          // Subtitle --------------------------------------------------------- //
-          if (subtitle != null) ...[
-            const Gap(KSizes.sm),
+      child: SizedBox(
+        width: fullWidth ? double.infinity : null,
+        child: Column(
+          children: [
+            // Title ------------------------------------------------------------ //
             Text(
-              subtitle!,
+              title,
               textAlign: TextAlign.center,
-              style: context.textTheme.bodyMedium?.copyWith(
-                color: context.palette.content4foreground,
-              ),
+              style: context.textTheme.headlineLarge,
             ),
+
+            // Subtitle --------------------------------------------------------- //
+            if (subtitle != null) ...[
+              const Gap(KSizes.sm),
+              Text(
+                subtitle!,
+                textAlign: TextAlign.center,
+                style: context.textTheme.bodyMedium?.copyWith(
+                  color: context.palette.content4foreground,
+                ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
