@@ -48,7 +48,6 @@ class LoginScreen extends StatelessWidget {
         // Botão de entrar como convidado
         AppButton(
           label: context.l10n.authEnterAsGuest,
-          icon: AppIcons.guest,
           fullWidth: true,
           variant: .outline,
           size: .lg,

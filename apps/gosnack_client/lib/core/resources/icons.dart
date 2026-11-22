@@ -65,7 +65,6 @@ abstract final class AppIcons {
 
   static const AppIconType employee = HugeIcons.strokeRoundedChef;
   static const AppIconType manager = HugeIcons.strokeRoundedManager;
-  static const AppIconType guest = HugeIcons.strokeRoundedHatGlasses;
 
   // Users Fields ------------------------------------------------------- //
 
