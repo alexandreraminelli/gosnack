@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gosnack_client/core/extensions/context_extensions.dart';
 import 'package:gosnack_client/core/resources/icons.dart';
 import 'package:gosnack_client/core/theme/dimensions/sizes.dart';
@@ -45,9 +46,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         icon: AppIcons.arrowLeft,
         size: KSizes.xl,
       ),
-      onPressed: () {
-        // TODO(Navigation): Implementar ação de voltar.
-      },
+      onPressed: () => context.pop(),
     );
 
     // Title Widget --------------------------------------------------------- //
