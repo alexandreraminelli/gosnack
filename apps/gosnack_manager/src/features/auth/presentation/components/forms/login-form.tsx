@@ -12,6 +12,7 @@ import { cn } from "@/core/lib/utils";
 import { safeNextPath } from "@/lib/safe-next-path";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { toast } from "@/core/components/ui/toast";
 
 /**
  * Formulário de login.
@@ -33,25 +34,46 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
   // Router
   const router = useRouter();
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const supabase = createClient();
-    setIsLoading(true);
-    setError(null);
+  /**
+   * Handle para lidar com a submissão do formulário de login.
+   *
+   * @param e Evento de submissão do formulário.
+   */
+  const handleLogin = async (e: React.SubmitEvent) => {
+    e.preventDefault(); // Evita o comportamento padrão de submissão do formulário
+    const supabase = createClient(); // Cria uma instância do cliente Supabase
+    setIsLoading(true); // Indica que o formulário está em processo de submissão
+    setError(null); // Limpa qualquer erro anterior
 
     try {
+      // Tenta realizar o login com o Supabase usando email e senha
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
+      // Se houver um erro, lança uma exceção para ser capturada no bloco catch
       if (error) throw error;
-      // Update this route to redirect to an authenticated route. The user already has an active session.
-      const next = new URLSearchParams(window.location.search).get("next");
+
+      // Notificação de tudo certo
+      toast.add({
+        type: "success",
+        title: texts("auth.login.success.title"),
+        description: texts("auth.login.success.message"),
+      });
+
+      const next = new URLSearchParams(window.location.search).get("next"); // Obtém o parâmetro "next" da URL, se existir
+      // TODO: Ir pra página de dashboard
       router.push(safeNextPath(next, "/protected"));
-    } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : texts("error.generic.unknown"));
+    } catch (error) {
+      // Exibir notificação de erro
+      toast.add({
+        type: "error",
+        // TODO: Mapear códigos de erro do Supabase para mensagens traduzidas
+        title: "Erro ao fazer login",
+        description: error instanceof Error ? error.message : "Ocorreu um erro desconhecido durante o login. Por favor, tente novamente mais tarde.",
+      });
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Indicar fim do carregamento
     }
   };
 
@@ -76,15 +98,15 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
             </div>
             <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
           </Field>
-        </FieldGroup>
 
-        <div className="flex flex-col gap-6">
-          <div className="grid gap-2"></div>
-          {error && <p className="text-sm text-red-500">{error}</p>}
-          <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? texts("auth.login.submit.loading") : texts("auth.login.submit.label")}
-          </Button>
-        </div>
+          {/* Botão de login */}
+          <Field>
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {/* TODO: Adicionar Loader Spin */}
+              {isLoading ? texts("auth.login.submit.loading") : texts("auth.login.submit.label")}
+            </Button>
+          </Field>
+        </FieldGroup>
       </form>
     </div>
   );

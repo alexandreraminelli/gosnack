@@ -21,7 +21,12 @@
       "submit": {
         "label": "Entrar",
         "loading": "Entrando..."
-      }
+      },
+      "success": {
+        "title": "Login bem-sucedido",
+        "message": "Você foi autenticado com sucesso, bem-vindo de volta."
+      },
+      "error": {}
     },
 
     "signUp": {
@@ -62,5 +67,12 @@
   },
   "metadata": {
     "description": "Plataforma de gestão de lanchonetes escolares do colégio Logoipsum."
+  },
+
+  "supabaseErrorCodes": {
+    "invalid_credentials": {
+      "title": "Credenciais inválidas",
+      "description": "O e-mail ou senha fornecidos estão incorretos. Por favor, verifique suas credenciais e tente novamente."
+    }
   }
 }
