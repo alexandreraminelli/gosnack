@@ -50,13 +50,20 @@
         "title": "Erro ao criar uma conta"
       }
     },
-
     "forgotPassword": {
       "label": "Esqueceu a senha?"
     },
-
     "logout": {
-      "label": "Sair"
+      "label": "Sair",
+      "loading": {
+        "title": "Saindo..."
+      },
+      "success": {
+        "title": "Logout bem-sucedido"
+      },
+      "error": {
+        "title": "Erro ao encerrar sessão"
+      }
     }
   },
 
