@@ -1,4 +1,52 @@
 {
+  "appName": {
+    "single": "GoSnack",
+    "complete": "GoSnack Manager"
+  },
+
+  "auth": {
+    "fields": {
+      "email": {
+        "label": "E-mail",
+        "placeholder": "Digite seu e-mail fornecido pelo colégio"
+      },
+      "password": {
+        "label": "Senha"
+      }
+    },
+
+    "login": {
+      "title": "Bem-vindo de volta",
+      "subtitle": "Acesse o sistema para gerenciar pedidos e produtos.",
+      "submit": {
+        "label": "Entrar",
+        "loading": "Entrando..."
+      }
+    },
+
+    "signUp": {
+      "label": "Adicionar Usuário",
+      "title": "DEV MODE: Adicionar Usuário",
+      "subtitle": "Adicione um novo usuário para fins de teste."
+    },
+
+    "forgotPassword": {
+      "label": "Esqueceu a senha?"
+    },
+
+    "logout": {
+      "label": "Sair"
+    }
+  },
+
+  "error": {
+    "generic": {
+      "title": "Desculpa, algo deu errado.",
+      "errorCode": "Código de erro:",
+      "unknown": "Um erro desconhecido ocorreu. Por favor, tente novamente mais tarde."
+    }
+  },
+
   "logo": {
     "alt": "Logo do GoSnack"
   },
