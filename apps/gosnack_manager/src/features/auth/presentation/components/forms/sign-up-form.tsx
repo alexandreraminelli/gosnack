@@ -127,10 +127,10 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
               {isLoading ? (
                 <>
                   <LoadingSpinner />
-                  <span>{texts("auth.login.submit.loading")}</span>
+                  <span>{texts("auth.signUp.submit.loading")}</span>
                 </>
               ) : (
-                <span>{texts("auth.login.submit.label")}</span>
+                <span>{texts("auth.signUp.submit.label")}</span>
               )}
             </Button>
           </Field>
