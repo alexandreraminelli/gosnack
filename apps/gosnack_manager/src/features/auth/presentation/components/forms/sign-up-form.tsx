@@ -15,6 +15,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert"
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ICONS } from "@/constants/icons";
 import { useSupabaseAuthErrorMessage } from "@/features/auth/presentation/hooks/use-supabase-auth-error-message";
+import PasswordInput from "@/features/auth/presentation/components/password-input";
 
 /**
  * Formulário de criação de conta.
@@ -117,7 +118,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
           {/* TODO: Criar componente de ocultar/exibir senha */}
           <Field>
             <FieldLabel htmlFor={passwordId}>{texts("auth.fields.password.label")}</FieldLabel>
-            <Input id={passwordId} type="new-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+            <PasswordInput id={passwordId} required value={password} autoComplete="new-password" onChange={(e) => setPassword(e.target.value)} />
           </Field>
 
           {/* Botão de submissão */}

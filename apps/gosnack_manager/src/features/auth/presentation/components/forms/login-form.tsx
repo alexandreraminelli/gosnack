@@ -17,6 +17,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert"
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ICONS } from "@/constants/icons";
 import { useSupabaseAuthErrorMessage } from "@/features/auth/presentation/hooks/use-supabase-auth-error-message";
+import PasswordInput from "@/features/auth/presentation/components/password-input";
 
 /**
  * Formulário de login.
@@ -116,7 +117,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
                 {texts("auth.forgotPassword.label")}
               </Link>
             </div>
-            <Input id={passwordId} type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+            <PasswordInput id={passwordId} required autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </Field>
 
           {/* Botão de login */}
