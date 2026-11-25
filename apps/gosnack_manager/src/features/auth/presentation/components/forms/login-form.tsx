@@ -13,6 +13,7 @@ import { safeNextPath } from "@/lib/safe-next-path";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { toast } from "@/core/components/ui/toast";
+import LoadingSpinner from "@/core/components/shared/feedback/loading-spinner";
 
 /**
  * Formulário de login.
@@ -28,7 +29,6 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
   const [password, setPassword] = useState("");
 
   // Estado do formulário
-  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   // Router
@@ -43,7 +43,6 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
     e.preventDefault(); // Evita o comportamento padrão de submissão do formulário
     const supabase = createClient(); // Cria uma instância do cliente Supabase
     setIsLoading(true); // Indica que o formulário está em processo de submissão
-    setError(null); // Limpa qualquer erro anterior
 
     try {
       // Tenta realizar o login com o Supabase usando email e senha
@@ -103,7 +102,14 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           <Field>
             <Button type="submit" className="w-full" disabled={isLoading}>
               {/* TODO: Adicionar Loader Spin */}
-              {isLoading ? texts("auth.login.submit.loading") : texts("auth.login.submit.label")}
+              {isLoading ? (
+                <>
+                  <LoadingSpinner />
+                  <span>{texts("auth.login.submit.loading")}</span>
+                </>
+              ) : (
+                <span>{texts("auth.login.submit.label")}</span>
+              )}
             </Button>
           </Field>
         </FieldGroup>
