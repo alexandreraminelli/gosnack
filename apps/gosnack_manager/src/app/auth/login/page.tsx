@@ -3,7 +3,20 @@ import { CardHeader } from "@/core/components/ui/card";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/core/components/ui/sheet";
 import { LoginForm } from "@/features/auth/presentation/components/forms/login-form";
 import { SignUpForm } from "@/features/auth/presentation/components/forms/sign-up-form";
+import { Metadata } from "next";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+
+/**
+ * Metadados da página de login.
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  const texts = await getTranslations("core.auth.login");
+
+  return {
+    title: texts("single"),
+  };
+}
 
 /**
  * Página de login.

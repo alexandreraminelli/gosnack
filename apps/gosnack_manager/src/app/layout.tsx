@@ -1,4 +1,3 @@
-import { APP_NAME } from "@/constants/app";
 import { ThemeProvider } from "@/core/components/providers/theme-provider";
 import { Toaster } from "@/core/components/ui/toast";
 import "@/core/styles/globals.css";
@@ -24,14 +23,14 @@ const geistSans = Geist({
  * Metadados globais da aplicação.
  */
 export async function generateMetadata(): Promise<Metadata> {
-  const texts = await getTranslations("core.metadata");
+  const texts = await getTranslations("core");
 
   return {
     title: {
-      template: `%s | ${APP_NAME}`,
-      default: APP_NAME,
+      template: `%s | ${texts("appName.complete")}`,
+      default: texts("appName.complete"),
     },
-    description: texts("description"),
+    description: texts("metadata.description"),
   };
 }
 
