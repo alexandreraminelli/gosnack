@@ -101,7 +101,6 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           {/* Botão de login */}
           <Field>
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {/* TODO: Adicionar Loader Spin */}
               {isLoading ? (
                 <>
                   <LoadingSpinner />
