@@ -1,21 +1,20 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 
+import { ICONS } from "@/constants/icons";
 import LoadingSpinner from "@/core/components/shared/feedback/loading-spinner";
+import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
 import { Button } from "@/core/components/ui/button";
 import { Field, FieldGroup, FieldLabel } from "@/core/components/ui/field";
 import { Input } from "@/core/components/ui/input";
 import { toast } from "@/core/components/ui/toast";
 import { createClient } from "@/core/lib/supabase/client";
 import { cn } from "@/core/lib/utils";
-import { useTranslations } from "next-intl";
-import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ICONS } from "@/constants/icons";
-import { useSupabaseAuthErrorMessage } from "@/features/auth/presentation/hooks/use-supabase-auth-error-message";
 import PasswordInput from "@/features/auth/presentation/components/password-input";
+import { useSupabaseAuthErrorMessage } from "@/features/auth/presentation/hooks/use-supabase-auth-error-message";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { useTranslations } from "next-intl";
 
 /**
  * Formulário de criação de conta.
@@ -40,7 +39,6 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const router = useRouter();
   const getErrorMessage = useSupabaseAuthErrorMessage();
 
   /**
@@ -76,10 +74,6 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
         title: texts("auth.signUp.success.title"),
         description: texts("auth.signUp.success.message"),
       });
-
-      // Redirecionamento
-      // TODO(navigation): Registrar rota em constante
-      router.push("/auth/sign-up-success");
     } catch (error: unknown) {
       const { title, description } = getErrorMessage(error);
       // Exibir notificação de erro
