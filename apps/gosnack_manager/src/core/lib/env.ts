@@ -1,14 +1,17 @@
 /**
  * Função para obter as variáveis de ambiente do `.env.local`.
- * Se a variável não estiver definida, retorna uma exceção.
+ *
+ * Garante que a variável de ambiente esteja definida. Se não estiver, retorna uma exceção.
  */
-function getEnv(name: string): string {
-  const value = process.env[name]?.trim();
+function requiredEnv(name: string, value?: string): string {
+  // Obtém o valor da variável de ambiente
+  const trimmed = value?.trim();
 
-  if (!value) {
+  // Se a variável de ambiente não estiver definida, lança uma exceção
+  if (!trimmed) {
     throw new Error(`Missing environment variable: ${name}`);
   }
-  return value;
+  return trimmed;
 }
 
 /**
@@ -17,8 +20,8 @@ function getEnv(name: string): string {
 const appEnvs = {
   /** Variáveis de ambiente do Supabase. */
   supabase: {
-    url: getEnv("NEXT_PUBLIC_SUPABASE_URL"),
-    publishableKey: getEnv("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY"),
+    url: requiredEnv("NEXT_PUBLIC_SUPABASE_URL", process.env.NEXT_PUBLIC_SUPABASE_URL),
+    publishableKey: requiredEnv("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY", process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY),
   },
 } as const;
 
