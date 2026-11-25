@@ -7,7 +7,7 @@ import { Skeleton } from "@/core/components/ui/skeleton";
 import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 
 /**
  * Tipagem de opções de tema.
