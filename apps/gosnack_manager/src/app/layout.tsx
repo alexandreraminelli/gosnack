@@ -1,5 +1,6 @@
 import { APP_NAME } from "@/constants/app";
 import { ThemeProvider } from "@/core/components/providers/theme-provider";
+import { Toaster } from "@/core/components/ui/toast";
 import "@/core/styles/globals.css";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
@@ -62,6 +63,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           >
             {/* Componentes filhos de rotas e layouts */}
             {children}
+
+            {/* Componente Toast */}
+            <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
