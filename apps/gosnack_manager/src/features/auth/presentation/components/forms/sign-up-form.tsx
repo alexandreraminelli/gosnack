@@ -52,7 +52,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
     e.preventDefault(); // Evita o comportamento padrão de submissão do formulário
 
     // Não fazer nada se não estiver em modo dev
-    if (process.env.NODE_ENV === "development") return;
+    if (process.env.NODE_ENV !== "development") return;
 
     const supabase = createClient(); // Cria uma instância do cliente Supabase
     setIsLoading(true); // Indica que o formulário está em processo de submissão
