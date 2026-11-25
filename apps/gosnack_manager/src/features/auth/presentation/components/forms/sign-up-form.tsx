@@ -13,6 +13,7 @@ import { cn } from "@/core/lib/utils";
 import { useTranslations } from "next-intl";
 import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { ICONS } from "@/constants/icons";
 
 /**
  * Formulário de criação de conta.
