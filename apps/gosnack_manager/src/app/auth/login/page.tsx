@@ -16,7 +16,7 @@ export default function LoginPage() {
     <div className="space-y-10">
       <main className="space-y-5">
         {/* Header */}
-        <CardHeader className="px-0 space-y-2">
+        <CardHeader className="px-0 space-y-2 text-center md:text-start">
           {/* Título */}
           <h1 className="text-2xl font-bold">
             {texts("appName.complete")} <br />
