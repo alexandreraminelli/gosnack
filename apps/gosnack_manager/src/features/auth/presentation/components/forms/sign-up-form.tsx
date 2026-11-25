@@ -11,6 +11,8 @@ import { toast } from "@/core/components/ui/toast";
 import { createClient } from "@/core/lib/supabase/client";
 import { cn } from "@/core/lib/utils";
 import { useTranslations } from "next-intl";
+import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 /**
  * Formulário de criação de conta.
@@ -90,7 +92,16 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
   }
 
   return (
-    <div className={cn("flex flex-col", className)} {...props}>
+    <div className={cn("flex flex-col gap-6", className)} {...props}>
+      {/* Alert Erro */}
+      {error && (
+        <Alert variant="destructive">
+          <HugeiconsIcon icon={ICONS.feedback.error} />
+          <AlertTitle>{texts("auth.login.error.title")}</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
+
       <form onSubmit={handleSignUp}>
         <FieldGroup>
           {/* Campo E-mail */}

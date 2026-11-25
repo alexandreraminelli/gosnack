@@ -26,7 +26,9 @@
         "title": "Login bem-sucedido",
         "message": "Você foi autenticado com sucesso, bem-vindo de volta."
       },
-      "error": {}
+      "error": {
+        "title": "Erro ao fazer login"
+      }
     },
 
     "signUp": {
@@ -37,6 +39,10 @@
       "success": {
         "title": "Conta criada com sucesso",
         "message": "Sua nova conta foi criada com sucesso. Por favor, verifique seu e-mail para confirmar sua conta."
+      },
+
+      "error": {
+        "title": "Erro ao criar uma conta"
       }
     },
 

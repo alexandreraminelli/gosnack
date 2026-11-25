@@ -7,8 +7,8 @@ import {
   ArrowRight01Icon,
   ArrowTurnBackwardIcon,
   ArrowUp01Icon,
+  BadgeAlertIcon,
   Calendar03Icon,
-  Cancel01Icon,
   ChefIcon,
   Clock01Icon,
   ComputerIcon,
@@ -92,7 +92,7 @@ export const ICONS = {
   feedback: {
     loading: Loading03Icon,
     success: Tick02Icon,
-    error: Cancel01Icon,
+    error: BadgeAlertIcon,
     warning: Alert02Icon,
   },
 

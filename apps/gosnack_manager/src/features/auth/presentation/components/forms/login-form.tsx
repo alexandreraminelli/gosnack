@@ -13,6 +13,9 @@ import { cn } from "@/core/lib/utils";
 import { safeNextPath } from "@/lib/safe-next-path";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ICONS } from "@/constants/icons";
 
 /**
  * Formulário de login.
@@ -76,7 +79,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
         title: "Erro ao fazer login",
         description: error instanceof Error ? error.message : "Ocorreu um erro desconhecido durante o login. Por favor, tente novamente mais tarde.",
       });
-       // TODO(auth-error): Exibir alert de erro
+      // TODO(auth-error): Exibir alert de erro
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
       setIsLoading(false); // Indicar fim do carregamento
@@ -85,6 +88,15 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
+      {/* Alert Erro */}
+      {error && (
+        <Alert variant="destructive">
+          <HugeiconsIcon icon={ICONS.feedback.error} />
+          <AlertTitle>{texts("auth.login.error.title")}</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
+
       <form onSubmit={handleLogin}>
         <FieldGroup>
           {/* Campo E-mail */}
