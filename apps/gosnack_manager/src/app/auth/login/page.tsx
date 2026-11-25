@@ -45,7 +45,7 @@ export default function LoginPage() {
               <SheetDescription>{texts("auth.signUp.subtitle")}</SheetDescription>
             </SheetHeader>
             {/* Form de adicionar usuário */}
-            <SignUpForm />
+            <SignUpForm className="px-4" />
           </SheetContent>
         </Sheet>
       )}

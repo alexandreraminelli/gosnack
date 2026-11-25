@@ -32,7 +32,12 @@
     "signUp": {
       "label": "Adicionar Usuário",
       "title": "DEV MODE: Adicionar Usuário",
-      "subtitle": "Adicione um novo usuário para fins de teste."
+      "subtitle": "Adicione um novo usuário para fins de teste.",
+
+      "success": {
+        "title": "Conta criada com sucesso",
+        "message": "Sua nova conta foi criada com sucesso. Por favor, verifique seu e-mail para confirmar sua conta."
+      }
     },
 
     "forgotPassword": {
