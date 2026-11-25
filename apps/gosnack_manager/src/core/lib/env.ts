@@ -14,10 +14,12 @@ function getEnv(name: string): string {
 /**
  * Variáveis de ambiente do projeto.
  */
-const env = {
+const appEnvs = {
   /** Variáveis de ambiente do Supabase. */
   supabase: {
     url: getEnv("NEXT_PUBLIC_SUPABASE_URL"),
     publishableKey: getEnv("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY"),
   },
 } as const;
+
+export default appEnvs;
