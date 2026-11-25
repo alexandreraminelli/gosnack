@@ -16,6 +16,7 @@ import Link from "next/link";
 import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ICONS } from "@/constants/icons";
+import { useSupabaseAuthErrorMessage } from "@/features/auth/presentation/hooks/use-supabase-auth-error-message";
 
 /**
  * Formulário de login.
@@ -38,8 +39,8 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Router
   const router = useRouter();
+  const getErrorMessage = useSupabaseAuthErrorMessage();
 
   /**
    * Handle para lidar com a submissão do formulário de login.
@@ -72,15 +73,15 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
       // TODO: Ir pra página de dashboard
       router.push(safeNextPath(next, "/protected"));
     } catch (error) {
+      const { title, description } = getErrorMessage(error);
       // Exibir notificação de erro
       toast.add({
         type: "error",
-        // TODO: Mapear códigos de erro do Supabase para mensagens traduzidas
-        title: "Erro ao fazer login",
-        description: error instanceof Error ? error.message : "Ocorreu um erro desconhecido durante o login. Por favor, tente novamente mais tarde.",
+        title,
+        description,
       });
-      // TODO(auth-error): Exibir alert de erro
-      setError(error instanceof Error ? error.message : "An error occurred");
+      // Erro para o Alert
+      setError(description);
     } finally {
       setIsLoading(false); // Indicar fim do carregamento
     }

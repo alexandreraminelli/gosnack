@@ -14,6 +14,7 @@ import { useTranslations } from "next-intl";
 import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ICONS } from "@/constants/icons";
+import { useSupabaseAuthErrorMessage } from "@/features/auth/presentation/hooks/use-supabase-auth-error-message";
 
 /**
  * Formulário de criação de conta.
@@ -38,8 +39,8 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Router
   const router = useRouter();
+  const getErrorMessage = useSupabaseAuthErrorMessage();
 
   /**
    * Handle para lidar com a submissão do formulário de criação de conta.
@@ -79,14 +80,15 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
       // TODO(navigation): Registrar rota em constante
       router.push("/auth/sign-up-success");
     } catch (error: unknown) {
+      const { title, description } = getErrorMessage(error);
+      // Exibir notificação de erro
       toast.add({
         type: "error",
-        // TODO: Mapear códigos de erro do Supabase para mensagens traduzidas
-        title: "Erro ao criar uma conta",
-        description: error instanceof Error ? error.message : "Ocorreu um erro desconhecido durante o cadastro. Por favor, tente novamente mais tarde.",
+        title,
+        description,
       });
-      // TODO(auth-error): Exibir alert de erro
-      setError(error instanceof Error ? error.message : "An error occurred");
+      // Erro para o Alert
+      setError(description);
     } finally {
       setIsLoading(false); // Indicar fim do carregamento
     }

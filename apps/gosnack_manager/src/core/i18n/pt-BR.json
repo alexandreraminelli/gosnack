@@ -80,10 +80,82 @@
     "description": "Plataforma de gestão de lanchonetes escolares do colégio Logoipsum."
   },
 
-  "supabaseErrorCodes": {
+  "supabaseAuthErrorCodes": {
+    "email_address_invalid": {
+      "title": "Endereço de e-mail inválido",
+      "description": "O endereço de e-mail fornecido não é válido. Por favor, verifique o formato do e-mail e tente novamente."
+    },
+    "email_exists": {
+      "title": "E-mail já existe",
+      "description": "O endereço de e-mail fornecido já está registrado. Por favor, use outro e-mail ou faça login."
+    },
+    "email_not_confirmed": {
+      "title": "E-mail não confirmado",
+      "description": "O endereço de e-mail fornecido ainda não foi confirmado. Por favor, verifique sua caixa de entrada para o e-mail de confirmação."
+    },
     "invalid_credentials": {
       "title": "Credenciais inválidas",
       "description": "O e-mail ou senha fornecidos estão incorretos. Por favor, verifique suas credenciais e tente novamente."
+    },
+    "otp_disabled": {
+      "title": "OTP desativado",
+      "description": "A autenticação de dois fatores (OTP) está desativada para esta conta. Por favor, entre em contato com o suporte para mais informações."
+    },
+    "otp_expired": {
+      "title": "OTP expirado",
+      "description": "O código de autenticação de dois fatores (OTP) fornecido expirou. Por favor, solicite um novo código e tente novamente."
+    },
+    "over_email_send_rate_limit": {
+      "title": "Limite de envio de e-mail excedido",
+      "description": "Você excedeu o limite de envio de e-mails. Por favor, aguarde um momento antes de tentar novamente."
+    },
+    "over_request_rate_limit": {
+      "title": "Limite de solicitação excedido",
+      "description": "Você excedeu o limite de solicitações. Por favor, aguarde um momento antes de tentar novamente."
+    },
+    "reauthentication_needed": {
+      "title": "Reautenticação necessária",
+      "description": "Sua sessão expirou. Por favor, faça login novamente para continuar."
+    },
+    "reauthentication_not_valid": {
+      "title": "Reautenticação inválida",
+      "description": "A reautenticação falhou. Por favor, faça login novamente para continuar."
+    },
+    "request_timeout": {
+      "title": "Tempo de solicitação esgotado",
+      "description": "A solicitação demorou muito para ser concluída. Por favor, tente novamente."
+    },
+    "same_password": {
+      "title": "Senha repetida",
+      "description": "A nova senha fornecida é a mesma que a senha atual. Por favor, escolha uma senha diferente."
+    },
+    "session_expired": {
+      "title": "Sessão expirada",
+      "description": "Sua sessão expirou. Por favor, faça login novamente para continuar."
+    },
+    "signup_disabled": {
+      "title": "Cadastro desativado",
+      "description": "O cadastro de novos usuários está temporariamente desativado. Por favor, tente novamente mais tarde."
+    },
+    "user_already_exists": {
+      "title": "Usuário já existente",
+      "description": "O usuário fornecido já está registrado. Por favor, use outro e-mail ou faça login."
+    },
+    "user_banned": {
+      "title": "Usuário banido",
+      "description": "O usuário fornecido foi banido e não pode acessar o sistema. Por favor, entre em contato com o suporte para mais informações."
+    },
+    "user_not_found": {
+      "title": "Usuário não encontrado",
+      "description": "O usuário fornecido não foi encontrado. Por favor, verifique suas credenciais e tente novamente."
+    },
+    "weak_password": {
+      "title": "Senha fraca",
+      "description": "A senha deve possuir pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos. Por favor, escolha uma senha mais forte."
+    },
+    "unknown": {
+      "title": "Falha na autenticação",
+      "description": "Ocorreu um erro durante a autenticação. Por favor, tente novamente mais tarde."
     }
   }
 }
