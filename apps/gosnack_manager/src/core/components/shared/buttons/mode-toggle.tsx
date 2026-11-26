@@ -1,9 +1,9 @@
 "use client";
 
 import { ICONS } from "@/core/constants/icons";
-import { Button } from "@/core/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/core/components/ui/dropdown-menu";
-import { Skeleton } from "@/core/components/ui/skeleton";
+import { Button } from "@/ui/primitives/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/ui/primitives/dropdown-menu";
+import { Skeleton } from "@/ui/primitives/skeleton";
 import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";

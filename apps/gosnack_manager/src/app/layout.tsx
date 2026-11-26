@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@/core/providers/theme-provider";
-import { Toaster } from "@/core/components/ui/toast";
+import { Toaster } from "@/ui/primitives/toast";
 import "@/core/styles/globals.css";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";

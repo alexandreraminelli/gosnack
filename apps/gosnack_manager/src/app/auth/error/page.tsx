@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/core/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/primitives/card";
 import { getTranslations } from "next-intl/server";
 
 // TODO: Adaptar esse arquivo gerado automaticamente pelo `pnpm dlx shadcn@latest add @supabase/password-based-auth-nextjs` para o projeto

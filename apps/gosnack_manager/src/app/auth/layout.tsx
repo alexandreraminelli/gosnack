@@ -1,7 +1,7 @@
 import { IMAGES } from "@/core/constants/images";
 import { ModeToggle } from "@/core/components/shared/buttons/mode-toggle";
 import Logo from "@/core/components/shared/logo";
-import { Card } from "@/core/components/ui/card";
+import { Card } from "@/ui/primitives/card";
 import Image from "next/image";
 
 /**

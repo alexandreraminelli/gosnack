@@ -4,11 +4,11 @@ import { useId, useState } from "react";
 
 import { ICONS } from "@/core/constants/icons";
 import LoadingSpinner from "@/core/components/shared/feedback/loading-spinner";
-import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
-import { Button } from "@/core/components/ui/button";
-import { Field, FieldGroup, FieldLabel } from "@/core/components/ui/field";
-import { Input } from "@/core/components/ui/input";
-import { toast } from "@/core/components/ui/toast";
+import { Alert, AlertDescription, AlertTitle } from "@/ui/primitives/alert";
+import { Button } from "@/ui/primitives/button";
+import { Field, FieldGroup, FieldLabel } from "@/ui/primitives/field";
+import { Input } from "@/ui/primitives/input";
+import { toast } from "@/ui/primitives/toast";
 import { createClient } from "@/core/supabase/client";
 import { cn } from "@/core/lib/utils";
 import PasswordInput from "@/features/auth/ui/password-input";

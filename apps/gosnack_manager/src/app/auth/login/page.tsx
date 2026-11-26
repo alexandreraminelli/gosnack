@@ -1,6 +1,6 @@
-import { Button } from "@/core/components/ui/button";
-import { CardHeader } from "@/core/components/ui/card";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/core/components/ui/sheet";
+import { Button } from "@/ui/primitives/button";
+import { CardHeader } from "@/ui/primitives/card";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/primitives/sheet";
 import { LoginForm } from "@/features/auth/ui/forms/login-form";
 import { SignUpForm } from "@/features/auth/ui/forms/sign-up-form";
 import { Metadata } from "next";

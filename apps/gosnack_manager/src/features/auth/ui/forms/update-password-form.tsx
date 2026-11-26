@@ -5,10 +5,10 @@ import { useState } from "react";
 
 import { cn } from "@/core/lib/utils";
 import { createClient } from "@/core/supabase/client";
-import { Button } from "@/core/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/core/components/ui/card";
-import { Input } from "@/core/components/ui/input";
-import { Label } from "@/core/components/ui/label";
+import { Button } from "@/ui/primitives/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/primitives/card";
+import { Input } from "@/ui/primitives/input";
+import { Label } from "@/ui/primitives/label";
 
 // TODO: Adaptar esse arquivo gerado automaticamente pelo `pnpm dlx shadcn@latest add @supabase/password-based-auth-nextjs` para o projeto
 

@@ -1,5 +1,5 @@
 import { ModeToggle } from "@/core/components/shared/buttons/mode-toggle";
-import { Button } from "@/core/components/ui/button";
+import { Button } from "@/ui/primitives/button";
 
 export default function HomePage() {
   return (
