@@ -1,6 +1,6 @@
 "use client";
 
-import { ICONS } from "@/constants/icons";
+import { ICONS } from "@/core/constants/icons";
 import { Button } from "@/core/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/core/components/ui/dropdown-menu";
 import { Skeleton } from "@/core/components/ui/skeleton";

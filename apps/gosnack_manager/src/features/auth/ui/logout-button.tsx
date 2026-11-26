@@ -6,7 +6,7 @@ import { createClient } from "@/core/supabase/client";
 import { Button } from "@/core/components/ui/button";
 import { useTranslations } from "next-intl";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ICONS } from "@/constants/icons";
+import { ICONS } from "@/core/constants/icons";
 import { toast } from "@/core/components/ui/toast";
 
 /**

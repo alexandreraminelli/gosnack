@@ -1,4 +1,4 @@
-import { ICONS } from "@/constants/icons";
+import { ICONS } from "@/core/constants/icons";
 import { InputGroup, InputGroupButton, InputGroupInput } from "@/core/components/ui/input-group";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useTranslations } from "next-intl";

@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 
-import { ICONS } from "@/constants/icons";
+import { ICONS } from "@/core/constants/icons";
 import LoadingSpinner from "@/core/components/shared/feedback/loading-spinner";
 import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
 import { Button } from "@/core/components/ui/button";

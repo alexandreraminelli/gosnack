@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ICONS } from "@/constants/icons";
+import { ICONS } from "@/core/constants/icons";
 import { useSupabaseAuthErrorMessage } from "@/features/auth/hooks/use-supabase-auth-error-message";
 import PasswordInput from "@/features/auth/ui/password-input";
 

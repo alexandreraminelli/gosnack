@@ -1,4 +1,4 @@
-import { ICONS } from "@/constants/icons";
+import { ICONS } from "@/core/constants/icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 /**

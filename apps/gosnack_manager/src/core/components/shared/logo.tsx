@@ -1,4 +1,4 @@
-import { IMAGES } from "@/constants/images";
+import { IMAGES } from "@/core/constants/images";
 import { cn } from "@/core/lib/utils";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
