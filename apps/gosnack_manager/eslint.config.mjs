@@ -7,7 +7,7 @@ import nextTs from "eslint-config-next/typescript";
  * @param patters - Padrões de importação a serem restringidos.
  * @returns Configuração da regra "no-restricted-imports".
  */
-const restrictImports = (patters) => ({
+const restrictImports = (patterns) => ({
   "no-restricted-imports": ["error", { patterns }],
 });
 
