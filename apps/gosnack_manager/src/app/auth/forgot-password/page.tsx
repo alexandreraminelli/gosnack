@@ -1,4 +1,4 @@
-import { ForgotPasswordForm } from "@/features/auth/presentation/components/forms/forgot-password-form";
+import { ForgotPasswordForm } from "@/features/auth/ui/forms/forgot-password-form";
 
 // TODO: Adaptar esse arquivo gerado automaticamente pelo `pnpm dlx shadcn@latest add @supabase/password-based-auth-nextjs` para o projeto
 

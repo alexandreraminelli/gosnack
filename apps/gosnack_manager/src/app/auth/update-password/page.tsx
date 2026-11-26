@@ -1,4 +1,4 @@
-import { UpdatePasswordForm } from "@/features/auth/presentation/components/forms/update-password-form";
+import { UpdatePasswordForm } from "@/features/auth/ui/forms/update-password-form";
 
 // TODO: Adaptar esse arquivo gerado automaticamente pelo `pnpm dlx shadcn@latest add @supabase/password-based-auth-nextjs` para o projeto
 

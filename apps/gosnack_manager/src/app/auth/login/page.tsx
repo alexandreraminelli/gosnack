@@ -1,8 +1,8 @@
 import { Button } from "@/core/components/ui/button";
 import { CardHeader } from "@/core/components/ui/card";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/core/components/ui/sheet";
-import { LoginForm } from "@/features/auth/presentation/components/forms/login-form";
-import { SignUpForm } from "@/features/auth/presentation/components/forms/sign-up-form";
+import { LoginForm } from "@/features/auth/ui/forms/login-form";
+import { SignUpForm } from "@/features/auth/ui/forms/sign-up-form";
 import { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";

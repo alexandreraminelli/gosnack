@@ -1,29 +1,30 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 
-import { ICONS } from "@/constants/icons";
 import LoadingSpinner from "@/core/components/shared/feedback/loading-spinner";
-import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
 import { Button } from "@/core/components/ui/button";
 import { Field, FieldGroup, FieldLabel } from "@/core/components/ui/field";
 import { Input } from "@/core/components/ui/input";
 import { toast } from "@/core/components/ui/toast";
 import { createClient } from "@/core/lib/supabase/client";
 import { cn } from "@/core/lib/utils";
-import PasswordInput from "@/features/auth/presentation/components/password-input";
-import { useSupabaseAuthErrorMessage } from "@/features/auth/presentation/hooks/use-supabase-auth-error-message";
-import { HugeiconsIcon } from "@hugeicons/react";
+import { safeNextPath } from "@/lib/safe-next-path";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ICONS } from "@/constants/icons";
+import { useSupabaseAuthErrorMessage } from "@/features/auth/hooks/use-supabase-auth-error-message";
+import PasswordInput from "@/features/auth/ui/password-input";
 
 /**
- * Formulário de criação de conta.
- *
- * Permite, em ambiente de desenvolvimento, criar uma conta de usuário para teste.
+ * Formulário de login.
  *
  * @see https://supabase.com/library/docs/nextjs/password-based-auth
  */
-export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
+export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
   // Textos
   const texts = useTranslations("core");
 
@@ -35,46 +36,44 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Estados do formulário
+  // Estado do formulário
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const router = useRouter();
   const getErrorMessage = useSupabaseAuthErrorMessage();
 
   /**
-   * Handle para lidar com a submissão do formulário de criação de conta.
+   * Handle para lidar com a submissão do formulário de login.
    *
    * @param e Evento de submissão do formulário.
    */
-  async function handleSignUp(e: React.SubmitEvent) {
+  async function handleLogin(e: React.SubmitEvent) {
     e.preventDefault(); // Evita o comportamento padrão de submissão do formulário
-
-    // Não fazer nada se não estiver em modo dev
-    if (process.env.NODE_ENV !== "development") return;
-
     const supabase = createClient(); // Cria uma instância do cliente Supabase
     setIsLoading(true); // Indica que o formulário está em processo de submissão
     setError(null); // Limpar erros anteriores
 
     try {
-      // Realizar login pelo Supabase Auth
-      const { error } = await supabase.auth.signUp({
+      // Tenta realizar o login com o Supabase usando email e senha
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/protected`,
-        },
       });
-      // Se houver um erro, lança uma exceção para ser capturada pelo bloco catch
+      // Se houver um erro, lança uma exceção para ser capturada no bloco catch
       if (error) throw error;
 
-      // Notificação de sucesso
+      // Notificação de tudo certo
       toast.add({
         type: "success",
-        title: texts("auth.signUp.success.title"),
-        description: texts("auth.signUp.success.message"),
+        title: texts("auth.login.success.title"),
+        description: texts("auth.login.success.message"),
       });
-    } catch (error: unknown) {
+
+      const next = new URLSearchParams(window.location.search).get("next"); // Obtém o parâmetro "next" da URL, se existir
+      // TODO: Ir pra página de dashboard
+      router.push(safeNextPath(next, "/protected"));
+    } catch (error) {
       const { title, description } = getErrorMessage(error);
       // Exibir notificação de erro
       toast.add({
@@ -100,7 +99,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
         </Alert>
       )}
 
-      <form onSubmit={handleSignUp}>
+      <form onSubmit={handleLogin}>
         <FieldGroup>
           {/* Campo E-mail */}
           <Field>
@@ -111,20 +110,26 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
           {/* Campo de Senha */}
           {/* TODO: Criar componente de ocultar/exibir senha */}
           <Field>
-            <FieldLabel htmlFor={passwordId}>{texts("auth.fields.password.label")}</FieldLabel>
-            <PasswordInput id={passwordId} required value={password} autoComplete="new-password" onChange={(e) => setPassword(e.target.value)} />
+            <div className="flex items-center">
+              <FieldLabel htmlFor={passwordId}>{texts("auth.fields.password.label")}</FieldLabel>
+              {/* Botão de esqueceu a senha */}
+              <Link href="/auth/forgot-password" className="ml-auto inline-block text-sm underline-offset-4 hover:underline">
+                {texts("auth.forgotPassword.label")}
+              </Link>
+            </div>
+            <PasswordInput id={passwordId} required autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </Field>
 
-          {/* Botão de submissão */}
+          {/* Botão de login */}
           <Field>
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? (
                 <>
                   <LoadingSpinner />
-                  <span>{texts("auth.signUp.submit.loading")}</span>
+                  <span>{texts("auth.login.submit.loading")}</span>
                 </>
               ) : (
-                <span>{texts("auth.signUp.submit.label")}</span>
+                <span>{texts("auth.login.submit.label")}</span>
               )}
             </Button>
           </Field>

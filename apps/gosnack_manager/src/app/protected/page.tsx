@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 
-import { LogoutButton } from '@/features/auth/presentation/components/logout-button'
+import { LogoutButton } from '@/features/auth/ui/logout-button'
 import { createClient } from '@/core/lib/supabase/server'
 
 export default async function ProtectedPage() {
