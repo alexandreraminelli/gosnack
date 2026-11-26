@@ -34,7 +34,7 @@ const eslintConfig = defineConfig([
   ...nextVitals, // Regras de desempenho do Next.js.
   ...nextTs, // Regras de TypeScript do Next.js.
 
-  // Domain: só pode importar core
+  // domains: não importa nada acima dele, só pode importar core
   {
     files: ["src/domains/**/*.{ts, tsx}"],
     rules: restrictImports([
@@ -42,58 +42,58 @@ const eslintConfig = defineConfig([
       noApp,
       {
         group: ["@/features/*", "@/ui/*"],
-        message: "domains só pode importar core.",
+        message: "Domain modules must not depend on feature or presentation layers. Domain code must remain framework-independent and must not import React or Next.js.",
       },
     ]),
   },
 
-  // Core: não importa nada acima dele, só pode importar features e ui
+  // core: não importa nada acima dele, só pode importar core
   {
     files: ["src/core/**/*.{ts,tsx}"],
     rules: restrictImports([
       noApp,
       {
         group: ["@/features/*", "@/domains/*", "@/ui/*"],
-        message: "core não importa camadas acima dele.",
+        message: "Core infrastructure must not depend on app, domain, feature, or UI layers.",
       },
     ]),
   },
 
-  // ui: apenas apresentação, sem dados e sem features
+  // ui: não importa nada acima dele, só pode importar core
   {
     files: ["src/ui/**/*.{ts,tsx}"],
     rules: restrictImports([
       noApp,
       {
         group: ["@/features/*", "@/domains/*"],
-        message: "ui é somente para apresentação: não conhece features nem domains.",
+        message: "Shared UI components must remain presentation-only and must not depend on domain or feature modules.",
       },
     ]),
   },
 
-  // features: não importam outras features; domains só pelo barrel
+  // features: não importa nada acima dele, só pode importar features, ui e core
   {
     files: ["src/features/**/*.{ts,tsx}"],
     rules: restrictImports([
       noApp,
       {
         group: ["@/features/*"],
-        message: "Features não importam outras features. Dentro da própria feature, use import relativo.",
+        message: "Feature modules must not depend on other features. Use relative imports within the same feature.",
       },
       {
         group: ["@/domains/*/*"],
-        message: "Importe domains pelo barrel (@/domains/auth).",
+        message: "Import domain modules through their public barrel (e.g., @/domains/auth), not through internal files.",
       },
     ]),
   },
 
-  // app: sem deep imports nos barrels
+  // app/: não importa nada acima dele, só pode importar features e ui
   {
     files: ["src/app/**/*.{ts,tsx}"],
     rules: restrictImports([
       {
         group: ["@/domains/*/*", "@/features/*/*"],
-        message: "Importe pelo barrel (index.ts) da pasta.",
+        message: "Import features and domains through their public barrels; avoid deep imports into internal modules.",
       },
     ]),
   },
