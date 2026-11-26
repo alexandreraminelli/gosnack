@@ -1,5 +1,5 @@
 import { getRequestConfig } from "next-intl/server";
-import messages from "@/i18n/messages";
+import messages from "@/core/i18n/messages";
 
 /**
  * Configuração de internacionalização para requisições do lado do servidor.

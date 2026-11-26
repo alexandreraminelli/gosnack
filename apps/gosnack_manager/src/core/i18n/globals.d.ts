@@ -1,4 +1,4 @@
-import messages from "@/i18n/messages";
+import messages from "@/core/i18n/messages";
 
 declare module "next-intl" {
   interface AppConfig {
