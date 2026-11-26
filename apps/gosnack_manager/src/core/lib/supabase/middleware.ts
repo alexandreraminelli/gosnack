@@ -1,4 +1,4 @@
-import appEnvs from "@/core/lib/env";
+import appEnvs from "@/core/config/env";
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 

@@ -1,4 +1,4 @@
-import appEnvs from "@/core/lib/env";
+import appEnvs from "@/core/config/env";
 import { createServerClient } from "@supabase/ssr";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
