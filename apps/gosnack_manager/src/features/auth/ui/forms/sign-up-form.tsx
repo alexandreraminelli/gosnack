@@ -12,7 +12,7 @@ import { toast } from "@/ui/primitives/toast";
 import { createClient } from "@/core/supabase/client";
 import { cn } from "@/core/lib/utils";
 import PasswordInput from "@/features/auth/ui/password-input";
-import { useSupabaseAuthErrorMessage } from "@/features/auth/hooks/use-supabase-auth-error-message";
+import { useAuthErrorMessage } from "@/features/auth/hooks/use-auth-error-message";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useTranslations } from "next-intl";
 
@@ -39,7 +39,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const getErrorMessage = useSupabaseAuthErrorMessage();
+  const getErrorMessage = useAuthErrorMessage();
 
   /**
    * Handle para lidar com a submissão do formulário de criação de conta.

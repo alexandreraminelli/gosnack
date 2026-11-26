@@ -1,11 +1,16 @@
 import { AUTH_ERROR_CODES, AuthErrorCode } from "@/domains/auth/types/auth-error";
-import { isAuthError } from "@supabase/supabase-js";
+import { isAuthError, isAuthRetryableFetchError } from "@supabase/supabase-js";
 
 /**
  * Mapper que converte erros do Supabase Auth em mensagens amigáveis para o
  * usuário.
  */
 export function mapAuthError(error: unknown): AuthErrorCode {
+  if (isAuthRetryableFetchError(error)) {
+    // Erro de rede: pode ser tratado como um erro genérico
+    return "networkError";
+  }
+
   if (
     isAuthError(error) && // Se for erro de autenticação do Supabase
     error.code // Se possui o atributo code

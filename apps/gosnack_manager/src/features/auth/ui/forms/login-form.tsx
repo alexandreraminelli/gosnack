@@ -1,23 +1,27 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useId, useState } from "react";
+import { useActionState, useId } from "react";
 
-import LoadingSpinner from "@/ui/shared/feedback/loading-spinner";
+import { ICONS } from "@/core/constants/icons";
+import { cn } from "@/core/lib/utils";
+import { Alert, AlertDescription, AlertTitle } from "@/ui/primitives/alert";
 import { Button } from "@/ui/primitives/button";
 import { Field, FieldGroup, FieldLabel } from "@/ui/primitives/field";
 import { Input } from "@/ui/primitives/input";
 import { toast } from "@/ui/primitives/toast";
-import { createClient } from "@/core/supabase/client";
-import { cn } from "@/core/lib/utils";
-import { safeNextPath } from "@/core/lib/safe-next-path";
+import LoadingSpinner from "@/ui/shared/feedback/loading-spinner";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { Alert, AlertDescription, AlertTitle } from "@/ui/primitives/alert";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ICONS } from "@/core/constants/icons";
-import { useSupabaseAuthErrorMessage } from "@/features/auth/hooks/use-supabase-auth-error-message";
-import PasswordInput from "@/features/auth/ui/password-input";
+import { loginAction, LoginState } from "../../actions/login.action";
+import { useAuthErrorMessage } from "../../hooks/use-auth-error-message";
+import PasswordInput from "../password-input";
+
+/**
+ * Estado inicial do formulário de login.
+ */
+const initialState: LoginState = { status: "idle", email: "" };
 
 /**
  * Formulário de login.
@@ -32,79 +36,59 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
   const emailId = useId();
   const passwordId = useId();
 
-  // Estados dos fields
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  // Estado do formulário
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
   const router = useRouter();
-  const getErrorMessage = useSupabaseAuthErrorMessage();
+  /** Hook para obter a mensagem de erro */
+  const getErrorMessage = useAuthErrorMessage();
 
-  /**
-   * Handle para lidar com a submissão do formulário de login.
-   *
-   * @param e Evento de submissão do formulário.
-   */
-  async function handleLogin(e: React.SubmitEvent) {
-    e.preventDefault(); // Evita o comportamento padrão de submissão do formulário
-    const supabase = createClient(); // Cria uma instância do cliente Supabase
-    setIsLoading(true); // Indica que o formulário está em processo de submissão
-    setError(null); // Limpar erros anteriores
+  const [state, formAction, isPending] = useActionState(async (prevState: LoginState, formData: FormData): Promise<LoginState> => {
+    // Repassar parâmetro next da URL para a action validar
+    formData.set("next", new URLSearchParams(window.location.search).get("next") ?? "");
 
-    try {
-      // Tenta realizar o login com o Supabase usando email e senha
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      // Se houver um erro, lança uma exceção para ser capturada no bloco catch
-      if (error) throw error;
+    // Executar action de login
+    const result = await loginAction(prevState, formData);
 
-      // Notificação de tudo certo
+    if (result.status === "success") {
+      // Notificação de sucesso
       toast.add({
         type: "success",
         title: texts("auth.login.success.title"),
         description: texts("auth.login.success.message"),
       });
-
-      const next = new URLSearchParams(window.location.search).get("next"); // Obtém o parâmetro "next" da URL, se existir
-      // TODO: Ir pra página de dashboard
-      router.push(safeNextPath(next, "/protected"));
-    } catch (error) {
-      const { title, description } = getErrorMessage(error);
-      // Exibir notificação de erro
+      // Redirecionar para a página de destino
+      router.push(result.redirectTo);
+    } else if (result.status === "error") {
+      // Notificação de erro
+      const { title, description } = getErrorMessage(result.code);
       toast.add({
         type: "error",
         title,
         description,
       });
-      // Erro para o Alert
-      setError(description);
-    } finally {
-      setIsLoading(false); // Indicar fim do carregamento
     }
-  }
+
+    return result;
+  }, initialState);
+
+  // Erro para o Alert
+  const errorDescription = state.status === "error" ? getErrorMessage(state.code).description : null;
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       {/* Alert Erro */}
-      {error && (
+      {errorDescription && (
         <Alert variant="destructive">
           <HugeiconsIcon icon={ICONS.feedback.error} />
           <AlertTitle>{texts("auth.login.error.title")}</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
+          <AlertDescription>{errorDescription}</AlertDescription>
         </Alert>
       )}
 
-      <form onSubmit={handleLogin}>
+      <form action={formAction}>
         <FieldGroup>
           {/* Campo E-mail */}
           <Field>
             <FieldLabel htmlFor={emailId}>{texts("auth.fields.email.label")}</FieldLabel>
-            <Input id={emailId} type="email" placeholder={texts("auth.fields.email.placeholder")} required value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Input id={emailId} name="email" type="email" placeholder={texts("auth.fields.email.placeholder")} required />
           </Field>
 
           {/* Campo de Senha */}
@@ -113,17 +97,17 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
             <div className="flex items-center">
               <FieldLabel htmlFor={passwordId}>{texts("auth.fields.password.label")}</FieldLabel>
               {/* Botão de esqueceu a senha */}
-              <Link href="/auth/forgot-password" className="ml-auto inline-block text-sm underline-offset-4 hover:underline">
+              <Link href="/auth/forgot-password" className="ms-auto inline-block text-sm underline-offset-4 hover:underline">
                 {texts("auth.forgotPassword.label")}
               </Link>
             </div>
-            <PasswordInput id={passwordId} required autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <PasswordInput id={passwordId} name="password" required autoComplete="current-password" />
           </Field>
 
           {/* Botão de login */}
           <Field>
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? (
+            <Button type="submit" className="w-full" disabled={isPending}>
+              {isPending ? (
                 <>
                   <LoadingSpinner />
                   <span>{texts("auth.login.submit.loading")}</span>

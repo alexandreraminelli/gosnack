@@ -10,4 +10,4 @@ export const AUTH_ERROR_CODES = ["email_address_invalid", "email_exists", "email
  *
  * @see https://supabase.com/docs/guides/auth/debugging/error-codes
  */
-export type AuthErrorCode = (typeof AUTH_ERROR_CODES)[number];
+export type AuthErrorCode = string;
