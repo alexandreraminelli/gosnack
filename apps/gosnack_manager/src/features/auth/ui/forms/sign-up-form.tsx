@@ -3,7 +3,7 @@
 import { useId, useState } from "react";
 
 import { ICONS } from "@/core/constants/icons";
-import LoadingSpinner from "@/core/components/shared/feedback/loading-spinner";
+import LoadingSpinner from "@/ui/shared/feedback/loading-spinner";
 import { Alert, AlertDescription, AlertTitle } from "@/ui/primitives/alert";
 import { Button } from "@/ui/primitives/button";
 import { Field, FieldGroup, FieldLabel } from "@/ui/primitives/field";

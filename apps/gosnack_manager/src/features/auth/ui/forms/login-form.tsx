@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 
-import LoadingSpinner from "@/core/components/shared/feedback/loading-spinner";
+import LoadingSpinner from "@/ui/shared/feedback/loading-spinner";
 import { Button } from "@/ui/primitives/button";
 import { Field, FieldGroup, FieldLabel } from "@/ui/primitives/field";
 import { Input } from "@/ui/primitives/input";

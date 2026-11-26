@@ -1,6 +1,6 @@
 import { IMAGES } from "@/core/constants/images";
-import { ModeToggle } from "@/core/components/shared/buttons/mode-toggle";
-import Logo from "@/core/components/shared/logo";
+import { ModeToggle } from "@/ui/shared/buttons/mode-toggle";
+import Logo from "@/ui/shared/logo";
 import { Card } from "@/ui/primitives/card";
 import Image from "next/image";
 
