@@ -1,6 +1,6 @@
 import { type NextRequest } from "next/server";
 
-import { updateSession } from "@/core/lib/supabase/middleware";
+import { updateSession } from "@/core/supabase/middleware";
 
 /**
  * Proxy que atualiza a sessão do usuário com base no request recebido.

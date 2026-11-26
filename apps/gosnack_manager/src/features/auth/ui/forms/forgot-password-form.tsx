@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { cn } from "@/core/lib/utils";
-import { createClient } from "@/core/lib/supabase/client";
+import { createClient } from "@/core/supabase/client";
 import { Button } from "@/core/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/core/components/ui/card";
 import { Input } from "@/core/components/ui/input";

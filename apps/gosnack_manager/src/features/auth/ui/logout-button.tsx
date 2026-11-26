@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import { createClient } from "@/core/lib/supabase/client";
+import { createClient } from "@/core/supabase/client";
 import { Button } from "@/core/components/ui/button";
 import { useTranslations } from "next-intl";
 import { HugeiconsIcon } from "@hugeicons/react";

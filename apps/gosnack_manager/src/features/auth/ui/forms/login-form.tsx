@@ -8,7 +8,7 @@ import { Button } from "@/core/components/ui/button";
 import { Field, FieldGroup, FieldLabel } from "@/core/components/ui/field";
 import { Input } from "@/core/components/ui/input";
 import { toast } from "@/core/components/ui/toast";
-import { createClient } from "@/core/lib/supabase/client";
+import { createClient } from "@/core/supabase/client";
 import { cn } from "@/core/lib/utils";
 import { safeNextPath } from "@/lib/safe-next-path";
 import { useTranslations } from "next-intl";

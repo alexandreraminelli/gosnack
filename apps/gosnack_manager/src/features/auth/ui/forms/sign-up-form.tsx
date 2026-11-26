@@ -9,7 +9,7 @@ import { Button } from "@/core/components/ui/button";
 import { Field, FieldGroup, FieldLabel } from "@/core/components/ui/field";
 import { Input } from "@/core/components/ui/input";
 import { toast } from "@/core/components/ui/toast";
-import { createClient } from "@/core/lib/supabase/client";
+import { createClient } from "@/core/supabase/client";
 import { cn } from "@/core/lib/utils";
 import PasswordInput from "@/features/auth/ui/password-input";
 import { useSupabaseAuthErrorMessage } from "@/features/auth/hooks/use-supabase-auth-error-message";
