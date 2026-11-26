@@ -10,7 +10,7 @@ import { Input } from "@/core/components/ui/input";
 import { toast } from "@/core/components/ui/toast";
 import { createClient } from "@/core/supabase/client";
 import { cn } from "@/core/lib/utils";
-import { safeNextPath } from "@/lib/safe-next-path";
+import { safeNextPath } from "@/core/lib/safe-next-path";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Alert, AlertDescription, AlertTitle } from "@/core/components/ui/alert";
