@@ -5,9 +5,9 @@ import { z } from "zod";
  */
 export const loginSchema = z.object({
   /** Validação do campo de e-mail. */
-  email: z.email().nonempty(),
+  email: z.email({ error: "invalid_email" }).nonempty({ error: "required" }),
   /** Validação do campo de senha. */
-  password: z.string().min(8).nonempty(),
+  password: z.string().nonempty({ error: "required" }),
 });
 
 /**

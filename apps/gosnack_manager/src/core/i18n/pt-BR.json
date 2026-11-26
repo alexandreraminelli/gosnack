@@ -169,5 +169,11 @@
       "title": "Falha na autenticação",
       "description": "Ocorreu um erro durante a autenticação. Por favor, tente novamente mais tarde."
     }
+  },
+
+  "validation": {
+    "required": "Este campo é obrigatório.",
+    "invalid_email": "Por favor, insira um endereço de e-mail válido.",
+    "invalid": "Entrada inválida."
   }
 }

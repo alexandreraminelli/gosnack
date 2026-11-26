@@ -7,7 +7,7 @@ import { ICONS } from "@/core/constants/icons";
 import { cn } from "@/core/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@/ui/primitives/alert";
 import { Button } from "@/ui/primitives/button";
-import { Field, FieldGroup, FieldLabel } from "@/ui/primitives/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/ui/primitives/field";
 import { Input } from "@/ui/primitives/input";
 import { toast } from "@/ui/primitives/toast";
 import LoadingSpinner from "@/ui/shared/feedback/loading-spinner";
@@ -17,6 +17,7 @@ import Link from "next/link";
 import { loginAction, LoginState } from "../../actions/login.action";
 import { useAuthErrorMessage } from "../../hooks/use-auth-error-message";
 import PasswordInput from "../password-input";
+import { useValidationMessage } from "@/core/hooks/use-validation-message";
 
 /**
  * Estado inicial do formulário de login.
@@ -36,8 +37,8 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
   const emailId = useId();
   const passwordId = useId();
 
-  const router = useRouter();
-  /** Hook para obter a mensagem de erro */
+  const router = useRouter(); // Hook do Next.js para navegação
+  const getValidationMessage = useValidationMessage();
   const getErrorMessage = useAuthErrorMessage();
 
   const [state, formAction, isPending] = useActionState(async (prevState: LoginState, formData: FormData): Promise<LoginState> => {
@@ -69,6 +70,11 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
     return result;
   }, initialState);
 
+  // Erros de validação por campo
+  const fieldErrors = state.status === "invalid" ? state.fieldErrors : undefined;
+  const emailError = getValidationMessage(fieldErrors?.email?.[0]);
+  const passwordError = getValidationMessage(fieldErrors?.password?.[0]);
+
   // Erro para o Alert
   const errorDescription = state.status === "error" ? getErrorMessage(state.code).description : null;
 
@@ -88,7 +94,8 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           {/* Campo E-mail */}
           <Field>
             <FieldLabel htmlFor={emailId}>{texts("auth.fields.email.label")}</FieldLabel>
-            <Input id={emailId} name="email" type="email" placeholder={texts("auth.fields.email.placeholder")} required />
+            <Input id={emailId} name="email" type="email" autoComplete="email" placeholder={texts("auth.fields.email.placeholder")} required />
+            {emailError && <FieldError>{emailError}</FieldError>}
           </Field>
 
           {/* Campo de Senha */}
@@ -102,6 +109,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
               </Link>
             </div>
             <PasswordInput id={passwordId} name="password" required autoComplete="current-password" />
+            {passwordError && <FieldError>{passwordError}</FieldError>}
           </Field>
 
           {/* Botão de login */}
