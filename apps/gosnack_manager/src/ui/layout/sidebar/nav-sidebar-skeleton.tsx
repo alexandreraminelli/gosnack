@@ -1,4 +1,4 @@
-import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuSkeleton } from "@/ui/primitives/sidebar";
+import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuItem } from "@/ui/primitives/sidebar";
 import { Skeleton } from "@/ui/primitives/skeleton";
 
 /**
