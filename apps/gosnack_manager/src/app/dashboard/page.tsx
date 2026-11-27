@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 
-import { LogoutButton } from "@/features/auth/ui/logout-button";
 import { createClient } from "@/core/supabase/server";
+import { LogoutButton } from "@/features/auth";
+import { ModeToggle } from "@/ui/shared/buttons/mode-toggle";
 
 export default async function ProtectedPage() {
   const supabase = await createClient();
@@ -14,9 +15,10 @@ export default async function ProtectedPage() {
   return (
     <div className="flex h-svh w-full items-center justify-center gap-2">
       <p>
-        Hello <span>{data.claims.email}</span>
+        Usuário logado: <span>{data.claims.email}</span>
       </p>
       <LogoutButton />
+      <ModeToggle />
     </div>
   );
 }

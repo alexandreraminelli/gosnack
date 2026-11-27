@@ -1,5 +1,6 @@
 "use server";
 
+import { ROUTES } from "@/core/constants/navigation/routes";
 import { safeNextPath } from "@/core/lib/safe-next-path";
 import { createClient } from "@/core/supabase/server";
 import { AuthErrorCode, loginSchema, signInWithPassword } from "@/domains/auth";
@@ -53,7 +54,6 @@ export async function loginAction(_prevState: LoginState, formData: FormData): P
   return {
     status: "success",
     email,
-    // TODO: Ir para a página de dashboard
-    redirectTo: safeNextPath(typeof next === "string" && next ? next : null, "/protected"),
+    redirectTo: safeNextPath(typeof next === "string" && next ? next : null, ROUTES.home),
   };
 }

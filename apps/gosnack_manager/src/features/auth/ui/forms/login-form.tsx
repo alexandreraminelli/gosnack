@@ -100,7 +100,6 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           </Field>
 
           {/* Campo de Senha */}
-          {/* TODO: Criar componente de ocultar/exibir senha */}
           <Field>
             <div className="flex items-center">
               <FieldLabel htmlFor={passwordId}>{texts("auth.fields.password.label")}</FieldLabel>

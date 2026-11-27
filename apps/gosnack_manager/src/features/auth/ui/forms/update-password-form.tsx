@@ -9,6 +9,7 @@ import { Button } from "@/ui/primitives/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/primitives/card";
 import { Input } from "@/ui/primitives/input";
 import { Label } from "@/ui/primitives/label";
+import { ROUTES } from "@/core/constants/navigation/routes";
 
 // TODO: Adaptar esse arquivo gerado automaticamente pelo `pnpm dlx shadcn@latest add @supabase/password-based-auth-nextjs` para o projeto
 
@@ -28,7 +29,7 @@ export function UpdatePasswordForm({ className, ...props }: React.ComponentProps
       const { error } = await supabase.auth.updateUser({ password });
       if (error) throw error;
       // Update this route to redirect to an authenticated route. The user already has an active session.
-      router.push("/protected");
+      router.push(ROUTES.home);
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {

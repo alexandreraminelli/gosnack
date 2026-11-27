@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ICONS } from "@/core/constants/icons";
 import { toast } from "@/ui/primitives/toast";
+import { ROUTES } from "@/core/constants/navigation/routes";
 
 /**
  * Botão de logout.
@@ -33,8 +34,7 @@ export function LogoutButton() {
       },
     );
 
-    // TODO(Routes): usar constantes de rotas
-    router.push("/auth/login");
+    router.push(ROUTES.auth.login);
   };
 
   return (
