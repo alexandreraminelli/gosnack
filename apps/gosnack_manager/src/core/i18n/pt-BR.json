@@ -1,4 +1,17 @@
 {
+  "actions": {
+    "back": "Voltar",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "continue": "Continuar",
+    "create": "Criar",
+    "delete": "Deletar",
+    "edit": "Editar",
+    "save": "Salvar",
+    "submit": "Enviar",
+    "update": "Atualizar"
+  },
+
   "appName": {
     "single": "GoSnack",
     "complete": "GoSnack Manager"
@@ -104,6 +117,10 @@
       "title": "Desculpa, algo deu errado.",
       "errorCode": "Código de erro:",
       "unknown": "Um erro desconhecido ocorreu. Por favor, tente novamente mais tarde."
+    },
+    "notFoundPage": {
+      "title": "Página Não Encontrada",
+      "description1": "A página que você está procurando não existe ou foi removida."
     }
   },
 
@@ -121,6 +138,8 @@
     }
   },
   "navigation": {
+    "backToHome": "Voltar para o Início",
+
     "groups": {
       "overview": "Visão Geral",
       "unitsAndCafeterias": "Unidades e Lanchonetes",
