@@ -1,14 +1,19 @@
 import { ROUTES } from "@/core/constants/navigation/routes";
-import { Card, CardContent, CardHeader, CardTitle } from "@/ui/primitives/card";
+import { CardContent, CardHeader, CardTitle } from "@/ui/primitives/card";
+import LoadingSpinner from "@/ui/shared/feedback/loading-spinner";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
+import { Suspense } from "react";
 
 /**
- * Página de erro de autenticação.
- *
- * @see https://supabase.com/library/docs/nextjs/password-based-auth
+ * Props do componente de conteúdo da página de erro de autenticação.
  */
-export default async function AuthErrorPage({ searchParams }: { searchParams: Promise<{ code: string }> }) {
+type Props = { searchParams: Promise<{ code: string }> };
+
+/**
+ * Componente de conteúdo da página de erro de autenticação.
+ */
+async function AuthErrorContent({ searchParams }: Props) {
   // Texts
   const errorTexts = await getTranslations("core.supabaseAuthErrorCodes");
   const texts = await getTranslations("core");
@@ -32,4 +37,13 @@ export default async function AuthErrorPage({ searchParams }: { searchParams: Pr
       </CardContent>
     </>
   );
+}
+
+/**
+ * Página de erro de autenticação.
+ */
+export default async function AuthErrorPage({ searchParams }: Props) {
+  <Suspense fallback={<LoadingSpinner />}>
+    <AuthErrorContent searchParams={searchParams} />
+  </Suspense>;
 }
