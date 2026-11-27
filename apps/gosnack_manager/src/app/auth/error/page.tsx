@@ -1,38 +1,35 @@
+import { ROUTES } from "@/core/constants/navigation/routes";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/primitives/card";
 import { getTranslations } from "next-intl/server";
-
-// TODO: Adaptar esse arquivo gerado automaticamente pelo `pnpm dlx shadcn@latest add @supabase/password-based-auth-nextjs` para o projeto
+import Link from "next/link";
 
 /**
- * Rota de erro de autenticação.
+ * Página de erro de autenticação.
  *
  * @see https://supabase.com/library/docs/nextjs/password-based-auth
  */
-export default async function AuthErrorPage({ searchParams }: { searchParams: Promise<{ error: string }> }) {
-  const texts = await getTranslations("core.error.generic");
+export default async function AuthErrorPage({ searchParams }: { searchParams: Promise<{ code: string }> }) {
+  // Texts
+  const errorTexts = await getTranslations("core.supabaseAuthErrorCodes");
+  const texts = await getTranslations("core");
 
-  const params = await searchParams;
+  // Obter o código de erro dos parâmetros de pesquisa
+  const { code } = await searchParams;
+
+  // Usar código se houver tradução, senão, o padrão para erros desconhecidos
+  const key = code && errorTexts.has(`${code}.title` as never) ? code : "unknown";
 
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <div className="flex flex-col gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-medium text-lg tracking-normal">{texts("title")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {params?.error ? (
-                <p className="text-sm text-muted-foreground">
-                  {texts("errorCode")} {params.error}
-                </p>
-              ) : (
-                <p className="text-sm text-muted-foreground">{texts("unknown")}</p>
-              )}
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </div>
+    <>
+      <CardHeader>
+        <CardTitle className="font-medium text-lg tracking-normal">{errorTexts(`${key}.title` as never)}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-muted-foreground">{errorTexts(`${key}.description` as never)}</p>
+        <Link href={ROUTES.auth.login} className="text-sm underline underline-offset-4">
+          {texts("auth.backToLogin")}
+        </Link>
+      </CardContent>
+    </>
   );
 }

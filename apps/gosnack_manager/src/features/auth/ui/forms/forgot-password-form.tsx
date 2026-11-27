@@ -61,7 +61,7 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
         </Alert>
 
         <Link href={ROUTES.auth.login} className="text-center text-sm underline underline-offset-4">
-          {texts("auth.forgotPassword.backToLogin")}
+          {texts("auth.backToLogin")}
         </Link>
       </div>
     );
@@ -113,7 +113,7 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
 
       {/* Voltar para o login */}
       <Link href={ROUTES.auth.login} className="text-center text-sm underline underline-offset-4">
-        {texts("auth.forgotPassword.backToLogin")}
+        {texts("auth.backToLogin")}
       </Link>
     </div>
   );
