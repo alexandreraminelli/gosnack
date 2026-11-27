@@ -4,9 +4,12 @@
 export const ROUTES = {
   /* Autenticação ----------------------------------------------------------- */
   auth: {
-    login: "/login",
-    forgotPassword: "/recuperar-senha",
-    updatePassword: "/atualizar-senha",
+    login: "/auth/login",
+    forgotPassword: "/auth/recuperar-senha",
+    updatePassword: "/auth/atualizar-senha",
+
+    confirm: "/auth/confirm",
+    error: "/auth/error",
   },
 
   /* Home ------------------------------------------------------------------- */
