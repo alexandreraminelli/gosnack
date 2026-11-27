@@ -14,5 +14,4 @@ export * from "./ui/forms/forgot-password-form";
 export * from "./ui/forms/login-form";
 export * from "./ui/forms/sign-up-form";
 export * from "./ui/forms/update-password-form";
-export * from "./ui/logout-button";
 export * from "./ui/password-input";

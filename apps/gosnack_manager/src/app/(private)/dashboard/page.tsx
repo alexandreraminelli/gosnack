@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/core/supabase/server";
-import { LogoutButton } from "@/features/auth";
 import { ModeToggle } from "@/ui/shared/buttons/mode-toggle";
 
 export default async function ProtectedPage() {
