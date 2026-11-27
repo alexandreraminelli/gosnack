@@ -1,5 +1,5 @@
 /* Actions ------------------------------------------------------------------ */
-// export * from "./actions/forgot-password.action";
+export * from "./actions/forgot-password.action";
 export * from "./actions/login.action";
 // export * from "./actions/logout.action";
 export * from "./actions/sign-up.action";
@@ -16,4 +16,3 @@ export * from "./ui/forms/sign-up-form";
 export * from "./ui/forms/update-password-form";
 export * from "./ui/logout-button";
 export * from "./ui/password-input";
-
