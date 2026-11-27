@@ -1,8 +1,7 @@
+import { LoginForm, SignUpForm } from "@/features/auth";
 import { Button } from "@/ui/primitives/button";
 import { CardHeader } from "@/ui/primitives/card";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/primitives/sheet";
-import { LoginForm } from "@/features/auth/ui/forms/login-form";
-import { SignUpForm } from "@/features/auth/ui/forms/sign-up-form";
 import { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";

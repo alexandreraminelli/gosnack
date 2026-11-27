@@ -1,3 +1,5 @@
+"use client";
+
 import { ICONS } from "@/core/constants/icons";
 import { InputGroup, InputGroupButton, InputGroupInput } from "@/ui/primitives/input-group";
 import { HugeiconsIcon } from "@hugeicons/react";
