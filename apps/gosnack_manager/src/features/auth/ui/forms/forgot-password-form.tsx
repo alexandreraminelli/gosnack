@@ -2,23 +2,21 @@
 
 import { useActionState, useId } from "react";
 
+import { ICONS } from "@/core/constants/icons";
+import { ROUTES } from "@/core/constants/navigation/routes";
 import { useValidationMessage } from "@/core/hooks/use-validation-message";
 import { cn } from "@/core/lib/utils";
+import { Alert, AlertDescription, AlertTitle } from "@/ui/primitives/alert";
 import { Button } from "@/ui/primitives/button";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/ui/primitives/field";
 import { Input } from "@/ui/primitives/input";
-import { Label } from "@/ui/primitives/label";
+import { toast } from "@/ui/primitives/toast";
+import LoadingSpinner from "@/ui/shared/feedback/loading-spinner";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { forgotPasswordAction, ForgotPasswordState } from "../../actions/forgot-password.action";
 import { useAuthErrorMessage } from "../../hooks/use-auth-error-message";
-import { toast } from "@/ui/primitives/toast";
-import { Alert, AlertDescription, AlertTitle } from "@/ui/primitives/alert";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ICONS } from "@/core/constants/icons";
-import { ROUTES } from "@/core/constants/navigation/routes";
-import LoadingSpinner from "@/ui/shared/feedback/loading-spinner";
 
 /**
  * Estado inicial do formulário de recuperação de senha.
