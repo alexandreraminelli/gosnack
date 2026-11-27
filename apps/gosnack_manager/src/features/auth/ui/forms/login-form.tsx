@@ -18,6 +18,7 @@ import { loginAction, LoginState } from "../../actions/login.action";
 import { useAuthErrorMessage } from "../../hooks/use-auth-error-message";
 import PasswordInput from "../password-input";
 import { useValidationMessage } from "@/core/hooks/use-validation-message";
+import { ROUTES } from "@/core/constants/navigation/routes";
 
 /**
  * Estado inicial do formulário de login.
@@ -104,7 +105,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
             <div className="flex items-center">
               <FieldLabel htmlFor={passwordId}>{texts("auth.fields.password.label")}</FieldLabel>
               {/* Botão de esqueceu a senha */}
-              <Link href="/auth/forgot-password" className="ms-auto inline-block text-sm underline-offset-4 hover:underline">
+              <Link href={ROUTES.auth.forgotPassword} className="ms-auto inline-block text-sm underline-offset-4 hover:underline">
                 {texts("auth.forgotPassword.label")}
               </Link>
             </div>
