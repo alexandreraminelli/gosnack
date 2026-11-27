@@ -2,38 +2,41 @@ import { type EmailOtpType } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 import { type NextRequest } from "next/server";
 
+import { ROUTES } from "@/core/constants/navigation/routes";
+import { safeNextPath } from "@/core/lib/safe-next-path";
 import { createClient } from "@/core/supabase/server";
-
-// TODO: Adaptar esse arquivo gerado automaticamente pelo `pnpm dlx shadcn@latest add @supabase/password-based-auth-nextjs` para o projeto
+import { mapAuthError } from "@/domains/auth";
 
 /**
- * Rota de confirmação de e-mail.
+ * Rota de confirmação do link enviado por e-mail.
  *
- * @see https://supabase.com/library/docs/nextjs/password-based-auth
+ * Usado para cadastro e recuperação de senha.
+ *
  */
 export async function GET(request: NextRequest) {
+  // Parâmetros da URL
   const { searchParams } = new URL(request.url);
-  const token_hash = searchParams.get("token_hash");
+  // O hash do token enviado por e-mail (signup ou recovery)
+  const tokenHash = searchParams.get("token_hash");
+  // O tipo de OTP enviado por e-mail (signup ou recovery)
   const type = searchParams.get("type") as EmailOtpType | null;
-  const _next = searchParams.get("next");
-  const next = _next?.startsWith("/") ? _next : "/";
+  // Redirecionar o usuário para a URL de redirecionamento especificada ou para a raiz do aplicativo
+  const next = safeNextPath(searchParams.get("next"), ROUTES.home);
 
-  if (token_hash && type) {
-    const supabase = await createClient();
-
-    const { error } = await supabase.auth.verifyOtp({
-      type,
-      token_hash,
-    });
-    if (!error) {
-      // redirect user to specified redirect URL or root of app
-      redirect(next);
-    } else {
-      // redirect the user to an error page with some instructions
-      redirect(`/auth/error?error=${error?.message}`);
-    }
+  // Link sem token ou sem tipo de OTP é inválido
+  if (tokenHash || !type) {
+    redirect(`${ROUTES.auth.error}?code=invalid_link`);
   }
 
-  // redirect the user to an error page with some instructions
-  redirect(`/auth/error?error=No token hash or type`);
+  // Executar a confirmação no Supabase
+  const supabase = await createClient();
+  const { error } = await supabase.auth.verifyOtp({ type, token_hash: tokenHash ?? "" });
+
+  // Link expirado, já usado ou inválido
+  if (error) {
+    redirect(`${ROUTES.auth.error}?code=${encodeURIComponent(mapAuthError(error))}`);
+  }
+
+  // Redirecionar o usuário para a URL de redirecionamento especificada ou para a raiz do aplicativo
+  redirect(next);
 }
