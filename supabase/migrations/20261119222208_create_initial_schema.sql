@@ -44,7 +44,7 @@ comment on type public.order_status is 'Status do pedido, que indica em qual eta
 -- Cancellation Source Enum ------------------------------------------------- --
 create type public.cancellation_source as enum(
   'customer', -- Cliente cancelou o pedido
-  'snackbar' -- Lanchonete cancelou o pedido
+  'cafeteria' -- Lanchonete cancelou o pedido
 );
 
 comment on type public.cancellation_source is 'Origem do cancelamento do pedido, indicando se foi o cliente ou a lanchonete que realizou o cancelamento.';
@@ -202,8 +202,8 @@ comment on table public.student_guard is 'Vínculo entre alunos e seus responsá
 -- Indices para otimizar consultas por aluno e por responsável
 create index idx_student_guard_guard_uid on public.student_guard (guard_profile_uid);
 
--- Snackbar ----------------------------------------------------------------- --
-create table public.snackbar (
+-- cafeteria ----------------------------------------------------------------- --
+create table public.cafeteria (
   -- Columns ---------------------------------------------------------------- --
   -- ID da lanchonete
   id uuid primary key default gen_random_uuid(),
@@ -221,48 +221,48 @@ create table public.snackbar (
   marked_for_deletion boolean not null default false,
   -- Constraints ------------------------------------------------------------ --
   -- Nome da lanchonete deve ser único dentro da mesma unidade escolar
-  constraint unique_snackbar_name_in_same_unit unique (name, school_unit_id)
+  constraint unique_cafeteria_name_in_same_unit unique (name, school_unit_id)
 );
 
-alter table public.snackbar enable row level security;
+alter table public.cafeteria enable row level security;
 
-comment on table public.snackbar is 'Lanchonete escolar presente em uma unidade do colégio.';
+comment on table public.cafeteria is 'Lanchonete escolar presente em uma unidade do colégio.';
 
 -- Índice para otimizar consultas por unidade escolar
-create index idx_snackbar_school_unit_id on public.snackbar (school_unit_id);
+create index idx_cafeteria_school_unit_id on public.cafeteria (school_unit_id);
 
--- SnackBar Employees ------------------------------------------------------- --
-create table public.snackbar_employee (
+-- cafeteria Employees ------------------------------------------------------- --
+create table public.cafeteria_employee (
   -- Columns ---------------------------------------------------------------- --
   -- PK + FK para o UID do usuário
   profile_uid uuid primary key references public.profile (uid) on delete cascade,
   -- FK para a lanchonete
-  snackbar_id uuid not null references public.snackbar (id) on delete restrict,
+  cafeteria_id uuid not null references public.cafeteria (id) on delete restrict,
   -- Se é gerente da lanchonete
   is_manager boolean not null default false,
   -- Se está disponível para preparar pedidos
   available_to_prepare_orders boolean not null default true
 );
 
-alter table public.snackbar_employee enable row level security;
+alter table public.cafeteria_employee enable row level security;
 
-comment on table public.snackbar_employee is 'Usuários que são funcionários ou gerentes de uma lanchonete.';
+comment on table public.cafeteria_employee is 'Usuários que são funcionários ou gerentes de uma lanchonete.';
 
 -- Apenas um gerente por lanchonete
-create unique index uq_snackbar_single_manager on public.snackbar_employee (snackbar_id)
+create unique index uq_cafeteria_single_manager on public.cafeteria_employee (cafeteria_id)
 where
   is_manager;
 
 -- Índice para otimizar consultas por lanchonete
-create index idx_snackbar_employee_snackbar_id on public.snackbar_employee (snackbar_id);
+create index idx_cafeteria_employee_cafeteria_id on public.cafeteria_employee (cafeteria_id);
 
--- SnackBar Opening Hours --------------------------------------------------- --
-create table public.snackbar_opening_hours (
+-- cafeteria Opening Hours --------------------------------------------------- --
+create table public.cafeteria_opening_hours (
   -- Columns ---------------------------------------------------------------- --
   -- ID do horário
   id uuid primary key default gen_random_uuid(),
   -- FK para a lanchonete
-  snackbar_id uuid not null references public.snackbar (id) on delete cascade,
+  cafeteria_id uuid not null references public.cafeteria (id) on delete cascade,
   -- Período da semana (dias úteis ou finais de semana)
   weekly_period public.weekly_period not null,
   -- Horário de abertura
@@ -271,14 +271,14 @@ create table public.snackbar_opening_hours (
   closes_at time not null,
   -- Constraints ------------------------------------------------------------ --
   -- Apenas um horário por período da semana por lanchonete
-  constraint unique_snackbar_weekly_opening_time unique (snackbar_id, weekly_period),
+  constraint unique_cafeteria_weekly_opening_time unique (cafeteria_id, weekly_period),
   -- Horário de fechamento deve ser maior que o horário de abertura
   constraint opening_hours_valid_range check (closes_at > opens_at)
 );
 
-alter table public.snackbar_opening_hours enable row level security;
+alter table public.cafeteria_opening_hours enable row level security;
 
-comment on table public.snackbar_opening_hours is 'Horários de funcionamento da lanchonete, separados por período da semana (dias úteis e finais de semana).';
+comment on table public.cafeteria_opening_hours is 'Horários de funcionamento da lanchonete, separados por período da semana (dias úteis e finais de semana).';
 
 -- Dietary Restrictions And Allergies --------------------------------------- --
 create table public.dietary_restriction (
@@ -318,7 +318,7 @@ create table public.category (
   -- ID da categoria
   id uuid primary key default gen_random_uuid(),
   -- FK para a lanchonete
-  snackbar_id uuid not null references public.snackbar (id) on delete restrict,
+  cafeteria_id uuid not null references public.cafeteria (id) on delete restrict,
   -- Nome da categoria
   name text not null,
   -- URL do ícone da categoria
@@ -334,9 +334,9 @@ create table public.category (
   updated_at timestamptz not null default now(),
   -- Constraint ------------------------------------------------------------- --
   -- Não repetir o nome da categoria dentro da mesma lanchonete
-  constraint unique_category_name_in_snackbar unique (snackbar_id, name),
+  constraint unique_category_name_in_cafeteria unique (cafeteria_id, name),
   -- Não permitir categorias duplicadas com o mesmo ID e lanchonete (evitar conflitos de ID)
-  constraint uq_category_id_snackbar unique (id, snackbar_id)
+  constraint uq_category_id_cafeteria unique (id, cafeteria_id)
 );
 
 alter table public.category enable row level security;
@@ -354,7 +354,7 @@ create table public.menu_item (
   -- ID do item do cardápio
   id uuid primary key default gen_random_uuid(),
   -- FK para a lanchonete
-  snackbar_id uuid not null references public.snackbar (id) on delete restrict,
+  cafeteria_id uuid not null references public.cafeteria (id) on delete restrict,
   -- FK para a categoria
   category_id uuid not null,
   -- Nome do item do cardápio
@@ -374,9 +374,9 @@ create table public.menu_item (
   updated_at timestamptz not null default now(),
   -- Constraints ------------------------------------------------------------ --
   -- Garantir que a categoria pertence à mesma lanchonete do item do cardápio
-  constraint menu_item_category_fk foreign key (category_id, snackbar_id) references public.category (id, snackbar_id) on delete restrict,
+  constraint menu_item_category_fk foreign key (category_id, cafeteria_id) references public.category (id, cafeteria_id) on delete restrict,
   -- Não repetir o nome do item dentro da mesma lanchonete
-  constraint unique_item_name_in_snackbar unique (snackbar_id, name),
+  constraint unique_item_name_in_cafeteria unique (cafeteria_id, name),
   -- Máximo de 500 caracteres para a descrição do item
   constraint menu_item_description_length check (
     description is null
@@ -515,12 +515,12 @@ create table public.orders (
   -- Status do pedido
   status public.order_status not null default 'pending',
   -- FK para a lanchonete onde o pedido foi feito
-  snackbar_id uuid not null references public.snackbar (id) on delete restrict,
+  cafeteria_id uuid not null references public.cafeteria (id) on delete restrict,
   -- FK para o perfil do usuário que fez o pedido
   profile_uid uuid not null references public.profile (uid) on delete restrict,
   -- FK para o funcionário da lanchonete que preparou o pedido 
   -- (nulo se ainda não foi preparado)
-  snackbar_employee_profile_uid uuid references public.snackbar_employee (profile_uid) on delete set null,
+  cafeteria_employee_profile_uid uuid references public.cafeteria_employee (profile_uid) on delete set null,
   -- Subtotal do pedido (soma dos preços dos itens, sem desconto)
   subtotal numeric(10, 2) not null,
   -- Desconto aplicado ao pedido (soma dos descontos dos itens)
@@ -570,10 +570,10 @@ comment on column public.orders.cancellation_message is 'Mensagem informada pela
 create index idx_orders_profile_uid on public.orders (profile_uid, created_at desc);
 
 -- Índice para otimizar consultas por lanchonete, status do pedido e data de criação do pedido
-create index idx_orders_snackbar_status on public.orders (snackbar_id, status, created_at desc);
+create index idx_orders_cafeteria_status on public.orders (cafeteria_id, status, created_at desc);
 
 -- Índice para otimizar consultas por funcionário da lanchonete que preparou o pedido
-create index idx_orders_employee_uid on public.orders (snackbar_employee_profile_uid);
+create index idx_orders_employee_uid on public.orders (cafeteria_employee_profile_uid);
 
 -- Atualizar o campo `updated_at` antes de cada update no pedido
 create trigger trg_orders_updated_at
