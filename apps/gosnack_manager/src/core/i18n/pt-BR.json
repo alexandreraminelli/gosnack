@@ -80,6 +80,21 @@
     }
   },
 
+  "entities": {
+    "unit": {
+      "singular": "Unidade",
+      "plural": "Unidades"
+    },
+    "cafeteria": {
+      "singular": "Lanchonete",
+      "plural": "Lanchonetes"
+    },
+    "order": {
+      "singular": "Pedido",
+      "plural": "Pedidos"
+    }
+  },
+
   "error": {
     "generic": {
       "title": "Desculpa, algo deu errado.",
@@ -101,6 +116,17 @@
       "dark": "Escuro"
     }
   },
+  "navigation": {
+    "groups": {
+      "overview": "Visão Geral",
+      "unitsAndCafeterias": "Unidades e Lanchonetes",
+      "usersAndAccess": "Usuários, Acessos e Permissões"
+    },
+    "mainPages": {
+      "home": "Início"
+    }
+  },
+
   "metadata": {
     "description": "Plataforma de gestão de lanchonetes escolares do colégio Logoipsum."
   },
