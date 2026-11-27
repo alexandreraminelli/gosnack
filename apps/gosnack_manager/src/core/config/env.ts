@@ -18,6 +18,9 @@ function requiredEnv(name: string, value?: string): string {
  * Variáveis de ambiente do projeto.
  */
 const appEnvs = {
+  /** URL da aplicação. */
+  appUrl: requiredEnv("NEXT_PUBLIC_APP_URL", process.env.NEXT_PUBLIC_APP_URL),
+
   /** Variáveis de ambiente do Supabase. */
   supabase: {
     url: requiredEnv("NEXT_PUBLIC_SUPABASE_URL", process.env.NEXT_PUBLIC_SUPABASE_URL),
