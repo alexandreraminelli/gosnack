@@ -1,22 +1,7 @@
-import { redirect } from "next/navigation";
-
-import { createClient } from "@/core/supabase/server";
-import { ModeToggle } from "@/ui/shared/buttons/mode-toggle";
-
 export default async function ProtectedPage() {
-  const supabase = await createClient();
-
-  const { data, error } = await supabase.auth.getClaims();
-  if (error || !data?.claims) {
-    redirect("/auth/login");
-  }
-
   return (
     <div className="flex h-svh w-full items-center justify-center gap-2">
-      <p>
-        Usuário logado: <span>{data.claims.email}</span>
-      </p>
-      <ModeToggle />
+      <h1>Página Inicial</h1>
     </div>
   );
 }
