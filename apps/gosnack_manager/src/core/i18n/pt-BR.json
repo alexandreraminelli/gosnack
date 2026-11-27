@@ -89,6 +89,10 @@
       "singular": "Lanchonete",
       "plural": "Lanchonetes"
     },
+    "menu": {
+      "singular": "Cardápio",
+      "plural": "Cardápios"
+    },
     "order": {
       "singular": "Pedido",
       "plural": "Pedidos"

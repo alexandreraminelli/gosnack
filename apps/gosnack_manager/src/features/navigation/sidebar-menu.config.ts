@@ -51,7 +51,7 @@ export const SIDEBAR_MENU: MenuGroupConfig[] = [
 
   /* Cardápio --------------------------------------------------------------- */
   {
-    labelKey: "entities.menu",
+    labelKey: "entities.menu.singular",
     roles: new Set(["admin", "manager"]),
     items: [
       // TODO: Produtos
