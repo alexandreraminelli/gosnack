@@ -173,7 +173,9 @@
 
   "validation": {
     "required": "Este campo é obrigatório.",
+    "invalid": "Entrada inválida.",
     "invalid_email": "Por favor, insira um endereço de e-mail válido.",
-    "invalid": "Entrada inválida."
+    "password_too_short": "A senha deve ter pelo menos 8 caracteres.",
+    "password_too_weak": "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um símbolo."
   }
 }
