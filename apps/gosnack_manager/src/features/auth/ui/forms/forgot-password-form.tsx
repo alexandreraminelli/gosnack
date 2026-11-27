@@ -1,83 +1,122 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useId } from "react";
 
+import { useValidationMessage } from "@/core/hooks/use-validation-message";
 import { cn } from "@/core/lib/utils";
-import { createClient } from "@/core/supabase/client";
 import { Button } from "@/ui/primitives/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/primitives/card";
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/ui/primitives/field";
 import { Input } from "@/ui/primitives/input";
 import { Label } from "@/ui/primitives/label";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { forgotPasswordAction, ForgotPasswordState } from "../../actions/forgot-password.action";
+import { useAuthErrorMessage } from "../../hooks/use-auth-error-message";
+import { toast } from "@/ui/primitives/toast";
+import { Alert, AlertDescription, AlertTitle } from "@/ui/primitives/alert";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ICONS } from "@/core/constants/icons";
+import { ROUTES } from "@/core/constants/navigation/routes";
+import LoadingSpinner from "@/ui/shared/feedback/loading-spinner";
 
-// TODO: Adaptar esse arquivo gerado automaticamente pelo `pnpm dlx shadcn@latest add @supabase/password-based-auth-nextjs` para o projeto
+/**
+ * Estado inicial do formulário de recuperação de senha.
+ */
+const initialState: ForgotPasswordState = {
+  status: "idle",
+  email: "",
+};
 
+/**
+ * Formulário de recuperação de senha.
+ */
 export function ForgotPasswordForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const texts = useTranslations("core"); // Textos
 
-  const handleForgotPassword = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const supabase = createClient();
-    setIsLoading(true);
-    setError(null);
+  // IDs dos fields
+  const emailId = useId();
 
-    try {
-      // The url which will be included in the email. This URL needs to be configured in your redirect URLs in the Supabase dashboard at https://supabase.com/dashboard/project/_/auth/url-configuration
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/auth/update-password`,
-      });
-      if (error) throw error;
-      setSuccess(true);
-    } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred");
-    } finally {
-      setIsLoading(false);
+  const getValidationMessage = useValidationMessage();
+  const getErrorMessage = useAuthErrorMessage();
+
+  const [state, formAction, isPending] = useActionState(async (prevState: ForgotPasswordState, formData: FormData): Promise<ForgotPasswordState> => {
+    const result = await forgotPasswordAction(prevState, formData);
+
+    // Em caso de erro do Supabase, exibir mensagem de erro
+    if (result.status === "error") {
+      const { title, description } = getErrorMessage(result.code);
+      toast.add({ type: "error", title, description });
     }
-  };
+
+    return result;
+  }, initialState);
+
+  // Sucesso: troca o formulário por uma mensagem neutra
+  if (state.status === "success") {
+    return (
+      <div className={cn("flex flex-col gap-6 mt-6", className)} {...props}>
+        <Alert>
+          <HugeiconsIcon icon={ICONS.feedback.success} />
+          <AlertTitle>{texts("auth.forgotPassword.success.title")}</AlertTitle>
+          <AlertDescription>{texts("auth.forgotPassword.success.message")}</AlertDescription>
+        </Alert>
+
+        <Link href={ROUTES.auth.login} className="text-center text-sm underline underline-offset-4">
+          {texts("auth.forgotPassword.backToLogin")}
+        </Link>
+      </div>
+    );
+  }
+
+  // Erros derivados do estado
+  const errorDescription = state.status === "error" ? getErrorMessage(state.code).description : null;
+  const emailError = state.status === "invalid" ? getValidationMessage(state.fieldErrors.email) : undefined;
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      {success ? (
-        <Card>
-          <CardHeader>
-            <CardTitle className="font-medium text-lg tracking-normal">Check Your Email</CardTitle>
-            <CardDescription>Password reset instructions sent</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">If you registered using your email and password, you will receive a password reset email.</p>
-          </CardContent>
-        </Card>
-      ) : (
-        <Card>
-          <CardHeader>
-            <CardTitle className="font-medium text-lg tracking-normal">Reset Your Password</CardTitle>
-            <CardDescription>Type in your email and we&apos;ll send you a link to reset your password</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleForgotPassword}>
-              <div className="flex flex-col gap-6">
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="m@example.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                {error && <p className="text-sm text-red-500">{error}</p>}
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Sending..." : "Send reset email"}
-                </Button>
-              </div>
-              <div className="mt-4 text-center text-sm">
-                Already have an account?{" "}
-                <Link href="/auth/login" className="underline underline-offset-4">
-                  Sign in
-                </Link>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
+      {/* Alert Erro */}
+      {errorDescription && (
+        <Alert>
+          <HugeiconsIcon icon={ICONS.feedback.error} />
+          <AlertTitle>{texts("auth.forgotPassword.error.title")}</AlertTitle>
+          <AlertDescription>{errorDescription}</AlertDescription>
+        </Alert>
       )}
+
+      {/* Form */}
+      <form action={formAction}>
+        <FieldGroup>
+          {/* Campo E-mail */}
+          <Field data-invalid={!!emailError}>
+            {/* Label */}
+            <FieldLabel htmlFor={emailId}>{texts("auth.fields.email.label")}</FieldLabel>
+            {/* Input */}
+            <Input id={emailId} name="email" type="email" required defaultValue={state.email} aria-invalid={!!emailError} />
+            {/* Error */}
+            {emailError && <FieldError>{emailError}</FieldError>}
+          </Field>
+
+          {/* Botão de Enviar */}
+          <Field>
+            <Button type="submit" disabled={isPending}>
+              {isPending ? (
+                <>
+                  <LoadingSpinner />
+                  <span>{texts("auth.forgotPassword.submit.loading")}</span>
+                </>
+              ) : (
+                <span>{texts("auth.forgotPassword.submit.label")}</span>
+              )}
+            </Button>
+          </Field>
+        </FieldGroup>
+      </form>
+
+      {/* Voltar para o login */}
+      <Link href={ROUTES.auth.login} className="text-center text-sm underline underline-offset-4">
+        {texts("auth.forgotPassword.backToLogin")}
+      </Link>
     </div>
   );
 }

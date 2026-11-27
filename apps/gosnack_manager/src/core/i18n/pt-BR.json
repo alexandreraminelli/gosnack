@@ -53,7 +53,19 @@
     "forgotPassword": {
       "label": "Esqueceu a senha?",
       "title": "Recupere sua Senha",
-      "subtitle": "Digite seu e-mail e enviaremos um link para redefinir sua senha."
+      "subtitle": "Digite seu e-mail e enviaremos um link para redefinir sua senha.",
+      "submit": {
+        "label": "Enviar e-mail",
+        "loading": "Enviando e-mail..."
+      },
+      "backToLogin": "Voltar para o login",
+      "success": {
+        "title": "E-mail enviado",
+        "message": "Um e-mail com instruções para redefinir sua senha foi enviado para o endereço fornecido."
+      },
+      "error": {
+        "title": "Erro ao enviar o e-mail de recuperação de senha"
+      }
     },
     "logout": {
       "label": "Sair",
