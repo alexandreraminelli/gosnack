@@ -51,7 +51,9 @@
       }
     },
     "forgotPassword": {
-      "label": "Esqueceu a senha?"
+      "label": "Esqueceu a senha?",
+      "title": "Recupere sua Senha",
+      "subtitle": "Digite seu e-mail e enviaremos um link para redefinir sua senha."
     },
     "logout": {
       "label": "Sair",
