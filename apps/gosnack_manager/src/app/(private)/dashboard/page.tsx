@@ -17,7 +17,6 @@ export default async function ProtectedPage() {
       <p>
         Usuário logado: <span>{data.claims.email}</span>
       </p>
-      <LogoutButton />
       <ModeToggle />
     </div>
   );
