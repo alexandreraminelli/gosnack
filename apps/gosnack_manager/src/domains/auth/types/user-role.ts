@@ -16,9 +16,9 @@ export const isCustomerRole = (role: UserRole): boolean => CUSTOMER_ROLES.has(ro
 /**
  * Papéis que são funcionários de lanchonete.
  */
-const SNACKBAR_EMPLOYEE_ROLES: ReadonlySet<UserRole> = new Set(["employee", "manager"]);
+const CAFETERIA_EMPLOYEE_ROLES: ReadonlySet<UserRole> = new Set(["employee", "manager"]);
 
 /**
  * Retorna `true` se o usuário for funcionário de lanchonete.
  */
-export const isSnackbarEmployeeRole = (role: UserRole): boolean => SNACKBAR_EMPLOYEE_ROLES.has(role);
+export const isSnackbarEmployeeRole = (role: UserRole): boolean => CAFETERIA_EMPLOYEE_ROLES.has(role);
