@@ -80,7 +80,7 @@
       }
     },
     "logout": {
-      "label": "Sair",
+      "label": "Sair da conta",
       "loading": {
         "title": "Saindo..."
       },
@@ -126,6 +126,12 @@
 
   "logo": {
     "alt": "Logo do GoSnack"
+  },
+
+  "profile": {
+    "myAccount": {
+      "label": "Minha Conta"
+    }
   },
 
   "theme": {

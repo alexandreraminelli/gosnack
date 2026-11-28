@@ -33,6 +33,7 @@ import {
   Tick01Icon,
   Tick02Icon,
   UnavailableIcon,
+  User02Icon,
   UserGroup03Icon,
   ViewIcon,
   ViewOffSlashIcon,
@@ -99,6 +100,11 @@ export const ICONS = {
   /* Pages ------------------------------------------------------------------ */
   pages: {
     home: Home09Icon,
+  },
+
+  /* Profile ---------------------------------------------------------------- */
+  profile: {
+    user: User02Icon,
   },
 
   /* Theme ------------------------------------------------------------------ */
