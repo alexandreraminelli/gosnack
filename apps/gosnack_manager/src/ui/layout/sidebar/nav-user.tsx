@@ -94,7 +94,7 @@ function UserTile({ userData }: { userData: UserData }) {
       {/* Avatar ----------------------------------------------------------- */}
       <Avatar>
         <AvatarImage src={userData.avatarUrl} />
-        <AvatarFallback className="bg-accent-foreground text-accent">{getInitials(userData.firstName, userData.lastName)}</AvatarFallback>
+        <AvatarFallback className="bg-accent-foreground text-accent">{getInitials(userData.firstName, userData.lastName) || <HugeiconsIcon icon={ICONS.profile.user} />}</AvatarFallback>
       </Avatar>
 
       {/* Info ------------------------------------------------------------- */}
